@@ -1,0 +1,17 @@
+{
+  "id": "lesson-template",
+  "number": 0,
+  "title": "Template — do not publish",
+  "subtitle": "Copy this file, rename it lesson-N.json and replace all template values.",
+  "status": "draft",
+  "publishedAt": "",
+  "blocks": [],
+  "vocabulary": {
+    "id": "vocab-lesson-template",
+    "title": "Template vocabulary",
+    "label": "Template",
+    "icon": "💬",
+    "type": "lesson",
+    "words": []
+  }
+}

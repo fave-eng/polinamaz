@@ -1,0 +1,32 @@
+name: Notify teacher about new materials
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/lessons/lesson-*.json"
+      - "data/grammar/grammar-*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare and send notifications
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          STUDENT_ID: polina
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+          SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+          NOTIFY_WEBHOOK_SECRET: ${{ secrets.NOTIFY_WEBHOOK_SECRET }}
+        run: node scripts/prepare-notification.mjs --send
