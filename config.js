@@ -1,6 +1,6 @@
 window.APP_CONFIG = {
   student: {
-    id: "polina",
+    id: "polinamaz",
     nameRu: "Полина",
     nameEn: "Polina",
     level: "A2.2",
