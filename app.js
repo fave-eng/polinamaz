@@ -379,7 +379,8 @@
     async lessonIndex() {
       try {
         const data = await this.fetchJSON("data/lessons/index.json");
-        return Utils.asArray(data.lessons);
+        const lessons = Utils.asArray(data.lessons);
+        return lessons.length ? lessons : this.findSequential("lesson", "data/lessons", 200);
       } catch (error) {
         console.warn("Lesson index unavailable; using sequential fallback", error);
         return this.findSequential("lesson", "data/lessons", 200);
