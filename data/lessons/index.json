@@ -1,4 +1,10 @@
 {
-  "generatedAt": "2026-07-21T11:33:55.608Z",
-  "lessons": []
+  "generatedAt": "2026-07-21T00:00:00Z",
+  "lessons": [
+    {
+      "id": "lesson-1",
+      "number": 1,
+      "title": "Talking about languages"
+    }
+  ]
 }

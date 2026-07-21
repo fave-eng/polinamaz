@@ -1,0 +1,93 @@
+{
+  "id": "lesson-1",
+  "number": 1,
+  "title": "Talking about languages",
+  "subtitle": "Outcomes Intermediate 2nd edition · Unit 1",
+  "status": "published",
+  "publishedAt": "2026-07-21",
+  "blocks": [
+    {
+      "type": "content",
+      "title": "Reading — The Google Translators in Human Form",
+      "paragraphs": [
+        "Michael Erard's article is about hyperglots — people who can speak many languages.",
+        "The article discusses Giuseppe Mezzofanti and modern language learners.",
+        "The main question is whether hyperglots are born with special abilities or become successful through hard work and practice."
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Exercise 8 — Find these words in the article",
+      "items": [
+        "far",
+        "evidence",
+        "growing",
+        "opportunities",
+        "allow"
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Exercise 9 — Complete the sentences",
+      "items": [
+        "But so far?",
+        "There is evidence that he could use many languages.",
+        "There will be growing opportunities in the future.",
+        "Top performers may have genes that allow them to get the most from their training.",
+        "They often have limited terms for individual languages.",
+        "They find opportunities to use language closer to home."
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Workbook Unit 1 — Vocabulary: Talking about people",
+      "items": [
+        "Vocabulary: Arabic, engineer, office, Poland, lawyer, cook, an only child, separate.",
+        "Grammar: Auxiliary verbs."
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Workbook answers",
+      "items": [
+        "1. Arabic",
+        "2. engineer",
+        "3. office",
+        "4. Poland",
+        "5. lawyer",
+        "6. cook",
+        "7. an only child",
+        "8. separate"
+      ]
+    }
+  ],
+  "vocabulary": {
+    "id": "vocab-lesson-1",
+    "title": "Talking about languages",
+    "label": "Unit 1",
+    "icon": "💬",
+    "type": "lesson",
+    "words": [
+      {
+        "word": "accent",
+        "meaning": "accent"
+      },
+      {
+        "word": "fluent",
+        "meaning": "speaking easily and accurately"
+      },
+      {
+        "word": "express",
+        "meaning": "say or show an idea"
+      },
+      {
+        "word": "master",
+        "meaning": "learn something very well"
+      },
+      {
+        "word": "struggle",
+        "meaning": "have difficulty"
+      }
+    ]
+  }
+}
