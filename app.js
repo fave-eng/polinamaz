@@ -123,13 +123,8 @@
       region.appendChild(item);
       setTimeout(() => item.remove(), 3200);
     },
-    sync(message, mode = "neutral") {
-      const el = document.getElementById("sync-status");
-      if (!el) return;
-      el.textContent = message;
-      el.className = `sync-status visible ${mode}`;
-      clearTimeout(this.syncTimer);
-      this.syncTimer = setTimeout(() => el.classList.remove("visible"), 3500);
+    sync() {
+      // Синхронизация выполняется в фоне. Технические сообщения ученице не показываем.
     },
     loading() {
       main.innerHTML = '<div class="loading-state" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span>Loading materials…</div>';
@@ -454,15 +449,15 @@
       <div class="header-inner">
         <a class="brand" href="index.html" aria-label="Go to home page">
           <span class="brand-mark" aria-hidden="true">ES</span>
-          <span class="brand-copy"><span class="brand-title">${Utils.escape(student.nameEn)}’s English Space</span><span class="brand-subtitle">Personal learning dashboard</span></span>
+          <span class="brand-copy"><span class="brand-title">${Utils.escape(student.nameEn)}’s English Space</span><span class="brand-subtitle">Личное пространство для английского</span></span>
         </a>
-        <span class="header-badge">✦ ${Utils.escape(student.level)} · Individual Course</span>
+        <span class="header-badge">✦ ${Utils.escape(student.level)} · Индивидуальный курс</span>
       </div>`;
     const nav = [
-      ["index.html", "🏠", "Home"],
-      ["homework.html", "📝", "Homework"],
-      ["grammar.html", "📐", "Grammar"],
-      ["vocabulary-hub.html", "💥", "Vocabulary"]
+      ["index.html", "🏠", "Главная"],
+      ["homework.html", "📝", "Домашние работы"],
+      ["grammar.html", "📐", "Грамматика"],
+      ["vocabulary-hub.html", "💥", "Словарь"]
     ];
     document.getElementById("bottom-nav").innerHTML = nav.map(([href, icon, label]) => `
       <a class="nav-item ${activeMap[pageName] === href ? "active" : ""}" href="${href}" ${activeMap[pageName] === href ? 'aria-current="page"' : ""}>
@@ -471,14 +466,11 @@
   }
 
   function statusLabel(progress) {
-    if (!progress) return ["Not started", "status-locked"];
-    if (progress.status === "draft") return ["Draft saved", "status-draft"];
-    if (progress.status === "submitted_pending_report") {
-      if (progress.report_status === "failed") return ["Submitted · report failed", "status-error"];
-      return ["Submitted · report pending", "status-draft"];
-    }
-    if (progress.status === "submitted") return ["Sent to teacher", "status-complete"];
-    return ["Not started", "status-locked"];
+    if (!progress) return ["Не начато", "status-locked"];
+    if (progress.status === "draft") return ["Черновик сохранён", "status-draft"];
+    if (progress.status === "submitted_pending_report") return ["Работа отправлена", "status-complete"];
+    if (progress.status === "submitted") return ["Отправлено преподавателю", "status-complete"];
+    return ["Не начато", "status-locked"];
   }
 
   async function initHome() {
@@ -491,55 +483,72 @@
       ProgressService.loadAll("vocabulary"),
       ProgressService.loadAll("grammar")
     ]);
-    const lessonIds = new Set(lessons.map((item) => item.id));
+
+    const visibleLessons = lessons.filter((item) => item.status !== "draft");
+    const lessonIds = new Set(visibleLessons.map((item) => item.id));
     const grammarIds = new Set(grammarTopics.map((item) => item.id));
     const currentWordKeys = new Set(vocabTopics.flatMap((topic) => topic.words.map((word) => Utils.wordKey(word))));
+
     const completedHomework = homeworkProgress.filter((item) => lessonIds.has(item.lesson_id) && FINAL_STATUSES.has(item.status)).length;
     const knownWords = vocabProgress.filter((item) => currentWordKeys.has(item.word_key) && item.status === "known").length;
     const passedGrammar = grammarProgress.filter((item) => grammarIds.has(item.topic_id) && item.passed).length;
-    const currentLesson = lessons.find((item) => item.status !== "locked") || null;
+
+    const homeworkTotal = visibleLessons.length;
+    const vocabularyTotal = currentWordKeys.size;
+    const grammarTotal = grammarTopics.length;
+    const homeworkPercent = Utils.percent(completedHomework, homeworkTotal);
+    const vocabularyPercent = Utils.percent(knownWords, vocabularyTotal);
+    const grammarPercent = Utils.percent(passedGrammar, grammarTotal);
+
+    const progressRows = [
+      ["Домашние работы", completedHomework, homeworkTotal, homeworkPercent, "progress-homework"],
+      ["Словарь", knownWords, vocabularyTotal, vocabularyPercent, "progress-vocabulary"],
+      ["Грамматика", passedGrammar, grammarTotal, grammarPercent, "progress-grammar"]
+    ].map(([label, value, total, percent, className]) => `
+      <div class="progress-row">
+        <div class="progress-row-head"><strong>${label}</strong><span>${value} из ${total}</span></div>
+        <div class="progress-track" role="progressbar" aria-label="${label}: ${value} из ${total}" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${value}">
+          <div class="progress-fill ${className}" style="width:${percent}%"></div>
+        </div>
+      </div>`).join("");
+
+    const currentLesson = visibleLessons.find((item) => item.status !== "locked") || null;
 
     main.innerHTML = `
-      <section class="hero">
-        <span class="badge">✦ ${Utils.escape(config.student.level)} Level · Individual Course</span>
-        <h1>${Utils.escape(config.student.nameEn)}’s English Space 🚀</h1>
+      <section class="hero home-hero">
+        <span class="badge">✦ ${Utils.escape(config.student.level)} уровень · Индивидуальный курс</span>
+        <h1>${Utils.escape(config.student.nameEn)}’s English Space <span aria-hidden="true">🚀</span></h1>
         <p>Твоё личное пространство для роста в английском</p>
       </section>
 
-      <section class="section" aria-labelledby="progress-title">
-        <div class="section-header"><h2 id="progress-title">My progress</h2><span class="section-count">Updates automatically</span></div>
-        <div class="grid grid-4">
-          <div class="card stat-card"><div class="stat-value">${completedHomework}</div><div class="stat-label">Homework completed</div></div>
-          <div class="card stat-card"><div class="stat-value">${knownWords}</div><div class="stat-label">Words learned</div></div>
-          <div class="card stat-card"><div class="stat-value">${passedGrammar}</div><div class="stat-label">Grammar topics passed</div></div>
-          <div class="card stat-card"><div class="stat-value">${Utils.escape(config.student.level)}</div><div class="stat-label">Current level</div></div>
+      <section class="section progress-section" aria-labelledby="progress-title">
+        <div class="section-header"><div><p class="eyebrow">Главная</p><h2 id="progress-title">Мой прогресс</h2></div></div>
+        <div class="grid grid-4 stats-grid">
+          <div class="card stat-card"><div class="stat-value">${completedHomework}</div><div class="stat-label">Домашних работ выполнено</div></div>
+          <div class="card stat-card"><div class="stat-value">${knownWords}</div><div class="stat-label">Слов выучено</div></div>
+          <div class="card stat-card"><div class="stat-value">${passedGrammar}</div><div class="stat-label">Тем грамматики пройдено</div></div>
+          <div class="card stat-card"><div class="stat-value stat-level">${Utils.escape(config.student.level)}</div><div class="stat-label">Текущий уровень</div></div>
+        </div>
+        <div class="card progress-overview" aria-label="Общий прогресс">
+          ${progressRows}
         </div>
       </section>
 
       <section class="section" aria-labelledby="quick-title">
-        <div class="section-header"><h2 id="quick-title">Quick access</h2></div>
-        <div class="grid grid-2">
-          <a class="card card-link quick-card" href="homework.html"><span class="quick-icon">📝</span><span><strong>Homework</strong><br><span class="muted small">Continue or review submitted work</span></span></a>
-          <a class="card card-link quick-card" href="vocabulary-hub.html"><span class="quick-icon">💥</span><span><strong>Vocabulary</strong><br><span class="muted small">Learn words and complete tests</span></span></a>
-          <a class="card card-link quick-card" href="grammar.html"><span class="quick-icon">📐</span><span><strong>Grammar</strong><br><span class="muted small">Clear explanations and practice</span></span></a>
-          <a class="card card-link quick-card" href="#textbook"><span class="quick-icon">📚</span><span><strong>Knowledge base</strong><br><span class="muted small">Course materials in one place</span></span></a>
+        <div class="section-header"><div><p class="eyebrow">Навигация</p><h2 id="quick-title">Быстрый доступ</h2></div></div>
+        <div class="grid grid-3 quick-grid">
+          <a class="card card-link quick-card" href="homework.html"><span class="quick-icon">📝</span><span><strong>Домашние работы</strong><br><span class="muted small">Выполнить новое или посмотреть отправленное</span></span></a>
+          <a class="card card-link quick-card" href="vocabulary-hub.html"><span class="quick-icon">💥</span><span><strong>Словарь</strong><br><span class="muted small">Повторять слова и проходить тесты</span></span></a>
+          <a class="card card-link quick-card" href="grammar.html"><span class="quick-icon">📐</span><span><strong>Грамматика</strong><br><span class="muted small">Понятные правила и практика</span></span></a>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="current-title">
-        <div class="section-header"><h2 id="current-title">Current material</h2></div>
-        ${currentLesson ? `<a class="card card-link" href="lesson.html?id=${encodeURIComponent(currentLesson.id)}"><div class="card-title-row"><div><p class="eyebrow">Lesson ${Number(currentLesson.number || 0)}</p><h3>${Utils.escape(currentLesson.title)}</h3><p class="muted">${Utils.escape(currentLesson.subtitle || "Open the current task")}</p></div><span aria-hidden="true">→</span></div></a>` : UI.empty("🧭", "No current material yet", "Материалы по учебнику будут добавлены преподавателем.")}
-      </section>
-
-      <section class="section" id="textbook" aria-labelledby="book-title">
-        <div class="section-header"><h2 id="book-title">Textbook</h2></div>
-        <div class="card"><p class="eyebrow">Course source</p><h3>${Utils.escape(config.student.textbook)}</h3><p class="muted">${Utils.escape(config.student.textbookEdition)}</p></div>
-      </section>
-
-      <section class="section" aria-labelledby="sync-title">
-        <div class="section-header"><h2 id="sync-title">Sync status</h2></div>
-        <div class="notice ${Cloud.enabled ? "notice-success" : "notice-warning"}">${Cloud.enabled ? "Progress is saved automatically on this device and in the cloud." : "Supabase is not configured yet. Progress is temporarily stored on this device."}</div>
-      </section>`;
+      ${currentLesson ? `<section class="section" aria-labelledby="current-title">
+        <div class="section-header"><div><p class="eyebrow">Продолжить обучение</p><h2 id="current-title">Текущий материал</h2></div></div>
+        <a class="card card-link current-material" href="lesson.html?id=${encodeURIComponent(currentLesson.id)}">
+          <div class="card-title-row"><div><p class="eyebrow">Урок ${Number(currentLesson.number || 0)}</p><h3>${Utils.escape(currentLesson.title)}</h3><p class="muted">${Utils.escape(currentLesson.subtitle || "Открыть текущее задание")}</p></div><span class="current-arrow" aria-hidden="true">→</span></div>
+        </a>
+      </section>` : ""}`;
   }
 
   async function initHomework() {
@@ -713,9 +722,9 @@
       main.innerHTML = `
         <div class="page-heading"><p class="eyebrow">Lesson ${Number(lesson.number || 0)}</p><h1>${Utils.escape(lesson.title)}</h1><p class="lead">${Utils.escape(lesson.subtitle || "")}</p></div>
         <div class="lesson-meta"><span class="badge">${questions.length} tasks</span>${lesson.publishedAt ? `<span class="badge">Published ${Utils.formatDate(lesson.publishedAt)}</span>` : ""}</div>
-        ${locked ? `<div class="notice ${reportClass} locked-banner"><strong>Answers are locked.</strong> Submitted ${Utils.formatDate(progress.submitted_at, true)}. Result: ${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} (${Number(progress.score_percent || 0)}%).${progress.report_status === "failed" ? ` Отчёт не доставлен: ${Utils.escape(progress.report_error || "unknown error")}` : ""}</div>` : '<div class="notice">Your draft is saved automatically. Проверяй ответы до финальной отправки.</div>'}
+        ${locked ? `<div class="notice notice-success locked-banner"><strong>Работа отправлена.</strong> Ответы больше нельзя изменить. Результат: ${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} (${Number(progress.score_percent || 0)}%).</div>` : '<div class="notice">Черновик сохраняется автоматически. Проверяй ответы до финальной отправки.</div>'}
         ${blockHtml || UI.empty("🧩", "This lesson has no blocks", "Add exercises to the lesson JSON file.")}
-        ${questions.length ? `<section class="card score-panel" aria-label="Lesson actions"><div class="card-title-row"><div><div class="small muted">Current result</div><div class="score-number">${progress.score_total != null ? `${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} · ${Number(progress.score_percent || 0)}%` : "Not checked"}</div></div><span class="status-badge ${statusLabel(progress)[1]}">${statusLabel(progress)[0]}</span></div><div class="button-row">${locked ? (progress.report_status === "failed" ? '<button class="btn btn-primary" id="retry-report">Retry report</button>' : '<a class="btn btn-ghost" href="homework.html">Back to homework</a>') : '<button class="btn btn-secondary" id="check-answers">Check answers</button><button class="btn btn-primary" id="submit-homework">Send to teacher</button>'}</div></section>` : ""}`;
+        ${questions.length ? `<section class="card score-panel" aria-label="Lesson actions"><div class="card-title-row"><div><div class="small muted">Текущий результат</div><div class="score-number">${progress.score_total != null ? `${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} · ${Number(progress.score_percent || 0)}%` : "Ещё не проверено"}</div></div><span class="status-badge ${statusLabel(progress)[1]}">${statusLabel(progress)[0]}</span></div><div class="button-row">${locked ? (progress.report_status === "failed" ? '<button class="btn btn-primary" id="retry-report">Повторить отправку преподавателю</button>' : '<a class="btn btn-ghost" href="homework.html">К домашним работам</a>') : '<button class="btn btn-secondary" id="check-answers">Проверить ответы</button><button class="btn btn-primary" id="submit-homework">Отправить преподавателю</button>'}</div></section>` : ""}`;
       bindLessonEvents();
     };
 
