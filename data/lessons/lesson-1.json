@@ -1,0 +1,45 @@
+{
+  "id": "lesson-1",
+  "number": 1,
+  "title": "Homework 1 — Talking about languages",
+  "subtitle": "Unit 1 · Outcomes Intermediate",
+  "status": "published",
+  "publishedAt": "2026-07-21",
+  "blocks": [
+    {
+      "type": "text",
+      "title": "Vocabulary — Talking about languages",
+      "content": "Complete the sentences with the correct words: fluent, get by, struggled, express, picked it up, accent, fluently, mastering."
+    },
+    {
+      "type": "reading",
+      "title": "The Google Translators in Human Form",
+      "exercise": "Exercise 8",
+      "answers": [
+        "far",
+        "evidence",
+        "growing",
+        "opportunities",
+        "terms",
+        "allow"
+      ]
+    },
+    {
+      "type": "reading",
+      "title": "Exercise 9",
+      "answers": [
+        "But how far is this true?",
+        "There is also evidence that he could use many languages.",
+        "There will be a growing number of hyperglots in the future.",
+        "Top performers may have genes that allow them to get the most from their training.",
+        "They often have limited opportunities in terms of individual languages.",
+        "They have opportunities to use the language closer to home."
+      ]
+    },
+    {
+      "type": "audio",
+      "title": "Listening Track 02",
+      "file": "audio/lessons/Track 02.mp3"
+    }
+  ]
+}
