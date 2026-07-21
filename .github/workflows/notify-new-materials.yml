@@ -25,7 +25,7 @@ jobs:
         env:
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
-          STUDENT_ID: polina
+          STUDENT_ID: polinamaz
           SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
           SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
           NOTIFY_WEBHOOK_SECRET: ${{ secrets.NOTIFY_WEBHOOK_SECRET }}

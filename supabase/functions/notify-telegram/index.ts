@@ -24,10 +24,21 @@ function env(name: string): string {
 }
 
 function allowedStudent(studentId: unknown): string {
-  const value = String(studentId || "").trim();
-  const expected = Deno.env.get("ALLOWED_STUDENT_ID")?.trim() || "polina";
-  if (!value || value !== expected) throw new Error("Unknown student");
+  const value = String(studentId || "").trim().toLowerCase();
+  if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(value)) {
+    throw new Error("Unknown student");
+  }
   return value;
+}
+
+function studentDisplayName(studentId: string): string {
+  const names: Record<string, string> = {
+    marina: "Марина",
+    polina: "Полина",
+    polinamaz: "Полина",
+    zhenya: "Женя"
+  };
+  return names[studentId] || studentId;
 }
 
 function dateTime(value: string | null | undefined): string {
@@ -114,7 +125,7 @@ async function homeworkReport(client: ReturnType<typeof createClient>, body: Rec
   const link = baseUrl ? `${baseUrl}/lesson.html?id=${encodeURIComponent(lessonId)}` : null;
   const text = [
     `📝 Домашняя работа: ${title}`,
-    `Ученица: Полина`,
+    `Ученица: ${studentDisplayName(studentId)}`,
     firstCheck ? `Первая проверка: ${Number(firstCheck.correct || 0)} / ${Number(firstCheck.total || 0)}` : null,
     `Финальный результат: ${correct} / ${total} (${percent}%)`,
     `Ошибок: ${mistakes}`,
@@ -215,7 +226,7 @@ async function materialPublished(client: ReturnType<typeof createClient>, reques
     const recipient = await getRecipient(client, studentId);
     const title = String(payload.title || materialId);
     const typeLabel = materialType === "homework" ? "Новая домашняя работа" : materialType === "grammar" ? "Новая тема по грамматике" : "Новый материал";
-    const text = [`✨ ${typeLabel}`, `Ученица: Полина`, `Материал: ${title}`, payload.subtitle ? String(payload.subtitle) : null, payload.url ? `Открыть: ${String(payload.url)}` : null].filter(Boolean).join("\n");
+    const text = [`✨ ${typeLabel}`, `Ученица: ${studentDisplayName(studentId)}`, `Материал: ${title}`, payload.subtitle ? String(payload.subtitle) : null, payload.url ? `Открыть: ${String(payload.url)}` : null].filter(Boolean).join("\n");
     const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
     const sentAt = new Date().toISOString();
     const { error } = await client.from("material_publications").update({ status: "sent", telegram_message_id: messageId || null, sent_at: sentAt, error_message: null }).eq("id", claim.existing.id);
@@ -242,7 +253,7 @@ async function diagnostic(client: ReturnType<typeof createClient>, body: Record<
   if (claim.alreadySent) return json({ ok: true, diagnostic: true, alreadySent: true, serverTime: now.toISOString() });
   try {
     const recipient = await getRecipient(client, studentId);
-    const text = `🧪 English Space: тест Telegram-отчёта\nУченица: Полина\nФункция: ${FUNCTION_VERSION}\nВремя: ${dateTime(now.toISOString())}`;
+    const text = `🧪 English Space: тест Telegram-отчёта\nУченица: ${studentDisplayName(studentId)}\nФункция: ${FUNCTION_VERSION}\nВремя: ${dateTime(now.toISOString())}`;
     const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
     const sentAt = new Date().toISOString();
     await client.from("material_publications").update({ status: "sent", telegram_message_id: messageId || null, sent_at: sentAt, error_message: null }).eq("id", claim.existing.id);
