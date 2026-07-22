@@ -2575,3 +2575,60 @@ body[data-view="lesson"] #lesson-root {
   .site-header.hero-compact { min-height: 220px; padding-top: 34px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Vocabulary section shortcuts */
+.vocab-section-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255,255,255,.82);
+}
+.vocab-section-nav-label {
+  margin-right: 2px;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 750;
+}
+.vocab-section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: .82rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+.vocab-section-link:hover {
+  border-color: #a5b4fc;
+  background: #e0e7ff;
+  color: #312e81;
+  transform: translateY(-1px);
+}
+.vocab-section-link span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-size: .72rem;
+}
+.vocab-group { scroll-margin-top: 20px; }
+
+@media (max-width: 620px) {
+  .vocab-section-nav { align-items: stretch; }
+  .vocab-section-nav-label { width: 100%; }
+  .vocab-section-link { flex: 1 1 100%; justify-content: space-between; }
+}

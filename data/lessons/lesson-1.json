@@ -659,11 +659,11 @@
   ],
   "vocabulary": {
     "id": "vocab-lesson-1",
-    "title": "Unit 1 vocabulary — 30 key words and phrases",
-    "label": "Unit 1 · 30 key items",
+    "title": "Unit 1 vocabulary — 36 key words and phrases",
+    "label": "Unit 1 · 36 key items",
     "icon": "🗣️",
     "type": "lesson",
-    "description": "Words and phrases needed to understand the article and complete the homework without using an external dictionary.",
+    "description": "Words and phrases needed to understand the article and complete the homework without using an external dictionary. Each make/do collocation is listed separately.",
     "words": [
       {
         "en": "hyperglot",
@@ -819,22 +819,76 @@
         "id": "lesson-1-take-up-take-on"
       },
       {
-        "en": "make: a mistake, progress, an effort, a fool of yourself",
-        "ru": "make: допустить ошибку, добиться прогресса, приложить усилие, выставить себя глупо",
-        "transcription": "/meɪk/",
-        "exampleEn": "Make an effort, make progress and do not worry about making a mistake.",
-        "exampleRu": "Приложи усилие, добивайся прогресса и не переживай из-за ошибки.",
+        "en": "make a mistake",
+        "ru": "допустить ошибку",
+        "transcription": "/meɪk ə mɪˈsteɪk/",
+        "exampleEn": "Do not worry about making a mistake.",
+        "exampleRu": "Не переживай из-за того, что можешь допустить ошибку.",
         "category": "Workbook: useful language",
-        "id": "lesson-1-make-collocations"
+        "id": "lesson-1-make-a-mistake"
       },
       {
-        "en": "do: an exercise, homework, a course, a good job",
-        "ru": "do: выполнить упражнение, сделать домашнюю работу, пройти курс, хорошо справиться",
-        "transcription": "/duː/",
-        "exampleEn": "Do the exercise, finish your homework and do a good job.",
-        "exampleRu": "Выполни упражнение, закончи домашнюю работу и хорошо справься.",
+        "en": "make progress",
+        "ru": "добиваться прогресса; продвигаться вперёд",
+        "transcription": "/meɪk ˈprəʊɡres/",
+        "exampleEn": "You will make progress if you practise regularly.",
+        "exampleRu": "Ты будешь добиваться прогресса, если будешь регулярно практиковаться.",
         "category": "Workbook: useful language",
-        "id": "lesson-1-do-collocations"
+        "id": "lesson-1-make-progress"
+      },
+      {
+        "en": "make an effort",
+        "ru": "приложить усилие; постараться",
+        "transcription": "/meɪk ən ˈefət/",
+        "exampleEn": "Make an effort to speak English every day.",
+        "exampleRu": "Постарайся говорить по-английски каждый день.",
+        "category": "Workbook: useful language",
+        "id": "lesson-1-make-an-effort"
+      },
+      {
+        "en": "make a fool of yourself",
+        "ru": "выставить себя глупо; поставить себя в неловкое положение",
+        "transcription": "/meɪk ə fuːl əv jɔːˈself/",
+        "exampleEn": "She was afraid of making a fool of herself.",
+        "exampleRu": "Она боялась выставить себя глупо.",
+        "category": "Workbook: useful language",
+        "id": "lesson-1-make-a-fool-of-yourself"
+      },
+      {
+        "en": "do an exercise",
+        "ru": "выполнить упражнение",
+        "transcription": "/duː ən ˈeksəsaɪz/",
+        "exampleEn": "Do the exercise and check your answers.",
+        "exampleRu": "Выполни упражнение и проверь ответы.",
+        "category": "Workbook: useful language",
+        "id": "lesson-1-do-an-exercise"
+      },
+      {
+        "en": "do your homework",
+        "ru": "сделать домашнюю работу",
+        "transcription": "/duː jɔː ˈhəʊmwɜːk/",
+        "exampleEn": "Remember to do your homework before the next lesson.",
+        "exampleRu": "Не забудь сделать домашнюю работу до следующего урока.",
+        "category": "Workbook: useful language",
+        "id": "lesson-1-do-your-homework"
+      },
+      {
+        "en": "do a course",
+        "ru": "пройти курс; учиться на курсе",
+        "transcription": "/duː ə kɔːs/",
+        "exampleEn": "Trisha decided to do a course in building skills.",
+        "exampleRu": "Триша решила пройти курс по строительным навыкам.",
+        "category": "Workbook: useful language",
+        "id": "lesson-1-do-a-course"
+      },
+      {
+        "en": "do a good job",
+        "ru": "хорошо справиться; хорошо выполнить работу",
+        "transcription": "/duː ə ɡʊd dʒɒb/",
+        "exampleEn": "You did a good job on the exercise.",
+        "exampleRu": "Ты хорошо справилась с упражнением.",
+        "category": "Workbook: useful language",
+        "id": "lesson-1-do-a-good-job"
       },
       {
         "en": "worry about",

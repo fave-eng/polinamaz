@@ -976,7 +976,9 @@
         }
         groupMap.get(category).words.push(word);
       });
-      return `<div class="vocab-groups">${groups.map((group) => `<section class="vocab-group"><div class="vocab-group-heading"><h2>${Utils.escape(group.category)}</h2><span class="badge">${group.words.length}</span></div><div class="word-list">${group.words.map(renderWordCard).join("")}</div></section>`).join("")}</div>`;
+      const sections = groups.map((group, index) => ({ ...group, id: `vocab-section-${index + 1}` }));
+      const navigation = sections.length > 1 ? `<nav class="vocab-section-nav" aria-label="Vocabulary sections"><span class="vocab-section-nav-label">Jump to:</span>${sections.map((group) => `<a class="vocab-section-link" href="#${group.id}">${Utils.escape(group.category)} <span>${group.words.length}</span></a>`).join("")}</nav>` : "";
+      return `${navigation}<div class="vocab-groups">${sections.map((group) => `<section class="vocab-group" id="${group.id}"><div class="vocab-group-heading"><h2>${Utils.escape(group.category)}</h2><span class="badge">${group.words.length}</span></div><div class="word-list">${group.words.map(renderWordCard).join("")}</div></section>`).join("")}</div>`;
     };
 
     const renderCards = () => {
