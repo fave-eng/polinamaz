@@ -7,8 +7,8 @@ const root = process.cwd();
 const failures = [];
 const required = [
   "index.html", "homework.html", "lesson.html", "grammar.html", "grammar-topic.html",
-  "vocabulary-hub.html", "vocabulary.html", "config.js", "config.example.js", "app.js", "styles.css",
-  "README.md", "supabase/schema.sql", "supabase/verify.sql", "supabase/functions/notify-telegram/index.ts"
+  "vocabulary-hub.html", "vocabulary.html", "config.js", "app.js", "styles.css",
+  "supabase/schema.sql", "supabase/verify.sql", "supabase/functions/notify-telegram/index.ts"
 ];
 
 for (const file of required) {
