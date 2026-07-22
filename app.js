@@ -958,7 +958,26 @@
       return `<span class="status-badge ${cls}">${labels[status]}</span>`;
     };
 
-    const renderAll = (list = words) => list.length ? `<div class="word-list">${list.map((word) => { const state = progress[Utils.wordKey(word)]?.status || "new"; return `<article class="card word-card word-row has-pronunciation ${state === "known" ? "known" : state === "difficult" ? "difficult" : ""}"><div><div class="word-en">${Utils.escape(word.en)}</div><div class="transcription">${Utils.escape(word.transcription || "")}</div></div><div class="word-translation">${Utils.escape(word.ru)}</div>${pronunciationButton(word, "word-card-pronounce")}${word.exampleEn ? `<div class="word-example"><strong>${Utils.escape(word.exampleEn)}</strong>${word.exampleRu ? `<br>${Utils.escape(word.exampleRu)}` : ""}<div style="margin-top:8px">${statusBadge(word)}</div></div>` : `<div class="word-example">${statusBadge(word)}</div>`}</article>`; }).join("")}</div>` : UI.empty("🌱", "No words here", "This section will fill after a completed test.");
+    const renderWordCard = (word) => {
+      const state = progress[Utils.wordKey(word)]?.status || "new";
+      return `<article class="card word-card word-row has-pronunciation ${state === "known" ? "known" : state === "difficult" ? "difficult" : ""}"><div class="word-head"><div class="word-en">${Utils.escape(word.en)}</div><div class="transcription">${Utils.escape(word.transcription || "")}</div></div><div class="word-translation">${Utils.escape(word.ru)}</div>${pronunciationButton(word, "word-card-pronounce")}${word.exampleEn ? `<div class="word-example"><strong>${Utils.escape(word.exampleEn)}</strong>${word.exampleRu ? `<br>${Utils.escape(word.exampleRu)}` : ""}</div>` : ""}<div class="word-card-status">${statusBadge(word)}</div></article>`;
+    };
+
+    const renderAll = (list = words) => {
+      if (!list.length) return UI.empty("🌱", "No words here", "This section will fill after a completed test.");
+      const groups = [];
+      const groupMap = new Map();
+      list.forEach((word) => {
+        const category = word.category || "Other useful words";
+        if (!groupMap.has(category)) {
+          const group = { category, words: [] };
+          groupMap.set(category, group);
+          groups.push(group);
+        }
+        groupMap.get(category).words.push(word);
+      });
+      return `<div class="vocab-groups">${groups.map((group) => `<section class="vocab-group"><div class="vocab-group-heading"><h2>${Utils.escape(group.category)}</h2><span class="badge">${group.words.length}</span></div><div class="word-list">${group.words.map(renderWordCard).join("")}</div></section>`).join("")}</div>`;
+    };
 
     const renderCards = () => {
       if (!words.length) return UI.empty("🃏", "No cards", "Add words to the lesson vocabulary.");
@@ -967,7 +986,8 @@
     };
 
     const buildTest = () => {
-      const shuffled = [...words].sort(() => Math.random() - .5);
+      const testSize = Math.min(30, words.length);
+      const shuffled = [...words].sort(() => Math.random() - .5).slice(0, testSize);
       return {
         index: 0,
         answers: {},
@@ -980,13 +1000,13 @@
 
     const renderTest = () => {
       if (!words.length) return UI.empty("🧪", "No test yet", "Add words to this topic first.");
-      if (!testState) return `<div class="card"><h2>Vocabulary test</h2><p>Complete the whole test. Only after you press <strong>Finish test</strong> will correct words become learned.</p><div class="notice notice-warning">No 🔊 buttons are shown in test mode.</div><div class="button-row"><button class="btn btn-primary" id="start-vocab-test">Start test</button></div></div>`;
+      if (!testState) return `<div class="card"><h2>Vocabulary test</h2><p>Each test contains up to <strong>30 randomly selected words</strong>. Complete the test and press <strong>Finish test</strong> to mark correct words as learned.</p><div class="notice notice-warning">No 🔊 buttons are shown in test mode.</div><div class="button-row"><button class="btn btn-primary" id="start-vocab-test">Start test</button></div></div>`;
       return `<div class="card"><div class="card-title-row"><div><p class="eyebrow">Test</p><h2>Choose the correct meaning</h2></div><span class="badge">${testState.questions.length} words</span></div><div class="vocab-question-options">${testState.questions.map((question, index) => `<fieldset class="card"><legend><strong>${index + 1}. ${Utils.escape(question.word.en)}</strong></legend>${question.options.map((option) => `<label class="option"><input type="radio" name="vocab-${index}" data-vocab-index="${index}" value="${Utils.escape(option)}" ${testState.answers[index] === option ? "checked" : ""}><span>${Utils.escape(option)}</span></label>`).join("")}</fieldset>`).join("")}</div><div class="button-row"><button class="btn btn-primary" id="finish-vocab-test">Finish test</button><button class="btn btn-ghost" id="cancel-vocab-test">Cancel</button></div></div>`;
     };
 
     const render = () => {
       const difficult = words.filter((word) => progress[Utils.wordKey(word)]?.status === "difficult");
-      main.innerHTML = `<div class="page-heading"><p class="eyebrow">${Utils.escape(topic.label || "Vocabulary")}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${words.length} unique words. Статус Learned появляется только после завершённого теста.</p></div><div class="mode-tabs" role="tablist" aria-label="Vocabulary modes">${[["all","All words"],["cards","Cards"],["difficult","Difficult"],["test","Test"]].map(([key,label]) => `<button class="mode-tab ${mode === key ? "active" : ""}" data-mode="${key}" role="tab" aria-selected="${mode === key}">${label}</button>`).join("")}</div><section>${mode === "all" ? renderAll() : mode === "cards" ? renderCards() : mode === "difficult" ? renderAll(difficult) : renderTest()}</section>`;
+      main.innerHTML = `<div class="page-heading"><p class="eyebrow">${Utils.escape(topic.label || "Vocabulary")}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${Utils.escape(topic.description || `${words.length} useful words and phrases.`)} <strong>${words.length}</strong> entries, grouped by meaning.</p></div><div class="mode-tabs" role="tablist" aria-label="Vocabulary modes">${[["all","All words"],["cards","Cards"],["difficult","Difficult"],["test","Test"]].map(([key,label]) => `<button class="mode-tab ${mode === key ? "active" : ""}" data-mode="${key}" role="tab" aria-selected="${mode === key}">${label}</button>`).join("")}</div><section>${mode === "all" ? renderAll() : mode === "cards" ? renderCards() : mode === "difficult" ? renderAll(difficult) : renderTest()}</section>`;
       bind();
     };
 
@@ -1020,13 +1040,14 @@
           outcomes.push({ word_key: key, correct: isCorrect });
         }
         const topicRecord = await ProgressService.load("vocabularyTopics", topic.id) || { topic_id: topic.id, tests: [] };
-        topicRecord.tests = [...Utils.asArray(topicRecord.tests), { completed_at: Utils.now(), correct, total: words.length, percent: Utils.percent(correct, words.length), outcomes }];
+        const testTotal = testState.questions.length;
+        topicRecord.tests = [...Utils.asArray(topicRecord.tests), { completed_at: Utils.now(), correct, total: testTotal, percent: Utils.percent(correct, testTotal), outcomes }];
         await ProgressService.save("vocabularyTopics", topic.id, topicRecord);
-        const score = Utils.percent(correct, words.length);
+        const score = Utils.percent(correct, testTotal);
         testState = null;
         mode = "all";
         render();
-        UI.toast(`Test completed: ${correct}/${words.length} · ${score}%`);
+        UI.toast(`Test completed: ${correct}/${testTotal} · ${score}%`);
       });
     };
     render();

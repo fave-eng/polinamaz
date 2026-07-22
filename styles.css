@@ -2457,20 +2457,42 @@ body[data-view="lesson"] #lesson-root {
   white-space: nowrap;
 }
 .mode-tab.active { background: var(--dark); border-color: var(--dark); color: #fff; }
-.word-list { display: grid; gap: 12px; }
+.vocab-groups { display: grid; gap: 26px; }
+.vocab-group { min-width: 0; }
+.vocab-group-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 2px 10px;
+}
+.vocab-group-heading h2 { margin: 0; font-size: clamp(1.08rem, 2vw, 1.3rem); }
+.word-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .word-row {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, .9fr) minmax(0, 1.7fr);
-  gap: 14px;
-  align-items: start;
-  padding-right: 66px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 5px;
+  align-content: start;
+  min-width: 0;
+  padding: 13px 52px 12px 14px;
 }
-.word-en { font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 1.08rem; overflow-wrap: anywhere; }
-.word-translation { font-weight: 600; }
-.transcription { color: var(--muted); margin-top: 4px; font-size: .9rem; }
-.word-example { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
-.word-example strong { color: var(--dark); }
+.word-head { min-width: 0; }
+.word-en { font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 1rem; line-height: 1.25; overflow-wrap: anywhere; }
+.word-translation { font-weight: 650; font-size: .92rem; line-height: 1.35; }
+.transcription { color: var(--muted); margin-top: 2px; font-size: .82rem; line-height: 1.25; }
+.word-example {
+  margin-top: 3px;
+  padding-top: 7px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .79rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.word-example strong { color: var(--dark); font-weight: 650; }
+.word-card-status { margin-top: 2px; }
+.word-card-status .status-badge { padding: 3px 7px; font-size: .68rem; }
 .pronounce-btn {
   display: inline-grid;
   place-items: center;
@@ -2544,7 +2566,8 @@ body[data-view="lesson"] #lesson-root {
   .site-header .hero-content { padding-left: 16px; padding-right: 16px; }
   .quick-grid { grid-template-columns: 1fr; }
   .quick-grid .quick-card.wide { grid-column: span 1; }
-  .word-row { grid-template-columns: 1fr; padding-right: 60px; }
+  .word-list { grid-template-columns: 1fr; }
+  .word-row { grid-template-columns: 1fr; padding-right: 56px; }
   .match-row, .error-comparison, .example-pair { grid-template-columns: 1fr; }
 }
 
