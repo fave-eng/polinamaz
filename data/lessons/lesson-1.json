@@ -1,92 +1,766 @@
 {
   "id": "lesson-1",
   "number": 1,
-  "title": "Talking about languages",
-  "subtitle": "Outcomes Intermediate 2nd edition · Unit 1",
+  "title": "Unit 1 — Talking my language",
+  "subtitle": "Article, Coursebook exercises 8–9 and Workbook page 6",
   "status": "published",
-  "publishedAt": "2026-07-21",
+  "publishedAt": "2026-07-22T00:00:00.000Z",
   "blocks": [
     {
       "type": "content",
-      "title": "Reading — The Google Translators in Human Form",
+      "title": "The Google translators in human form",
       "paragraphs": [
-        "Michael Erard's article is about hyperglots — people who can speak many languages.",
-        "The article discusses Giuseppe Mezzofanti and modern language learners.",
-        "The main question is whether hyperglots are born with special abilities or become successful through hard work and practice."
+        "Michael Erard's new book investigates the master linguists or 'hyperglots'. By Liam Scanlon.",
+        "The 18th century Italian priest Cardinal Giuseppe Mezzofanti is a legend among linguists. They say he studied 72 languages, 30 of which he mastered. He spoke another nine fluently, though not perfectly, and could hold a basic conversation in at least eleven more. And all that without leaving Italy! One story suggests he picked up Ukrainian in just two weeks, after meeting a visitor from there.",
+        "But how far is this true? Certainly, the figure of 72 is too high and some people perhaps exaggerated how fluent he was. He lived at a time when travel was difficult and learning other languages was still unusual. Therefore, many reports of his abilities come from visitors who were probably struggling to express themselves in Italian. There were also those who, while appreciating his good accent and accurate grammar, described him as merely a parrot who said nothing of interest. However, according to Michael Erard, author of the book Mezzofanti's Gift, there is sufficient evidence to believe he could use many languages.",
+        "Erard also argues that there are many hyperglots in the world today and that, with globalisation, there will be a growing number in the future. For example, Alexander Arguelles is fluent in around twenty languages and has studied 60. He studies nine hours a day, down from fourteen before he got married! The Hungarian translator Kato Lomb worked with sixteen, and you can watch a YouTube video of Alex Rawling speaking eleven languages at the age of twenty.",
+        "A central question of the book is whether hyperglots are born or made. Are their achievements genetic or do hyperglots have secrets that normal language learners can learn from? Erard's conclusions agree with research on highly talented people in other areas such as sport and music. These people generally have advantages they are born with: top athletes may have genes that allow them to get the most from their training; hyperglots seem to possess excellent memories and have brains that are more efficient in processing speech sounds. However, becoming the best also requires a lot of hard work. Some argue that the difference between a top performer and someone who's just 'very good' is that the top performer has practised for 10,000 hours instead of 6,000.",
+        "The fact is that most ordinary language learners lack these natural advantages and simply don't have that much time. So is there any hope for us? Erard believes there is and that research on hyperglots can offer some useful lessons. For example, they often have limited ambitions in terms of individual languages: they're happy to get by, or to be only able to read, or not to have a perfect accent. They're practical: if they can't travel, they look for opportunities to use the language closer to home. Some simply imagine conversations in their heads. They also use other techniques like learning words in context. Finally, they're never afraid to make mistakes or appear stupid and so never give up."
       ]
     },
     {
       "type": "content",
-      "title": "Exercise 8 — Find these words in the article",
-      "items": [
-        "far",
-        "evidence",
-        "growing",
-        "opportunities",
-        "allow"
+      "title": "Coursebook exercise 8",
+      "paragraphs": [
+        "Find these words in the article and notice the connected words and grammar: far, evidence, growing, allow, terms, opportunities.",
+        "Copy the connected phrase from the article."
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb8-far",
+      "question": "far — copy the connected phrase from the article.",
+      "correctAnswer": "how far is this true",
+      "acceptedAnswers": [
+        "how far is this true",
+        "But how far is this true?",
+        "But how far is this true"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb8-evidence",
+      "question": "evidence — copy the connected phrase from the article.",
+      "correctAnswer": "sufficient evidence to believe",
+      "acceptedAnswers": [
+        "sufficient evidence to believe",
+        "there is sufficient evidence to believe"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb8-growing",
+      "question": "growing — copy the connected phrase from the article.",
+      "correctAnswer": "a growing number",
+      "acceptedAnswers": [
+        "a growing number",
+        "there will be a growing number"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb8-allow",
+      "question": "allow — copy the connected phrase from the article.",
+      "correctAnswer": "allow them to get the most from their training",
+      "acceptedAnswers": [
+        "allow them to get the most from their training",
+        "genes that allow them to get the most from their training"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb8-terms",
+      "question": "terms — copy the connected phrase from the article.",
+      "correctAnswer": "in terms of",
+      "acceptedAnswers": [
+        "in terms of",
+        "limited ambitions in terms of individual languages"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb8-opportunities",
+      "question": "opportunities — copy the connected phrase from the article.",
+      "correctAnswer": "look for opportunities to use the language closer to home",
+      "acceptedAnswers": [
+        "look for opportunities to use the language closer to home",
+        "they look for opportunities to use the language closer to home"
       ]
     },
     {
       "type": "content",
-      "title": "Exercise 9 — Complete the sentences",
-      "items": [
-        "But so far?",
-        "There is evidence that he could use many languages.",
-        "There will be growing opportunities in the future.",
-        "Top performers may have genes that allow them to get the most from their training.",
-        "They often have limited terms for individual languages.",
-        "They find opportunities to use language closer to home."
+      "title": "Coursebook exercise 9",
+      "paragraphs": [
+        "Cover the article and complete the sentences. Then check your ideas.",
+        "Write each completed sentence in full."
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb9-1",
+      "question": "1. But ______ far ______ ?",
+      "correctAnswer": "But how far is this true?",
+      "acceptedAnswers": [
+        "But how far is this true?",
+        "But how far is this true"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb9-2",
+      "question": "2. There ______ evidence ______ he could use many languages.",
+      "correctAnswer": "There is sufficient evidence to believe he could use many languages.",
+      "acceptedAnswers": [
+        "There is sufficient evidence to believe he could use many languages.",
+        "There is sufficient evidence to believe he could use many languages"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb9-3",
+      "question": "3. There will ______ growing ______ in the future.",
+      "correctAnswer": "There will be a growing number in the future.",
+      "acceptedAnswers": [
+        "There will be a growing number in the future.",
+        "There will be a growing number in the future"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb9-4",
+      "question": "4. Top ______ may ______ genes ______ allow ______ get the ______ their training.",
+      "correctAnswer": "Top athletes may have genes that allow them to get the most from their training.",
+      "acceptedAnswers": [
+        "Top athletes may have genes that allow them to get the most from their training.",
+        "Top athletes may have genes that allow them to get the most from their training"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb9-5",
+      "question": "5. They often ______ limited ______ terms ______ individual languages.",
+      "correctAnswer": "They often have limited ambitions in terms of individual languages.",
+      "acceptedAnswers": [
+        "They often have limited ambitions in terms of individual languages.",
+        "They often have limited ambitions in terms of individual languages"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "cb9-6",
+      "question": "6. They ______ opportunities ______ language closer to home.",
+      "correctAnswer": "They look for opportunities to use the language closer to home.",
+      "acceptedAnswers": [
+        "They look for opportunities to use the language closer to home.",
+        "They look for opportunities to use the language closer to home"
       ]
     },
     {
       "type": "content",
-      "title": "Workbook Unit 1 — Vocabulary: Talking about people",
-      "items": [
-        "Vocabulary: Arabic, engineer, office, Poland, lawyer, cook, an only child, separate.",
-        "Grammar: Auxiliary verbs."
+      "title": "Workbook page 6 — Vocabulary: Talking about languages",
+      "paragraphs": [
+        "Exercise 1. Replace the underlined words with the expressions in the box.",
+        "Word box: get by, fluently, express, mastering, my accent, accurate, picked it up, struggled."
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-1a",
+      "question": "1a. At first I really ______ speaking French at work.",
+      "correctAnswer": "struggled"
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-1b",
+      "question": "1b. No-one understood ______.",
+      "correctAnswer": "my accent"
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-2a",
+      "question": "2a. It's hard to be ______ all the time.",
+      "correctAnswer": "accurate"
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-2b",
+      "question": "2b. ______ a language can take years.",
+      "correctAnswer": "mastering"
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-3",
+      "question": "3. I'm not brilliant at German, but I can ______ in the language in most everyday situations.",
+      "correctAnswer": "get by"
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-4",
+      "question": "4. I'm pretty good at Japanese now. I ______ by living in Kyoto for about 10 years.",
+      "correctAnswer": "picked it up"
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-5",
+      "question": "5. I haven't been studying Italian for very long, so it's hard to ______ what I want to say sometimes.",
+      "correctAnswer": "express"
+    },
+    {
+      "type": "text-input",
+      "id": "wb1-6",
+      "question": "6. I was born in Greece but I went to an international school, so I speak English ______.",
+      "correctAnswer": "fluently"
+    },
+    {
+      "type": "content",
+      "title": "Language note — word order with phrasal verbs",
+      "paragraphs": [
+        "Remember the word order when you use a pronoun with separable verbs.",
+        "I picked up my Spanish while travelling. OR I picked my Spanish up while travelling.",
+        "BUT: I picked it up while travelling. NOT: I picked up it while travelling."
       ]
     },
     {
       "type": "content",
-      "title": "Workbook answers",
-      "items": [
-        "1. Arabic",
-        "2. engineer",
-        "3. office",
-        "4. Poland",
-        "5. lawyer",
-        "6. cook",
-        "7. an only child",
-        "8. separate"
+      "title": "Workbook exercise 2 — Word types",
+      "paragraphs": [
+        "Look at the underlined words. What type of word is each one?",
+        "I've just 1 taken up painting at our local art college. To be honest, I'm no Van Gogh. Doing anything 2 for the first time is 3 hard and people always want to do 4 well. But my 5 advice is to concentrate on the activity. What I 6 mean is, enjoy what 7 you are doing and don't worry about the end result. And never compare yourself with anyone else. There will always be those 8 annoyingly talented people who can 9 take on any new challenge and succeed. Ignore them."
       ]
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-1",
+      "question": "1. taken up",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "phrasal verb"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-2",
+      "question": "2. for",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "preposition"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-3",
+      "question": "3. hard",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "adjective"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-4",
+      "question": "4. well",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "adverb"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-5",
+      "question": "5. advice",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "noun"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-6",
+      "question": "6. mean",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "verb"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-7",
+      "question": "7. you",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "pronoun"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-8",
+      "question": "8. annoyingly talented",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "adjective"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb2-9",
+      "question": "9. take",
+      "options": [
+        "phrasal verb",
+        "preposition",
+        "adjective",
+        "adverb",
+        "noun",
+        "verb",
+        "pronoun"
+      ],
+      "correctAnswer": "verb"
+    },
+    {
+      "type": "content",
+      "title": "Workbook exercise 3 — Test your knowledge",
+      "paragraphs": [
+        "1. What's the opposite of these words and expressions? Circle the correct option."
+      ]
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-1-1",
+      "question": "easy",
+      "options": [
+        "hard",
+        "hardly"
+      ],
+      "correctAnswer": "hard"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-1-2",
+      "question": "slowly",
+      "options": [
+        "fastly",
+        "fast"
+      ],
+      "correctAnswer": "fast"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-1-3",
+      "question": "fluent",
+      "options": [
+        "unfluent",
+        "not very fluent"
+      ],
+      "correctAnswer": "not very fluent"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-1-4",
+      "question": "a minor mistake",
+      "options": [
+        "a serious mistake",
+        "a large mistake"
+      ],
+      "correctAnswer": "a serious mistake"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-1-5",
+      "question": "good progress",
+      "options": [
+        "slow progress",
+        "bad progress"
+      ],
+      "correctAnswer": "slow progress"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-1-6",
+      "question": "a basic level of Japanese",
+      "options": [
+        "a high level of Japanese",
+        "a tall level of Japanese"
+      ],
+      "correctAnswer": "a high level of Japanese"
+    },
+    {
+      "type": "content",
+      "title": "Workbook exercise 3.2 — make or do?",
+      "paragraphs": [
+        "Do these words collocate with make or do?"
+      ]
+    },
+    {
+      "type": "matching",
+      "id": "wb3-2",
+      "question": "Choose make or do for each phrase.",
+      "pairs": [
+        "a mistake",
+        "an exercise",
+        "progress",
+        "your homework",
+        "a course",
+        "a fool of yourself",
+        "a good job",
+        "an effort"
+      ],
+      "options": [
+        "make",
+        "do"
+      ],
+      "correctAnswer": {
+        "a mistake": "make",
+        "an exercise": "do",
+        "progress": "make",
+        "your homework": "do",
+        "a course": "do",
+        "a fool of yourself": "make",
+        "a good job": "do",
+        "an effort": "make"
+      }
+    },
+    {
+      "type": "content",
+      "title": "Workbook exercise 3.3 — Prepositions",
+      "paragraphs": [
+        "Write the correct prepositions."
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "wb3-3-1",
+      "question": "worry ______ your progress",
+      "correctAnswer": "about"
+    },
+    {
+      "type": "text-input",
+      "id": "wb3-3-2",
+      "question": "rely ______ your best friend",
+      "correctAnswer": "on"
+    },
+    {
+      "type": "text-input",
+      "id": "wb3-3-3",
+      "question": "concentrate ______ work",
+      "correctAnswer": "on"
+    },
+    {
+      "type": "text-input",
+      "id": "wb3-3-4",
+      "question": "deal ______ a problem",
+      "correctAnswer": "with"
+    },
+    {
+      "type": "content",
+      "title": "Workbook exercise 3.4 — Word stress",
+      "paragraphs": [
+        "Where is the stress on these words?"
+      ]
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-4-1",
+      "question": "evidence",
+      "options": [
+        "1st syllable",
+        "2nd syllable",
+        "3rd syllable"
+      ],
+      "correctAnswer": "1st syllable"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-4-2",
+      "question": "motivation",
+      "options": [
+        "1st syllable",
+        "2nd syllable",
+        "3rd syllable",
+        "4th syllable"
+      ],
+      "correctAnswer": "3rd syllable"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-4-3",
+      "question": "environment",
+      "options": [
+        "1st syllable",
+        "2nd syllable",
+        "3rd syllable",
+        "4th syllable"
+      ],
+      "correctAnswer": "2nd syllable"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-4-4",
+      "question": "bilingual",
+      "options": [
+        "1st syllable",
+        "2nd syllable",
+        "3rd syllable",
+        "4th syllable"
+      ],
+      "correctAnswer": "2nd syllable"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-4-5",
+      "question": "continuity",
+      "options": [
+        "1st syllable",
+        "2nd syllable",
+        "3rd syllable",
+        "4th syllable",
+        "5th syllable"
+      ],
+      "correctAnswer": "3rd syllable"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-4-6",
+      "question": "embarrassed",
+      "options": [
+        "1st syllable",
+        "2nd syllable",
+        "3rd syllable"
+      ],
+      "correctAnswer": "2nd syllable"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb3-5",
+      "question": "What do honest, knowledge, write and foreign have in common?",
+      "options": [
+        "They all contain a silent letter",
+        "They are all irregular plurals",
+        "They all start with a vowel sound",
+        "They are all borrowed from French"
+      ],
+      "correctAnswer": "They all contain a silent letter",
+      "explanation": "honest: silent h; knowledge: silent k; write: silent w; foreign: silent g."
+    },
+    {
+      "type": "content",
+      "title": "Workbook exercise 4 — Listening 1.1",
+      "paragraphs": [
+        "You are going to hear Trisha and Andy talking about a change in Trisha's life. Choose the correct answers, a, b or c."
+      ]
+    },
+    {
+      "type": "audio",
+      "title": "Track 1.1",
+      "instruction": "Listen and answer questions 1–5.",
+      "src": "audio/lessons/Track%2002.mp3"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb4-1",
+      "question": "1. What course has Trisha decided to go on?",
+      "options": [
+        "a foreign language",
+        "knitting",
+        "building skills"
+      ],
+      "correctAnswer": "building skills"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb4-2",
+      "question": "2. What is Andy's reaction to her news?",
+      "options": [
+        "He's impressed",
+        "He wants to try something new too",
+        "He criticises her"
+      ],
+      "correctAnswer": "He's impressed"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb4-3",
+      "question": "3. What was the problem at the first class?",
+      "options": [
+        "All the other students were men",
+        "Trisha didn't know the answer to a question",
+        "Trisha said something silly"
+      ],
+      "correctAnswer": "Trisha said something silly"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb4-4",
+      "question": "4. What will Trisha do in the first term?",
+      "options": [
+        "whatever she likes",
+        "general skills",
+        "bricklaying"
+      ],
+      "correctAnswer": "general skills"
+    },
+    {
+      "type": "single-choice",
+      "id": "wb4-5",
+      "question": "5. Trisha thinks her new job will be:",
+      "options": [
+        "well paid",
+        "interesting",
+        "hard work"
+      ],
+      "correctAnswer": "well paid"
     }
   ],
   "vocabulary": {
     "id": "vocab-lesson-1",
-    "title": "Talking about languages",
+    "title": "Unit 1 vocabulary — talking about languages",
     "label": "Unit 1",
-    "icon": "💬",
+    "icon": "🗣️",
     "type": "lesson",
     "words": [
       {
-        "word": "accent",
-        "meaning": "accent"
+        "en": "accent",
+        "ru": "акцент",
+        "transcription": "/ˈæksent/",
+        "exampleEn": "She has a strong French accent when she speaks English.",
+        "exampleRu": "У неё сильный французский акцент, когда она говорит по-английски."
       },
       {
-        "word": "fluent",
-        "meaning": "speaking easily and accurately"
+        "en": "accurate",
+        "ru": "точный, правильный",
+        "transcription": "/ˈækjərət/",
+        "exampleEn": "Try to be accurate with your grammar, not just fast.",
+        "exampleRu": "Старайся говорить грамматически правильно, а не просто быстро."
       },
       {
-        "word": "express",
-        "meaning": "say or show an idea"
+        "en": "to express yourself",
+        "ru": "выражать свои мысли",
+        "transcription": "/ɪkˈspres jɔːˈself/",
+        "exampleEn": "I find it hard to express myself in German.",
+        "exampleRu": "Мне трудно выражать свои мысли по-немецки."
       },
       {
-        "word": "master",
-        "meaning": "learn something very well"
+        "en": "fluently",
+        "ru": "свободно (говорить)",
+        "transcription": "/ˈfluːəntli/",
+        "exampleEn": "After five years in Spain, she speaks Spanish fluently.",
+        "exampleRu": "После пяти лет в Испании она свободно говорит по-испански."
       },
       {
-        "word": "struggle",
-        "meaning": "have difficulty"
+        "en": "to get by",
+        "ru": "обходиться, справляться",
+        "transcription": "/tə ɡet baɪ/",
+        "exampleEn": "I don't speak much Italian, but I can get by on holiday.",
+        "exampleRu": "Я почти не говорю по-итальянски, но могу справиться в отпуске."
+      },
+      {
+        "en": "to master / mastering",
+        "ru": "овладеть в совершенстве",
+        "transcription": "/ˈmɑːstər/",
+        "exampleEn": "Mastering a language takes years of practice.",
+        "exampleRu": "Овладеть языком в совершенстве — дело многих лет практики."
+      },
+      {
+        "en": "to pick something up",
+        "ru": "освоить неформально, «подхватить»",
+        "transcription": "/tə pɪk ʌp/",
+        "exampleEn": "He picked up Portuguese just by living in Brazil.",
+        "exampleRu": "Он освоил португальский просто живя в Бразилии."
+      },
+      {
+        "en": "to struggle with something",
+        "ru": "испытывать трудности с чем-то",
+        "transcription": "/tə ˈstrʌɡl wɪð/",
+        "exampleEn": "I struggled with French verbs at school.",
+        "exampleRu": "В школе у меня были трудности с французскими глаголами."
+      },
+      {
+        "en": "far (in questions of degree)",
+        "ru": "насколько (это так)",
+        "transcription": "/fɑːr/",
+        "exampleEn": "How far do you agree with this opinion?",
+        "exampleRu": "Насколько ты согласен с этим мнением?"
+      },
+      {
+        "en": "evidence",
+        "ru": "доказательство, свидетельство",
+        "transcription": "/ˈevɪdəns/",
+        "exampleEn": "There isn't much evidence to support that theory.",
+        "exampleRu": "Не так много доказательств в пользу этой теории."
+      },
+      {
+        "en": "growing",
+        "ru": "растущий",
+        "transcription": "/ˈɡrəʊɪŋ/",
+        "exampleEn": "There's a growing interest in learning new languages.",
+        "exampleRu": "Растёт интерес к изучению новых языков."
+      },
+      {
+        "en": "to allow",
+        "ru": "позволять",
+        "transcription": "/əˈlaʊ/",
+        "exampleEn": "Good genes can allow someone to learn languages faster.",
+        "exampleRu": "Хорошие гены могут позволить кому-то учить языки быстрее."
+      },
+      {
+        "en": "in terms of",
+        "ru": "с точки зрения, что касается",
+        "transcription": "/ɪn tɜːmz ɒv/",
+        "exampleEn": "In terms of grammar, this language is quite simple.",
+        "exampleRu": "С точки зрения грамматики, этот язык довольно простой."
+      },
+      {
+        "en": "opportunities (to do something)",
+        "ru": "возможности (сделать что-то)",
+        "transcription": "/ˌɒpəˈtjuːnətiz/",
+        "exampleEn": "Living abroad gives you more opportunities to practise.",
+        "exampleRu": "Жизнь за границей даёт больше возможностей практиковаться."
       }
     ]
   }

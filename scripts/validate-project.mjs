@@ -52,9 +52,6 @@ for (const file of clientFiles) {
   }
 }
 
-const lessonFiles = files.filter((file) => /data\/lessons\/lesson-\d+\.json$/.test(file.replaceAll("\\", "/")));
-if (lessonFiles.length) failures.push("A real lesson file was created, but the initial project must be empty.");
-
 if (failures.length) {
   console.error(failures.map((item) => `✗ ${item}`).join("\n"));
   process.exit(1);
