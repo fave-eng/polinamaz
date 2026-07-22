@@ -1,6 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const FUNCTION_VERSION = "homework-reports-v1";
+const FUNCTION_VERSION = "homework-reports-v2";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-notify-secret",
@@ -59,11 +59,14 @@ async function sendTelegram(
       chat_id: recipient.chat_id,
       ...(recipient.message_thread_id ? { message_thread_id: recipient.message_thread_id } : {}),
       text,
-      disable_web_page_preview: true
+      link_preview_options: { is_disabled: true }
     })
   });
   const data = await response.json().catch(() => ({}));
-  if (!response.ok || !data?.ok) throw new Error(`Telegram delivery failed (${response.status})`);
+  if (!response.ok || !data?.ok) {
+    const description = typeof data?.description === "string" ? data.description : "Unknown Telegram error";
+    throw new Error(`Telegram delivery failed (${response.status}): ${description}`);
+  }
   return Number(data.result?.message_id || 0);
 }
 
