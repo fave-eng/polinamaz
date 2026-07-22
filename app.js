@@ -412,13 +412,29 @@
     lesson(id) { return this.fetchJSON(`data/lessons/${encodeURIComponent(id)}.json`); },
     grammar(id) { return this.fetchJSON(`data/grammar/${encodeURIComponent(id)}.json`); },
     async vocabularyTopics() {
+      const externalTopics = Utils.asArray(window.VOCABULARY_DATA);
+      if (externalTopics.length) {
+        const seen = new Set();
+        return externalTopics.map((topic) => {
+          const words = Utils.asArray(topic.words).filter((word) => {
+            const key = Utils.wordKey(word);
+            if (!key || seen.has(key)) return false;
+            seen.add(key);
+            return true;
+          });
+          const linkedLessonId = topic.linkedLessonId || topic.lessonId || "";
+          const lessonNumber = Number(String(linkedLessonId).match(/\d+/)?.[0] || 0);
+          return { ...topic, lessonId: linkedLessonId, lessonNumber, words };
+        }).filter((topic) => topic.words.length);
+      }
+
       const lessons = await this.lessonIndex();
       const topics = [];
+      const seen = new Set();
       for (const entry of lessons) {
         try {
           const lesson = entry.blocks ? entry : await this.lesson(entry.id || entry);
           if (lesson.status === "draft" || !lesson.vocabulary || !Utils.asArray(lesson.vocabulary.words).length) continue;
-          const seen = new Set();
           const words = lesson.vocabulary.words.filter((word) => {
             const key = Utils.wordKey(word);
             if (!key || seen.has(key)) return false;
@@ -721,7 +737,7 @@
       }).join("");
       const reportClass = progress.report_status === "failed" ? "notice-error" : "notice-success";
       main.innerHTML = `
-        <div class="page-heading"><a class="hero-back-link" href="homework.html">← Back to homework</a><p class="eyebrow">Lesson ${Number(lesson.number || 0)}</p><h1>${Utils.escape(lesson.title)}</h1><p class="lead">${Utils.escape(lesson.subtitle || "")}</p></div>
+        <div class="page-heading"><p class="eyebrow">Lesson ${Number(lesson.number || 0)}</p><h1>${Utils.escape(lesson.title)}</h1><p class="lead">${Utils.escape(lesson.subtitle || "")}</p></div>
         <div class="lesson-meta"><span class="badge">${questions.length} tasks</span>${lesson.publishedAt ? `<span class="badge">Published ${Utils.formatDate(lesson.publishedAt)}</span>` : ""}</div>
         ${locked ? `<div class="notice notice-success locked-banner"><strong>Работа отправлена.</strong> Ответы больше нельзя изменить. Результат: ${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} (${Number(progress.score_percent || 0)}%).</div>` : '<div class="notice">Черновик сохраняется автоматически. Проверяй ответы до финальной отправки.</div>'}
         ${blockHtml || UI.empty("🧩", "This lesson has no blocks", "Add exercises to the lesson JSON file.")}
@@ -867,7 +883,7 @@
       const unique = topic.words;
       const known = unique.filter((word) => progressMap[Utils.wordKey(word)]?.status === "known").length;
       const percent = Utils.percent(known, unique.length);
-      return `<article class="card"><div class="card-title-row"><div><p class="eyebrow">${Utils.escape(topic.label || `Lesson ${topic.lessonNumber || ""}`)}</p><h3>${Utils.escape(topic.icon || "💬")} ${Utils.escape(topic.title)}</h3></div><span class="status-badge ${known === unique.length && unique.length ? "status-complete" : ""}">${known}/${unique.length}</span></div><div class="progress-track" aria-label="${percent}% learned"><div class="progress-fill" style="width:${percent}%"></div></div><p class="muted small">A word becomes learned only after a correct answer in a completed vocabulary test.</p><div class="button-row"><a class="btn btn-primary" href="vocabulary.html?topic=${encodeURIComponent(topic.id)}">Open</a></div></article>`;
+      return `<article class="card"><div class="card-title-row"><div><p class="eyebrow">${Utils.escape(topic.label || `Lesson ${topic.lessonNumber || ""}`)}</p><h3>${Utils.escape(topic.icon || "💬")} ${Utils.escape(topic.title)}</h3></div><span class="status-badge ${known === unique.length && unique.length ? "status-complete" : ""}">${known}/${unique.length}</span></div><div class="progress-track" aria-label="${percent}% learned"><div class="progress-fill" style="width:${percent}%"></div></div><p class="muted small">A word becomes learned only after a correct answer in a completed vocabulary test.</p><div class="button-row"><a class="btn btn-primary" href="${Utils.escape(topic.page || `vocabulary.html?topic=${encodeURIComponent(topic.id)}`)}">Open</a></div></article>`;
     }).join("") : UI.empty("💥", "Словарных тренажёров пока нет", "Новые темы появятся после уроков.")}`;
   }
 
@@ -921,7 +937,7 @@
 
     const render = () => {
       const difficult = words.filter((word) => progress[Utils.wordKey(word)]?.status === "difficult");
-      main.innerHTML = `<div class="page-heading"><a class="hero-back-link" href="vocabulary-hub.html">← Back to vocabulary topics</a><p class="eyebrow">${Utils.escape(topic.label || "Vocabulary")}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${words.length} unique words. Статус Learned появляется только после завершённого теста.</p></div><div class="mode-tabs" role="tablist" aria-label="Vocabulary modes">${[["all","All words"],["cards","Cards"],["difficult","Difficult"],["test","Test"]].map(([key,label]) => `<button class="mode-tab ${mode === key ? "active" : ""}" data-mode="${key}" role="tab" aria-selected="${mode === key}">${label}</button>`).join("")}</div><section>${mode === "all" ? renderAll() : mode === "cards" ? renderCards() : mode === "difficult" ? renderAll(difficult) : renderTest()}</section>`;
+      main.innerHTML = `<div class="page-heading"><p class="eyebrow">${Utils.escape(topic.label || "Vocabulary")}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${words.length} unique words. Статус Learned появляется только после завершённого теста.</p></div><div class="mode-tabs" role="tablist" aria-label="Vocabulary modes">${[["all","All words"],["cards","Cards"],["difficult","Difficult"],["test","Test"]].map(([key,label]) => `<button class="mode-tab ${mode === key ? "active" : ""}" data-mode="${key}" role="tab" aria-selected="${mode === key}">${label}</button>`).join("")}</div><section>${mode === "all" ? renderAll() : mode === "cards" ? renderCards() : mode === "difficult" ? renderAll(difficult) : renderTest()}</section>`;
       bind();
     };
 
@@ -991,7 +1007,7 @@
 
     const render = () => {
       const forms = topic.forms || {};
-      main.innerHTML = `<div class="page-heading"><a class="hero-back-link" href="grammar.html">← Back to grammar topics</a><p class="eyebrow">Grammar · ${Utils.escape(topic.level || config.student.level)}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${Utils.escape(topic.subtitle || "")}</p></div>
+      main.innerHTML = `<div class="page-heading"><p class="eyebrow">Grammar · ${Utils.escape(topic.level || config.student.level)}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${Utils.escape(topic.subtitle || "")}</p></div>
         <section class="card grammar-summary"><p class="eyebrow">Главное за минуту</p><h2>Key idea</h2>${Utils.asArray(topic.summary).map((item) => `<p>${Utils.escape(item)}</p>`).join("") || '<p class="muted">Add a short summary to this grammar JSON.</p>'}</section>
         <section class="section"><div class="section-header"><h2>When we use it</h2></div><div class="grammar-map">${Utils.asArray(topic.uses).slice(0,4).map((item) => `<div class="card">${Utils.escape(item)}</div>`).join("") || '<div class="card muted">No usage notes yet.</div>'}</div></section>
         <section class="section"><div class="section-header"><h2>How it is built</h2></div><div class="grid">${[["Affirmative",forms.affirmative],["Negative",forms.negative],["Question",forms.question]].map(([label,formula]) => `<div class="card formula-card"><h3>${label}</h3><code class="formula">${Utils.escape(formula || "Add the form here")}</code></div>`).join("")}</div></section>
