@@ -700,10 +700,15 @@
     return typeof option === "object" ? String(option.label ?? option.value ?? "") : String(option);
   }
 
+  function originalQuestionPrompt(question) {
+    return String(question.question || question.prompt || question.title || "").trim();
+  }
+
   function renderQuestion(question, number, answer, checked, locked) {
     const id = Utils.escape(question.id);
     const result = checked?.[question.id];
     const stateClass = result ? (result.correct ? "is-correct" : "is-incorrect") : "";
+    const prompt = originalQuestionPrompt(question);
     let control = "";
     if (["single-choice", "true-false"].includes(question.type)) {
       const options = question.type === "true-false" ? ["true", "false"] : Utils.asArray(question.options);
@@ -733,14 +738,28 @@
       control = `<div class="ordering-list" data-order-list="${id}">${initial.map((item, index) => `<div class="order-item" data-order-value="${Utils.escape(item)}"><span>${Utils.escape(optionLabel(Utils.asArray(question.items).find((candidate) => optionValue(candidate) === String(item)) || item))}</span><span class="order-controls"><button type="button" data-order-action="up" aria-label="Move up" ${locked || index === 0 ? "disabled" : ""}>↑</button><button type="button" data-order-action="down" aria-label="Move down" ${locked || index === initial.length - 1 ? "disabled" : ""}>↓</button></span></div>`).join("")}</div>`;
     }
     const resultHtml = result ? `<div class="result-label ${result.correct ? "correct" : "incorrect"}"><span aria-hidden="true">${result.correct ? "✓" : "✕"}</span><span><strong>${result.correct ? "Correct" : "Check this answer"}.</strong>${result.explanation ? ` ${Utils.escape(result.explanation)}` : ""}</span></div>` : "";
-    return `<article class="card question-card ${stateClass}" data-question-card="${id}"><div class="question-number">Question ${number}</div><div class="question-text">${Utils.escape(question.question || question.prompt || question.title || "")}</div>${control}${resultHtml}</article>`;
+    return `<article class="card question-card ${stateClass}" data-question-card="${id}"><div class="question-heading"><div class="question-text">${Utils.escape(prompt)}</div></div><div class="question-answer">${control}</div>${resultHtml}</article>`;
+  }
+
+  function renderContentParagraph(item) {
+    const text = String(item || "").trim();
+    const wordBox = text.match(/^Word box:\s*(.+)$/i);
+    if (wordBox) {
+      const words = wordBox[1].replace(/[.]$/, "").split(",").map((word) => word.trim()).filter(Boolean);
+      return `<div class="lesson-word-bank" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span><span class="lesson-word-bank-help">Use each expression where it fits best</span></div></div><div class="lesson-word-bank-items">${words.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`;
+    }
+    const instruction = text.match(/^(Exercise\s+\d+(?:\.\d+)?)[.:]\s*(.+)$/i);
+    if (instruction) {
+      return `<div class="lesson-task-instruction"><span class="lesson-task-label">${Utils.escape(instruction[1])}</span><p>${Utils.escape(instruction[2])}</p></div>`;
+    }
+    return `<p class="lesson-content-paragraph">${Utils.escape(text)}</p>`;
   }
 
   function renderContentBlock(block) {
     if (block.type === "content") {
-      const paragraphs = Utils.asArray(block.paragraphs || block.text).map((item) => `<p>${Utils.escape(item)}</p>`).join("");
-      const list = Utils.asArray(block.items).length ? `<ul>${block.items.map((item) => `<li>${Utils.escape(item)}</li>`).join("")}</ul>` : "";
-      return `<section class="card exercise-block">${block.title ? `<h2>${Utils.escape(block.title)}</h2>` : ""}${paragraphs}${list}</section>`;
+      const paragraphs = Utils.asArray(block.paragraphs || block.text).map(renderContentParagraph).join("");
+      const list = Utils.asArray(block.items).length ? `<ul class="lesson-content-list">${block.items.map((item) => `<li>${Utils.escape(item)}</li>`).join("")}</ul>` : "";
+      return `<section class="card exercise-block lesson-content-card">${block.title ? `<div class="lesson-content-heading"><span class="lesson-content-kicker">Study material</span><h2>${Utils.escape(block.title)}</h2></div>` : ""}<div class="lesson-content-body">${paragraphs}${list}</div></section>`;
     }
     if (block.type === "image") return `<figure class="exercise-block"><img class="content-image" src="${Utils.escape(block.src)}" alt="${Utils.escape(block.alt || "Lesson image")}">${block.caption ? `<figcaption class="muted small">${Utils.escape(block.caption)}</figcaption>` : ""}</figure>`;
     if (block.type === "audio") return `<section class="card exercise-block"><h2>${Utils.escape(block.title || "Listening")}</h2>${block.instruction ? `<p class="instruction">${Utils.escape(block.instruction)}</p>` : ""}<audio class="media-player" controls preload="metadata" src="${Utils.escape(block.src)}">Your browser cannot play this audio.</audio></section>`;
