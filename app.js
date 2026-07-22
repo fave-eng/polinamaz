@@ -755,11 +755,49 @@
     return `<p class="lesson-content-paragraph">${Utils.escape(text)}</p>`;
   }
 
+  function renderContentHeading(block) {
+    if (!block.title) return "";
+    return `<div class="lesson-content-heading"><span class="lesson-content-kicker">${Utils.escape(block.kicker || "Study material")}</span><h2>${Utils.escape(block.title)}</h2></div>`;
+  }
+
+  function renderEmphasizedText(text, emphasis) {
+    const source = String(text || "");
+    const target = String(emphasis || "");
+    const index = target ? source.indexOf(target) : -1;
+    if (index < 0) return Utils.escape(source);
+    return `${Utils.escape(source.slice(0, index))}<strong>${Utils.escape(target)}</strong>${Utils.escape(source.slice(index + target.length))}`;
+  }
+
+  function renderLanguageNoteBlock(block) {
+    const groups = Utils.asArray(block.exampleGroups).map((group) => {
+      const examples = Utils.asArray(group.examples).map((example) => {
+        const incorrect = example.status === "incorrect";
+        const statusLabel = example.label || (incorrect ? "Not correct" : "Correct");
+        return `<div class="lesson-example-row ${incorrect ? "is-incorrect" : "is-correct"}"><span class="lesson-example-status" aria-label="${Utils.escape(statusLabel)}">${incorrect ? "✕" : "✓"}</span><span class="lesson-example-sentence">${renderEmphasizedText(example.text, example.emphasis)}</span>${example.label ? `<span class="lesson-example-tag">${Utils.escape(example.label)}</span>` : ""}</div>`;
+      }).join("");
+      return `<section class="lesson-example-group"><div class="lesson-example-group-heading"><div><h3>${Utils.escape(group.label || "Example")}</h3>${group.help ? `<p>${Utils.escape(group.help)}</p>` : ""}</div></div><div class="lesson-example-list">${examples}</div></section>`;
+    }).join("");
+    return `<section class="card exercise-block lesson-content-card lesson-language-note-card">${renderContentHeading(block)}<div class="lesson-content-body lesson-language-note-body"><div class="lesson-rule-card"><span class="lesson-rule-label">Rule</span><p>${Utils.escape(block.rule || "")}</p></div><div class="lesson-example-grid">${groups}</div></div></section>`;
+  }
+
+  function renderAnnotatedPassagePart(part) {
+    if (typeof part === "string") return Utils.escape(part);
+    if (!part || typeof part !== "object") return "";
+    return `<span class="lesson-target-word"><sup>${Utils.escape(part.number)}</sup><span>${Utils.escape(part.text)}</span></span>`;
+  }
+
+  function renderAnnotatedPassageBlock(block) {
+    const passage = Utils.asArray(block.passage).map((paragraph) => `<p>${Utils.asArray(paragraph).map(renderAnnotatedPassagePart).join("")}</p>`).join("");
+    return `<section class="card exercise-block lesson-content-card lesson-annotated-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="lesson-task-instruction"><span class="lesson-task-label">Task</span><p>${Utils.escape(block.instruction || "")}</p></div><article class="lesson-passage-card"><div class="lesson-passage-heading"><span class="lesson-passage-label">${Utils.escape(block.passageLabel || "Text")}</span>${block.passageHelp ? `<span class="lesson-passage-help">${Utils.escape(block.passageHelp)}</span>` : ""}</div><div class="lesson-annotated-passage">${passage}</div></article></div></section>`;
+  }
+
   function renderContentBlock(block) {
     if (block.type === "content") {
+      if (block.variant === "language-note") return renderLanguageNoteBlock(block);
+      if (block.variant === "annotated-passage") return renderAnnotatedPassageBlock(block);
       const paragraphs = Utils.asArray(block.paragraphs || block.text).map(renderContentParagraph).join("");
       const list = Utils.asArray(block.items).length ? `<ul class="lesson-content-list">${block.items.map((item) => `<li>${Utils.escape(item)}</li>`).join("")}</ul>` : "";
-      return `<section class="card exercise-block lesson-content-card">${block.title ? `<div class="lesson-content-heading"><span class="lesson-content-kicker">Study material</span><h2>${Utils.escape(block.title)}</h2></div>` : ""}<div class="lesson-content-body">${paragraphs}${list}</div></section>`;
+      return `<section class="card exercise-block lesson-content-card">${renderContentHeading(block)}<div class="lesson-content-body">${paragraphs}${list}</div></section>`;
     }
     if (block.type === "image") return `<figure class="exercise-block"><img class="content-image" src="${Utils.escape(block.src)}" alt="${Utils.escape(block.alt || "Lesson image")}">${block.caption ? `<figcaption class="muted small">${Utils.escape(block.caption)}</figcaption>` : ""}</figure>`;
     if (block.type === "audio") return `<section class="card exercise-block"><h2>${Utils.escape(block.title || "Listening")}</h2>${block.instruction ? `<p class="instruction">${Utils.escape(block.instruction)}</p>` : ""}<audio class="media-player" controls preload="metadata" src="${Utils.escape(block.src)}">Your browser cannot play this audio.</audio></section>`;

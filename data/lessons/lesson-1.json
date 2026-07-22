@@ -213,19 +213,110 @@
     },
     {
       "type": "content",
-      "title": "Language note — word order with phrasal verbs",
-      "paragraphs": [
-        "Remember the word order when you use a pronoun with separable verbs.",
-        "I picked up my Spanish while travelling. OR I picked my Spanish up while travelling.",
-        "BUT: I picked it up while travelling. NOT: I picked up it while travelling."
+      "variant": "language-note",
+      "kicker": "Language note",
+      "title": "Word order with phrasal verbs",
+      "rule": "Remember the word order when you use a pronoun with separable verbs.",
+      "exampleGroups": [
+        {
+          "label": "With a noun",
+          "help": "Both positions are possible.",
+          "examples": [
+            {
+              "status": "correct",
+              "text": "I picked up my Spanish while travelling.",
+              "emphasis": "my Spanish"
+            },
+            {
+              "status": "correct",
+              "text": "I picked my Spanish up while travelling.",
+              "emphasis": "my Spanish"
+            }
+          ]
+        },
+        {
+          "label": "With a pronoun",
+          "help": "The pronoun must go in the middle.",
+          "examples": [
+            {
+              "status": "correct",
+              "label": "Correct",
+              "text": "I picked it up while travelling.",
+              "emphasis": "it"
+            },
+            {
+              "status": "incorrect",
+              "label": "Not correct",
+              "text": "I picked up it while travelling.",
+              "emphasis": "it"
+            }
+          ]
+        }
       ]
     },
     {
       "type": "content",
-      "title": "Workbook exercise 2 — Word types",
-      "paragraphs": [
-        "Look at the underlined words. What type of word is each one?",
-        "I've just 1 taken up painting at our local art college. To be honest, I'm no Van Gogh. Doing anything 2 for the first time is 3 hard and people always want to do 4 well. But my 5 advice is to concentrate on the activity. What I 6 mean is, enjoy what 7 you are doing and don't worry about the end result. And never compare yourself with anyone else. There will always be those 8 annoyingly talented people who can 9 take on any new challenge and succeed. Ignore them."
+      "variant": "annotated-passage",
+      "kicker": "Workbook · Exercise 2",
+      "title": "Word types",
+      "instruction": "Look at the underlined words. What type of word is each one?",
+      "passageLabel": "Text",
+      "passageHelp": "The nine target words are underlined and numbered as in the exercise.",
+      "passage": [
+        [
+          "I've just ",
+          {
+            "number": 1,
+            "text": "taken up"
+          },
+          " painting at our local art college. To be honest, I'm no Van Gogh."
+        ],
+        [
+          "Doing anything ",
+          {
+            "number": 2,
+            "text": "for"
+          },
+          " the first time is ",
+          {
+            "number": 3,
+            "text": "hard"
+          },
+          " and people always want to do ",
+          {
+            "number": 4,
+            "text": "well"
+          },
+          ". But my ",
+          {
+            "number": 5,
+            "text": "advice"
+          },
+          " is to concentrate on the activity. What I ",
+          {
+            "number": 6,
+            "text": "mean"
+          },
+          " is, enjoy what ",
+          {
+            "number": 7,
+            "text": "you"
+          },
+          " are doing and don't worry about the end result."
+        ],
+        [
+          "And never compare yourself with anyone else. There will always be those ",
+          {
+            "number": 8,
+            "text": "annoyingly"
+          },
+          " talented people who can ",
+          {
+            "number": 9,
+            "text": "take on"
+          },
+          " any new challenge and succeed. Ignore them."
+        ]
       ]
     },
     {
