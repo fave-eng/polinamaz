@@ -85,40 +85,52 @@
   };
 
   const PronunciationService = {
-    voices: [],
-    refreshVoices() {
-      this.voices = window.speechSynthesis?.getVoices?.() || [];
+    activeButton: null,
+    stop() {
+      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      if (this.activeButton) this.activeButton.classList.remove("is-speaking");
+      this.activeButton = null;
     },
-    speak(text) {
+    speak(text, button = null) {
       const spokenText = String(text || "").replace(/\s*\/\s*/g, " or ").trim();
-      if (!spokenText || !("speechSynthesis" in window)) return false;
+      if (!spokenText || !("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        UI.toast("Pronunciation is unavailable on this device.");
+        return false;
+      }
       try {
-        window.speechSynthesis.cancel();
+        this.stop();
+        this.activeButton = button;
+        button?.classList.add("is-speaking");
         const utterance = new SpeechSynthesisUtterance(spokenText);
         utterance.lang = "en-GB";
-        utterance.rate = 0.85;
-        const voice = this.voices.find((item) => item.lang === "en-GB") ||
-          this.voices.find((item) => String(item.lang || "").toLowerCase().startsWith("en"));
-        if (voice) utterance.voice = voice;
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+        utterance.onend = () => this.stop();
+        utterance.onerror = (event) => {
+          if (!event || !["canceled", "interrupted"].includes(event.error)) {
+            UI.toast("Pronunciation is unavailable on this device.");
+          }
+          this.stop();
+        };
         window.speechSynthesis.speak(utterance);
         return true;
       } catch (error) {
         console.warn("Pronunciation is unavailable", error);
+        this.stop();
+        UI.toast("Pronunciation is unavailable on this device.");
         return false;
       }
     }
   };
-  PronunciationService.refreshVoices();
-  if ("speechSynthesis" in window) {
-    window.speechSynthesis.addEventListener("voiceschanged", () => PronunciationService.refreshVoices());
-  }
+  window.addEventListener("pagehide", () => PronunciationService.stop());
   window.PronunciationService = PronunciationService;
 
   const UI = {
     toast(message) {
       const region = document.getElementById("toast-region");
       const item = document.createElement("div");
-      item.className = "toast";
+      item.className = "toast show";
       item.textContent = message;
       region.appendChild(item);
       setTimeout(() => item.remove(), 3200);
@@ -450,6 +462,20 @@
     }
   };
 
+  function setHero(title, subtitle, options = {}) {
+    const titleNode = document.getElementById("page-hero-title");
+    const subtitleNode = document.getElementById("page-hero-subtitle");
+    if (titleNode && title) titleNode.textContent = title;
+    if (subtitleNode && subtitle !== undefined) subtitleNode.textContent = subtitle;
+    const backLink = document.getElementById("page-hero-back");
+    if (backLink) {
+      backLink.hidden = !options.backHref;
+      if (options.backHref) backLink.href = options.backHref;
+      const label = backLink.querySelector("span:last-child");
+      if (label && options.backLabel) label.textContent = options.backLabel;
+    }
+  }
+
   function renderShell() {
     const student = config.student;
     const activeMap = {
@@ -461,24 +487,49 @@
       "vocabulary-hub": "vocabulary-hub.html",
       vocabulary: "vocabulary-hub.html"
     };
+    const heroCopy = {
+      home: [`${student.nameEn}’s English Space 🚀`, "Your personal space for growing your English"],
+      homework: ["Homework", "Interactive exercises and tasks after each lesson."],
+      lesson: ["Homework", "Interactive exercises and tasks after each lesson."],
+      grammar: ["Grammar", "Clear explanations and practice for published grammar topics."],
+      "grammar-topic": ["Grammar", "Rules, examples and practice in one place."],
+      "vocabulary-hub": ["Vocabulary Hub", "Flashcards, pronunciation and tests for lesson words."],
+      vocabulary: ["Vocabulary", "Personal vocabulary trainer"],
+      "telegram-test": ["Diagnostics", "Private service page"]
+    };
+    const [heroTitle, heroSubtitle] = heroCopy[pageName] || heroCopy.home;
+    const isHome = pageName === "home";
+    const backMap = {
+      lesson: ["homework.html", "Back to homework"],
+      vocabulary: ["vocabulary-hub.html", "Back to topics"],
+      "grammar-topic": ["grammar.html", "Back to grammar"]
+    };
+    const back = backMap[pageName];
     document.title = `${student.nameEn}’s English Space · ${Utils.titleCase(pageName)}`;
-    document.getElementById("site-header").innerHTML = `
-      <div class="header-inner">
-        <a class="brand" href="index.html" aria-label="Go to home page">
-          <span class="brand-mark" aria-hidden="true">ES</span>
-          <span class="brand-copy"><span class="brand-title">${Utils.escape(student.nameEn)}’s English Space</span><span class="brand-subtitle">Личное пространство для английского</span></span>
-        </a>
-        <span class="header-badge">✦ ${Utils.escape(student.level)} · Индивидуальный курс</span>
-      </div>`;
+    document.body.classList.add("has-bottom-nav");
+    document.body.dataset.view = pageName;
+    const header = document.getElementById("site-header");
+    header.className = `site-header hero ${isHome ? "hero-home" : "hero-compact"}`;
+    header.innerHTML = `
+      <span class="star one">✦</span><span class="star two">✦</span>${isHome ? '<span class="star three">✦</span>' : ""}
+      <div class="container hero-content reveal">
+        <a id="page-hero-back" class="vocab-back-link" href="${back ? back[0] : "#"}" ${back ? "" : "hidden"}><span class="vocab-back-arrow" aria-hidden="true">←</span><span>${back ? back[1] : "Back"}</span></a>
+        ${back ? "<br>" : ""}
+        <span class="hero-badge">✦ ${Utils.escape(student.level)} Level · Individual Course</span>
+        <h1 id="page-hero-title">${Utils.escape(heroTitle)}</h1>
+        <p id="page-hero-subtitle">${Utils.escape(heroSubtitle)}</p>
+      </div>
+      <svg class="hero-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path fill="#f8fafc" d="M0,66 C220,102 410,10 696,52 C963,91 1115,99 1440,35 L1440,100 L0,100 Z"></path></svg>`;
+    main.classList.add("main-content", "container");
     const nav = [
-      ["index.html", "🏠", "Главная"],
-      ["homework.html", "📝", "Домашние работы"],
-      ["grammar.html", "📐", "Грамматика"],
-      ["vocabulary-hub.html", "💥", "Словарь"]
+      ["index.html", "🏠", "Home"],
+      ["homework.html", "📝", "HW"],
+      ["grammar.html", "📐", "Grammar"],
+      ["vocabulary-hub.html", "💥", "Vocab"]
     ];
     document.getElementById("bottom-nav").innerHTML = nav.map(([href, icon, label]) => `
-      <a class="nav-item ${activeMap[pageName] === href ? "active" : ""}" href="${href}" ${activeMap[pageName] === href ? 'aria-current="page"' : ""}>
-        <span aria-hidden="true">${icon}</span><span>${label}</span>
+      <a class="nav-link ${activeMap[pageName] === href ? "active" : ""}" data-nav="${href}" href="${href}" ${activeMap[pageName] === href ? 'aria-current="page"' : ""}>
+        <span class="nav-icon" aria-hidden="true">${icon}</span><span>${label}</span>
       </a>`).join("");
   }
 
@@ -532,12 +583,6 @@
     const currentLesson = visibleLessons.find((item) => item.status !== "locked") || null;
 
     main.innerHTML = `
-      <section class="hero home-hero">
-        <span class="badge">✦ ${Utils.escape(config.student.level)} уровень · Индивидуальный курс</span>
-        <h1>${Utils.escape(config.student.nameEn)}’s English Space <span aria-hidden="true">🚀</span></h1>
-        <p>Твоё личное пространство для роста в английском</p>
-      </section>
-
       <section class="section progress-section" aria-labelledby="progress-title">
         <div class="section-header"><div><p class="eyebrow">Главная</p><h2 id="progress-title">Мой прогресс</h2></div></div>
         <div class="grid grid-4 stats-grid">
@@ -556,7 +601,7 @@
         <div class="grid grid-3 quick-grid">
           <a class="card card-link quick-card" href="homework.html"><span class="quick-icon">📝</span><span><strong>Домашние работы</strong><br><span class="muted small">Выполнить новое или посмотреть отправленное</span></span></a>
           <a class="card card-link quick-card" href="vocabulary-hub.html"><span class="quick-icon">💥</span><span><strong>Словарь</strong><br><span class="muted small">Повторять слова и проходить тесты</span></span></a>
-          <a class="card card-link quick-card" href="grammar.html"><span class="quick-icon">📐</span><span><strong>Грамматика</strong><br><span class="muted small">Понятные правила и практика</span></span></a>
+          <a class="card card-link quick-card wide" href="grammar.html"><span class="quick-icon">📐</span><span><strong>Грамматика</strong><br><span class="muted small">Понятные правила и практика</span></span></a>
         </div>
       </section>
 
@@ -570,6 +615,7 @@
 
   async function initHomework() {
     UI.loading();
+    setHero("Homework", "Interactive exercises and tasks after each lesson.");
     const [lessons, allProgress] = await Promise.all([DataService.lessonIndex(), ProgressService.loadAll("homework")]);
     const progressById = Object.fromEntries(allProgress.map((item) => [item.lesson_id, item]));
     const available = [];
@@ -708,6 +754,7 @@
     let lesson;
     try { lesson = await DataService.lesson(lessonId); } catch (error) { return UI.error("Lesson unavailable", "The lesson file could not be loaded. Check its name and index."); }
     if (lesson.status === "draft") return UI.error("Draft lesson", "This lesson has not been published.");
+    setHero(lesson.title, lesson.subtitle || "Interactive homework assignment", { backHref: "homework.html", backLabel: "Back to homework" });
     let progress = await ProgressService.loadHomeworkProgress(lesson.id) || {
       lesson_id: lesson.id,
       status: "draft",
@@ -878,6 +925,7 @@
   async function initVocabularyHub() {
     UI.loading();
     const [topics, allWordProgress] = await Promise.all([DataService.vocabularyTopics(), ProgressService.loadAll("vocabulary")]);
+    setHero("Vocabulary Hub", "Flashcards, pronunciation and tests for lesson words.");
     const progressMap = Object.fromEntries(allWordProgress.map((item) => [item.word_key, item]));
     main.innerHTML = `<div class="page-heading"><p class="eyebrow">Word practice</p><h1>Vocabulary</h1><p class="lead">Learn lesson words, listen to pronunciation and finish a test to mark words as learned.</p></div>${topics.length ? topics.map((topic) => {
       const unique = topic.words;
@@ -894,6 +942,7 @@
     const topic = topics.find((item) => item.id === topicId);
     if (!topic) return UI.error("Vocabulary topic unavailable", "Open a topic from the Vocabulary page.");
     const words = topic.words;
+    setHero(topic.title, `${topic.label || "Vocabulary topic"} · ${words.length} unique words`, { backHref: "vocabulary-hub.html", backLabel: "Back to topics" });
     const progressRows = await Promise.all(words.map((word) => ProgressService.loadVocabularyProgress(Utils.wordKey(word))));
     const progress = Object.fromEntries(words.map((word, index) => [Utils.wordKey(word), progressRows[index] || { word_key: Utils.wordKey(word), status: "new" }]));
     let mode = "all";
@@ -901,7 +950,7 @@
     let cardRevealed = false;
     let testState = null;
 
-    const pronunciationButton = (word) => (config.features.wordPronunciation && "speechSynthesis" in window) ? `<button class="btn btn-ghost btn-icon" type="button" data-speak="${Utils.escape(word.en)}" aria-label="Pronounce ${Utils.escape(word.en)}">🔊</button>` : "";
+    const pronunciationButton = (word, extraClass = "") => (config.features.wordPronunciation && "speechSynthesis" in window) ? `<button class="pronounce-btn ${extraClass}" type="button" data-speak="${Utils.escape(word.en)}" aria-label="Listen to the pronunciation: ${Utils.escape(word.en)}" title="Listen: ${Utils.escape(word.en)}">🔊</button>` : "";
     const statusBadge = (word) => {
       const status = progress[Utils.wordKey(word)]?.status || "new";
       const labels = { new: "New", known: "Learned", difficult: "Difficult" };
@@ -909,12 +958,12 @@
       return `<span class="status-badge ${cls}">${labels[status]}</span>`;
     };
 
-    const renderAll = (list = words) => list.length ? `<div class="word-list">${list.map((word) => `<article class="card word-row"><div><div class="word-en">${Utils.escape(word.en)}</div><div class="transcription">${Utils.escape(word.transcription || "")}</div></div><div>${Utils.escape(word.ru)}</div>${pronunciationButton(word)}${word.exampleEn ? `<div class="word-example"><strong>${Utils.escape(word.exampleEn)}</strong>${word.exampleRu ? `<br>${Utils.escape(word.exampleRu)}` : ""}<div style="margin-top:8px">${statusBadge(word)}</div></div>` : `<div class="word-example">${statusBadge(word)}</div>`}</article>`).join("")}</div>` : UI.empty("🌱", "No words here", "This section will fill after a completed test.");
+    const renderAll = (list = words) => list.length ? `<div class="word-list">${list.map((word) => { const state = progress[Utils.wordKey(word)]?.status || "new"; return `<article class="card word-card word-row has-pronunciation ${state === "known" ? "known" : state === "difficult" ? "difficult" : ""}"><div><div class="word-en">${Utils.escape(word.en)}</div><div class="transcription">${Utils.escape(word.transcription || "")}</div></div><div class="word-translation">${Utils.escape(word.ru)}</div>${pronunciationButton(word, "word-card-pronounce")}${word.exampleEn ? `<div class="word-example"><strong>${Utils.escape(word.exampleEn)}</strong>${word.exampleRu ? `<br>${Utils.escape(word.exampleRu)}` : ""}<div style="margin-top:8px">${statusBadge(word)}</div></div>` : `<div class="word-example">${statusBadge(word)}</div>`}</article>`; }).join("")}</div>` : UI.empty("🌱", "No words here", "This section will fill after a completed test.");
 
     const renderCards = () => {
       if (!words.length) return UI.empty("🃏", "No cards", "Add words to the lesson vocabulary.");
       const word = words[cardIndex % words.length];
-      return `<div class="card flashcard"><div><div class="small muted">Card ${cardIndex + 1} of ${words.length}</div><div class="flashcard-word">${Utils.escape(word.en)}</div><div class="transcription">${Utils.escape(word.transcription || "")}</div>${cardRevealed ? `<div class="flashcard-translation">${Utils.escape(word.ru)}</div>${word.exampleEn ? `<p><strong>${Utils.escape(word.exampleEn)}</strong><br><span class="muted">${Utils.escape(word.exampleRu || "")}</span></p>` : ""}` : '<p class="muted">Think of the meaning, then reveal the card.</p>'}<div class="button-row" style="justify-content:center">${pronunciationButton(word)}<button class="btn btn-secondary" id="reveal-card">${cardRevealed ? "Hide meaning" : "Reveal meaning"}</button><button class="btn btn-primary" id="next-card">Next</button></div><p class="small muted">Viewing or revealing a card does not mark the word as learned.</p></div></div>`;
+      return `<div class="card flashcard"><div><div class="small muted">Card ${cardIndex + 1} of ${words.length}</div><div class="flashcard-word">${Utils.escape(word.en)}</div><div class="transcription">${Utils.escape(word.transcription || "")}</div>${cardRevealed ? `<div class="flashcard-translation">${Utils.escape(word.ru)}</div>${word.exampleEn ? `<p><strong>${Utils.escape(word.exampleEn)}</strong><br><span class="muted">${Utils.escape(word.exampleRu || "")}</span></p>` : ""}` : '<p class="muted">Think of the meaning, then reveal the card.</p>'}<div class="button-row" style="justify-content:center">${pronunciationButton(word, "flash-pronounce")}<button class="btn btn-secondary" id="reveal-card">${cardRevealed ? "Hide meaning" : "Reveal meaning"}</button><button class="btn btn-primary" id="next-card">Next</button></div><p class="small muted">Viewing or revealing a card does not mark the word as learned.</p></div></div>`;
     };
 
     const buildTest = () => {
@@ -943,7 +992,7 @@
 
     const bind = () => {
       document.querySelectorAll("[data-mode]").forEach((button) => button.addEventListener("click", () => { mode = button.dataset.mode; render(); }));
-      document.querySelectorAll("[data-speak]").forEach((button) => button.addEventListener("click", () => PronunciationService.speak(button.dataset.speak)));
+      document.querySelectorAll("[data-speak]").forEach((button) => button.addEventListener("click", () => PronunciationService.speak(button.dataset.speak, button)));
       document.getElementById("reveal-card")?.addEventListener("click", () => { cardRevealed = !cardRevealed; render(); });
       document.getElementById("next-card")?.addEventListener("click", () => { cardIndex = (cardIndex + 1) % words.length; cardRevealed = false; render(); });
       document.getElementById("start-vocab-test")?.addEventListener("click", () => { testState = buildTest(); render(); });
@@ -964,7 +1013,8 @@
             ...previous,
             word_key: key,
             status: isCorrect ? "known" : "difficult",
-            learned_at: isCorrect ? (previous.learned_at || Utils.now()) : null
+            learned_at: isCorrect ? (previous.learned_at || Utils.now()) : null,
+            learned_via: isCorrect ? "completed-vocabulary-test" : null
           };
           progress[key] = await ProgressService.saveVocabularyProgress(next, { silent: true });
           outcomes.push({ word_key: key, correct: isCorrect });
@@ -984,6 +1034,7 @@
 
   async function initGrammar() {
     UI.loading();
+    setHero("Grammar", "Clear explanations and practice for published grammar topics.");
     const [topics, progressRows] = await Promise.all([DataService.grammarIndex(), ProgressService.loadAll("grammar")]);
     const progressMap = Object.fromEntries(progressRows.map((item) => [item.topic_id, item]));
     main.innerHTML = `<div class="page-heading"><p class="eyebrow">Knowledge base</p><h1>Grammar</h1><p class="lead">Clear explanations, visual patterns and practice for independent study.</p></div>${topics.length ? topics.map((topic) => { const item = progressMap[topic.id]; return `<article class="card"><div class="card-title-row"><div><p class="eyebrow">Topic ${Number(topic.number || 0)}</p><h3>${Utils.escape(topic.title)}</h3></div><span class="status-badge ${item?.passed ? "status-complete" : ""}">${item?.passed ? "Passed" : `${Number(item?.best_score || 0)}% best`}</span></div><p class="muted">${Utils.escape(topic.subtitle || "")}</p><div class="button-row"><a class="btn btn-primary" href="grammar-topic.html?id=${encodeURIComponent(topic.id)}">Open topic</a></div></article>`; }).join("") : UI.empty("📐", "Грамматические темы пока не опубликованы", `Материалы будут добавляться в соответствии с уроками и учебником «${config.student.textbook}».`)}`;
@@ -1000,6 +1051,7 @@
     if (!id) return UI.error("Grammar topic not selected", "Open a topic from the Grammar page.");
     let topic;
     try { topic = await DataService.grammar(id); } catch { return UI.error("Grammar topic unavailable", "Check the grammar index and JSON filename."); }
+    setHero(topic.title, topic.subtitle || "Rules, examples and practice in one place.", { backHref: "grammar.html", backLabel: "Back to grammar" });
     let progress = await ProgressService.loadGrammarProgress(id) || { topic_id: id, passed: false, attempts: 0, best_score: 0 };
     const localExtras = Storage.get("grammar", id) || {};
     progress = { ...progress, last_answers: localExtras.last_answers || {}, last_results: localExtras.last_results || null, last_score: localExtras.last_score ?? null };
