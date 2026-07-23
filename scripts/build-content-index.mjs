@@ -69,4 +69,3 @@ async function buildFolder({ folder, prefix, output, rootKey }) {
 }
 
 await buildFolder({ folder: "data/lessons", prefix: "lesson", output: "data/lessons/index.json", rootKey: "lessons" });
-await buildFolder({ folder: "data/grammar", prefix: "grammar", output: "data/grammar/index.json", rootKey: "topics" });

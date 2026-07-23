@@ -7,7 +7,7 @@ const root = process.cwd();
 const failures = [];
 const required = [
   "index.html", "homework.html", "lesson.html", "grammar.html", "grammar-topic.html",
-  "vocabulary-hub.html", "vocabulary.html", "config.js", "app.js", "styles.css",
+  "vocabulary-hub.html", "vocabulary.html", "config.js", "app.js", "styles.css", "data/grammar-data.js",
   "supabase/schema.sql", "supabase/verify.sql", "supabase/functions/notify-telegram/index.ts"
 ];
 
@@ -15,8 +15,10 @@ for (const file of required) {
   try { await fs.access(path.join(root, file)); } catch { failures.push(`Missing required file: ${file}`); }
 }
 
-try { execFileSync(process.execPath, ["--check", path.join(root, "app.js")], { stdio: "pipe" }); }
-catch (error) { failures.push(`app.js syntax error: ${error.stderr?.toString() || error.message}`); }
+for (const javascriptFile of ["app.js", "data/grammar-data.js"]) {
+  try { execFileSync(process.execPath, ["--check", path.join(root, javascriptFile)], { stdio: "pipe" }); }
+  catch (error) { failures.push(`${javascriptFile} syntax error: ${error.stderr?.toString() || error.message}`); }
+}
 
 async function walk(folder) {
   const entries = await fs.readdir(folder, { withFileTypes: true });

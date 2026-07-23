@@ -398,14 +398,15 @@
         return this.findSequential("lesson", "data/lessons", 200);
       }
     },
+    grammarTopics() {
+      const source = window.GRAMMAR_DATA;
+      const topics = Array.isArray(source) ? source : Utils.asArray(source?.topics);
+      return topics
+        .filter((topic) => topic && topic.status !== "draft" && topic.id !== "grammar-template")
+        .sort((a, b) => Number(a.number || 0) - Number(b.number || 0) || String(a.id || "").localeCompare(String(b.id || "")));
+    },
     async grammarIndex() {
-      try {
-        const data = await this.fetchJSON("data/grammar/index.json");
-        return Utils.asArray(data.topics);
-      } catch (error) {
-        console.warn("Grammar index unavailable; using sequential fallback", error);
-        return this.findSequential("grammar", "data/grammar", 200);
-      }
+      return this.grammarTopics();
     },
     async findSequential(prefix, folder, maximum) {
       const found = [];
@@ -422,7 +423,11 @@
       return found.sort((a, b) => Number(a.number || 0) - Number(b.number || 0));
     },
     lesson(id) { return this.fetchJSON(`data/lessons/${encodeURIComponent(id)}.json`); },
-    grammar(id) { return this.fetchJSON(`data/grammar/${encodeURIComponent(id)}.json`); },
+    async grammar(id) {
+      const topic = this.grammarTopics().find((item) => String(item.id) === String(id));
+      if (!topic) throw new Error(`Grammar topic not found: ${id}`);
+      return topic;
+    },
     async vocabularyTopics() {
       const externalTopics = Utils.asArray(window.VOCABULARY_DATA);
       if (externalTopics.length) {

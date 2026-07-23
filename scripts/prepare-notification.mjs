@@ -22,23 +22,21 @@ function changedFiles() {
 
 async function materialFromFile(file) {
   const lesson = file.match(/^data\/lessons\/(lesson-\d+)\.json$/);
-  const grammar = file.match(/^data\/grammar\/(grammar-\d+)\.json$/);
-  if (!lesson && !grammar) return null;
+  if (!lesson) return null;
   const raw = await fs.readFile(path.join(root, file), "utf8");
   const data = JSON.parse(raw);
   if (data.status === "draft") return null;
-  const materialType = lesson ? "homework" : "grammar";
   return {
     action: "material_published",
     studentId,
-    materialType,
+    materialType: "homework",
     materialId: data.id,
     notificationVersion: Number(data.notificationVersion || 1),
     payload: {
       title: data.title,
       subtitle: data.subtitle || "",
       publishedAt: data.publishedAt || null,
-      url: process.env.SITE_BASE_URL ? `${process.env.SITE_BASE_URL.replace(/\/$/, "")}/${lesson ? `lesson.html?id=${encodeURIComponent(data.id)}` : `grammar-topic.html?id=${encodeURIComponent(data.id)}`}` : null
+      url: process.env.SITE_BASE_URL ? `${process.env.SITE_BASE_URL.replace(/\/$/, "")}/lesson.html?id=${encodeURIComponent(data.id)}` : null
     }
   };
 }
