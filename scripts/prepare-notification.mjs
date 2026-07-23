@@ -1,67 +1,105 @@
-import { execFileSync } from "node:child_process";
-import { promises as fs } from "node:fs";
-import path from "node:path";
-import process from "node:process";
+import fs from 'node:fs'
+import path from 'node:path'
 
-const root = process.cwd();
-const args = new Set(process.argv.slice(2));
-const send = args.has("--send");
-const studentId = process.env.STUDENT_ID || "polina";
-const before = process.env.BEFORE_SHA || process.env.GITHUB_EVENT_BEFORE || "";
-const after = process.env.AFTER_SHA || process.env.GITHUB_SHA || "HEAD";
+const root = process.cwd()
 
-function changedFiles() {
-  try {
-    const range = before && !/^0+$/.test(before) ? `${before}..${after}` : `${after}^..${after}`;
-    return execFileSync("git", ["diff", "--name-only", "--diff-filter=AM", range], { encoding: "utf8" })
-      .split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
-  } catch {
-    return [];
+function requiredEnv(name) {
+  const value = process.env[name]?.trim()
+  if (!value) throw new Error(`Missing environment variable: ${name}`)
+  return value
+}
+
+function loadLessons() {
+  const lessonsDir = path.join(root, 'data', 'lessons')
+  if (!fs.existsSync(lessonsDir)) return []
+
+  return fs.readdirSync(lessonsDir)
+    .filter((filename) => /^lesson-\d+\.json$/i.test(filename))
+    .map((filename) => {
+      const source = fs.readFileSync(path.join(lessonsDir, filename), 'utf8')
+      return JSON.parse(source)
+    })
+    .sort((left, right) => Number(left.number || 0) - Number(right.number || 0))
+}
+
+function pageUrl(baseUrl, lessonId) {
+  return new URL(`lesson.html?id=${encodeURIComponent(lessonId)}`, `${baseUrl}/`).toString()
+}
+
+function isPublished(lesson) {
+  if (!['available', 'published'].includes(String(lesson.status || '').toLowerCase())) return false
+  if (lesson.notification?.enabled === false) return false
+  if (!lesson.publishedAt) return true
+
+  const published = new Date(lesson.publishedAt)
+  return Number.isFinite(published.getTime()) && published.getTime() <= Date.now()
+}
+
+function notificationVersion(lesson) {
+  const version = Number(lesson.notification?.version ?? lesson.notificationVersion ?? 1)
+  return Number.isInteger(version) && version > 0 ? version : 1
+}
+
+const siteBaseUrl = requiredEnv('SITE_BASE_URL').replace(/\/+$/, '')
+const studentId = requiredEnv('STUDENT_ID')
+const projectId = requiredEnv('SUPABASE_PROJECT_ID')
+const notifySecret = requiredEnv('NOTIFY_WEBHOOK_SECRET')
+const selectedLessonId = process.env.LESSON_ID?.trim() || ''
+
+const lessons = loadLessons().filter((lesson) => {
+  if (selectedLessonId && lesson.id !== selectedLessonId) return false
+  return isPublished(lesson)
+})
+
+if (selectedLessonId && lessons.length === 0) {
+  throw new Error(`Lesson ${selectedLessonId} was not found or is not published`)
+}
+
+if (lessons.length === 0) {
+  console.log('No eligible lessons. Nothing to notify.')
+  process.exit(0)
+}
+
+const endpoint = process.env.NOTIFY_ENDPOINT?.trim()
+  || `https://${projectId}.supabase.co/functions/v1/notify-telegram`
+let failures = 0
+
+for (const lesson of lessons) {
+  const payload = {
+    action: 'material_published',
+    studentId,
+    materialType: 'homework',
+    materialId: lesson.id,
+    notificationVersion: notificationVersion(lesson),
+    payload: {
+      title: lesson.title || 'Homework',
+      subtitle: lesson.subtitle || '',
+      publishedAt: lesson.publishedAt || null,
+      url: pageUrl(siteBaseUrl, lesson.id),
+    },
+  }
+
+  console.log(`Sending notification for ${lesson.id}...`)
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-notify-secret': notifySecret,
+    },
+    body: JSON.stringify(payload),
+  })
+
+  const result = await response.json().catch(() => ({ error: `HTTP ${response.status}` }))
+  if (!response.ok || !result.ok) {
+    failures += 1
+    console.error(`Failed ${lesson.id}:`, result)
+  } else if (result.alreadySent || result.skipped) {
+    console.log(`Skipped ${lesson.id}: already sent`)
+  } else {
+    console.log(`Sent ${lesson.id}.`)
   }
 }
 
-async function materialFromFile(file) {
-  const lesson = file.match(/^data\/lessons\/(lesson-\d+)\.json$/);
-  if (!lesson) return null;
-  const raw = await fs.readFile(path.join(root, file), "utf8");
-  const data = JSON.parse(raw);
-  if (data.status === "draft") return null;
-  return {
-    action: "material_published",
-    studentId,
-    materialType: "homework",
-    materialId: data.id,
-    notificationVersion: Number(data.notificationVersion || 1),
-    payload: {
-      title: data.title,
-      subtitle: data.subtitle || "",
-      publishedAt: data.publishedAt || null,
-      url: process.env.SITE_BASE_URL ? `${process.env.SITE_BASE_URL.replace(/\/$/, "")}/lesson.html?id=${encodeURIComponent(data.id)}` : null
-    }
-  };
+if (failures > 0) {
+  process.exitCode = 1
 }
-
-const notifications = (await Promise.all(changedFiles().map(materialFromFile))).filter(Boolean);
-
-if (!send) {
-  process.stdout.write(`${JSON.stringify(notifications, null, 2)}\n`);
-  process.exit(0);
-}
-
-const projectId = process.env.SUPABASE_PROJECT_ID;
-const secret = process.env.NOTIFY_WEBHOOK_SECRET;
-if (!projectId || !secret) throw new Error("SUPABASE_PROJECT_ID and NOTIFY_WEBHOOK_SECRET are required");
-const endpoint = `https://${projectId}.supabase.co/functions/v1/notify-telegram`;
-
-for (const body of notifications) {
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-notify-secret": secret },
-    body: JSON.stringify(body)
-  });
-  const text = await response.text();
-  if (!response.ok) throw new Error(`Notification failed for ${body.materialId}: ${response.status} ${text}`);
-  console.log(`Notification handled for ${body.materialType}:${body.materialId} — ${text}`);
-}
-
-if (!notifications.length) console.log("No publishable materials changed.");
