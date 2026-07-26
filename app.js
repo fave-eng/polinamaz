@@ -627,7 +627,17 @@
           </div>
           <span class="status-badge status-available current-material-action">Продолжить</span>
         </a>
-      </section>` : ""}`;
+      </section>` : ""}
+
+      <section class="section" aria-label="Учебник">
+        <div class="card book-card">
+          <div class="book-cover" aria-hidden="true">📘</div>
+          <div>
+            <p class="eyebrow">Учебник</p>
+            <h3>Outcomes 2ed B1 Intermediate</h3>
+          </div>
+        </div>
+      </section>`;
   }
 
   async function initHomework() {
