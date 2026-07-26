@@ -2689,3 +2689,108 @@ body[data-page="home"] .quick-grid .quick-card.wide p { grid-column: 2; }
   }
   body[data-page="home"] .quick-grid .quick-card.wide .quick-icon { margin-bottom: 18px; }
 }
+
+/* =========================================================
+   Home cards compact geometry v4
+   Compact Olya-style cards without large empty areas.
+   ========================================================= */
+body[data-page="home"] .stats-grid {
+  gap: 12px !important;
+}
+body[data-page="home"] .stats-grid .stat-card {
+  min-height: 96px !important;
+  height: 96px !important;
+  padding: 12px 10px !important;
+  justify-content: center !important;
+  border-radius: 18px !important;
+}
+body[data-page="home"] .stats-grid .stat-card strong {
+  font-size: 1.35rem !important;
+  line-height: 1 !important;
+}
+body[data-page="home"] .stats-grid .stat-card span {
+  margin-top: 7px !important;
+  font-size: .76rem !important;
+  line-height: 1.2 !important;
+}
+
+body[data-page="home"] .quick-grid {
+  gap: 12px !important;
+}
+body[data-page="home"] .quick-grid .quick-card,
+body[data-page="home"] .quick-grid .quick-card.wide {
+  min-height: 112px !important;
+  height: 112px !important;
+  padding: 16px 18px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 28px !important;
+  align-items: center !important;
+  gap: 14px !important;
+  border-radius: 20px !important;
+}
+body[data-page="home"] .quick-grid .quick-card.wide {
+  grid-column: span 2 !important;
+}
+body[data-page="home"] .quick-grid .quick-card .quick-card-main,
+body[data-page="home"] .quick-grid .quick-card.wide .quick-card-main {
+  min-width: 0 !important;
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 14px !important;
+  row-gap: 3px !important;
+  align-items: center !important;
+}
+body[data-page="home"] .quick-grid .quick-card .quick-icon,
+body[data-page="home"] .quick-grid .quick-card.wide .quick-icon {
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  border-radius: 14px !important;
+  font-size: 1.3rem !important;
+}
+body[data-page="home"] .quick-grid .quick-card h3,
+body[data-page="home"] .quick-grid .quick-card.wide h3 {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-self: end !important;
+  margin: 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.2 !important;
+}
+body[data-page="home"] .quick-grid .quick-card p,
+body[data-page="home"] .quick-grid .quick-card.wide p {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  align-self: start !important;
+  margin: 0 !important;
+  font-size: .8rem !important;
+  line-height: 1.35 !important;
+}
+body[data-page="home"] .quick-grid .quick-card .arrow,
+body[data-page="home"] .quick-grid .quick-card.wide .arrow {
+  align-self: center !important;
+  justify-self: end !important;
+  margin: 0 !important;
+  font-size: 1.3rem !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 620px) {
+  body[data-page="home"] .stats-grid .stat-card {
+    min-height: 88px !important;
+    height: 88px !important;
+  }
+  body[data-page="home"] .quick-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="home"] .quick-grid .quick-card,
+  body[data-page="home"] .quick-grid .quick-card.wide {
+    grid-column: span 1 !important;
+    min-height: 104px !important;
+    height: auto !important;
+    padding: 14px 16px !important;
+  }
+}
