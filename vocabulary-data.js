@@ -414,5 +414,256 @@ window.VOCABULARY_DATA = [
         "exampleRu": "Чтобы стать лучшим, требуется много тяжёлой работы."
       }
     ]
+  },
+  {
+    "id": "vocab-lesson-2",
+    "title": "Narrative tenses",
+    "label": "Lesson 2 · Unit 1",
+    "icon": "⏳",
+    "type": "lesson",
+    "linkedLessonId": "lesson-2",
+    "page": "vocabulary.html?topic=vocab-lesson-2",
+    "words": [
+      {
+        "id": "lesson-2-recognise",
+        "en": "recognise",
+        "ru": "узнавать; распознавать",
+        "transcription": "/ˈrekəɡnaɪz/",
+        "exampleEn": "I didn’t recognise her.",
+        "exampleRu": "Я её не узнала."
+      },
+      {
+        "id": "lesson-2-go-bright-red",
+        "en": "go bright red",
+        "ru": "сильно покраснеть",
+        "transcription": "/ɡəʊ braɪt red/",
+        "exampleEn": "She went bright red.",
+        "exampleRu": "Она сильно покраснела."
+      },
+      {
+        "id": "lesson-2-wrong-word-wrong-room",
+        "en": "the wrong word / be in the wrong room",
+        "ru": "неправильное слово / оказаться не в той аудитории",
+        "transcription": "/ðə rɒŋ wɜːd/ · /biː ɪn ðə rɒŋ ruːm/",
+        "exampleEn": "She used the wrong word and realised she was in the wrong room.",
+        "exampleRu": "Она употребила неправильное слово и поняла, что находится не в той аудитории."
+      },
+      {
+        "id": "lesson-2-advanced-class",
+        "en": "advanced class",
+        "ru": "группа продвинутого уровня; продвинутое занятие",
+        "transcription": "/ədˈvɑːnst klɑːs/",
+        "exampleEn": "Ana spent an hour in the advanced class.",
+        "exampleRu": "Ана провела час в группе продвинутого уровня."
+      },
+      {
+        "id": "lesson-2-by-the-time",
+        "en": "by the time",
+        "ru": "к тому времени как; когда уже",
+        "transcription": "/baɪ ðə taɪm/",
+        "exampleEn": "By the time I arrived, the class had already started.",
+        "exampleRu": "К тому времени, когда я пришла, занятие уже началось."
+      },
+      {
+        "id": "lesson-2-driving-lesson",
+        "en": "driving lesson",
+        "ru": "урок вождения",
+        "transcription": "/ˈdraɪvɪŋ ˌlesən/",
+        "exampleEn": "I remember my first driving lesson like it was yesterday.",
+        "exampleRu": "Я помню свой первый урок вождения так, будто это было вчера."
+      },
+      {
+        "id": "lesson-2-start-learning-to-drive",
+        "en": "start learning to drive",
+        "ru": "начать учиться водить машину",
+        "transcription": "/stɑːt ˈlɜːnɪŋ tə draɪv/",
+        "exampleEn": "She wants to start learning to drive.",
+        "exampleRu": "Она хочет начать учиться водить машину."
+      },
+      {
+        "id": "lesson-2-feel-nervous-feel-sick",
+        "en": "feel nervous / feel a bit sick",
+        "ru": "нервничать / чувствовать лёгкую тошноту",
+        "transcription": "/fiːl ˈnɜːvəs/ · /fiːl ə bɪt sɪk/",
+        "exampleEn": "People can feel nervous and feel a bit sick before a driving lesson.",
+        "exampleRu": "Перед уроком вождения люди могут нервничать и чувствовать лёгкую тошноту."
+      },
+      {
+        "id": "lesson-2-knock-at-the-door",
+        "en": "a knock at the door",
+        "ru": "стук в дверь",
+        "transcription": "/ə nɒk ət ðə dɔː/",
+        "exampleEn": "Then there was a knock at the door.",
+        "exampleRu": "Затем раздался стук в дверь."
+      },
+      {
+        "id": "lesson-2-talk-through-the-controls",
+        "en": "talk someone through the controls",
+        "ru": "объяснить кому-либо, как пользоваться органами управления",
+        "transcription": "/tɔːk ˈsʌmwʌn θruː ðə kənˈtrəʊlz/",
+        "exampleEn": "He talked me through the controls.",
+        "exampleRu": "Он объяснил мне, как пользоваться органами управления."
+      },
+      {
+        "id": "lesson-2-clear-instructions",
+        "en": "clear instructions",
+        "ru": "понятные указания; чёткие инструкции",
+        "transcription": "/klɪə ɪnˈstrʌkʃənz/",
+        "exampleEn": "He gave me really clear instructions.",
+        "exampleRu": "Он дал мне очень понятные указания."
+      },
+      {
+        "id": "lesson-2-quiet-part-of-town",
+        "en": "a quiet part of town",
+        "ru": "тихая часть города",
+        "transcription": "/ə ˈkwaɪət pɑːt əv taʊn/",
+        "exampleEn": "A quiet part of town is a good place for a first driving lesson.",
+        "exampleRu": "Тихая часть города — хорошее место для первого урока вождения."
+      },
+      {
+        "id": "lesson-2-out-of-the-corner-of-my-eye",
+        "en": "out of the corner of my eye",
+        "ru": "краем глаза",
+        "transcription": "/aʊt əv ðə ˈkɔːnə əv maɪ aɪ/",
+        "exampleEn": "I noticed the car out of the corner of my eye.",
+        "exampleRu": "Я заметила машину краем глаза."
+      },
+      {
+        "id": "lesson-2-wave-back",
+        "en": "wave back",
+        "ru": "помахать в ответ",
+        "transcription": "/weɪv bæk/",
+        "exampleEn": "He waved at me and I waved back.",
+        "exampleRu": "Он помахал мне, и я помахала в ответ."
+      },
+      {
+        "id": "lesson-2-grab-the-wheel",
+        "en": "grab the wheel",
+        "ru": "схватить руль",
+        "transcription": "/ɡræb ðə wiːl/",
+        "exampleEn": "A driving instructor may need to grab the wheel.",
+        "exampleRu": "Инструктору по вождению иногда приходится схватить руль."
+      },
+      {
+        "id": "lesson-2-keep-your-eyes-on-the-road",
+        "en": "keep your eyes on the road",
+        "ru": "не отрывать взгляд от дороги; смотреть на дорогу",
+        "transcription": "/kiːp jɔːr aɪz ɒn ðə rəʊd/",
+        "exampleEn": "Keep your eyes on the road!",
+        "exampleRu": "Смотри на дорогу!"
+      },
+      {
+        "id": "lesson-2-concentrate-hard-make-another-mistake",
+        "en": "concentrate hard / make another mistake",
+        "ru": "сильно сосредоточиться / допустить ещё одну ошибку",
+        "transcription": "/ˈkɒnsəntreɪt hɑːd/ · /meɪk əˈnʌðə mɪˈsteɪk/",
+        "exampleEn": "You need to concentrate hard so that you don’t make another mistake.",
+        "exampleRu": "Нужно хорошо сосредоточиться, чтобы не допустить ещё одну ошибку."
+      },
+      {
+        "id": "lesson-2-get-through-to-someone",
+        "en": "get through to someone",
+        "ru": "дозвониться до кого-либо; связаться с кем-либо",
+        "transcription": "/ɡet θruː tə ˈsʌmwʌn/",
+        "exampleEn": "I tried to get through to her, but she didn’t answer.",
+        "exampleRu": "Я пытался до неё дозвониться, но она не ответила."
+      },
+      {
+        "id": "lesson-2-take-time-off",
+        "en": "take time off",
+        "ru": "взять отгул; взять отпуск",
+        "transcription": "/teɪk taɪm ɒf/",
+        "exampleEn": "He sometimes takes time off work.",
+        "exampleRu": "Иногда он берёт отгулы на работе."
+      },
+      {
+        "id": "lesson-2-for-ages",
+        "en": "for ages",
+        "ru": "целую вечность; очень долго",
+        "transcription": "/fɔːr ˈeɪdʒɪz/",
+        "exampleEn": "We waited for ages.",
+        "exampleRu": "Мы ждали целую вечность."
+      },
+      {
+        "id": "lesson-2-take-up-the-guitar",
+        "en": "take up the guitar",
+        "ru": "начать заниматься игрой на гитаре",
+        "transcription": "/teɪk ʌp ðə ɡɪˈtɑː/",
+        "exampleEn": "Amy was telling me you’ve taken up the guitar.",
+        "exampleRu": "Эми рассказывала, что ты начала заниматься игрой на гитаре."
+      },
+      {
+        "id": "lesson-2-teach-yourself-to-play",
+        "en": "teach yourself to play",
+        "ru": "самостоятельно учиться играть",
+        "transcription": "/tiːtʃ jɔːˈself tə pleɪ/",
+        "exampleEn": "Are you teaching yourself to play?",
+        "exampleRu": "Ты самостоятельно учишься играть?"
+      },
+      {
+        "id": "lesson-2-private-lessons-tutor",
+        "en": "private lessons / tutor",
+        "ru": "частные уроки / преподаватель, репетитор",
+        "transcription": "/ˈpraɪvət ˈlesənz/ · /ˈtjuːtə/",
+        "exampleEn": "I have private lessons. My tutor is really good.",
+        "exampleRu": "У меня частные уроки. Мой преподаватель очень хороший."
+      },
+      {
+        "id": "lesson-2-part-time-job",
+        "en": "part-time job",
+        "ru": "работа с неполной занятостью; подработка",
+        "transcription": "/ˌpɑːt ˈtaɪm dʒɒb/",
+        "exampleEn": "Paul was telling me you’re looking for a part-time job.",
+        "exampleRu": "Пол рассказывал, что ты ищешь подработку."
+      },
+      {
+        "id": "lesson-2-hear-of-anything-let-someone-know",
+        "en": "hear of anything / let someone know",
+        "ru": "услышать о каком-либо варианте / сообщить кому-либо",
+        "transcription": "/hɪər əv ˈeniθɪŋ/ · /let ˈsʌmwʌn nəʊ/",
+        "exampleEn": "If I hear of anything, I’ll let you know.",
+        "exampleRu": "Если я о чём-нибудь узнаю, я дам тебе знать."
+      },
+      {
+        "id": "lesson-2-news-travels-fast",
+        "en": "news travels fast",
+        "ru": "новости быстро распространяются",
+        "transcription": "/njuːz ˈtrævəlz fɑːst/",
+        "exampleEn": "Yes, news travels fast!",
+        "exampleRu": "Да, новости быстро распространяются!"
+      },
+      {
+        "id": "lesson-2-give-a-presentation",
+        "en": "give a presentation",
+        "ru": "выступить с презентацией; провести презентацию",
+        "transcription": "/ɡɪv ə ˌprezənˈteɪʃən/",
+        "exampleEn": "I’ll never forget the first time I had to give a presentation.",
+        "exampleRu": "Я никогда не забуду, как мне впервые пришлось выступить с презентацией."
+      },
+      {
+        "id": "lesson-2-come-up-with-a-good-idea",
+        "en": "come up with a good idea",
+        "ru": "придумать хорошую идею",
+        "transcription": "/kʌm ʌp wɪð ə ɡʊd aɪˈdɪə/",
+        "exampleEn": "Then I came up with a good idea.",
+        "exampleRu": "Затем мне пришла в голову хорошая идея."
+      },
+      {
+        "id": "lesson-2-do-research-rehearse-a-talk",
+        "en": "do research / rehearse a talk",
+        "ru": "проводить исследование, собирать информацию / репетировать выступление",
+        "transcription": "/duː rɪˈsɜːtʃ/ · /rɪˈhɜːs ə tɔːk/",
+        "exampleEn": "Students do research and rehearse a talk before a presentation.",
+        "exampleRu": "Перед презентацией ученики собирают информацию и репетируют выступление."
+      },
+      {
+        "id": "lesson-2-imagine-my-horror-my-heart-sank",
+        "en": "imagine my horror / my heart sank",
+        "ru": "представьте мой ужас / у меня упало сердце",
+        "transcription": "/ɪˈmædʒɪn maɪ ˈhɒrə/ · /maɪ hɑːt sæŋk/",
+        "exampleEn": "Imagine my horror. My heart sank.",
+        "exampleRu": "Представьте мой ужас. У меня упало сердце."
+      }
+    ]
   }
 ];

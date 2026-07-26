@@ -1159,14 +1159,5 @@
       "answerLabel": "Correct replacement",
       "placeholder": "Type the corrected word or phrase"
     }
-  ],
-  "vocabulary": {
-    "id": "vocab-lesson-2",
-    "title": "Unit 1 — Narrative tenses vocabulary",
-    "label": "Unit 1 · Narrative tenses",
-    "icon": "⏳",
-    "type": "lesson",
-    "description": "",
-    "words": []
-  }
+  ]
 }
