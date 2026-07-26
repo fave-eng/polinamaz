@@ -590,11 +590,11 @@
     main.innerHTML = `
       <section class="section progress-section" aria-labelledby="progress-title">
         <div class="section-header"><div><p class="eyebrow">Главная</p><h2 id="progress-title">Мой прогресс</h2></div></div>
-        <div class="grid grid-4 stats-grid">
-          <div class="card stat-card"><div class="stat-value">${completedHomework}</div><div class="stat-label">Домашних работ выполнено</div></div>
-          <div class="card stat-card"><div class="stat-value">${knownWords}</div><div class="stat-label">Слов выучено</div></div>
-          <div class="card stat-card"><div class="stat-value">${passedGrammar}</div><div class="stat-label">Тем грамматики пройдено</div></div>
-          <div class="card stat-card"><div class="stat-value stat-level">${Utils.escape(config.student.level)}</div><div class="stat-label">Текущий уровень</div></div>
+        <div class="stats-grid">
+          <div class="card stat-card"><strong>${completedHomework}</strong><span>ДЗ выполнено</span></div>
+          <div class="card stat-card"><strong>${knownWords}</strong><span>Слов выучено</span></div>
+          <div class="card stat-card"><strong>${passedGrammar}</strong><span>Тем грамматики</span></div>
+          <div class="card stat-card"><strong>${Utils.escape(config.student.level)}</strong><span>Уровень</span></div>
         </div>
         <div class="card progress-overview" aria-label="Общий прогресс">
           ${progressRows}
@@ -603,10 +603,16 @@
 
       <section class="section" aria-labelledby="quick-title">
         <div class="section-header"><div><p class="eyebrow">Навигация</p><h2 id="quick-title">Быстрый доступ</h2></div></div>
-        <div class="grid grid-3 quick-grid">
-          <a class="card card-link quick-card" href="homework.html"><span class="quick-icon">📝</span><span><strong>Домашние работы</strong><br><span class="muted small">Выполнить новое или посмотреть отправленное</span></span></a>
-          <a class="card card-link quick-card" href="vocabulary-hub.html"><span class="quick-icon">💥</span><span><strong>Словарь</strong><br><span class="muted small">Повторять слова и проходить тесты</span></span></a>
-          <a class="card card-link quick-card wide" href="grammar.html"><span class="quick-icon">📐</span><span><strong>Грамматика</strong><br><span class="muted small">Понятные правила и практика</span></span></a>
+        <div class="quick-grid">
+          <a class="card card-link interactive quick-card" href="homework.html">
+            <div class="quick-card-main"><div class="quick-icon">📝</div><h3>Домашние работы</h3><p>Выполнить новое или посмотреть отправленное</p></div><span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="card card-link interactive quick-card" href="vocabulary-hub.html">
+            <div class="quick-card-main"><div class="quick-icon">💥</div><h3>Словарь</h3><p>Повторять слова и проходить тесты</p></div><span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="card card-link interactive quick-card wide" href="grammar.html">
+            <div class="quick-card-main"><div class="quick-icon">📐</div><h3>Грамматика</h3><p>Понятные правила и практика</p></div><span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </section>
 
