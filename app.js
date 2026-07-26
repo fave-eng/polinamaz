@@ -708,7 +708,9 @@
     }
     if (type === "matching") return Utils.equal(answer || {}, question.correctAnswer || {});
     if (type === "ordering") {
-      const actual = Utils.asArray(answer).map(String);
+      const fixedStart = Utils.asArray(question.fixedStart).map(String);
+      const rawActual = Utils.asArray(answer).map(String);
+      const actual = [...fixedStart, ...rawActual.filter((item) => !fixedStart.includes(item))];
       const accepted = Utils.asArray(question.acceptedAnswers?.length ? question.acceptedAnswers : [question.correctAnswer]);
       return accepted.some((item) => JSON.stringify(actual) === JSON.stringify(Utils.asArray(item).map(String)));
     }
@@ -746,6 +748,8 @@
     const result = checked?.[question.id];
     const stateClass = result ? (result.correct ? "is-correct" : "is-incorrect") : "";
     const prompt = originalQuestionPrompt(question);
+    const contextHtml = question.context ? `<p class="question-context">${Utils.escape(question.context)}</p>` : "";
+    const frameHtml = question.frame ? `<div class="question-frame">${Utils.escape(question.frame)}</div>` : "";
     let control = "";
     if (["single-choice", "true-false"].includes(question.type)) {
       const options = question.type === "true-false" ? ["true", "false"] : Utils.asArray(question.options);
@@ -760,7 +764,9 @@
         return `<label class="option"><input type="checkbox" data-question-id="${id}" value="${Utils.escape(value)}" ${values.includes(value) ? "checked" : ""} ${locked ? "disabled" : ""}><span>${Utils.escape(optionLabel(option))}</span></label>`;
       }).join("")}</div>`;
     } else if (question.type === "text-input") {
-      control = `<label><span class="small muted">Your answer</span><input class="text-answer" type="text" data-question-id="${id}" value="${Utils.escape(answer || "")}" ${locked ? "readonly" : ""} autocomplete="off"></label>`;
+      const answerLabel = question.answerLabel || "Your answer";
+      const placeholder = question.placeholder ? ` placeholder="${Utils.escape(question.placeholder)}"` : "";
+      control = `<label><span class="small muted">${Utils.escape(answerLabel)}</span><input class="text-answer" type="text" data-question-id="${id}" value="${Utils.escape(answer || "")}"${placeholder} ${locked ? "readonly" : ""} autocomplete="off"></label>`;
     } else if (question.type === "open-answer" || question.type === "pronunciation") {
       control = `<label><span class="small muted">${question.type === "pronunciation" ? "Your note or self-assessment" : "Your answer"}</span><textarea class="open-answer" data-question-id="${id}" ${locked ? "readonly" : ""}>${Utils.escape(answer || "")}</textarea></label>`;
     } else if (question.type === "matching") {
@@ -771,11 +777,19 @@
         return `<div class="match-row"><span>${Utils.escape(typeof left === "object" ? left.label : left)}</span><select class="select-answer" data-question-id="${id}" data-match-key="${Utils.escape(leftValue)}" ${locked ? "disabled" : ""}><option value="">Choose…</option>${rightOptions.map((right) => { const value = optionValue(right); return `<option value="${Utils.escape(value)}" ${String(current[leftValue] || "") === value ? "selected" : ""}>${Utils.escape(optionLabel(right))}</option>`; }).join("")}</select></div>`;
       }).join("")}</div>`;
     } else if (question.type === "ordering") {
-      const initial = Utils.asArray(answer).length ? Utils.asArray(answer) : Utils.asArray(question.items).map(optionValue);
-      control = `<div class="ordering-list" data-order-list="${id}">${initial.map((item, index) => `<div class="order-item" data-order-value="${Utils.escape(item)}"><span>${Utils.escape(optionLabel(Utils.asArray(question.items).find((candidate) => optionValue(candidate) === String(item)) || item))}</span><span class="order-controls"><button type="button" data-order-action="up" aria-label="Move up" ${locked || index === 0 ? "disabled" : ""}>↑</button><button type="button" data-order-action="down" aria-label="Move down" ${locked || index === initial.length - 1 ? "disabled" : ""}>↓</button></span></div>`).join("")}</div>`;
+      const fixedStart = Utils.asArray(question.fixedStart).map(String);
+      const rawInitial = Utils.asArray(answer).length ? Utils.asArray(answer).map(String) : Utils.asArray(question.items).map(optionValue);
+      const initial = [...fixedStart, ...rawInitial.filter((item) => !fixedStart.includes(String(item)))];
+      control = `<div class="ordering-list" data-order-list="${id}">${initial.map((item, index) => {
+        const stringItem = String(item);
+        const isFixed = fixedStart.includes(stringItem);
+        const previousIsFixed = index > 0 && fixedStart.includes(String(initial[index - 1]));
+        const label = optionLabel(Utils.asArray(question.items).find((candidate) => optionValue(candidate) === stringItem) || item);
+        return `<div class="order-item ${isFixed ? "is-fixed" : ""}" data-order-value="${Utils.escape(stringItem)}"${isFixed ? ' data-order-fixed="true"' : ""}><span class="order-item-copy">${isFixed ? '<span class="order-fixed-badge">1 · given</span>' : ""}${Utils.escape(label)}</span><span class="order-controls"><button type="button" data-order-action="up" aria-label="Move up" ${locked || isFixed || index === 0 || previousIsFixed ? "disabled" : ""}>↑</button><button type="button" data-order-action="down" aria-label="Move down" ${locked || isFixed || index === initial.length - 1 ? "disabled" : ""}>↓</button></span></div>`;
+      }).join("")}</div>`;
     }
     const resultHtml = result ? `<div class="result-label ${result.correct ? "correct" : "incorrect"}"><span aria-hidden="true">${result.correct ? "✓" : "✕"}</span><span><strong>${result.correct ? "Correct" : "Check this answer"}.</strong>${result.explanation ? ` ${Utils.escape(result.explanation)}` : ""}</span></div>` : "";
-    return `<article class="card question-card ${stateClass}" data-question-card="${id}"><div class="question-heading"><div class="question-text">${Utils.escape(prompt)}</div></div><div class="question-answer">${control}</div>${resultHtml}</article>`;
+    return `<article class="card question-card ${stateClass}" data-question-card="${id}"><div class="question-heading"><div class="question-text">${Utils.escape(prompt)}</div>${contextHtml}${frameHtml}</div><div class="question-answer">${control}</div>${resultHtml}</article>`;
   }
 
   function renderContentParagraph(item) {
