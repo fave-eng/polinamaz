@@ -2794,3 +2794,93 @@ body[data-page="home"] .quick-grid .quick-card.wide .arrow {
     padding: 14px 16px !important;
   }
 }
+
+/* =========================================================
+   Home layout final alignment
+   Prevent generic stacked-card spacing from shifting grid
+   items and keep the current lesson clear of the fixed nav.
+   ========================================================= */
+body[data-page="home"] {
+  padding-bottom: calc(var(--nav-height) + 76px + env(safe-area-inset-bottom));
+}
+body[data-page="home"] .page.main-content {
+  padding-bottom: 56px;
+}
+body[data-page="home"] .stats-grid > .card + .card,
+body[data-page="home"] .quick-grid > .card + .card {
+  margin-top: 0 !important;
+}
+body[data-page="home"] .stats-grid {
+  align-items: stretch !important;
+}
+body[data-page="home"] .stats-grid .stat-card {
+  align-self: stretch !important;
+}
+body[data-page="home"] .quick-grid {
+  align-items: stretch !important;
+}
+body[data-page="home"] .quick-grid .quick-card {
+  align-self: stretch !important;
+}
+body[data-page="home"] .current-material {
+  width: 100%;
+  min-height: 104px;
+  margin: 0 !important;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  border-color: #c7d2fe;
+  background: linear-gradient(145deg, #fff, #f5f3ff);
+}
+body[data-page="home"] .current-material-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #eef2ff;
+  font-size: 1.3rem;
+}
+body[data-page="home"] .current-material-copy {
+  min-width: 0;
+}
+body[data-page="home"] .current-material-copy .eyebrow {
+  margin: 0 0 3px;
+}
+body[data-page="home"] .current-material-copy h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+body[data-page="home"] .current-material-copy > p:last-child {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.35;
+}
+body[data-page="home"] .current-material-action {
+  margin: 0;
+  justify-self: end;
+}
+
+@media (max-width: 620px) {
+  body[data-page="home"] {
+    padding-bottom: calc(var(--nav-height) + 70px + env(safe-area-inset-bottom));
+  }
+  body[data-page="home"] .current-material {
+    grid-template-columns: 44px minmax(0, 1fr);
+    padding: 16px;
+  }
+  body[data-page="home"] .current-material-icon {
+    width: 44px;
+    height: 44px;
+  }
+  body[data-page="home"] .current-material-action {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 4px;
+  }
+}

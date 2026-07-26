@@ -619,7 +619,13 @@
       ${currentLesson ? `<section class="section" aria-labelledby="current-title">
         <div class="section-header"><div><p class="eyebrow">Продолжить обучение</p><h2 id="current-title">Текущий материал</h2></div></div>
         <a class="card card-link current-material" href="lesson.html?id=${encodeURIComponent(currentLesson.id)}">
-          <div class="card-title-row"><div><p class="eyebrow">Урок ${Number(currentLesson.number || 0)}</p><h3>${Utils.escape(currentLesson.title)}</h3><p class="muted">${Utils.escape(currentLesson.subtitle || "Открыть текущее задание")}</p></div><span class="current-arrow" aria-hidden="true">→</span></div>
+          <div class="current-material-icon" aria-hidden="true">✨</div>
+          <div class="current-material-copy">
+            <p class="eyebrow">Урок ${Number(currentLesson.number || 0)}</p>
+            <h3>${Utils.escape(currentLesson.title)}</h3>
+            <p>${Utils.escape(currentLesson.subtitle || "Открыть текущее задание")}</p>
+          </div>
+          <span class="status-badge status-available current-material-action">Продолжить</span>
         </a>
       </section>` : ""}`;
   }
