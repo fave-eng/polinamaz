@@ -1,10 +1,23 @@
 {
-  "generatedAt": "2026-07-21T00:00:00Z",
+  "generatedAt": "2026-07-26T14:59:27.530Z",
   "lessons": [
     {
       "id": "lesson-1",
       "number": 1,
-      "title": "Talking about languages"
+      "title": "Unit 1 — Talking my language",
+      "subtitle": "Article, Coursebook exercises 8–9 and Workbook page 6",
+      "status": "published",
+      "publishedAt": "2026-07-22T00:00:00.000Z",
+      "hasVocabulary": true
+    },
+    {
+      "id": "lesson-2",
+      "number": 2,
+      "title": "Unit 1 — Narrative tenses",
+      "subtitle": "Outcomes 2ed B1 Intermediate · Grammar, conversations and writing",
+      "status": "published",
+      "publishedAt": "2026-07-26T00:00:00.000Z",
+      "hasVocabulary": false
     }
   ]
 }

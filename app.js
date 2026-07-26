@@ -585,7 +585,13 @@
         </div>
       </div>`).join("");
 
-    const currentLesson = visibleLessons.find((item) => item.status !== "locked") || null;
+    const homeworkByLessonId = Object.fromEntries(homeworkProgress.map((item) => [item.lesson_id, item]));
+    const availableLessonsNewestFirst = visibleLessons
+      .filter((item) => item.status !== "locked")
+      .sort((a, b) => Number(b.number || 0) - Number(a.number || 0));
+    const currentLesson = availableLessonsNewestFirst.find((item) => !FINAL_STATUSES.has(homeworkByLessonId[item.id]?.status))
+      || availableLessonsNewestFirst[0]
+      || null;
 
     main.innerHTML = `
       <section class="section progress-section" aria-labelledby="progress-title">
@@ -701,7 +707,11 @@
       return accepted.some((item) => Utils.normaliseText(item) === Utils.normaliseText(answer));
     }
     if (type === "matching") return Utils.equal(answer || {}, question.correctAnswer || {});
-    if (type === "ordering") return Utils.equal(Utils.asArray(answer), Utils.asArray(question.correctAnswer));
+    if (type === "ordering") {
+      const actual = Utils.asArray(answer).map(String);
+      const accepted = Utils.asArray(question.acceptedAnswers?.length ? question.acceptedAnswers : [question.correctAnswer]);
+      return accepted.some((item) => JSON.stringify(actual) === JSON.stringify(Utils.asArray(item).map(String)));
+    }
     return null;
   }
 

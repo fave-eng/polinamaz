@@ -1,0 +1,1044 @@
+{
+  "id": "lesson-2",
+  "number": 2,
+  "title": "Unit 1 — Narrative tenses",
+  "subtitle": "Outcomes 2ed B1 Intermediate · Grammar, conversations and writing",
+  "status": "published",
+  "notificationVersion": 1,
+  "publishedAt": "2026-07-26T00:00:00.000Z",
+  "blocks": [
+    {
+      "type": "content",
+      "variant": "language-note",
+      "kicker": "Grammar reference",
+      "title": "Narrative tenses",
+      "rule": "Use the past simple for completed events, the past continuous for an action in progress or background, and the past perfect for an event that happened before another past event.",
+      "exampleGroups": [
+        {
+          "label": "Past simple + past perfect",
+          "help": "The past perfect makes the earlier action clear.",
+          "examples": [
+            {
+              "status": "correct",
+              "text": "When I arrived, the class had already started.",
+              "emphasis": "had already started"
+            },
+            {
+              "status": "correct",
+              "text": "She went bright red after she had used the wrong word.",
+              "emphasis": "had used"
+            }
+          ]
+        },
+        {
+          "label": "Past continuous",
+          "help": "Use it for an action that was in progress at a particular moment.",
+          "examples": [
+            {
+              "status": "correct",
+              "text": "We were driving through town when I saw a friend.",
+              "emphasis": "were driving"
+            },
+            {
+              "status": "correct",
+              "text": "The car was moving towards a tree.",
+              "emphasis": "was moving"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Grammar · Exercise 1",
+      "title": "Link the two past actions",
+      "paragraphs": [
+        "Complete each sentence. Use one verb in the past simple and one verb in the past perfect.",
+        "Write the complete sentence. Contractions such as had → ’d are accepted."
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt1-1",
+      "question": "1. The German class started. I arrived.",
+      "correctAnswer": "When I arrived, the German class had already started.",
+      "acceptedAnswers": [
+        "When I arrived, the German class had already started.",
+        "When I arrived the German class had already started",
+        "When I arrived, the German class had already started"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt1-2",
+      "question": "2. I didn’t recognise her. We met a few times before.",
+      "correctAnswer": "Although we had met a few times before, I didn’t recognise her.",
+      "acceptedAnswers": [
+        "Although we had met a few times before, I didn't recognise her.",
+        "Although we'd met a few times before, I didn't recognise her.",
+        "Although we had met a few times before I didn't recognise her",
+        "Although we'd met a few times before I didn't recognise her"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt1-3",
+      "question": "3. She went bright red. She used the wrong word.",
+      "correctAnswer": "After she had used the wrong word, she went bright red.",
+      "acceptedAnswers": [
+        "After she had used the wrong word, she went bright red.",
+        "After she'd used the wrong word, she went bright red.",
+        "After she had used the wrong word she went bright red",
+        "After she'd used the wrong word she went bright red"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt1-4",
+      "question": "4. Mike was late for the class. He left his books at home.",
+      "correctAnswer": "Mike was late for the class because he had left his books at home.",
+      "acceptedAnswers": [
+        "Mike was late for the class because he had left his books at home.",
+        "Mike was late for the class because he'd left his books at home.",
+        "Mike was late for class because he had left his books at home.",
+        "Mike was late for class because he'd left his books at home.",
+        "Mike was late for the class because he had left his books at home",
+        "Mike was late for the class because he'd left his books at home"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt1-5",
+      "question": "5. Ana spent an hour in the advanced class. She realised she was in the wrong room.",
+      "correctAnswer": "Ana had spent an hour in the advanced class before she realised she was in the wrong room.",
+      "acceptedAnswers": [
+        "Ana had spent an hour in the advanced class before she realised she was in the wrong room.",
+        "Ana'd spent an hour in the advanced class before she realised she was in the wrong room.",
+        "Ana had spent an hour in the advanced class before she realised she was in the wrong room",
+        "Ana'd spent an hour in the advanced class before she realised she was in the wrong room"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt1-6",
+      "question": "6. I realised he was the boss. I asked him to make me a coffee.",
+      "correctAnswer": "By the time I’d asked him to make me a coffee, I realised he was the boss.",
+      "acceptedAnswers": [
+        "By the time I'd asked him to make me a coffee, I realised he was the boss.",
+        "By the time I had asked him to make me a coffee, I realised he was the boss.",
+        "By the time I'd asked him to make me a coffee I realised he was the boss",
+        "By the time I had asked him to make me a coffee I realised he was the boss"
+      ]
+    },
+    {
+      "type": "content",
+      "variant": "annotated-passage",
+      "kicker": "Grammar · Exercise 2",
+      "title": "My first driving lesson",
+      "instruction": "Complete the anecdote by putting the verbs in brackets into the correct narrative tense. Type only the missing verb form in each answer box below.",
+      "passageLabel": "Anecdote",
+      "passageHelp": "The numbers match questions 1–15.",
+      "passage": [
+        [
+          "I remember my first driving lesson like it was yesterday. I ",
+          {
+            "number": 1,
+            "text": "__________ (just / have)"
+          },
+          " my 17th birthday when my parents ",
+          {
+            "number": 2,
+            "text": "__________ (say)"
+          },
+          " I could start learning to drive. My older sister ",
+          {
+            "number": 3,
+            "text": "__________ (already / pass)"
+          },
+          " her test and she ",
+          {
+            "number": 4,
+            "text": "__________ (save)"
+          },
+          " to buy her first car."
+        ],
+        [
+          "On the morning of the lesson, I was really nervous. I ",
+          {
+            "number": 5,
+            "text": "__________ (not sleep)"
+          },
+          " very well the night before and I ",
+          {
+            "number": 6,
+            "text": "__________ (feel)"
+          },
+          " a bit sick. Then there was a knock at the door – my instructor ",
+          {
+            "number": 7,
+            "text": "__________ (arrive)"
+          },
+          "."
+        ],
+        [
+          "He talked me through the controls and gave me really clear instructions. A few minutes later, we ",
+          {
+            "number": 8,
+            "text": "__________ (drive)"
+          },
+          " round a quiet part of town when I ",
+          {
+            "number": 9,
+            "text": "__________ (see)"
+          },
+          " a friend out of the corner of my eye. He waved at me and – without thinking – I waved back. The car ",
+          {
+            "number": 10,
+            "text": "__________ (move)"
+          },
+          " towards a tree when the instructor ",
+          {
+            "number": 11,
+            "text": "__________ (grab)"
+          },
+          " the wheel."
+        ],
+        [
+          "‘Keep your eyes on the road!’ he shouted. I went bright red and couldn’t believe what I ",
+          {
+            "number": 12,
+            "text": "__________ (just / do)"
+          },
+          ". When we ",
+          {
+            "number": 13,
+            "text": "__________ (drive)"
+          },
+          " home, I ",
+          {
+            "number": 14,
+            "text": "__________ (not say)"
+          },
+          " a word. I ",
+          {
+            "number": 15,
+            "text": "__________ (concentrate)"
+          },
+          " hard so that I didn’t make another mistake. It was the longest journey of my life!"
+        ]
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-1",
+      "question": "1. Type the correct verb form.",
+      "correctAnswer": "had just had",
+      "acceptedAnswers": [
+        "had just had",
+        "'d just had"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-2",
+      "question": "2. Type the correct verb form.",
+      "correctAnswer": "said",
+      "acceptedAnswers": [
+        "said"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-3",
+      "question": "3. Type the correct verb form.",
+      "correctAnswer": "had already passed",
+      "acceptedAnswers": [
+        "had already passed",
+        "'d already passed"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-4",
+      "question": "4. Type the correct verb form.",
+      "correctAnswer": "was saving up",
+      "acceptedAnswers": [
+        "was saving up",
+        "was saving"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-5",
+      "question": "5. Type the correct verb form.",
+      "correctAnswer": "hadn’t slept",
+      "acceptedAnswers": [
+        "hadn't slept",
+        "had not slept"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-6",
+      "question": "6. Type the correct verb form.",
+      "correctAnswer": "felt",
+      "acceptedAnswers": [
+        "felt"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-7",
+      "question": "7. Type the correct verb form.",
+      "correctAnswer": "had arrived",
+      "acceptedAnswers": [
+        "had arrived",
+        "'d arrived"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-8",
+      "question": "8. Type the correct verb form.",
+      "correctAnswer": "were driving",
+      "acceptedAnswers": [
+        "were driving"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-9",
+      "question": "9. Type the correct verb form.",
+      "correctAnswer": "saw",
+      "acceptedAnswers": [
+        "saw"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-10",
+      "question": "10. Type the correct verb form.",
+      "correctAnswer": "was moving",
+      "acceptedAnswers": [
+        "was moving"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-11",
+      "question": "11. Type the correct verb form.",
+      "correctAnswer": "grabbed",
+      "acceptedAnswers": [
+        "grabbed"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-12",
+      "question": "12. Type the correct verb form.",
+      "correctAnswer": "had just done",
+      "acceptedAnswers": [
+        "had just done",
+        "'d just done"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-13",
+      "question": "13. Type the correct verb form.",
+      "correctAnswer": "drove",
+      "acceptedAnswers": [
+        "drove"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-14",
+      "question": "14. Type the correct verb form.",
+      "correctAnswer": "didn’t say",
+      "acceptedAnswers": [
+        "didn't say",
+        "did not say"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt2-15",
+      "question": "15. Type the correct verb form.",
+      "correctAnswer": "was concentrating",
+      "acceptedAnswers": [
+        "was concentrating"
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Grammar · Exercise 3",
+      "title": "Match the sentence halves",
+      "paragraphs": [
+        "Choose the correct ending (a–h) for each sentence."
+      ]
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-1",
+      "question": "1. I’m so tired today. I …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "h"
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-2",
+      "question": "2. Is there a problem with your mobile? I …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "b"
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-3",
+      "question": "3. Sorry we’re late. We …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "g"
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-4",
+      "question": "4. What’s the matter with the dog? It …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "f"
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-5",
+      "question": "5. We didn’t see much of the area because it …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "e"
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-6",
+      "question": "6. Marcus lost his job because he …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "d"
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-7",
+      "question": "7. I’m a bit worried about Lucy. She …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "a"
+    },
+    {
+      "type": "single-choice",
+      "id": "nt3-8",
+      "question": "8. Phil had a brilliant job. He …",
+      "options": [
+        {
+          "value": "a",
+          "label": "a — was crying nearly all day yesterday."
+        },
+        {
+          "value": "b",
+          "label": "b — was trying to get through to you all day yesterday."
+        },
+        {
+          "value": "c",
+          "label": "c — was training young racing drivers in Milan."
+        },
+        {
+          "value": "d",
+          "label": "d — was taking a lot of time off to visit his girlfriend."
+        },
+        {
+          "value": "e",
+          "label": "e — was raining all week."
+        },
+        {
+          "value": "f",
+          "label": "f — was barking for hours earlier today."
+        },
+        {
+          "value": "g",
+          "label": "g — were waiting for a bus for ages."
+        },
+        {
+          "value": "h",
+          "label": "h — was working on an essay until two in the morning."
+        }
+      ],
+      "correctAnswer": "c"
+    },
+    {
+      "type": "content",
+      "kicker": "Developing conversations · Exercise 4",
+      "title": "John was telling me …",
+      "paragraphs": [
+        "Put the lines in the correct order to make three conversations.",
+        "Use the arrow buttons to move each line. In conversation 2, the two short replies “Yes” and “Yes, that’s right” may exchange places; both textbook versions are accepted."
+      ]
+    },
+    {
+      "type": "ordering",
+      "id": "nt4-conversation-1",
+      "question": "Conversation 1 — Amy and the guitar",
+      "items": [
+        {
+          "value": "c1-4",
+          "label": "No, I have private lessons. My tutor is really good – very patient."
+        },
+        {
+          "value": "c1-6",
+          "label": "Classical. I like listening to rock but don’t think I’m a Jimi Hendrix type!"
+        },
+        {
+          "value": "c1-2",
+          "label": "Yeah, that’s right."
+        },
+        {
+          "value": "c1-5",
+          "label": "Is he? So, what style do you play?"
+        },
+        {
+          "value": "c1-1",
+          "label": "Amy was telling me you’ve taken up the guitar."
+        },
+        {
+          "value": "c1-3",
+          "label": "Great! Are you teaching yourself to play?"
+        }
+      ],
+      "correctAnswer": [
+        "c1-1",
+        "c1-2",
+        "c1-3",
+        "c1-4",
+        "c1-5",
+        "c1-6"
+      ]
+    },
+    {
+      "type": "ordering",
+      "id": "nt4-conversation-2",
+      "question": "Conversation 2 — A part-time job",
+      "items": [
+        {
+          "value": "c2-9",
+          "label": "Well, if I hear of anything, I’ll let you know."
+        },
+        {
+          "value": "c2-4",
+          "label": "Well, maybe restaurant or bar work."
+        },
+        {
+          "value": "c2-1",
+          "label": "Paul was telling me you’re looking for a part-time job."
+        },
+        {
+          "value": "c2-7",
+          "label": "Have you had any luck yet?"
+        },
+        {
+          "value": "c2-2a",
+          "label": "Yes, that’s right."
+        },
+        {
+          "value": "c2-5",
+          "label": "Like a waiter or something?"
+        },
+        {
+          "value": "c2-8",
+          "label": "No, but I’ve only just started looking."
+        },
+        {
+          "value": "c2-3",
+          "label": "What sort of job are you looking for?"
+        },
+        {
+          "value": "c2-2b",
+          "label": "Yes."
+        }
+      ],
+      "correctAnswer": [
+        "c2-1",
+        "c2-2a",
+        "c2-3",
+        "c2-4",
+        "c2-5",
+        "c2-2b",
+        "c2-7",
+        "c2-8",
+        "c2-9"
+      ],
+      "acceptedAnswers": [
+        [
+          "c2-1",
+          "c2-2a",
+          "c2-3",
+          "c2-4",
+          "c2-5",
+          "c2-2b",
+          "c2-7",
+          "c2-8",
+          "c2-9"
+        ],
+        [
+          "c2-1",
+          "c2-2b",
+          "c2-3",
+          "c2-4",
+          "c2-5",
+          "c2-2a",
+          "c2-7",
+          "c2-8",
+          "c2-9"
+        ]
+      ],
+      "explanation": "The two short affirmative replies can be used in positions 2 and 6 in either order."
+    },
+    {
+      "type": "ordering",
+      "id": "nt4-conversation-3",
+      "question": "Conversation 3 — Going to Argentina",
+      "items": [
+        {
+          "value": "c3-5",
+          "label": "How long will you be away for?"
+        },
+        {
+          "value": "c3-1",
+          "label": "Katrina was telling me you’re going to Argentina."
+        },
+        {
+          "value": "c3-7",
+          "label": "Well, good luck, I hope it goes well."
+        },
+        {
+          "value": "c3-3",
+          "label": "That’s amazing. What are you going to do?"
+        },
+        {
+          "value": "c3-6",
+          "label": "About twelve months, I think."
+        },
+        {
+          "value": "c3-2",
+          "label": "Yes, news travels fast!"
+        },
+        {
+          "value": "c3-4",
+          "label": "I’ve got a job in a language school."
+        }
+      ],
+      "correctAnswer": [
+        "c3-1",
+        "c3-2",
+        "c3-3",
+        "c3-4",
+        "c3-5",
+        "c3-6",
+        "c3-7"
+      ]
+    },
+    {
+      "type": "content",
+      "variant": "annotated-passage",
+      "kicker": "Developing writing · Exercise 5",
+      "title": "An anecdote — checking tenses",
+      "instruction": "Correct the ten underlined mistakes in the student’s first draft. Type only the corrected word or verb phrase in each answer box.",
+      "passageLabel": "First draft",
+      "passageHelp": "The highlighted expressions contain mistakes.",
+      "passage": [
+        [
+          "I’ll never forget the first time I had to give a presentation. I ",
+          {
+            "number": 1,
+            "text": "studied"
+          },
+          " English at the time and it was part of my course. It ",
+          {
+            "number": 2,
+            "text": "was taking"
+          },
+          " me a long time to choose my topic, but then I came up with a good idea. I ",
+          {
+            "number": 3,
+            "text": "was always been"
+          },
+          " interested in clothes, so I decided to talk about the fashion industry."
+        ],
+        [
+          {
+            "number": 4,
+            "text": "During"
+          },
+          " I was preparing the talk, I ",
+          {
+            "number": 5,
+            "text": "was doing"
+          },
+          " a lot of research on the Internet. The evening before my presentation, I ",
+          {
+            "number": 6,
+            "text": "were working"
+          },
+          " until about 2 a.m. ",
+          {
+            "number": 7,
+            "text": "Until"
+          },
+          " I got to my class, I ",
+          {
+            "number": 8,
+            "text": "have"
+          },
+          " carefully printed out my notes and rehearsed my talk in front of the mirror."
+        ],
+        [
+          "A classmate was also going to give her talk and she went first. Imagine my horror when she said, ‘Today I’m going to talk to you about the fashion industry.’ My heart sank. I was so angry with myself. I had spoken to her the week before the presentation but hadn’t ",
+          {
+            "number": 9,
+            "text": "check"
+          },
+          " what she ",
+          {
+            "number": 10,
+            "text": "chosen"
+          },
+          " as her topic."
+        ]
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-1",
+      "question": "1. Replace the incorrect expression.",
+      "correctAnswer": "was studying",
+      "acceptedAnswers": [
+        "was studying"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-2",
+      "question": "2. Replace the incorrect expression.",
+      "correctAnswer": "took",
+      "acceptedAnswers": [
+        "took"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-3",
+      "question": "3. Replace the incorrect expression.",
+      "correctAnswer": "have",
+      "acceptedAnswers": [
+        "have",
+        "'ve"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-4",
+      "question": "4. Replace the incorrect expression.",
+      "correctAnswer": "While",
+      "acceptedAnswers": [
+        "while"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-5",
+      "question": "5. Replace the incorrect expression.",
+      "correctAnswer": "did",
+      "acceptedAnswers": [
+        "did"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-6",
+      "question": "6. Replace the incorrect expression.",
+      "correctAnswer": "was",
+      "acceptedAnswers": [
+        "was"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-7",
+      "question": "7. Replace the incorrect expression.",
+      "correctAnswer": "Before",
+      "acceptedAnswers": [
+        "before"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-8",
+      "question": "8. Replace the incorrect expression.",
+      "correctAnswer": "had",
+      "acceptedAnswers": [
+        "had",
+        "'d"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-9",
+      "question": "9. Replace the incorrect expression.",
+      "correctAnswer": "checked",
+      "acceptedAnswers": [
+        "checked"
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "nt5-10",
+      "question": "10. Replace the incorrect expression.",
+      "correctAnswer": "had chosen",
+      "acceptedAnswers": [
+        "had chosen",
+        "'d chosen"
+      ]
+    }
+  ],
+  "vocabulary": {
+    "id": "vocab-lesson-2",
+    "title": "Unit 1 — Narrative tenses vocabulary",
+    "label": "Unit 1 · Narrative tenses",
+    "icon": "⏳",
+    "type": "lesson",
+    "description": "",
+    "words": []
+  }
+}
