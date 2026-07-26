@@ -2947,3 +2947,485 @@ body[data-page="home"] .current-material-action {
     width: max-content;
   }
 }
+
+/* =========================================================
+   Hub rhythm and resource links v3
+   A shared spacing system for Homework, Grammar and Vocab.
+   ========================================================= */
+.hub-list {
+  display: grid;
+  gap: 16px;
+}
+
+.hub-list > .card + .card,
+.summary-grid > .card + .card,
+.word-list > .card + .card,
+.grammar-glance-grid > .card + .card,
+.grammar-mini-grid > .card + .card {
+  margin-top: 0 !important;
+}
+
+/* Homework hub: compact card body plus an automatic materials footer. */
+.homework-hub-section {
+  margin-top: 34px;
+}
+
+.homework-hub-section + .homework-hub-section {
+  margin-top: 38px;
+}
+
+.homework-hub-section .section-header {
+  margin-bottom: 16px;
+}
+
+.lesson-hub-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.lesson-hub-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 22px 20px;
+}
+
+.lesson-hub-copy {
+  min-width: 0;
+}
+
+.lesson-hub-copy .eyebrow {
+  margin-bottom: 4px;
+}
+
+.lesson-hub-copy h3 {
+  font-size: 1.08rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.lesson-hub-subtitle {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: .94rem;
+  line-height: 1.5;
+}
+
+.lesson-hub-result {
+  margin-top: 11px;
+  color: #475569;
+  font-size: .82rem;
+  line-height: 1.55;
+}
+
+.lesson-hub-result span {
+  display: inline-block;
+  margin: 0 5px;
+  color: #94a3b8;
+}
+
+.lesson-hub-side {
+  min-width: 142px;
+  display: grid;
+  justify-items: end;
+  gap: 14px;
+}
+
+.lesson-hub-side .btn {
+  min-width: 142px;
+}
+
+.lesson-materials-hub {
+  min-height: 0;
+  padding: 13px 20px 14px;
+  align-items: flex-start;
+  gap: 12px;
+  background: #f8fafc;
+}
+
+.lesson-materials-hub .lesson-materials-compact-label {
+  padding-top: 8px;
+}
+
+.lesson-materials-hub .lesson-material-links {
+  gap: 8px;
+}
+
+.lesson-material-chip {
+  min-height: 36px;
+  padding: 7px 11px;
+  line-height: 1.2;
+}
+
+/* Grammar hub: visible separation between statistics and progress. */
+.grammar-overview-section {
+  margin-top: 30px;
+}
+
+.grammar-summary-grid {
+  gap: 12px;
+}
+
+.grammar-summary-grid .summary-card {
+  min-height: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 12px;
+}
+
+.grammar-overall-progress {
+  margin-top: 14px !important;
+  padding: 20px;
+  box-shadow: none;
+}
+
+.grammar-topics-section {
+  margin-top: 36px;
+}
+
+.grammar-topics-section .section-heading {
+  margin-bottom: 18px;
+}
+
+.grammar-topic-list {
+  gap: 16px;
+}
+
+.grammar-topic-card {
+  min-height: 142px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 22px;
+}
+
+.grammar-topic-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #f1f5f9;
+  font-size: 1.3rem;
+}
+
+.grammar-topic-copy {
+  min-width: 0;
+}
+
+.grammar-topic-copy .homework-number {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.grammar-topic-copy h3 {
+  font-size: 1.05rem;
+  line-height: 1.32;
+  overflow-wrap: anywhere;
+}
+
+.grammar-topic-copy p {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: .91rem;
+  line-height: 1.55;
+}
+
+.grammar-topic-meta {
+  min-width: 82px;
+  display: grid;
+  justify-items: end;
+  gap: 16px;
+}
+
+.grammar-topic-arrow {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #eef2ff;
+  color: var(--indigo);
+  font-size: 1rem;
+  font-weight: 900;
+  transition: transform .16s ease, background .16s ease;
+}
+
+.grammar-topic-card:hover .grammar-topic-arrow {
+  transform: translateX(2px);
+  background: #e0e7ff;
+}
+
+/* Vocabulary hub uses the same card density and vertical rhythm. */
+.resource-hub-section {
+  margin-top: 32px;
+}
+
+.resource-hub-section .section-header {
+  margin-bottom: 16px;
+}
+
+.resource-hub-list {
+  gap: 16px;
+}
+
+.resource-hub-card {
+  padding: 22px;
+}
+
+.resource-hub-header {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 15px;
+}
+
+.resource-hub-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #fff1f2;
+  font-size: 1.3rem;
+}
+
+.resource-hub-copy {
+  min-width: 0;
+}
+
+.resource-hub-copy .eyebrow {
+  margin-bottom: 4px;
+}
+
+.resource-hub-copy h3 {
+  font-size: 1.08rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.resource-hub-copy > p:last-child {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.resource-hub-progress {
+  margin-top: 18px;
+}
+
+.resource-hub-progress .progress-row-head {
+  margin-bottom: 9px;
+}
+
+.resource-hub-actions {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.resource-hub-actions p {
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.resource-hub-actions .btn {
+  flex: 0 0 auto;
+}
+
+/* Vocabulary cards: equal divider level inside every visual row. */
+body[data-page="vocabulary"] .mode-tabs {
+  margin-bottom: 24px;
+}
+
+.vocab-groups {
+  gap: 34px;
+}
+
+.vocab-group-heading {
+  margin-bottom: 14px;
+}
+
+.word-list {
+  gap: 14px;
+  align-items: stretch;
+}
+
+.word-row {
+  min-height: 252px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 16px 56px 15px 16px;
+}
+
+.word-card-main {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 5px;
+}
+
+.word-head,
+.word-translation,
+.word-example {
+  min-width: 0;
+}
+
+.word-example {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #dbe3ec;
+  font-size: .8rem;
+  line-height: 1.48;
+}
+
+.word-card-status {
+  margin-top: auto;
+  padding-top: 13px;
+}
+
+.word-card-pronounce {
+  top: 14px;
+  right: 14px;
+}
+
+/* Lesson materials have room for one vocabulary and several grammar links. */
+.lesson-materials-lesson .lesson-material-links {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.lesson-materials-heading h2 {
+  margin-top: 4px;
+  font-size: 1.12rem;
+}
+
+@media (max-width: 620px) {
+  .homework-hub-section,
+  .resource-hub-section,
+  .grammar-overview-section {
+    margin-top: 28px;
+  }
+
+  .lesson-hub-main {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    padding: 19px 17px 17px;
+  }
+
+  .lesson-hub-side {
+    min-width: 0;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    justify-items: start;
+    gap: 12px;
+  }
+
+  .lesson-hub-side .btn {
+    min-width: 0;
+  }
+
+  .lesson-materials-hub {
+    padding: 12px 16px 14px;
+  }
+
+  .grammar-topic-card {
+    min-height: 0;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .grammar-topic-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+
+  .grammar-topic-meta {
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    justify-items: start;
+    gap: 12px;
+    margin-top: 1px;
+  }
+
+  .grammar-topic-arrow {
+    justify-self: end;
+  }
+
+  .resource-hub-card {
+    padding: 18px;
+  }
+
+  .resource-hub-header {
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .resource-hub-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+
+  .resource-hub-header > .status-badge {
+    grid-column: 2;
+    justify-self: start;
+    margin: 2px 0 0;
+  }
+
+  .resource-hub-actions {
+    display: grid;
+    gap: 13px;
+  }
+
+  .resource-hub-actions .btn {
+    width: 100%;
+  }
+
+  .word-row {
+    min-height: 0;
+    padding: 16px 56px 15px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .lesson-hub-side {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-hub-side .btn {
+    width: 100%;
+  }
+
+  .grammar-summary-grid {
+    gap: 8px;
+  }
+
+  .grammar-summary-grid .summary-card {
+    min-height: 92px;
+    padding: 14px 7px;
+  }
+}
+
+/* Material names may wrap instead of crowding the homework card. */
+.lesson-material-chip {
+  max-width: 100%;
+  white-space: normal;
+}
