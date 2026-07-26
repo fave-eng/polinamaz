@@ -67,16 +67,11 @@ function isPublished(lesson) {
   return Number.isFinite(published.getTime()) && published.getTime() <= Date.now()
 }
 
-function notificationVersion(lesson) {
-  const version = Number(lesson.notification?.version ?? lesson.notificationVersion ?? 1)
-  return Number.isInteger(version) && version > 0 ? version : 1
-}
-
 const siteBaseUrl = normaliseBaseUrl(requiredEnv('SITE_BASE_URL'))
 const studentId = requiredEnv('STUDENT_ID')
 const projectId = requiredEnv('SUPABASE_PROJECT_ID')
 const notifySecret = requiredEnv('NOTIFY_WEBHOOK_SECRET')
-const selectedLessonId = process.env.LESSON_ID?.trim() || ''
+const selectedLessonId = requiredEnv('LESSON_ID')
 
 // The live site stores vocabulary in the root file. The data/ path is kept as a
 // compatibility fallback for older copies of the project.
@@ -86,17 +81,12 @@ const vocabularyData = [
 ]
 const grammarData = loadWindowArray('data/grammar-data.js', 'GRAMMAR_DATA')
 const lessons = loadLessons().filter((lesson) => {
-  if (selectedLessonId && lesson.id !== selectedLessonId) return false
+  if (lesson.id !== selectedLessonId) return false
   return isPublished(lesson)
 })
 
-if (selectedLessonId && lessons.length === 0) {
-  throw new Error(`Lesson ${selectedLessonId} was not found or is not published`)
-}
-
 if (lessons.length === 0) {
-  console.log('No eligible lessons. Nothing to notify.')
-  process.exit(0)
+  throw new Error(`Lesson ${selectedLessonId} was not found or is not published`)
 }
 
 const endpoint = process.env.NOTIFY_ENDPOINT?.trim()
@@ -150,7 +140,9 @@ for (const lesson of lessons) {
     studentId,
     materialType: 'lesson_bundle',
     materialId: lesson.id,
-    notificationVersion: notificationVersion(lesson),
+    // One notification is allowed for each lesson. The server ignores later
+    // attempts after the first successful delivery.
+    notificationVersion: 1,
     homework,
     vocabulary: validVocabulary,
     grammar: grammarTopics,

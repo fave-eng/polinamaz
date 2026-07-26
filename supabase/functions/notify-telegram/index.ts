@@ -1,6 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const FUNCTION_VERSION = "homework-reports-v3-bundle-links";
+const FUNCTION_VERSION = "homework-reports-v5-one-lesson-notification";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-notify-secret",
@@ -41,6 +41,25 @@ function studentDisplayName(studentId: string): string {
     zhenya: "Женя"
   };
   return names[studentId] || studentId;
+}
+
+function studentEnglishName(studentId: string): string {
+  const names: Record<string, string> = {
+    marina: "Marina",
+    polina: "Polina",
+    polinamaz: "Polina",
+    zhenya: "Zhenya"
+  };
+  const fallback = studentId.charAt(0).toUpperCase() + studentId.slice(1);
+  return names[studentId] || fallback;
+}
+
+function grammarButtonTitle(item: Record<string, unknown>, index: number): string {
+  const fullTitle = String(item.title || `Grammar ${index + 1}`).trim();
+  const shortTitle = fullTitle.split(":")[0].trim();
+  return shortTitle.length > 0 && shortTitle.length <= 34
+    ? shortTitle
+    : `Grammar ${index + 1}`;
 }
 
 function dateTime(value: string | null | undefined): string {
@@ -207,6 +226,78 @@ async function claimPublication(
   return { existing: data, alreadySent: false };
 }
 
+
+async function claimLessonPublication(
+  client: ReturnType<typeof createClient>,
+  record: {
+    student_id: string;
+    material_type: string;
+    material_id: string;
+    payload: Record<string, unknown>;
+  }
+) {
+  // A lesson may be uploaded in several commits (homework, vocabulary, grammar),
+  // but the student must receive only one final publication message.
+  const { data: sentRows, error: sentLookupError } = await client
+    .from("material_publications")
+    .select("*")
+    .eq("student_id", record.student_id)
+    .eq("material_type", record.material_type)
+    .eq("material_id", record.material_id)
+    .eq("status", "sent")
+    .order("created_at", { ascending: true })
+    .limit(1);
+  if (sentLookupError) throw sentLookupError;
+  const sent = sentRows?.[0];
+  if (sent) return { existing: sent, alreadySent: true };
+
+  const { data: existingRows, error: lookupError } = await client
+    .from("material_publications")
+    .select("*")
+    .eq("student_id", record.student_id)
+    .eq("material_type", record.material_type)
+    .eq("material_id", record.material_id)
+    .order("created_at", { ascending: true })
+    .limit(1);
+  if (lookupError) throw lookupError;
+
+  const existing = existingRows?.[0];
+  if (existing) {
+    const { data, error } = await client
+      .from("material_publications")
+      .update({ status: "pending", payload: record.payload, error_message: null })
+      .eq("id", existing.id)
+      .select()
+      .single();
+    if (error) throw error;
+    return { existing: data, alreadySent: false };
+  }
+
+  const { data, error } = await client
+    .from("material_publications")
+    .insert({ ...record, notification_version: 1, status: "pending" })
+    .select()
+    .single();
+  if (error) {
+    if (error.code === "23505") {
+      const { data: racedRows, error: racedError } = await client
+        .from("material_publications")
+        .select("*")
+        .eq("student_id", record.student_id)
+        .eq("material_type", record.material_type)
+        .eq("material_id", record.material_id)
+        .order("created_at", { ascending: true })
+        .limit(1);
+      if (racedError) throw racedError;
+      const raced = racedRows?.[0];
+      if (!raced) throw error;
+      return { existing: raced, alreadySent: raced.status === "sent" };
+    }
+    throw error;
+  }
+  return { existing: data, alreadySent: false };
+}
+
 function publicHttpUrl(value: unknown): string | null {
   const raw = String(value || "").trim();
   if (!raw) return null;
@@ -226,8 +317,7 @@ async function materialPublished(client: ReturnType<typeof createClient>, reques
   const studentId = allowedStudent(body.studentId);
   const materialType = String(body.materialType || "").trim();
   const materialId = String(body.materialId || "").trim();
-  const notificationVersion = Number(body.notificationVersion || 1);
-  if (!materialType || !materialId || !Number.isInteger(notificationVersion) || notificationVersion < 1) {
+  if (!materialType || !materialId) {
     return json({ ok: false, error: "Invalid material publication payload" }, 400);
   }
 
@@ -270,11 +360,10 @@ async function materialPublished(client: ReturnType<typeof createClient>, reques
     publishedAt: legacyPayload.publishedAt || null
   };
 
-  const claim = await claimPublication(client, {
+  const claim = await claimLessonPublication(client, {
     student_id: studentId,
     material_type: materialType,
     material_id: materialId,
-    notification_version: notificationVersion,
     payload: storedPayload
   });
   if (claim.alreadySent) {
@@ -284,33 +373,30 @@ async function materialPublished(client: ReturnType<typeof createClient>, reques
   try {
     const recipient = await getRecipient(client, studentId);
     const title = String(rawHomework.title || legacyPayload.title || materialId);
-    const subtitle = String(rawHomework.subtitle || legacyPayload.subtitle || "").trim();
-    const typeLabel = materialType === "lesson_bundle" || materialType === "homework"
-      ? "Новые материалы к уроку"
-      : materialType === "grammar"
-        ? "Новая тема по грамматике"
-        : "Новый материал";
+    const steps: string[] = [];
+    if (rawVocabulary) steps.push("First, learn the new words.");
+    if (grammar.length) steps.push(`${steps.length ? "Next" : "First"}, read the grammar.`);
+    steps.push(`${steps.length ? "Then" : "Now"}, do the homework.`);
+
     const text = [
-      `✨ ${typeLabel}`,
-      `Ученица: ${studentDisplayName(studentId)}`,
-      `Материал: ${title}`,
-      subtitle || null,
-      rawVocabulary ? `Словарь: ${Number(rawVocabulary.wordCount || 0) || "добавлен"}` : null,
-      grammar.length ? `Грамматика: ${grammar.length}` : null
-    ].filter(Boolean).join("\n");
+      `Hi, ${studentEnglishName(studentId)}! 👋`,
+      "Your new English homework is ready.",
+      `📘 ${title}`,
+      steps.join("\n"),
+      "Good luck! You can do it! 🌟"
+    ].join("\n\n");
 
     const keyboard: Array<Array<{ text: string; url: string }>> = [];
     if (rawVocabulary && vocabularyUrl) {
-      keyboard.push([{ text: "💥 Открыть словарь", url: vocabularyUrl }]);
+      keyboard.push([{ text: "📚 Learn new words", url: vocabularyUrl }]);
     }
-    keyboard.push([{ text: "📝 Открыть домашнюю работу", url: homeworkUrl }]);
     grammar.forEach((item, index) => {
-      const url = String(item.url);
-      const label = grammar.length === 1
-        ? "📐 Повторить грамматику"
-        : `📐 ${String(item.title || `Грамматика ${index + 1}`).slice(0, 48)}`;
-      keyboard.push([{ text: label, url }]);
+      keyboard.push([{
+        text: `📖 ${grammarButtonTitle(item, index)}`,
+        url: String(item.url)
+      }]);
     });
+    keyboard.push([{ text: "📝 Do the homework", url: homeworkUrl }]);
 
     const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text, keyboard);
     const sentAt = new Date().toISOString();
