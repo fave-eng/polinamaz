@@ -873,6 +873,9 @@
     progress.answers = progress.answers && typeof progress.answers === "object" ? progress.answers : {};
     progress.answers.__meta = progress.answers.__meta || {};
     const questions = collectQuestions(lesson.blocks);
+    const grammarTopicIds = new Set(Utils.asArray(lesson.grammarIds).map(String));
+    const linkedGrammarTopics = DataService.grammarTopics().filter((topic) => grammarTopicIds.has(String(topic.id)) || String(topic.linkedLessonId || "") === String(lesson.id));
+    const linkedGrammarHtml = linkedGrammarTopics.length ? `<div class="lesson-materials lesson-materials-lesson"><div class="lesson-materials-heading"><span class="eyebrow">Open lesson materials</span><p>Grammar for this homework assignment.</p></div><div class="lesson-material-links">${linkedGrammarTopics.map((topic) => `<a class="lesson-material-link grammar" href="${Utils.escape(topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}`)}"><span class="lesson-material-link-main"><span class="lesson-material-icon" aria-hidden="true">📐</span><span class="lesson-material-text"><strong>Grammar</strong><small>${Utils.escape(topic.title)}</small></span></span><span class="lesson-material-arrow" aria-hidden="true">→</span></a>`).join("")}</div></div>` : "";
     const render = () => {
       const locked = FINAL_STATUSES.has(progress.status);
       const meta = progress.answers.__meta || {};
@@ -894,6 +897,7 @@
       main.innerHTML = `
         <div class="page-heading"><p class="eyebrow">Lesson ${Number(lesson.number || 0)}</p><h1>${Utils.escape(lesson.title)}</h1><p class="lead">${Utils.escape(lesson.subtitle || "")}</p></div>
         <div class="lesson-meta"><span class="badge">${questions.length} tasks</span>${lesson.publishedAt ? `<span class="badge">Published ${Utils.formatDate(lesson.publishedAt)}</span>` : ""}</div>
+        ${linkedGrammarHtml}
         ${locked ? `<div class="notice notice-success locked-banner"><strong>Работа отправлена.</strong> Ответы больше нельзя изменить. Результат: ${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} (${Number(progress.score_percent || 0)}%).</div>` : '<div class="notice">Черновик сохраняется автоматически. Проверяй ответы до финальной отправки.</div>'}
         ${blockHtml || UI.empty("🧩", "This lesson has no blocks", "Add exercises to the lesson JSON file.")}
         ${questions.length ? `<section class="card score-panel" aria-label="Lesson actions"><div class="card-title-row"><div><div class="small muted">Текущий результат</div><div class="score-number">${progress.score_total != null ? `${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} · ${Number(progress.score_percent || 0)}%` : "Ещё не проверено"}</div></div><span class="status-badge ${statusLabel(progress)[1]}">${statusLabel(progress)[0]}</span></div><div class="button-row">${locked ? (progress.report_status === "failed" ? '<button class="btn btn-primary" id="retry-report">Повторить отправку преподавателю</button>' : '<a class="btn btn-ghost" href="homework.html">К домашним работам</a>') : '<button class="btn btn-secondary" id="check-answers">Проверить ответы</button><button class="btn btn-primary" id="submit-homework">Отправить преподавателю</button>'}</div></section>` : ""}`;
@@ -1163,17 +1167,204 @@
     render();
   }
 
+  function grammarTable(table) {
+    if (!table || !Array.isArray(table.headers) || !Array.isArray(table.rows)) return "";
+    return `<div class="table-wrap"><table><thead><tr>${table.headers.map((header) => `<th>${Utils.escape(header)}</th>`).join("")}</tr></thead><tbody>${table.rows.map((row) => `<tr>${row.map((cell) => `<td>${Utils.escape(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  }
+
+  function renderGrammarExerciseItem(item, blockId, index) {
+    const itemId = String(item.id || index + 1);
+    const number = item.number === undefined ? index + 1 : item.number;
+    const prompt = Utils.escape(item.prompt || "");
+    const inputId = `grammar-${blockId}-${itemId}`.replace(/[^a-zA-Z0-9_-]/g, "-");
+    const numberMarkup = number === "" || number === null ? "" : `<span class="exercise-number">${Utils.escape(number)}</span>`;
+
+    if (item.example) {
+      return `<div class="exercise-item exercise-example" data-exercise-item="${Utils.escape(itemId)}">
+        <div class="exercise-item-header">${numberMarkup}<div class="exercise-prompt">${prompt}</div></div>
+        <div class="example-answer"><span>Example</span><strong>${Utils.escape(item.exampleAnswer || "")}</strong></div>
+      </div>`;
+    }
+
+    let control = "";
+    if (item.input === "multiple" || item.input === "single") {
+      const inputType = item.input === "multiple" ? "checkbox" : "radio";
+      control = `<div class="option-list compact-options">${Utils.asArray(item.options).map((option, optionIndex) => `<label class="option"><input type="${inputType}" name="${Utils.escape(inputId)}" value="${optionIndex}"><span>${Utils.escape(option)}</span></label>`).join("")}</div>`;
+    } else if (item.input === "select") {
+      control = `<select id="${Utils.escape(inputId)}"><option value="">Choose an answer</option>${Utils.asArray(item.options).map((option, optionIndex) => `<option value="${optionIndex}">${Utils.escape(option)}</option>`).join("")}</select>`;
+    } else if (item.input === "textarea") {
+      control = `<textarea id="${Utils.escape(inputId)}" placeholder="${Utils.escape(item.placeholder || "")}"></textarea>`;
+    } else if (item.input === "gaps") {
+      const answers = Utils.asArray(item.answers);
+      const segments = Utils.asArray(item.segments);
+      control = `<div class="sentence-gaps" aria-label="${prompt}">${answers.map((answer, gapIndex) => `${gapIndex < segments.length ? `<span>${Utils.escape(segments[gapIndex])}</span>` : ""}<input class="gap-input" data-gap-index="${gapIndex}" aria-label="Gap ${gapIndex + 1}" autocomplete="off">`).join("")}${segments.length > answers.length ? `<span>${Utils.escape(segments[segments.length - 1])}</span>` : ""}</div>`;
+    } else {
+      control = `<input class="text-field" id="${Utils.escape(inputId)}" autocomplete="off" placeholder="${Utils.escape(item.placeholder || "")}">`;
+    }
+
+    return `<div class="exercise-item" data-exercise-item="${Utils.escape(itemId)}" data-input-type="${Utils.escape(item.input || "text")}">
+      <div class="exercise-item-header">${numberMarkup}<label class="exercise-prompt" for="${Utils.escape(inputId)}">${prompt}</label></div>
+      <div class="exercise-control">${control}</div>
+      <div class="feedback" aria-live="polite"></div>
+    </div>`;
+  }
+
+  function normaliseGrammarAnswer(value) {
+    return Utils.normaliseText(value)
+      .normalize("NFKC")
+      .replace(/[.!?,;:]+$/g, "")
+      .replace(/\s+/g, " ");
+  }
+
+  function grammarTextMatches(item, actual) {
+    const accepted = Array.isArray(item.acceptedAnswers) && item.acceptedAnswers.length
+      ? item.acceptedAnswers
+      : Array.isArray(item.answer) ? item.answer : [item.answer];
+    return accepted.some((answer) => normaliseGrammarAnswer(answer) !== "" && normaliseGrammarAnswer(answer) === normaliseGrammarAnswer(actual));
+  }
+
+  function checkGrammarExerciseItem(item, itemNode) {
+    const inputType = item.input || "text";
+    let actual;
+    let correct = false;
+
+    if (inputType === "multiple") {
+      actual = [...itemNode.querySelectorAll("input:checked")].map((input) => Number(input.value)).sort((a, b) => a - b);
+      const expected = [...Utils.asArray(item.answer)].map(Number).sort((a, b) => a - b);
+      correct = JSON.stringify(actual) === JSON.stringify(expected);
+    } else if (inputType === "single") {
+      actual = itemNode.querySelector("input:checked")?.value ?? "";
+      correct = Number(actual) === Number(item.answer);
+    } else if (inputType === "select") {
+      actual = itemNode.querySelector("select")?.value ?? "";
+      correct = actual !== "" && Number(actual) === Number(item.answer);
+    } else if (inputType === "gaps") {
+      actual = [...itemNode.querySelectorAll("[data-gap-index]")].map((input) => input.value);
+      const expected = Utils.asArray(item.answers);
+      correct = expected.length > 0 && expected.every((answer, index) => {
+        const accepted = Array.isArray(answer) ? answer : [answer];
+        return accepted.some((variant) => normaliseGrammarAnswer(variant) === normaliseGrammarAnswer(actual[index]));
+      });
+    } else {
+      actual = itemNode.querySelector("input, textarea")?.value || "";
+      correct = grammarTextMatches(item, actual);
+    }
+    return { actual, correct };
+  }
+
+  function checkGrammarExerciseBlock(block, node) {
+    const actual = {};
+    let correctCount = 0;
+    let total = 0;
+    Utils.asArray(block.items).forEach((item, index) => {
+      if (item.example) return;
+      const itemId = String(item.id || index + 1);
+      const itemNode = node.querySelector(`[data-exercise-item="${CSS.escape(itemId)}"]`);
+      if (!itemNode) return;
+      const result = checkGrammarExerciseItem(item, itemNode);
+      actual[itemId] = result.actual;
+      const feedback = itemNode.querySelector(".feedback");
+      total += 1;
+      if (result.correct) correctCount += 1;
+      itemNode.classList.toggle("is-correct", result.correct);
+      itemNode.classList.toggle("is-wrong", !result.correct);
+      if (feedback) {
+        feedback.className = `feedback show ${result.correct ? "good" : "bad"}`;
+        feedback.textContent = result.correct ? "Correct!" : String(item.explanation || "Check the answer and try again.");
+      }
+    });
+    return { actual, correctCount, total };
+  }
+
+  function renderGrammarExercise(block, index) {
+    const id = String(block.id || `grammar-exercise-${index + 1}`);
+    const difficulty = String(block.difficulty || "Practice");
+    const wordBank = Array.isArray(block.wordBank) && block.wordBank.length
+      ? `<div class="word-bank" aria-label="Word bank"><strong class="word-bank-label">Word bank</strong>${block.wordBank.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div>`
+      : "";
+    return `<article class="card lesson-block exercise-card grammar-exercise-card" data-task="${Utils.escape(id)}" data-type="exercise" data-grammar-exercise="${index}">
+      <div class="exercise-heading grammar-exercise-heading">
+        <div class="grammar-step-row"><span class="grammar-step-badge">Step ${index + 1}</span><span class="grammar-difficulty">${Utils.escape(difficulty)}</span></div>
+        <h3>${Utils.escape(block.title || `Exercise ${index + 1}`)}</h3>
+        ${block.instructions ? `<p class="muted exercise-instructions">${Utils.escape(block.instructions)}</p>` : ""}
+        ${wordBank}
+      </div>
+      <div class="exercise-items">${Utils.asArray(block.items).map((item, itemIndex) => renderGrammarExerciseItem(item, id, itemIndex)).join("")}</div>
+    </article>`;
+  }
+
+  function renderGrammarPractice(topic, root, initialProgress) {
+    const exercises = Utils.asArray(topic.exercises);
+    let progress = initialProgress || { topic_id: topic.id, passed: false, attempts: 0, best_score: 0 };
+    if (!exercises.length) {
+      root.innerHTML = UI.empty("🧩", "Practice has not been added yet", "Exercises will appear with the teacher’s material.");
+      return;
+    }
+
+    const draw = () => {
+      root.innerHTML = `${exercises.map((block, index) => renderGrammarExercise(block, index)).join("")}
+        <div class="card grammar-practice-actions">
+          <div id="grammar-result"><h3>Practise step by step</h3><p class="muted">Start with the easier tasks and move on to the more challenging ones.</p>${Number(progress.best_score || 0) ? `<p class="small muted">Best result: ${Number(progress.best_score || 0)}%</p>` : ""}</div>
+          <div class="button-row"><button class="btn btn-primary" type="button" id="check-grammar">Check exercises</button><button class="btn btn-secondary" type="button" id="retry-grammar">Start again</button></div>
+        </div>`;
+
+      document.getElementById("check-grammar")?.addEventListener("click", async () => {
+        let correct = 0;
+        let total = 0;
+        const answers = {};
+        exercises.forEach((block, index) => {
+          const node = root.querySelector(`[data-grammar-exercise="${index}"]`);
+          if (!node) return;
+          const result = checkGrammarExerciseBlock(block, node);
+          answers[String(block.id || index + 1)] = result.actual;
+          correct += Number(result.correctCount || 0);
+          total += Number(result.total || 0);
+        });
+        const percent = Utils.percent(correct, total);
+        const passScore = Number(topic.passScore || 80);
+        progress = {
+          ...progress,
+          topic_id: topic.id,
+          passed: Boolean(progress.passed) || percent >= passScore,
+          attempts: Number(progress.attempts || 0) + 1,
+          best_score: Math.max(Number(progress.best_score || 0), percent),
+          last_score: percent,
+          last_answers: answers,
+          completed_at: percent >= passScore ? (progress.completed_at || Utils.now()) : progress.completed_at
+        };
+        progress = await ProgressService.saveGrammarProgress(progress);
+        const resultNode = document.getElementById("grammar-result");
+        if (resultNode) resultNode.innerHTML = `<h3>Score: ${correct} of ${total}</h3><p class="muted">${percent}% correct · pass score ${passScore}%</p>${percent >= passScore ? '<p class="grammar-success-note">Excellent! The topic is completed.</p>' : '<p class="grammar-success-note">Review the tables and Common mistakes, then try again.</p>'}`;
+        UI.toast(`Grammar result: ${correct}/${total} · ${percent}%`);
+      });
+
+      document.getElementById("retry-grammar")?.addEventListener("click", draw);
+    };
+    draw();
+  }
+
   async function initGrammar() {
     UI.loading();
     setHero("Grammar", "Clear explanations and practice for published grammar topics.");
     const [topics, progressRows] = await Promise.all([DataService.grammarIndex(), ProgressService.loadAll("grammar")]);
     const progressMap = Object.fromEntries(progressRows.map((item) => [item.topic_id, item]));
-    main.innerHTML = `<div class="page-heading"><p class="eyebrow">Knowledge base</p><h1>Grammar</h1><p class="lead">Clear explanations, visual patterns and practice for independent study.</p></div>${topics.length ? topics.map((topic) => { const item = progressMap[topic.id]; return `<article class="card"><div class="card-title-row"><div><p class="eyebrow">Topic ${Number(topic.number || 0)}</p><h3>${Utils.escape(topic.title)}</h3></div><span class="status-badge ${item?.passed ? "status-complete" : ""}">${item?.passed ? "Passed" : `${Number(item?.best_score || 0)}% best`}</span></div><p class="muted">${Utils.escape(topic.subtitle || "")}</p><div class="button-row"><a class="btn btn-primary" href="grammar-topic.html?id=${encodeURIComponent(topic.id)}">Open topic</a></div></article>`; }).join("") : UI.empty("📐", "Грамматические темы пока не опубликованы", `Материалы будут добавляться в соответствии с уроками и учебником «${config.student.textbook}».`)}`;
-  }
-
-  function grammarExerciseQuestion(exercise, index, answers, results) {
-    const q = { ...exercise, id: exercise.id || `exercise-${index + 1}` };
-    return renderQuestion(q, index + 1, answers[q.id], results, false);
+    const passed = topics.filter((topic) => progressMap[topic.id]?.passed).length;
+    const percent = Utils.percent(passed, topics.length);
+    main.innerHTML = `<div class="page-heading"><p class="eyebrow">Knowledge base</p><h1>Grammar</h1><p class="lead">Clear theory, visual patterns and step-by-step practice for the current homework.</p></div>
+      <section class="section" aria-label="Grammar statistics">
+        <div class="summary-grid">
+          <div class="card summary-card"><strong>${passed}</strong><span>Completed</span></div>
+          <div class="card summary-card"><strong>${topics.length}</strong><span>Total</span></div>
+          <div class="card summary-card"><strong>${Utils.escape(config.student.level)}</strong><span>Level</span></div>
+        </div>
+        <div class="card"><div class="progress-row"><div class="progress-row-head"><strong>Overall progress</strong><span>${passed} of ${topics.length}</span></div><div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="${topics.length}" aria-valuenow="${passed}"><div class="progress-fill green" style="width:${percent}%"></div></div></div></div>
+      </section>
+      <section class="section" aria-labelledby="grammar-list-title"><div class="section-heading"><div><span class="eyebrow">Learning path</span><h2 id="grammar-list-title">Grammar topics</h2></div></div>
+      <div class="list">${topics.length ? topics.map((topic) => {
+        const item = progressMap[topic.id] || {};
+        const complete = Boolean(item.passed);
+        return `<a class="card item-card interactive" href="${Utils.escape(topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}`)}"><div class="item-icon">${complete ? "✅" : "📐"}</div><div class="item-main"><span class="homework-number">Topic ${Number(topic.number || topic.order || 0)}</span><h3>${Utils.escape(topic.title)}</h3><p>${Utils.escape(topic.subtitle || "")}</p></div><span class="status-badge ${complete ? "status-complete" : ""}">${complete ? "Completed" : `${Number(item.best_score || 0)}% best`}</span></a>`;
+      }).join("") : UI.empty("📐", "No grammar topics have been published yet", `Materials will be added in line with the lessons and the coursebook “${config.student.textbook}”.`)}</div></section>`;
   }
 
   async function initGrammarTopic() {
@@ -1181,56 +1372,39 @@
     const id = Utils.query("id");
     if (!id) return UI.error("Grammar topic not selected", "Open a topic from the Grammar page.");
     let topic;
-    try { topic = await DataService.grammar(id); } catch { return UI.error("Grammar topic unavailable", "Check the grammar index and JSON filename."); }
+    try { topic = await DataService.grammar(id); } catch { return UI.error("Grammar topic unavailable", "Check data/grammar-data.js and the topic id."); }
     setHero(topic.title, topic.subtitle || "Rules, examples and practice in one place.", { backHref: "grammar.html", backLabel: "Back to grammar" });
-    let progress = await ProgressService.loadGrammarProgress(id) || { topic_id: id, passed: false, attempts: 0, best_score: 0 };
-    const localExtras = Storage.get("grammar", id) || {};
-    progress = { ...progress, last_answers: localExtras.last_answers || {}, last_results: localExtras.last_results || null, last_score: localExtras.last_score ?? null };
-    const exercises = Utils.asArray(topic.exercises).slice(0, 5);
+    const progress = await ProgressService.loadGrammarProgress(id) || { topic_id: id, passed: false, attempts: 0, best_score: 0 };
+    const glanceCards = Utils.asArray(topic.glanceCards);
+    const anchorLinks = Utils.asArray(topic.anchorLinks);
+    const miniRules = Utils.asArray(topic.miniRules);
+    const tables = Utils.asArray(topic.tables).length ? Utils.asArray(topic.tables) : (topic.table ? [topic.table] : []);
+    const exampleGroups = Utils.asArray(topic.exampleGroups);
+    const examples = Utils.asArray(topic.examples);
+    const mistakes = Utils.asArray(topic.commonMistakes);
 
-    const render = () => {
-      const forms = topic.forms || {};
-      main.innerHTML = `<div class="page-heading"><p class="eyebrow">Grammar · ${Utils.escape(topic.level || config.student.level)}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${Utils.escape(topic.subtitle || "")}</p></div>
-        <section class="card grammar-summary"><p class="eyebrow">Главное за минуту</p><h2>Key idea</h2>${Utils.asArray(topic.summary).map((item) => `<p>${Utils.escape(item)}</p>`).join("") || '<p class="muted">Add a short summary to this grammar JSON.</p>'}</section>
-        <section class="section"><div class="section-header"><h2>When we use it</h2></div><div class="grammar-map">${Utils.asArray(topic.uses).slice(0,4).map((item) => `<div class="card">${Utils.escape(item)}</div>`).join("") || '<div class="card muted">No usage notes yet.</div>'}</div></section>
-        <section class="section"><div class="section-header"><h2>How it is built</h2></div><div class="grid">${[["Affirmative",forms.affirmative],["Negative",forms.negative],["Question",forms.question]].map(([label,formula]) => `<div class="card formula-card"><h3>${label}</h3><code class="formula">${Utils.escape(formula || "Add the form here")}</code></div>`).join("")}</div></section>
-        <section class="section"><div class="section-header"><h2>Examples</h2></div><div class="card">${Utils.asArray(topic.examples).map((item) => `<div class="example-pair"><span class="example-en">${Utils.escape(item.en)}</span>${item.ru ? `<span class="example-ru">${Utils.escape(item.ru)}</span>` : ""}${item.note ? `<span class="small muted">${Utils.escape(item.note)}</span>` : ""}</div>`).join("") || '<p class="muted">No examples yet.</p>'}</div></section>
-        <section class="section"><div class="section-header"><h2>How to choose the form</h2></div><div class="card"><ol class="steps">${Utils.asArray(topic.decisionSteps).map((item) => `<li><span>${Utils.escape(item)}</span></li>`).join("") || '<li><span>Add a clear decision algorithm.</span></li>'}</ol></div></section>
-        <section class="section"><div class="section-header"><h2>Common mistakes</h2></div>${Utils.asArray(topic.errors).map((item) => `<div class="card"><div class="error-comparison"><div class="error-wrong"><strong>✕ Wrong</strong><br>${Utils.escape(item.wrong)}</div><div class="error-right"><strong>✓ Correct</strong><br>${Utils.escape(item.right)}</div></div><p class="small muted" style="margin-top:10px">${Utils.escape(item.why || "")}</p></div>`).join("") || '<div class="card muted">No common mistakes added yet.</div>'}</section>
-        ${Utils.asArray(topic.details).length ? `<section class="section"><div class="section-header"><h2>Подробнее</h2></div>${topic.details.map((item) => `<details><summary>${Utils.escape(item.title)}</summary><p>${Utils.escape(item.text)}</p></details>`).join("")}</section>` : ""}
-        <section class="section"><div class="section-header"><h2>Check yourself</h2><span class="section-count">${exercises.length}/5 tasks</span></div>${exercises.length ? exercises.map((exercise,index) => grammarExerciseQuestion(exercise,index,progress.last_answers,progress.last_results)).join("") : UI.empty("🧠", "Exercises not added", "A grammar topic needs five tasks from easy to difficult.")} ${exercises.length ? `<div class="card score-panel"><div class="card-title-row"><div><div class="small muted">Best result</div><div class="score-number">${Number(progress.best_score || 0)}%</div></div><span class="status-badge ${progress.passed ? "status-complete" : ""}">${progress.passed ? "Passed" : `${Number(progress.attempts || 0)} attempts`}</span></div><div class="button-row"><button class="btn btn-primary" id="check-grammar">Check grammar test</button></div>${progress.last_score != null ? `<p class="small muted">Last result: ${Number(progress.last_score)}%</p>` : ""}</div>` : ""}</section>
-        <section class="section"><div class="notice"><strong>Summary:</strong> ${Utils.escape(topic.conclusion || Utils.asArray(topic.summary)[0] || "Review the forms, examples and common mistakes before the test.")}</div></section>`;
-      bind();
-    };
+    main.innerHTML = `<div class="page-heading"><p class="eyebrow">Grammar · ${Utils.escape(topic.level || config.student.level)}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${Utils.escape(topic.subtitle || "")}</p></div>
+      <article class="card grammar-intro-card">
+        <span class="eyebrow">Grammar focus</span>
+        <h2>${Utils.escape(topic.title)}</h2>
+        <p class="muted grammar-lead">${Utils.escape(topic.explanation || "")}</p>
+        ${topic.formula ? `<div class="grammar-formula-box"><strong>Quick formula</strong><p>${Utils.escape(topic.formula)}</p></div>` : ""}
+        ${anchorLinks.length ? `<div class="grammar-anchor-links">${anchorLinks.map((link) => `<a class="grammar-anchor-link" href="#${Utils.escape(link.id)}">${Utils.escape(link.title)}</a>`).join("")}</div>` : ""}
+      </article>
 
-    const bind = () => {
-      document.querySelectorAll("[data-question-id]").forEach((element) => element.addEventListener(element.tagName === "INPUT" && element.type === "text" ? "input" : "change", () => {
-        const qid = element.dataset.questionId;
-        const exercise = exercises.find((item, index) => (item.id || `exercise-${index+1}`) === qid);
-        if (!exercise) return;
-        if (["single-choice","true-false"].includes(exercise.type)) progress.last_answers[qid] = element.value;
-        else if (exercise.type === "multiple-choice") progress.last_answers[qid] = [...document.querySelectorAll(`input[data-question-id="${CSS.escape(qid)}"]:checked`)].map((item) => item.value);
-        else progress.last_answers[qid] = element.value;
-        Storage.set("grammar", id, { ...progress, updated_at: Utils.now() });
-      }));
-      document.getElementById("check-grammar")?.addEventListener("click", async () => {
-        const normalized = exercises.map((item,index) => ({ ...item, id: item.id || `exercise-${index+1}` }));
-        const result = calculateLessonResult(normalized, progress.last_answers);
-        progress.attempts = Number(progress.attempts || 0) + 1;
-        progress.last_score = result.percent;
-        progress.last_results = result.details;
-        progress.best_score = Math.max(Number(progress.best_score || 0), result.percent);
-        if (result.percent >= Number(topic.passScore || 80)) {
-          progress.passed = true;
-          progress.passed_at = progress.passed_at || Utils.now();
-        }
-        progress = { ...progress, ...(await ProgressService.saveGrammarProgress(progress)) };
-        Storage.set("grammar", id, progress);
-        render();
-        UI.toast(`Grammar result: ${result.correct}/${result.total} · ${result.percent}%`);
-      });
-    };
-    render();
+      ${glanceCards.length ? `<section class="section" id="grammar-at-a-glance" aria-labelledby="grammar-at-a-glance-title"><div class="section-heading"><div><span class="eyebrow">Quick overview</span><h2 id="grammar-at-a-glance-title">How to choose quickly</h2></div></div><div class="grammar-glance-grid">${glanceCards.map((card) => `<article class="card grammar-glance-card"><div class="grammar-glance-head"><span class="grammar-glance-icon">${Utils.escape(card.icon || "✦")}</span><div><h3>${Utils.escape(card.label || "")}</h3><p class="muted">${Utils.escape(card.hint || "")}</p></div></div><div class="grammar-pattern">${Utils.escape(card.pattern || "")}</div><p class="grammar-example-sentence">${Utils.escape(card.example || "")}</p></article>`).join("")}</div></section>` : ""}
+
+      ${miniRules.length ? `<section class="section" id="grammar-rule-map" aria-labelledby="grammar-rule-map-title"><div class="section-heading"><div><span class="eyebrow">Rule map</span><h2 id="grammar-rule-map-title">Step-by-step guide</h2></div></div><div class="grammar-mini-grid">${miniRules.map((rule) => `<article class="card grammar-mini-card"><h3>${Utils.escape(rule.title || "")}</h3><p>${Utils.escape(rule.text || "")}</p>${rule.example ? `<div class="grammar-mini-example">${Utils.escape(rule.example)}</div>` : ""}</article>`).join("")}</div></section>` : ""}
+
+      ${tables.length ? `<section class="section" id="grammar-tables" aria-labelledby="grammar-tables-title"><div class="section-heading"><div><span class="eyebrow">Tables</span><h2 id="grammar-tables-title">Tables</h2></div></div><div class="list">${tables.map((table) => `<article class="card lesson-block"><h3>${Utils.escape(table.title || "Table")}</h3>${grammarTable(table)}</article>`).join("")}</div></section>` : ""}
+
+      ${exampleGroups.length || examples.length ? `<section class="section" id="grammar-examples" aria-labelledby="grammar-examples-title"><div class="section-heading"><div><span class="eyebrow">Examples</span><h2 id="grammar-examples-title">Examples in context</h2></div></div><div class="list">${exampleGroups.map((group) => `<article class="card lesson-block grammar-example-group"><h3>${Utils.escape(group.title || "Examples")}</h3><div class="list">${Utils.asArray(group.items).map((item) => `<p class="grammar-example-item">• ${Utils.escape(item)}</p>`).join("")}</div></article>`).join("")}${examples.length ? `<article class="card lesson-block grammar-example-group"><h3>More examples</h3><div class="list">${examples.map((example) => `<p class="grammar-example-item">• ${Utils.escape(example)}</p>`).join("")}</div></article>` : ""}</div></section>` : ""}
+
+      ${mistakes.length ? `<section class="section" id="grammar-mistakes" aria-labelledby="grammar-mistakes-title"><div class="section-heading"><div><span class="eyebrow">Common mistakes</span><h2 id="grammar-mistakes-title">Common mistakes</h2></div></div><article class="card info-card lesson-block"><div class="list">${mistakes.map((mistake) => `<p>• ${Utils.escape(mistake)}</p>`).join("")}</div></article></section>` : ""}
+
+      <section class="section" id="grammar-practice-section" aria-labelledby="grammar-practice-title"><div class="section-heading"><div><span class="eyebrow">Practice</span><h2 id="grammar-practice-title">${Utils.asArray(topic.exercises).length} exercises: from easier to more challenging</h2></div></div><div id="grammar-quiz"></div></section>`;
+
+    renderGrammarPractice(topic, document.getElementById("grammar-quiz"), progress);
   }
 
   async function initTelegramTest() {
