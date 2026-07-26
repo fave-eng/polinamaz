@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import vm from 'node:vm'
 
 const root = process.cwd()
 
@@ -7,6 +8,33 @@ function requiredEnv(name) {
   const value = process.env[name]?.trim()
   if (!value) throw new Error(`Missing environment variable: ${name}`)
   return value
+}
+
+function normaliseBaseUrl(value) {
+  const raw = String(value || '').trim().replace(/\/+$/, '')
+  const candidate = /^[a-z][a-z\d+.-]*:\/\//i.test(raw) ? raw : `https://${raw}`
+  let parsed
+  try {
+    parsed = new URL(candidate)
+  } catch {
+    throw new Error('SITE_BASE_URL must be a valid public http(s) URL')
+  }
+  if (!['http:', 'https:'].includes(parsed.protocol) || !parsed.hostname) {
+    throw new Error('SITE_BASE_URL must be a valid public http(s) URL')
+  }
+  return parsed.toString().replace(/\/+$/, '')
+}
+
+function loadWindowArray(relativePath, globalName) {
+  const absolutePath = path.join(root, relativePath)
+  if (!fs.existsSync(absolutePath)) return []
+
+  const source = fs.readFileSync(absolutePath, 'utf8')
+  const sandbox = { window: {} }
+  vm.createContext(sandbox)
+  vm.runInContext(source, sandbox, { filename: relativePath, timeout: 2000 })
+  const data = sandbox.window[globalName]
+  return Array.isArray(data) ? data : []
 }
 
 function loadLessons() {
@@ -22,12 +50,16 @@ function loadLessons() {
     .sort((left, right) => Number(left.number || 0) - Number(right.number || 0))
 }
 
-function pageUrl(baseUrl, lessonId) {
-  return new URL(`lesson.html?id=${encodeURIComponent(lessonId)}`, `${baseUrl}/`).toString()
+function pageUrl(baseUrl, page, fallback) {
+  const target = typeof page === 'string' && page.trim() ? page.trim() : fallback
+  const url = new URL(target, `${baseUrl}/`)
+  if (!['http:', 'https:'].includes(url.protocol)) throw new Error(`Invalid page URL: ${target}`)
+  return url.toString()
 }
 
 function isPublished(lesson) {
-  if (!['available', 'published'].includes(String(lesson.status || '').toLowerCase())) return false
+  const status = String(lesson.status || '').toLowerCase()
+  if (!['available', 'published'].includes(status)) return false
   if (lesson.notification?.enabled === false) return false
   if (!lesson.publishedAt) return true
 
@@ -40,12 +72,19 @@ function notificationVersion(lesson) {
   return Number.isInteger(version) && version > 0 ? version : 1
 }
 
-const siteBaseUrl = requiredEnv('SITE_BASE_URL').replace(/\/+$/, '')
+const siteBaseUrl = normaliseBaseUrl(requiredEnv('SITE_BASE_URL'))
 const studentId = requiredEnv('STUDENT_ID')
 const projectId = requiredEnv('SUPABASE_PROJECT_ID')
 const notifySecret = requiredEnv('NOTIFY_WEBHOOK_SECRET')
 const selectedLessonId = process.env.LESSON_ID?.trim() || ''
 
+// The live site stores vocabulary in the root file. The data/ path is kept as a
+// compatibility fallback for older copies of the project.
+const vocabularyData = [
+  ...loadWindowArray('vocabulary-data.js', 'VOCABULARY_DATA'),
+  ...loadWindowArray('data/vocabulary-data.js', 'VOCABULARY_DATA'),
+]
+const grammarData = loadWindowArray('data/grammar-data.js', 'GRAMMAR_DATA')
 const lessons = loadLessons().filter((lesson) => {
   if (selectedLessonId && lesson.id !== selectedLessonId) return false
   return isPublished(lesson)
@@ -65,17 +104,61 @@ const endpoint = process.env.NOTIFY_ENDPOINT?.trim()
 let failures = 0
 
 for (const lesson of lessons) {
+  const vocabulary = vocabularyData.find((topic) => topic?.linkedLessonId === lesson.id)
+  const validVocabulary = vocabulary && Array.isArray(vocabulary.words) && vocabulary.words.length > 0
+    ? {
+        id: String(vocabulary.id || ''),
+        title: String(vocabulary.title || 'Lesson vocabulary'),
+        wordCount: vocabulary.words.length,
+        url: pageUrl(
+          siteBaseUrl,
+          vocabulary.page,
+          `vocabulary.html?topic=${encodeURIComponent(vocabulary.id)}`,
+        ),
+      }
+    : null
+
+  const explicitGrammarIds = Array.isArray(lesson.grammarIds) ? lesson.grammarIds : []
+  const grammarTopics = grammarData
+    .filter((topic) => ['available', 'published'].includes(String(topic?.status || '').toLowerCase()))
+    .filter((topic) => explicitGrammarIds.includes(topic.id) || topic.linkedLessonId === lesson.id)
+    .map((topic) => ({
+      id: String(topic.id || ''),
+      title: String(topic.title || 'Grammar'),
+      url: pageUrl(
+        siteBaseUrl,
+        topic.page,
+        `grammar-topic.html?id=${encodeURIComponent(topic.id)}`,
+      ),
+    }))
+
+  const homework = {
+    id: lesson.id,
+    title: lesson.title || 'Homework',
+    subtitle: lesson.subtitle || '',
+    url: pageUrl(
+      siteBaseUrl,
+      lesson.page,
+      `lesson.html?id=${encodeURIComponent(lesson.id)}`,
+    ),
+  }
+
+  // Send the bundle format expected by the current Edge Function. The nested
+  // legacy payload is retained so an older deployed function can still send it.
   const payload = {
     action: 'material_published',
     studentId,
-    materialType: 'homework',
+    materialType: 'lesson_bundle',
     materialId: lesson.id,
     notificationVersion: notificationVersion(lesson),
+    homework,
+    vocabulary: validVocabulary,
+    grammar: grammarTopics,
     payload: {
-      title: lesson.title || 'Homework',
-      subtitle: lesson.subtitle || '',
+      title: homework.title,
+      subtitle: homework.subtitle,
       publishedAt: lesson.publishedAt || null,
-      url: pageUrl(siteBaseUrl, lesson.id),
+      url: homework.url,
     },
   }
 
@@ -94,9 +177,9 @@ for (const lesson of lessons) {
     failures += 1
     console.error(`Failed ${lesson.id}:`, result)
   } else if (result.alreadySent || result.skipped) {
-    console.log(`Skipped ${lesson.id}: already sent`)
+    console.log(`Skipped ${lesson.id}: ${result.reason || 'already sent'}`)
   } else {
-    console.log(`Sent ${lesson.id}.`)
+    console.log(`Sent ${lesson.id}${result.telegramMessageId ? `; Telegram message id: ${result.telegramMessageId}` : '.'}`)
   }
 }
 

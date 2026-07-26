@@ -6,8 +6,11 @@ on:
       - main
     paths:
       - 'data/lessons/lesson-*.json'
+      - 'vocabulary-data.js'
       - 'data/vocabulary-data.js'
       - 'data/grammar-data.js'
+      - 'scripts/prepare-notification.mjs'
+      - '.github/workflows/notify-new-materials.yml'
   workflow_dispatch:
     inputs:
       lesson_id:

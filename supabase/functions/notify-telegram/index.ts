@@ -1,6 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const FUNCTION_VERSION = "homework-reports-v2";
+const FUNCTION_VERSION = "homework-reports-v3-bundle-links";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-notify-secret",
@@ -28,6 +28,8 @@ function allowedStudent(studentId: unknown): string {
   if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(value)) {
     throw new Error("Unknown student");
   }
+  const configured = Deno.env.get("ALLOWED_STUDENT_ID")?.trim().toLowerCase();
+  if (configured && value !== configured) throw new Error("Unknown student");
   return value;
 }
 
@@ -49,7 +51,8 @@ function dateTime(value: string | null | undefined): string {
 async function sendTelegram(
   token: string,
   recipient: { chat_id: number; message_thread_id?: number | null },
-  text: string
+  text: string,
+  keyboard: Array<Array<{ text: string; url: string }>> = []
 ): Promise<number> {
   const apiBase = "https://api." + "telegram.org";
   const response = await fetch(`${apiBase}/bot${token}/sendMessage`, {
@@ -59,6 +62,7 @@ async function sendTelegram(
       chat_id: recipient.chat_id,
       ...(recipient.message_thread_id ? { message_thread_id: recipient.message_thread_id } : {}),
       text,
+      ...(keyboard.length ? { reply_markup: { inline_keyboard: keyboard } } : {}),
       link_preview_options: { is_disabled: true }
     })
   });
@@ -203,38 +207,119 @@ async function claimPublication(
   return { existing: data, alreadySent: false };
 }
 
+function publicHttpUrl(value: unknown): string | null {
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  try {
+    const url = new URL(raw);
+    return ["http:", "https:"].includes(url.protocol) && Boolean(url.hostname) ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
 async function materialPublished(client: ReturnType<typeof createClient>, request: Request, body: Record<string, unknown>) {
   const expected = env("NOTIFY_WEBHOOK_SECRET");
   const provided = request.headers.get("x-notify-secret") || "";
   if (provided !== expected) return json({ ok: false, error: "Invalid publication secret" }, 401);
+
   const studentId = allowedStudent(body.studentId);
   const materialType = String(body.materialType || "").trim();
   const materialId = String(body.materialId || "").trim();
   const notificationVersion = Number(body.notificationVersion || 1);
-  const payload = body.payload && typeof body.payload === "object" && !Array.isArray(body.payload) ? body.payload as Record<string, unknown> : {};
   if (!materialType || !materialId || !Number.isInteger(notificationVersion) || notificationVersion < 1) {
     return json({ ok: false, error: "Invalid material publication payload" }, 400);
   }
+
+  const legacyPayload = body.payload && typeof body.payload === "object" && !Array.isArray(body.payload)
+    ? body.payload as Record<string, unknown>
+    : {};
+  const rawHomework = body.homework && typeof body.homework === "object" && !Array.isArray(body.homework)
+    ? body.homework as Record<string, unknown>
+    : {
+        id: materialId,
+        title: legacyPayload.title || materialId,
+        subtitle: legacyPayload.subtitle || "",
+        url: legacyPayload.url || ""
+      };
+  const homeworkUrl = publicHttpUrl(rawHomework.url);
+  if (!homeworkUrl) return json({ ok: false, error: "A valid homework URL is required" }, 400);
+
+  const rawVocabulary = body.vocabulary && typeof body.vocabulary === "object" && !Array.isArray(body.vocabulary)
+    ? body.vocabulary as Record<string, unknown>
+    : null;
+  const vocabularyUrl = rawVocabulary ? publicHttpUrl(rawVocabulary.url) : null;
+  if (rawVocabulary && !vocabularyUrl) return json({ ok: false, error: "Invalid vocabulary URL" }, 400);
+
+  const rawGrammar = Array.isArray(body.grammar) ? body.grammar : [];
+  const grammar: Record<string, unknown>[] = [];
+  for (const item of rawGrammar) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) {
+      return json({ ok: false, error: "Invalid grammar URL" }, 400);
+    }
+    const topic = item as Record<string, unknown>;
+    const url = publicHttpUrl(topic.url);
+    if (!url) return json({ ok: false, error: "Invalid grammar URL" }, 400);
+    grammar.push({ ...topic, url });
+  }
+
+  const storedPayload = {
+    homework: { ...rawHomework, url: homeworkUrl },
+    vocabulary: rawVocabulary ? { ...rawVocabulary, url: vocabularyUrl } : null,
+    grammar,
+    publishedAt: legacyPayload.publishedAt || null
+  };
 
   const claim = await claimPublication(client, {
     student_id: studentId,
     material_type: materialType,
     material_id: materialId,
     notification_version: notificationVersion,
-    payload
+    payload: storedPayload
   });
-  if (claim.alreadySent) return json({ ok: true, alreadySent: true, status: "sent" });
+  if (claim.alreadySent) {
+    return json({ ok: true, skipped: true, alreadySent: true, reason: "already_sent", status: "sent" });
+  }
 
   try {
     const recipient = await getRecipient(client, studentId);
-    const title = String(payload.title || materialId);
-    const typeLabel = materialType === "homework" ? "Новая домашняя работа" : materialType === "grammar" ? "Новая тема по грамматике" : "Новый материал";
-    const text = [`✨ ${typeLabel}`, `Ученица: ${studentDisplayName(studentId)}`, `Материал: ${title}`, payload.subtitle ? String(payload.subtitle) : null, payload.url ? `Открыть: ${String(payload.url)}` : null].filter(Boolean).join("\n");
-    const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
+    const title = String(rawHomework.title || legacyPayload.title || materialId);
+    const subtitle = String(rawHomework.subtitle || legacyPayload.subtitle || "").trim();
+    const typeLabel = materialType === "lesson_bundle" || materialType === "homework"
+      ? "Новые материалы к уроку"
+      : materialType === "grammar"
+        ? "Новая тема по грамматике"
+        : "Новый материал";
+    const text = [
+      `✨ ${typeLabel}`,
+      `Ученица: ${studentDisplayName(studentId)}`,
+      `Материал: ${title}`,
+      subtitle || null,
+      rawVocabulary ? `Словарь: ${Number(rawVocabulary.wordCount || 0) || "добавлен"}` : null,
+      grammar.length ? `Грамматика: ${grammar.length}` : null
+    ].filter(Boolean).join("\n");
+
+    const keyboard: Array<Array<{ text: string; url: string }>> = [];
+    if (rawVocabulary && vocabularyUrl) {
+      keyboard.push([{ text: "💥 Открыть словарь", url: vocabularyUrl }]);
+    }
+    keyboard.push([{ text: "📝 Открыть домашнюю работу", url: homeworkUrl }]);
+    grammar.forEach((item, index) => {
+      const url = String(item.url);
+      const label = grammar.length === 1
+        ? "📐 Повторить грамматику"
+        : `📐 ${String(item.title || `Грамматика ${index + 1}`).slice(0, 48)}`;
+      keyboard.push([{ text: label, url }]);
+    });
+
+    const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text, keyboard);
     const sentAt = new Date().toISOString();
-    const { error } = await client.from("material_publications").update({ status: "sent", telegram_message_id: messageId || null, sent_at: sentAt, error_message: null }).eq("id", claim.existing.id);
+    const { error } = await client
+      .from("material_publications")
+      .update({ status: "sent", telegram_message_id: messageId || null, sent_at: sentAt, error_message: null })
+      .eq("id", claim.existing.id);
     if (error) throw error;
-    return json({ ok: true, status: "sent", sentAt });
+    return json({ ok: true, status: "sent", sentAt, telegramMessageId: messageId || null });
   } catch (error) {
     const message = safeMessage(error);
     await client.from("material_publications").update({ status: "failed", error_message: message }).eq("id", claim.existing.id);
