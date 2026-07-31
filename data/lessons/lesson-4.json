@@ -67,65 +67,194 @@
       "scorePerPair": true
     },
     {
-      "type": "image",
-      "src": "assets/lessons/lesson-4/feelings-exercise-2.jpg",
-      "alt": "Vocabulary Feelings exercise 2 and Learner tip"
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-1a",
-      "question": "1 No, I feel ______ at the moment.",
-      "correctAnswer": "terrible",
-      "points": 1
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-1b",
-      "question": "I’m so ______ out at work that I can’t sleep at night.",
-      "correctAnswer": "stressed",
-      "points": 1
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-2a",
-      "question": "2 She’s ______ because her sister’s in hospital.",
-      "correctAnswer": "upset",
-      "points": 1
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-2b",
-      "question": "She must be really ______ about her.",
-      "correctAnswer": "worried",
-      "points": 1
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-3a",
-      "question": "3 Why are you ______?",
-      "correctAnswer": "in such a bad mood",
-      "points": 1
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-3b",
-      "question": "I crashed my dad’s sports car last night and he’s absolutely ______ with me.",
-      "correctAnswer": "furious",
-      "points": 1
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-4a",
-      "question": "4 How come he’s so ______?",
-      "correctAnswer": "down",
-      "points": 1
-    },
-    {
-      "type": "text-input",
-      "id": "feelings-2-4b",
-      "question": "He hasn’t scored a goal for weeks and he says he’s really ______ with training.",
-      "correctAnswer": "fed up",
-      "points": 1
+      "type": "conversation-gap-fill",
+      "id": "feelings-2",
+      "kicker": "Vocabulary",
+      "title": "2 Complete the conversations with the pairs of words and phrases.",
+      "pairs": [
+        [
+          "upset",
+          "worried"
+        ],
+        [
+          "down",
+          "fed up"
+        ],
+        [
+          "in such a bad mood",
+          "furious"
+        ],
+        [
+          "terrible",
+          "stressed"
+        ]
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "feelings-2-1a",
+          "question": "Conversation 1, first gap",
+          "correctAnswer": "terrible",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "feelings-2-1b",
+          "question": "Conversation 1, second gap",
+          "correctAnswer": "stressed",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "feelings-2-2a",
+          "question": "Conversation 2, first gap",
+          "correctAnswer": "upset",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "feelings-2-2b",
+          "question": "Conversation 2, second gap",
+          "correctAnswer": "worried",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "feelings-2-3a",
+          "question": "Conversation 3, first gap",
+          "correctAnswer": "in such a bad mood",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "feelings-2-3b",
+          "question": "Conversation 3, second gap",
+          "correctAnswer": "furious",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "feelings-2-4a",
+          "question": "Conversation 4, first gap",
+          "correctAnswer": "down",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "feelings-2-4b",
+          "question": "Conversation 4, second gap",
+          "correctAnswer": "fed up",
+          "points": 1
+        }
+      ],
+      "conversations": [
+        {
+          "number": 1,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Are you OK?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "No, I feel ",
+                {
+                  "questionId": "feelings-2-1a"
+                },
+                " at the moment. I’m so ",
+                {
+                  "questionId": "feelings-2-1b"
+                },
+                " out at work that I can’t sleep at night."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Is Magda OK? I think she’s been crying."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "She’s ",
+                {
+                  "questionId": "feelings-2-2a"
+                },
+                " because her sister’s in hospital. She must be really ",
+                {
+                  "questionId": "feelings-2-2b"
+                },
+                " about her."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Why are you ",
+                {
+                  "questionId": "feelings-2-3a"
+                },
+                "?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "I crashed my dad’s sports car last night and he’s absolutely ",
+                {
+                  "questionId": "feelings-2-3b"
+                },
+                " with me."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Don’t speak to Eddie. He isn’t in a very good mood today."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "How come he’s so ",
+                {
+                  "questionId": "feelings-2-4a"
+                },
+                "?"
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "He hasn’t scored a goal for weeks and he says he’s really ",
+                {
+                  "questionId": "feelings-2-4b"
+                },
+                " with training."
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "vocabulary": {

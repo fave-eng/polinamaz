@@ -3429,3 +3429,174 @@ body[data-page="vocabulary"] .mode-tabs {
   max-width: 100%;
   white-space: normal;
 }
+
+
+/* Unit 2 Feelings — Exercise 2 as editable text, not a source-page image. */
+.conversation-gap-card .lesson-content-body {
+  gap: 22px;
+}
+
+.conversation-pair-bank {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+}
+
+.conversation-pair {
+  min-height: 46px;
+  padding: 11px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: .98rem;
+  line-height: 1.45;
+}
+
+.conversation-pair:nth-child(odd) {
+  border-right: 1px solid #e2e8f0;
+}
+
+.conversation-pair:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.conversation-list {
+  display: grid;
+  gap: 22px;
+}
+
+.conversation-item {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.conversation-number {
+  padding-top: 3px;
+  color: #334155;
+  font-weight: 850;
+}
+
+.conversation-dialogue {
+  display: grid;
+  gap: 8px;
+}
+
+.conversation-line {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+}
+
+.conversation-speaker {
+  color: #1e293b;
+}
+
+.conversation-line p {
+  min-width: 0;
+  margin: 0;
+  color: #1e293b;
+  font-size: 1rem;
+  line-height: 2.15;
+}
+
+.conversation-gap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 .18em;
+  vertical-align: middle;
+}
+
+.conversation-gap-input {
+  width: 210px;
+  min-height: 38px;
+  margin: 0;
+  padding: 6px 34px 6px 10px;
+  border: 0;
+  border-bottom: 2px solid #64748b;
+  border-radius: 0;
+  background: #f8fafc;
+  color: #111827;
+  font: inherit;
+  line-height: 1.25;
+}
+
+.conversation-gap-input:focus {
+  outline: none;
+  border-bottom-color: #4f46e5;
+  background: #fff;
+  box-shadow: 0 3px 0 rgba(79, 70, 229, .10);
+}
+
+.conversation-gap-status {
+  position: absolute;
+  right: 9px;
+  display: grid;
+  place-items: center;
+  font-size: .86rem;
+  font-weight: 900;
+}
+
+.conversation-gap.is-correct .conversation-gap-input {
+  border-bottom-color: #15803d;
+  background: #f0fdf4;
+}
+
+.conversation-gap.is-correct .conversation-gap-status {
+  color: #15803d;
+}
+
+.conversation-gap.is-incorrect .conversation-gap-input {
+  border-bottom-color: #b91c1c;
+  background: #fef2f2;
+}
+
+.conversation-gap.is-incorrect .conversation-gap-status {
+  color: #b91c1c;
+}
+
+@media (max-width: 620px) {
+  .conversation-pair-bank {
+    grid-template-columns: 1fr;
+  }
+
+  .conversation-pair,
+  .conversation-pair:nth-child(odd),
+  .conversation-pair:nth-last-child(-n + 2) {
+    border-right: 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .conversation-pair:last-child {
+    border-bottom: 0;
+  }
+
+  .conversation-item {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .conversation-line {
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .conversation-line p {
+    line-height: 2.25;
+  }
+
+  .conversation-gap {
+    width: min(100%, 230px);
+    margin: .18em .12em;
+  }
+
+  .conversation-gap-input {
+    width: 100%;
+  }
+}

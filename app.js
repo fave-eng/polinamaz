@@ -929,6 +929,38 @@
     return "";
   }
 
+  function renderConversationGapPart(part, questionMap, answers, checked, locked) {
+    if (typeof part === "string") return Utils.escape(part);
+    if (!part || typeof part !== "object" || !part.questionId) return "";
+    const question = questionMap.get(String(part.questionId));
+    if (!question) return "";
+    const id = String(question.id);
+    const escapedId = Utils.escape(id);
+    const result = checked?.[id];
+    const stateClass = result ? (result.correct ? "is-correct" : "is-incorrect") : "";
+    const status = result
+      ? `<span class="conversation-gap-status" aria-label="${result.correct ? "Correct" : "Incorrect"}">${result.correct ? "✓" : "✕"}</span>`
+      : "";
+    return `<span class="conversation-gap ${stateClass}"><input class="text-answer conversation-gap-input" type="text" data-question-id="${escapedId}" value="${Utils.escape(answers[id] || "")}" aria-label="${Utils.escape(question.question || "Missing word or phrase")}" ${locked ? "readonly" : ""} autocomplete="off">${status}</span>`;
+  }
+
+  function renderConversationGapBlock(block, answers, checked, locked) {
+    const questions = Utils.asArray(block.questions);
+    const questionMap = new Map(questions.map((question) => [String(question.id), question]));
+    const pairs = Utils.asArray(block.pairs).map((pair) => {
+      const values = Utils.asArray(pair);
+      return `<div class="conversation-pair">${values.map((value) => Utils.escape(value)).join(" <span aria-hidden=\"true\">/</span> ")}</div>`;
+    }).join("");
+    const conversations = Utils.asArray(block.conversations).map((conversation) => {
+      const lines = Utils.asArray(conversation.lines).map((line) => {
+        const text = Utils.asArray(line.parts).map((part) => renderConversationGapPart(part, questionMap, answers, checked, locked)).join("");
+        return `<div class="conversation-line"><strong class="conversation-speaker">${Utils.escape(line.speaker || "")}</strong><p>${text}</p></div>`;
+      }).join("");
+      return `<article class="conversation-item"><span class="conversation-number">${Utils.escape(conversation.number)}</span><div class="conversation-dialogue">${lines}</div></article>`;
+    }).join("");
+    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="conversation-pair-bank">${pairs}</div><div class="conversation-list">${conversations}</div></div></section>`;
+  }
+
   async function initLesson() {
     UI.loading();
     const lessonId = Utils.query("id");
@@ -963,6 +995,9 @@
       const blockHtml = Utils.asArray(lesson.blocks).map((block) => {
         const content = renderContentBlock(block);
         if (content) return content;
+        if (block.type === "conversation-gap-fill") {
+          return renderConversationGapBlock(block, progress.answers, checked, locked);
+        }
         if (Array.isArray(block.questions)) {
           return `<section class="exercise-block">${block.title ? `<h2>${Utils.escape(block.title)}</h2>` : ""}${block.instruction ? `<p class="instruction">${Utils.escape(block.instruction)}</p>` : ""}${block.questions.map((question) => { questionNumber += 1; return renderQuestion({ ...question, parentTitle: block.title }, questionNumber, progress.answers[question.id], checked, locked); }).join("")}</section>`;
         }
