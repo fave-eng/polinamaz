@@ -1,0 +1,277 @@
+{
+  "id": "lesson-3",
+  "number": 3,
+  "title": "Unit 1 — Vocabulary Builder Quiz 1",
+  "subtitle": "Vocabulary review · Score /25",
+  "status": "published",
+  "publishedAt": "2026-08-01T00:00:00.000Z",
+  "blocks": [
+    {
+      "type": "content",
+      "title": "Vocabulary Builder Quiz 1",
+      "paragraphs": [
+        "Download the Vocabulary Builder for Unit 1 and try the quiz below. Write your answers in your notebook. Then check them and record your score."
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-1",
+      "question": "1 What’s the opposite of ‘a strong accent’?",
+      "correctAnswer": "a slight accent",
+      "acceptedAnswers": [
+        "a slight accent",
+        "slight accent"
+      ],
+      "points": 1
+    },
+    {
+      "type": "content",
+      "title": "2 Match 1–5 and a–e to form compound nouns."
+    },
+    {
+      "type": "matching",
+      "id": "vbq1-2",
+      "question": "Match 1–5 and a–e to form compound nouns.",
+      "pairs": [
+        {
+          "value": "tourist",
+          "label": "1 tourist"
+        },
+        {
+          "value": "civil",
+          "label": "2 civil"
+        },
+        {
+          "value": "head",
+          "label": "3 head"
+        },
+        {
+          "value": "window",
+          "label": "4 window"
+        },
+        {
+          "value": "only",
+          "label": "5 only"
+        }
+      ],
+      "options": [
+        {
+          "value": "a",
+          "label": "a child"
+        },
+        {
+          "value": "b",
+          "label": "b teacher"
+        },
+        {
+          "value": "c",
+          "label": "c seat"
+        },
+        {
+          "value": "d",
+          "label": "d servant"
+        },
+        {
+          "value": "e",
+          "label": "e trade"
+        }
+      ],
+      "correctAnswer": {
+        "tourist": "e",
+        "civil": "d",
+        "head": "b",
+        "window": "c",
+        "only": "a"
+      },
+      "points": 5,
+      "scorePerPair": true
+    },
+    {
+      "type": "content",
+      "title": "3 Which word do you need to complete the sentences in each set?"
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-3-1",
+      "question": "1 I got ______ marks in the test. / You get great views from the ______ floor. / Who’s the ______ performer in the class?",
+      "correctAnswer": "top",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-3-2",
+      "question": "2 I never seem to have any ______ time. / You can stay over in our ______ room. / Where’s the ______ key for the garage?",
+      "correctAnswer": "spare",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-3-3",
+      "question": "3 You need good computer ______ in this job. / My boss has got no people ______ at all. / It’s never too late to learn new ______.",
+      "correctAnswer": "skills",
+      "points": 1
+    },
+    {
+      "type": "content",
+      "title": "4 Choose the correct words."
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-1",
+      "question": "1 I went bright red when I got his name wrong. I was so ______.",
+      "options": [
+        "frustrated",
+        "embarrassed"
+      ],
+      "correctAnswer": "embarrassed",
+      "points": 1
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-2",
+      "question": "2 Translation technology is improving but humans are more ______ at choosing the right word.",
+      "options": [
+        "sufficient",
+        "efficient"
+      ],
+      "correctAnswer": "efficient",
+      "points": 1
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-3",
+      "question": "3 I used to be an interpreter but I don’t use languages in my ______ job.",
+      "options": [
+        "current",
+        "actual"
+      ],
+      "correctAnswer": "current",
+      "points": 1
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-4",
+      "question": "4 We’re going to be ______ in Madrid next year so I need to improve my Spanish.",
+      "options": [
+        "based",
+        "lived"
+      ],
+      "correctAnswer": "based",
+      "points": 1
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-5",
+      "question": "5 It’s hard to ______ what people are saying when they speak quickly.",
+      "options": [
+        "process",
+        "possess"
+      ],
+      "correctAnswer": "process",
+      "points": 1
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-6",
+      "question": "6 I started learning Russian online but gave ______ because I couldn’t practise with a real person.",
+      "options": [
+        "up",
+        "into"
+      ],
+      "correctAnswer": "up",
+      "points": 1
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-7",
+      "question": "7 My children ______ a language club to help them with their German.",
+      "options": [
+        "assist",
+        "attend"
+      ],
+      "correctAnswer": "attend",
+      "points": 1
+    },
+    {
+      "type": "single-choice",
+      "id": "vbq1-4-8",
+      "question": "8 My job ______ writing materials for online courses.",
+      "options": [
+        "includes",
+        "involves"
+      ],
+      "correctAnswer": "involves",
+      "points": 1
+    },
+    {
+      "type": "content",
+      "title": "5 What form of the words in brackets do you need to complete the text?",
+      "paragraphs": [
+        "A ¹ ______ (centre) question in language learning is, ‘What makes a good learner?’ Some say language ability is ² ______ (genes), others think it’s more about motivation and ³ ______ (ambitious). There is ⁴ ______ (evident) that being bilingual improves the power of the brain, especially in young learners. But what if you are an adult? Well, ⁵ ______ (achieve) will probably take longer. But there is a huge range of tools to help you become a good ⁶ ______ (perform) – online practice, apps and contact with other learners in the digital world. And older students can often understand their own ⁷ ______ (strong) and ⁸ ______ (weak) and so take control of their learning."
+      ]
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-1",
+      "question": "1 (centre)",
+      "correctAnswer": "central",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-2",
+      "question": "2 (genes)",
+      "correctAnswer": "genetic",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-3",
+      "question": "3 (ambitious)",
+      "correctAnswer": "ambition",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-4",
+      "question": "4 (evident)",
+      "correctAnswer": "evidence",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-5",
+      "question": "5 (achieve)",
+      "correctAnswer": "achievement",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-6",
+      "question": "6 (perform)",
+      "correctAnswer": "performer",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-7",
+      "question": "7 (strong)",
+      "correctAnswer": "strengths",
+      "points": 1
+    },
+    {
+      "type": "text-input",
+      "id": "vbq1-5-8",
+      "question": "8 (weak)",
+      "correctAnswer": "weaknesses",
+      "points": 1
+    },
+    {
+      "type": "content",
+      "paragraphs": [
+        "Score ___ /25",
+        "Wait a couple of weeks and try the quiz again. Compare your scores."
+      ]
+    }
+  ]
+}

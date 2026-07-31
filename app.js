@@ -733,6 +733,9 @@
 
   function questionPoints(question) {
     if (question.type === "open-answer" || question.type === "pronunciation" || question.autoCheck === false) return 0;
+    if (question.type === "matching" && question.scorePerPair) {
+      return Object.keys(question.correctAnswer || {}).length;
+    }
     return Number(question.points || 1);
   }
 
@@ -763,6 +766,22 @@
       const points = questionPoints(question);
       if (!points) return;
       total += points;
+      if (question.type === "matching" && question.scorePerPair) {
+        const expected = question.correctAnswer || {};
+        const actual = answers[question.id] || {};
+        const earned = Object.entries(expected).reduce(
+          (sum, [key, value]) => sum + (Utils.normaliseText(actual[key]) === Utils.normaliseText(value) ? 1 : 0),
+          0
+        );
+        correct += earned;
+        details[question.id] = {
+          correct: earned === points,
+          points,
+          earned,
+          explanation: question.explanation || ""
+        };
+        return;
+      }
       const isCorrect = answerCorrect(question, answers[question.id]);
       if (isCorrect) correct += points;
       details[question.id] = { correct: Boolean(isCorrect), points, explanation: question.explanation || "" };
