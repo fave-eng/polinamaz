@@ -54,6 +54,23 @@
     asArray(value) {
       return Array.isArray(value) ? value : [];
     },
+    newestFirst(items) {
+      const orderNumber = (item) => {
+        const direct = Number(item?.number ?? item?.lessonNumber ?? item?.order);
+        if (Number.isFinite(direct)) return direct;
+        const match = String(item?.linkedLessonId || item?.lessonId || item?.id || "").match(/\d+/);
+        return match ? Number(match[0]) : 0;
+      };
+      const orderDate = (item) => {
+        const timestamp = Date.parse(item?.publishedAt || item?.updatedAt || item?.createdAt || "");
+        return Number.isFinite(timestamp) ? timestamp : 0;
+      };
+      return [...this.asArray(items)].sort((a, b) =>
+        orderDate(b) - orderDate(a)
+        || orderNumber(b) - orderNumber(a)
+        || String(b?.id || "").localeCompare(String(a?.id || ""))
+      );
+    },
     stable(value) {
       if (Array.isArray(value)) return [...value].map((item) => this.stable(item)).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
       if (value && typeof value === "object") {
@@ -401,9 +418,9 @@
     grammarTopics() {
       const source = window.GRAMMAR_DATA;
       const topics = Array.isArray(source) ? source : Utils.asArray(source?.topics);
-      return topics
-        .filter((topic) => topic && topic.status !== "draft" && topic.id !== "grammar-template")
-        .sort((a, b) => Number(a.number || 0) - Number(b.number || 0) || String(a.id || "").localeCompare(String(b.id || "")));
+      return Utils.newestFirst(
+        topics.filter((topic) => topic && topic.status !== "draft" && topic.id !== "grammar-template")
+      );
     },
     async grammarIndex() {
       return this.grammarTopics();
@@ -432,7 +449,7 @@
       const externalTopics = Utils.asArray(window.VOCABULARY_DATA);
       if (externalTopics.length) {
         const seen = new Set();
-        return externalTopics.map((topic) => {
+        return Utils.newestFirst(externalTopics.map((topic) => {
           const words = Utils.asArray(topic.words).filter((word) => {
             const key = Utils.wordKey(word);
             if (!key || seen.has(key)) return false;
@@ -442,7 +459,7 @@
           const linkedLessonId = topic.linkedLessonId || topic.lessonId || "";
           const lessonNumber = Number(String(linkedLessonId).match(/\d+/)?.[0] || 0);
           return { ...topic, lessonId: linkedLessonId, lessonNumber, words };
-        }).filter((topic) => topic.words.length);
+        }).filter((topic) => topic.words.length));
       }
 
       const lessons = await this.lessonIndex();
@@ -463,7 +480,7 @@
           console.warn("Vocabulary topic could not be loaded", entry, error);
         }
       }
-      return topics;
+      return Utils.newestFirst(topics);
     }
   };
 
@@ -672,7 +689,7 @@
     });
     const available = [];
     const completed = [];
-    lessons.forEach((lesson) => {
+    Utils.newestFirst(lessons).forEach((lesson) => {
       const progress = progressById[lesson.id];
       const item = { lesson, progress };
       if (progress && FINAL_STATUSES.has(progress.status)) completed.push(item);
