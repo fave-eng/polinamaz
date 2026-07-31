@@ -665,5 +665,199 @@ window.VOCABULARY_DATA = [
         "exampleRu": "Представьте мой ужас. У меня упало сердце."
       }
     ]
+  },
+  {
+    "id": "vocab-lesson-4",
+    "title": "Feelings",
+    "label": "Lesson 4 · Unit 2",
+    "icon": "🙂",
+    "type": "lesson",
+    "linkedLessonId": "lesson-4",
+    "page": "vocabulary.html?topic=vocab-lesson-4",
+    "description": "Words and phrases from the exercise page.",
+    "words": [
+      {
+        "id": "lesson-4-guilty",
+        "en": "guilty",
+        "ru": "виноватый; испытывающий чувство вины",
+        "transcription": "/ˈɡɪlti/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-exhausted",
+        "en": "exhausted",
+        "ru": "совершенно измотанный",
+        "transcription": "/ɪɡˈzɔːstɪd/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-confused",
+        "en": "confused",
+        "ru": "растерянный; сбитый с толку",
+        "transcription": "/kənˈfjuːzd/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-happy",
+        "en": "happy",
+        "ru": "счастливый",
+        "transcription": "/ˈhæpi/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-furious",
+        "en": "furious",
+        "ru": "в ярости; очень злой",
+        "transcription": "/ˈfjʊəriəs/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-disappointed",
+        "en": "disappointed",
+        "ru": "разочарованный",
+        "transcription": "/ˌdɪsəˈpɔɪntɪd/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-pleased",
+        "en": "pleased",
+        "ru": "довольный",
+        "transcription": "/pliːzd/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-upset",
+        "en": "upset",
+        "ru": "расстроенный",
+        "transcription": "/ʌpˈset/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-worried",
+        "en": "worried",
+        "ru": "обеспокоенный; встревоженный",
+        "transcription": "/ˈwʌrid/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-in-a-bad-mood",
+        "en": "in a bad mood",
+        "ru": "в плохом настроении",
+        "transcription": "/ɪn ə bæd muːd/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-down",
+        "en": "down",
+        "ru": "подавленный; унылый",
+        "transcription": "/daʊn/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-fed-up-with",
+        "en": "fed up with",
+        "ru": "сытый по горло; уставший от",
+        "transcription": "/ˌfed ˈʌp wɪð/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-terrible",
+        "en": "terrible",
+        "ru": "ужасно; очень плохо",
+        "transcription": "/ˈterəbəl/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-stressed",
+        "en": "stressed",
+        "ru": "в состоянии стресса; напряжённый",
+        "transcription": "/strest/",
+        "category": "Feelings: target adjectives"
+      },
+      {
+        "id": "lesson-4-how-on-earth",
+        "en": "how on earth …?",
+        "ru": "как же…?; как вообще…?",
+        "transcription": "/haʊ ɒn ɜːθ/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-cant-move-a-muscle",
+        "en": "can’t move a muscle",
+        "ru": "не могу пошевелиться",
+        "transcription": "/kɑːnt muːv ə ˈmʌsəl/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-block-of-flats",
+        "en": "a block of flats",
+        "ru": "многоквартирный дом",
+        "transcription": "/ə blɒk əv flæts/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-peace-and-quiet",
+        "en": "peace and quiet",
+        "ru": "тишина и покой",
+        "transcription": "/ˌpiːs ən ˈkwaɪət/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-stresses-of-everyday-life",
+        "en": "the stresses of everyday life",
+        "ru": "стрессы повседневной жизни",
+        "transcription": "/ðə ˈstresɪz əv ˌevrideɪ ˈlaɪf/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-nightmare",
+        "en": "a nightmare",
+        "ru": "кошмар",
+        "transcription": "/ə ˈnaɪtmeə/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-refund",
+        "en": "a refund",
+        "ru": "возврат денег",
+        "transcription": "/ə ˈriːfʌnd/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-complain-to-the-manager",
+        "en": "complain to the manager",
+        "ru": "пожаловаться менеджеру",
+        "transcription": "/kəmˈpleɪn tə ðə ˈmænɪdʒə/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-qualifications",
+        "en": "qualifications",
+        "ru": "квалификация; профессиональные документы и навыки",
+        "transcription": "/ˌkwɒlɪfɪˈkeɪʃənz/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-loads-of-experience",
+        "en": "loads of experience",
+        "ru": "огромный опыт",
+        "transcription": "/ləʊdz əv ɪkˈspɪəriəns/",
+        "category": "Language from the speakers"
+      },
+      {
+        "id": "lesson-4-score-a-goal",
+        "en": "score a goal",
+        "ru": "забить гол",
+        "transcription": "/skɔːr ə ɡəʊl/",
+        "category": "Language from the conversations"
+      },
+      {
+        "id": "lesson-4-kind-of-you",
+        "en": "That’s really kind of you.",
+        "ru": "Это очень мило с твоей стороны.",
+        "transcription": "/ðæts ˈrɪəli kaɪnd əv juː/",
+        "category": "Language from the speakers"
+      }
+    ]
   }
 ];
