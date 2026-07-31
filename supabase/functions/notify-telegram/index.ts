@@ -24,30 +24,15 @@ function env(name: string): string {
 }
 
 function allowedStudent(studentId: unknown): string {
-  const value = String(studentId || "")
-    .trim()
-    .toLowerCase();
-
+  const value = String(studentId || "").trim().toLowerCase();
   if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(value)) {
     throw new Error("Unknown student");
   }
-
-  const configuredStudents = String(
-    Deno.env.get("ALLOWED_STUDENT_IDS") || ""
-  )
-    .split(",")
-    .map((id) => id.trim().toLowerCase())
-    .filter(Boolean);
-
-  if (
-    configuredStudents.length > 0 &&
-    !configuredStudents.includes(value)
-  ) {
-    throw new Error("Unknown student");
-  }
-
+  const configured = Deno.env.get("ALLOWED_STUDENT_ID")?.trim().toLowerCase();
+  if (configured && value !== configured) throw new Error("Unknown student");
   return value;
 }
+
 function studentDisplayName(studentId: string): string {
   const names: Record<string, string> = {
     marina: "Марина",
@@ -371,8 +356,7 @@ async function materialPublished(client: ReturnType<typeof createClient>, reques
   const storedPayload = {
     homework: { ...rawHomework, url: homeworkUrl },
     vocabulary: rawVocabulary ? { ...rawVocabulary, url: vocabularyUrl } : null,
-    grammar,
-    publishedAt: legacyPayload.publishedAt || null
+    grammar
   };
 
   const claim = await claimLessonPublication(client, {

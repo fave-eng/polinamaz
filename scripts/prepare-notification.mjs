@@ -60,11 +60,7 @@ function pageUrl(baseUrl, page, fallback) {
 function isPublished(lesson) {
   const status = String(lesson.status || '').toLowerCase()
   if (!['available', 'published'].includes(status)) return false
-  if (lesson.notification?.enabled === false) return false
-  if (!lesson.publishedAt) return true
-
-  const published = new Date(lesson.publishedAt)
-  return Number.isFinite(published.getTime()) && published.getTime() <= Date.now()
+  return lesson.notification?.enabled !== false
 }
 
 const siteBaseUrl = normaliseBaseUrl(requiredEnv('SITE_BASE_URL'))
@@ -149,7 +145,6 @@ for (const lesson of lessons) {
     payload: {
       title: homework.title,
       subtitle: homework.subtitle,
-      publishedAt: lesson.publishedAt || null,
       url: homework.url,
     },
   }

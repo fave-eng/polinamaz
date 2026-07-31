@@ -57,13 +57,12 @@ async function buildFolder({ folder, prefix, output, rootKey }) {
       title: item.title,
       subtitle: item.subtitle || "",
       status: item.status,
-      publishedAt: item.publishedAt || null,
       ...(prefix === "lesson" ? { hasVocabulary: Boolean(item.vocabulary?.words?.length) } : { level: item.level || null })
     });
   }
 
   items.sort((a, b) => a.number - b.number || a.id.localeCompare(b.id));
-  const payload = { generatedAt: new Date().toISOString(), [rootKey]: items };
+  const payload = { [rootKey]: items };
   await fs.writeFile(path.join(root, output), `${JSON.stringify(payload, null, 2)}\n`, "utf8");
   console.log(`Built ${output}: ${items.length} published item(s)`);
 }

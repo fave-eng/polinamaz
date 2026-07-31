@@ -61,13 +61,8 @@
         const match = String(item?.linkedLessonId || item?.lessonId || item?.id || "").match(/\d+/);
         return match ? Number(match[0]) : 0;
       };
-      const orderDate = (item) => {
-        const timestamp = Date.parse(item?.publishedAt || item?.updatedAt || item?.createdAt || "");
-        return Number.isFinite(timestamp) ? timestamp : 0;
-      };
       return [...this.asArray(items)].sort((a, b) =>
-        orderDate(b) - orderDate(a)
-        || orderNumber(b) - orderNumber(a)
+        orderNumber(b) - orderNumber(a)
         || String(b?.id || "").localeCompare(String(a?.id || ""))
       );
     },
@@ -1010,7 +1005,7 @@
       const reportClass = progress.report_status === "failed" ? "notice-error" : "notice-success";
       main.innerHTML = `
         <div class="page-heading"><p class="eyebrow">Lesson ${Number(lesson.number || 0)}</p><h1>${Utils.escape(lesson.title)}</h1><p class="lead">${Utils.escape(lesson.subtitle || "")}</p></div>
-        <div class="lesson-meta"><span class="badge">${questions.length} tasks</span>${lesson.publishedAt ? `<span class="badge">Published ${Utils.formatDate(lesson.publishedAt)}</span>` : ""}</div>
+        <div class="lesson-meta"><span class="badge">${questions.length} tasks</span></div>
         ${linkedMaterialsHtml}
         ${locked ? `<div class="notice notice-success locked-banner"><strong>Работа отправлена.</strong> Ответы больше нельзя изменить. Результат: ${Number(progress.score_correct || 0)} / ${Number(progress.score_total || 0)} (${Number(progress.score_percent || 0)}%).</div>` : '<div class="notice">Черновик сохраняется автоматически. Проверяй ответы до финальной отправки.</div>'}
         ${blockHtml || UI.empty("🧩", "This lesson has no blocks", "Add exercises to the lesson JSON file.")}
