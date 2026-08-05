@@ -1309,7 +1309,7 @@
     return `<div class="table-wrap"><table><thead><tr>${table.headers.map((header) => `<th>${Utils.escape(header)}</th>`).join("")}</tr></thead><tbody>${table.rows.map((row) => `<tr>${row.map((cell) => `<td>${Utils.escape(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
   }
 
-  function renderGrammarExerciseItem(item, blockId, index) {
+  function renderGrammarExerciseItem(item, blockId, index, locked = false) {
     const itemId = String(item.id || index + 1);
     const number = item.number === undefined ? index + 1 : item.number;
     const prompt = Utils.escape(item.prompt || "");
@@ -1326,17 +1326,17 @@
     let control = "";
     if (item.input === "multiple" || item.input === "single") {
       const inputType = item.input === "multiple" ? "checkbox" : "radio";
-      control = `<div class="option-list compact-options">${Utils.asArray(item.options).map((option, optionIndex) => `<label class="option"><input type="${inputType}" name="${Utils.escape(inputId)}" value="${optionIndex}"><span>${Utils.escape(option)}</span></label>`).join("")}</div>`;
+      control = `<div class="option-list compact-options">${Utils.asArray(item.options).map((option, optionIndex) => `<label class="option"><input type="${inputType}" name="${Utils.escape(inputId)}" value="${optionIndex}" ${locked ? "disabled" : ""}><span>${Utils.escape(option)}</span></label>`).join("")}</div>`;
     } else if (item.input === "select") {
-      control = `<select id="${Utils.escape(inputId)}"><option value="">Choose an answer</option>${Utils.asArray(item.options).map((option, optionIndex) => `<option value="${optionIndex}">${Utils.escape(option)}</option>`).join("")}</select>`;
+      control = `<select id="${Utils.escape(inputId)}" ${locked ? "disabled" : ""}><option value="">Choose an answer</option>${Utils.asArray(item.options).map((option, optionIndex) => `<option value="${optionIndex}">${Utils.escape(option)}</option>`).join("")}</select>`;
     } else if (item.input === "textarea") {
-      control = `<textarea id="${Utils.escape(inputId)}" placeholder="${Utils.escape(item.placeholder || "")}"></textarea>`;
+      control = `<textarea id="${Utils.escape(inputId)}" placeholder="${Utils.escape(item.placeholder || "")}" ${locked ? "readonly" : ""}></textarea>`;
     } else if (item.input === "gaps") {
       const answers = Utils.asArray(item.answers);
       const segments = Utils.asArray(item.segments);
-      control = `<div class="sentence-gaps" aria-label="${prompt}">${answers.map((answer, gapIndex) => `${gapIndex < segments.length ? `<span>${Utils.escape(segments[gapIndex])}</span>` : ""}<input class="gap-input" data-gap-index="${gapIndex}" aria-label="Gap ${gapIndex + 1}" autocomplete="off">`).join("")}${segments.length > answers.length ? `<span>${Utils.escape(segments[segments.length - 1])}</span>` : ""}</div>`;
+      control = `<div class="sentence-gaps" aria-label="${prompt}">${answers.map((answer, gapIndex) => `${gapIndex < segments.length ? `<span>${Utils.escape(segments[gapIndex])}</span>` : ""}<input class="gap-input" data-gap-index="${gapIndex}" aria-label="Gap ${gapIndex + 1}" autocomplete="off" ${locked ? "readonly" : ""}>`).join("")}${segments.length > answers.length ? `<span>${Utils.escape(segments[segments.length - 1])}</span>` : ""}</div>`;
     } else {
-      control = `<input class="text-field" id="${Utils.escape(inputId)}" autocomplete="off" placeholder="${Utils.escape(item.placeholder || "")}">`;
+      control = `<input class="text-field" id="${Utils.escape(inputId)}" autocomplete="off" placeholder="${Utils.escape(item.placeholder || "")}" ${locked ? "readonly" : ""}>`;
     }
 
     return `<div class="exercise-item" data-exercise-item="${Utils.escape(itemId)}" data-input-type="${Utils.escape(item.input || "text")}">
@@ -1413,7 +1413,7 @@
     return { actual, correctCount, total };
   }
 
-  function renderGrammarExercise(block, index) {
+  function renderGrammarExercise(block, index, locked = false) {
     const id = String(block.id || `grammar-exercise-${index + 1}`);
     const difficulty = String(block.difficulty || "Practice");
     const wordBank = Array.isArray(block.wordBank) && block.wordBank.length
@@ -1426,7 +1426,7 @@
         ${block.instructions ? `<p class="muted exercise-instructions">${Utils.escape(block.instructions)}</p>` : ""}
         ${wordBank}
       </div>
-      <div class="exercise-items">${Utils.asArray(block.items).map((item, itemIndex) => renderGrammarExerciseItem(item, id, itemIndex)).join("")}</div>
+      <div class="exercise-items">${Utils.asArray(block.items).map((item, itemIndex) => renderGrammarExerciseItem(item, id, itemIndex, locked)).join("")}</div>
     </article>`;
   }
 
@@ -1439,10 +1439,11 @@
     }
 
     const draw = () => {
-      root.innerHTML = `${exercises.map((block, index) => renderGrammarExercise(block, index)).join("")}
+      const locked = Boolean(progress.passed);
+      root.innerHTML = `${exercises.map((block, index) => renderGrammarExercise(block, index, locked)).join("")}
         <div class="card grammar-practice-actions">
-          <div id="grammar-result"><h3>Practise step by step</h3><p class="muted">Start with the easier tasks and move on to the more challenging ones.</p>${Number(progress.best_score || 0) ? `<p class="small muted">Best result: ${Number(progress.best_score || 0)}%</p>` : ""}</div>
-          <div class="button-row"><button class="btn btn-primary" type="button" id="check-grammar">Check exercises</button><button class="btn btn-secondary" type="button" id="retry-grammar">Start again</button></div>
+          <div id="grammar-result">${locked ? '<h3>Topic completed</h3><p class="grammar-success-note">All answers are correct. The exercises are locked and the progress has been saved.</p>' : `<h3>Practise step by step</h3><p class="muted">Start with the easier tasks and move on to the more challenging ones.</p>${Number(progress.best_score || 0) ? `<p class="small muted">Best result: ${Number(progress.best_score || 0)}%</p>` : ""}`}</div>
+          <div class="button-row">${locked ? '<a class="btn btn-ghost" href="grammar.html">Back to grammar</a>' : '<button class="btn btn-primary" type="button" id="check-grammar">Check exercises</button><button class="btn btn-secondary" type="button" id="retry-grammar">Start again</button>'}</div>
         </div>`;
 
       document.getElementById("check-grammar")?.addEventListener("click", async () => {
@@ -1473,6 +1474,7 @@
         const resultNode = document.getElementById("grammar-result");
         if (resultNode) resultNode.innerHTML = `<h3>Score: ${correct} of ${total}</h3><p class="muted">${percent}% correct · pass score ${passScore}%</p>${percent >= passScore ? '<p class="grammar-success-note">Excellent! The topic is completed.</p>' : '<p class="grammar-success-note">Review the tables and Common mistakes, then try again.</p>'}`;
         UI.toast(`Grammar result: ${correct}/${total} · ${percent}%`);
+        if (percent >= passScore) draw();
       });
 
       document.getElementById("retry-grammar")?.addEventListener("click", draw);

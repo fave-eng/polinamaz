@@ -859,5 +859,215 @@ window.VOCABULARY_DATA = [
         "category": "Language from the speakers"
       }
     ]
+  },
+  {
+    "id": "vocab-lesson-8",
+    "title": "Linking verbs, responses and listening",
+    "label": "Lesson 8 · Unit 2",
+    "icon": "💬",
+    "type": "lesson",
+    "linkedLessonId": "lesson-8",
+    "page": "vocabulary.html?topic=vocab-lesson-8",
+    "description": "New words and phrases from exercises 3–6.",
+    "words": [
+      {
+        "id": "lesson-8-be-rude-to-someone",
+        "en": "be rude to someone",
+        "ru": "грубо вести себя с кем-либо",
+        "transcription": "/biː ruːd tə ˈsʌmwʌn/",
+        "exampleEn": "Sorry I was rude to you earlier.",
+        "exampleRu": "Прости, что раньше я грубо с тобой разговаривал.",
+        "category": "Chat room messages"
+      },
+      {
+        "id": "lesson-8-have-a-row-with-someone",
+        "en": "have a row with someone",
+        "ru": "поссориться с кем-либо",
+        "transcription": "/hæv ə raʊ wɪð ˈsʌmwʌn/",
+        "exampleEn": "I had a row with my mum.",
+        "exampleRu": "Я поссорился с мамой.",
+        "category": "Chat room messages"
+      },
+      {
+        "id": "lesson-8-to-be-honest",
+        "en": "to be honest",
+        "ru": "честно говоря",
+        "transcription": "/tə biː ˈɒnɪst/",
+        "exampleEn": "To be honest, I said some horrible things.",
+        "exampleRu": "Честно говоря, я сказал несколько ужасных вещей.",
+        "category": "Chat room messages"
+      },
+      {
+        "id": "lesson-8-make-it-up",
+        "en": "make it up",
+        "ru": "помириться",
+        "transcription": "/meɪk ɪt ʌp/",
+        "exampleEn": "I’m sure you’ll make it up soon.",
+        "exampleRu": "Я уверен, вы скоро помиритесь.",
+        "category": "Chat room messages"
+      },
+      {
+        "id": "lesson-8-ex-girlfriend",
+        "en": "ex-girlfriend",
+        "ru": "бывшая девушка",
+        "transcription": "/ˌeks ˈɡɜːlfrend/",
+        "exampleEn": "I saw my ex-girlfriend yesterday.",
+        "exampleRu": "Вчера я видел свою бывшую девушку.",
+        "category": "Chat room messages"
+      },
+      {
+        "id": "lesson-8-get-onto-a-course",
+        "en": "get onto a course",
+        "ru": "поступить на курс",
+        "transcription": "/ɡet ˈɒntə ə kɔːs/",
+        "exampleEn": "I didn’t get onto the course I wanted to do.",
+        "exampleRu": "Я не поступил на курс, на который хотел.",
+        "category": "Chat room messages"
+      },
+      {
+        "id": "lesson-8-annoyed",
+        "en": "annoyed",
+        "ru": "раздражённый",
+        "transcription": "/əˈnɔɪd/",
+        "exampleEn": "You looked a bit annoyed when I saw you.",
+        "exampleRu": "Когда я тебя увидел, ты выглядел немного раздражённым.",
+        "category": "Linking verbs"
+      },
+      {
+        "id": "lesson-8-relaxed",
+        "en": "relaxed",
+        "ru": "расслабленный, спокойный",
+        "transcription": "/rɪˈlækst/",
+        "exampleEn": "You sound a lot more relaxed now.",
+        "exampleRu": "Сейчас по голосу ты кажешься гораздо спокойнее.",
+        "category": "Linking verbs"
+      },
+      {
+        "id": "lesson-8-be-stolen",
+        "en": "be stolen",
+        "ru": "быть украденным",
+        "transcription": "/biː ˈstəʊlən/",
+        "exampleEn": "My laptop has been stolen.",
+        "exampleRu": "Мой ноутбук украли.",
+        "category": "News and responses"
+      },
+      {
+        "id": "lesson-8-pass-a-driving-test",
+        "en": "pass a driving test",
+        "ru": "сдать экзамен по вождению",
+        "transcription": "/pɑːs ə ˈdraɪvɪŋ test/",
+        "exampleEn": "I’ve just passed my driving test.",
+        "exampleRu": "Я только что сдал экзамен по вождению.",
+        "category": "News and responses"
+      },
+      {
+        "id": "lesson-8-get-married",
+        "en": "get married",
+        "ru": "жениться; выйти замуж",
+        "transcription": "/ɡet ˈmærid/",
+        "exampleEn": "My sister’s getting married.",
+        "exampleRu": "Моя сестра выходит замуж.",
+        "category": "News and responses"
+      },
+      {
+        "id": "lesson-8-lose-your-job",
+        "en": "lose your job",
+        "ru": "потерять работу",
+        "transcription": "/luːz jə dʒɒb/",
+        "exampleEn": "My dad has just lost his job.",
+        "exampleRu": "Мой папа только что потерял работу.",
+        "category": "News and responses"
+      },
+      {
+        "id": "lesson-8-come-out-of-hospital",
+        "en": "come out of hospital",
+        "ru": "выписаться из больницы",
+        "transcription": "/kʌm aʊt əv ˈhɒspɪtəl/",
+        "exampleEn": "My grandmother is coming out of hospital tomorrow.",
+        "exampleRu": "Мою бабушку завтра выписывают из больницы.",
+        "category": "News and responses"
+      },
+      {
+        "id": "lesson-8-what-a-pain",
+        "en": "What a pain!",
+        "ru": "Какая неприятность!; Вот досада!",
+        "transcription": "/wɒt ə peɪn/",
+        "exampleEn": "Oh, no, what a pain!",
+        "exampleRu": "О нет, какая неприятность!",
+        "category": "Response expressions"
+      },
+      {
+        "id": "lesson-8-what-a-shame",
+        "en": "What a shame!",
+        "ru": "Как жаль!",
+        "transcription": "/wɒt ə ʃeɪm/",
+        "exampleEn": "Oh, what a shame! I’ll send you some photos.",
+        "exampleRu": "О, как жаль! Я пришлю тебе фотографии.",
+        "category": "Response expressions"
+      },
+      {
+        "id": "lesson-8-a-relief",
+        "en": "a relief",
+        "ru": "облегчение",
+        "transcription": "/ə rɪˈliːf/",
+        "exampleEn": "Phew, that’s a relief.",
+        "exampleRu": "Фух, какое облегчение.",
+        "category": "Response expressions"
+      },
+      {
+        "id": "lesson-8-a-wedding",
+        "en": "a wedding",
+        "ru": "свадьба",
+        "transcription": "/ə ˈwedɪŋ/",
+        "exampleEn": "When is the wedding?",
+        "exampleRu": "Когда свадьба?",
+        "category": "Listening"
+      },
+      {
+        "id": "lesson-8-meet-someones-parents",
+        "en": "meet someone’s parents for the first time",
+        "ru": "впервые познакомиться с родителями партнёра",
+        "transcription": "/miːt ˈsʌmwʌnz ˈpeərənts fə ðə fɜːst taɪm/",
+        "exampleEn": "Mark was meeting his girlfriend’s parents for the first time.",
+        "exampleRu": "Марк впервые знакомился с родителями своей девушки.",
+        "category": "Listening"
+      },
+      {
+        "id": "lesson-8-formal",
+        "en": "formal",
+        "ru": "официальный; нарядный",
+        "transcription": "/ˈfɔːməl/",
+        "exampleEn": "He was wearing clothes that were too formal.",
+        "exampleRu": "На нём была слишком официальная одежда.",
+        "category": "Listening"
+      },
+      {
+        "id": "lesson-8-make-conversation",
+        "en": "make conversation",
+        "ru": "поддерживать беседу",
+        "transcription": "/meɪk ˌkɒnvəˈseɪʃən/",
+        "exampleEn": "He wasn’t very good at making conversation.",
+        "exampleRu": "Он не очень хорошо умел поддерживать беседу.",
+        "category": "Listening"
+      },
+      {
+        "id": "lesson-8-warn-someone-about-something",
+        "en": "warn someone about something",
+        "ru": "предупредить кого-либо о чём-либо",
+        "transcription": "/wɔːn ˈsʌmwʌn əˈbaʊt ˈsʌmθɪŋ/",
+        "exampleEn": "Annie had forgotten to warn Mark about clothes.",
+        "exampleRu": "Энни забыла предупредить Марка насчёт одежды.",
+        "category": "Listening"
+      },
+      {
+        "id": "lesson-8-tell-jokes",
+        "en": "tell jokes",
+        "ru": "рассказывать шутки",
+        "transcription": "/tel dʒəʊks/",
+        "exampleEn": "She didn’t mind that he told jokes.",
+        "exampleRu": "Она не возражала против того, что он рассказывал шутки.",
+        "category": "Listening"
+      }
+    ]
   }
 ];

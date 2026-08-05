@@ -946,5 +946,416 @@ window.GRAMMAR_DATA = [
       }
     ],
     "linkedLessonId": "lesson-2"
+  },
+  {
+    "id": "grammar-linking-verbs",
+    "number": 3,
+    "order": 3,
+    "title": "Linking verbs: be, feel, look, seem and sound",
+    "subtitle": "Describe a person’s state or impression by linking the subject with an adjective.",
+    "level": "B1",
+    "status": "published",
+    "page": "grammar-topic.html?id=grammar-linking-verbs",
+    "linkedLessonId": "lesson-5",
+    "passed": false,
+    "attempts": 0,
+    "passScore": 100,
+    "explanation": "Связующие глаголы не называют действие. Они соединяют человека или предмет с описанием его состояния или впечатления: I feel tired, you look worried, that sounds great. После них обычно ставится прилагательное, а форму самого глагола выбираем по времени и подлежащему.",
+    "formula": "subject + linking verb + adjective · I feel guilty. She looks stressed. It sounds great.",
+    "glanceCards": [
+      {
+        "icon": "●",
+        "label": "be",
+        "hint": "нейтрально сообщает состояние",
+        "pattern": "am / is / are · was / were + adjective",
+        "example": "He was upset."
+      },
+      {
+        "icon": "♥",
+        "label": "feel",
+        "hint": "говорим о внутреннем ощущении",
+        "pattern": "feel / feels · felt + adjective",
+        "example": "I feel guilty."
+      },
+      {
+        "icon": "👁",
+        "label": "look / seem",
+        "hint": "впечатление по виду или общая оценка",
+        "pattern": "look(s) / looked · seem(s) / seemed + adjective",
+        "example": "You seem a bit down."
+      },
+      {
+        "icon": "♫",
+        "label": "sound",
+        "hint": "впечатление по голосу или услышанной информации",
+        "pattern": "sound(s) / sounded + adjective",
+        "example": "You sounded really fed up."
+      }
+    ],
+    "anchorLinks": [
+      {
+        "id": "grammar-at-a-glance",
+        "title": "Quick overview"
+      },
+      {
+        "id": "grammar-rule-map",
+        "title": "Rule map"
+      },
+      {
+        "id": "grammar-tables",
+        "title": "Tables"
+      },
+      {
+        "id": "grammar-examples",
+        "title": "Examples"
+      },
+      {
+        "id": "grammar-mistakes",
+        "title": "Common mistakes"
+      },
+      {
+        "id": "grammar-practice-section",
+        "title": "Practice"
+      }
+    ],
+    "miniRules": [
+      {
+        "title": "1. Сначала выбери смысл",
+        "text": "be просто называет состояние; feel передаёт внутреннее ощущение; look — впечатление по внешнему виду; sound — по голосу или информации; seem — общее впечатление.",
+        "example": "I feel nervous, but I look calm."
+      },
+      {
+        "title": "2. После глагола ставь прилагательное",
+        "text": "Связующий глагол соединяет подлежащее с признаком. Поэтому после него употребляется adjective, а не наречие.",
+        "example": "She looks tired. Not: She looks tiredly."
+      },
+      {
+        "title": "3. Изменяй глагол по времени",
+        "text": "В настоящем времени учитывай he/she/it; для прошлого используй was/were, felt, looked, seemed, sounded.",
+        "example": "You sound relaxed now. You sounded stressed yesterday."
+      },
+      {
+        "title": "4. Усилители стоят перед прилагательным",
+        "text": "really, very, a bit, quite и a lot more уточняют степень признака.",
+        "example": "He seems a bit down. You sound a lot more relaxed."
+      }
+    ],
+    "tables": [
+      {
+        "title": "Meaning and form",
+        "headers": [
+          "Verb",
+          "Use",
+          "Present",
+          "Past",
+          "Example"
+        ],
+        "rows": [
+          [
+            "be",
+            "state as a fact",
+            "am / is / are",
+            "was / were",
+            "They were upset."
+          ],
+          [
+            "feel",
+            "inner feeling",
+            "feel / feels",
+            "felt",
+            "I felt disappointed."
+          ],
+          [
+            "look",
+            "visual impression",
+            "look / looks",
+            "looked",
+            "You look stressed."
+          ],
+          [
+            "seem",
+            "general impression",
+            "seem / seems",
+            "seemed",
+            "She seems pleased."
+          ],
+          [
+            "sound",
+            "impression from voice or information",
+            "sound / sounds",
+            "sounded",
+            "That sounds great."
+          ]
+        ]
+      },
+      {
+        "title": "Position of modifiers",
+        "headers": [
+          "Pattern",
+          "Example"
+        ],
+        "rows": [
+          [
+            "linking verb + adjective",
+            "I feel guilty."
+          ],
+          [
+            "linking verb + really / very + adjective",
+            "He sounded really fed up."
+          ],
+          [
+            "linking verb + a bit + adjective",
+            "You seem a bit down."
+          ],
+          [
+            "linking verb + a lot more + adjective",
+            "You sound a lot more relaxed."
+          ]
+        ]
+      }
+    ],
+    "exampleGroups": [
+      {
+        "title": "Present situations",
+        "items": [
+          "I feel guilty about what I said.",
+          "You seem a bit down. What’s up?",
+          "That sounds great.",
+          "She looks stressed today."
+        ]
+      },
+      {
+        "title": "Past situations",
+        "items": [
+          "You sounded really fed up yesterday.",
+          "I was really pleased to see her.",
+          "She felt embarrassed because he was there.",
+          "I felt disappointed, but I’m OK now."
+        ]
+      }
+    ],
+    "commonMistakes": [
+      "She looks sadly ✗ → She looks sad ✓. После linking verb обычно нужно прилагательное.",
+      "He feel upset ✗ → He feels upset ✓. В Present Simple с he/she/it добавляем -s.",
+      "You sound relaxed yesterday ✗ → You sounded relaxed yesterday ✓. Для завершённого прошлого нужна прошедшая форма.",
+      "I am feel guilty ✗ → I feel guilty ✓ или I am guilty ✓. Не соединяй be и feel в одной простой форме."
+    ],
+    "exercises": [
+      {
+        "id": "linking-step-1",
+        "type": "exercise",
+        "title": "Choose the linking verb",
+        "difficulty": "Easy",
+        "instructions": "Выбери подходящий глагол.",
+        "items": [
+          {
+            "id": "ex",
+            "number": "",
+            "example": true,
+            "prompt": "Example: I ___ tired after work.",
+            "exampleAnswer": "feel"
+          },
+          {
+            "id": "1",
+            "input": "single",
+            "prompt": "You ___ worried. Is everything OK?",
+            "options": [
+              "look",
+              "look at",
+              "are looking at"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "2",
+            "input": "single",
+            "prompt": "That ___ great! Congratulations!",
+            "options": [
+              "sounds",
+              "listens",
+              "hears"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "3",
+            "input": "single",
+            "prompt": "She ___ a bit down today.",
+            "options": [
+              "seems",
+              "seeming",
+              "seem"
+            ],
+            "answer": 0
+          }
+        ]
+      },
+      {
+        "id": "linking-step-2",
+        "type": "exercise",
+        "title": "Use the correct form",
+        "difficulty": "Medium",
+        "instructions": "Поставь глагол в правильную форму.",
+        "items": [
+          {
+            "id": "1",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "Yesterday you ",
+              " really fed up. (sound)"
+            ],
+            "answers": [
+              [
+                "sounded"
+              ]
+            ]
+          },
+          {
+            "id": "2",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "He ",
+              " guilty about the argument. (feel)"
+            ],
+            "answers": [
+              [
+                "feels"
+              ]
+            ]
+          },
+          {
+            "id": "3",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "They ",
+              " upset after the news. (be)"
+            ],
+            "answers": [
+              [
+                "were"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "linking-step-3",
+        "type": "exercise",
+        "title": "Build natural descriptions",
+        "difficulty": "Challenging",
+        "instructions": "Заполни пропуски подходящими словами.",
+        "wordBank": [
+          "felt",
+          "looked",
+          "seem",
+          "sound",
+          "pleased",
+          "stressed",
+          "down",
+          "relaxed"
+        ],
+        "items": [
+          {
+            "id": "1",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "You ",
+              " a bit ",
+              ". What’s up?"
+            ],
+            "answers": [
+              [
+                "seem"
+              ],
+              [
+                "down"
+              ]
+            ]
+          },
+          {
+            "id": "2",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "I ",
+              " really ",
+              " to see her."
+            ],
+            "answers": [
+              [
+                "felt",
+                "was"
+              ],
+              [
+                "pleased"
+              ]
+            ]
+          },
+          {
+            "id": "3",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "You ",
+              " a lot more ",
+              " now."
+            ],
+            "answers": [
+              [
+                "sound"
+              ],
+              [
+                "relaxed"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "linking-step-4",
+        "type": "exercise",
+        "title": "Complete the situation",
+        "difficulty": "Hard",
+        "instructions": "Впиши полное сочетание в правильной форме.",
+        "items": [
+          {
+            "id": "1",
+            "input": "text",
+            "prompt": "Yesterday Ben’s voice showed that he was tired of everything. Ben ___ . (sound / fed up)",
+            "answer": "sounded fed up",
+            "acceptedAnswers": [
+              "sounded fed up",
+              "sounded really fed up"
+            ]
+          },
+          {
+            "id": "2",
+            "input": "text",
+            "prompt": "Mia did not get onto the course, so yesterday she ___ . (feel / disappointed)",
+            "answer": "felt disappointed"
+          },
+          {
+            "id": "3",
+            "input": "text",
+            "prompt": "Now Alex gives the impression that he is calmer than before. Alex ___ now. (sound / a lot more / relaxed)",
+            "answer": "sounds a lot more relaxed"
+          },
+          {
+            "id": "4",
+            "input": "text",
+            "prompt": "Her face showed tension when I saw her. She ___ . (look / stressed)",
+            "answer": "looked stressed",
+            "acceptedAnswers": [
+              "looked stressed",
+              "looked a bit stressed"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
