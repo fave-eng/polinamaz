@@ -840,11 +840,24 @@
       control = `<label><span class="small muted">${question.type === "pronunciation" ? "Your note or self-assessment" : "Your answer"}</span><textarea class="open-answer" data-question-id="${id}" ${locked ? "readonly" : ""}>${Utils.escape(answer || "")}</textarea></label>`;
     } else if (question.type === "matching") {
       const current = answer && typeof answer === "object" ? answer : {};
-      control = `<div class="matching-grid">${Utils.asArray(question.pairs || question.left).map((left) => {
-        const leftValue = typeof left === "object" ? String(left.value ?? left.label) : String(left);
-        const rightOptions = Utils.asArray(question.options || question.right);
-        return `<div class="match-row"><span>${Utils.escape(typeof left === "object" ? left.label : left)}</span><select class="select-answer" data-question-id="${id}" data-match-key="${Utils.escape(leftValue)}" ${locked ? "disabled" : ""}><option value="">Choose…</option>${rightOptions.map((right) => { const value = optionValue(right); return `<option value="${Utils.escape(value)}" ${String(current[leftValue] || "") === value ? "selected" : ""}>${Utils.escape(optionLabel(right))}</option>`; }).join("")}</select></div>`;
-      }).join("")}</div>`;
+      const leftItems = Utils.asArray(question.pairs || question.left);
+      const rightOptions = Utils.asArray(question.options || question.right);
+      if (question.variant === "response-expressions") {
+        const responseBank = `<div class="response-bank" aria-label="Responses">${rightOptions.map((right) => `<div class="response-bank-item"><span class="response-letter">${Utils.escape(optionValue(right))}</span><p>${Utils.escape(optionLabel(right))}</p></div>`).join("")}</div>`;
+        const rows = leftItems.map((left) => {
+          const leftValue = typeof left === "object" ? String(left.value ?? left.label) : String(left);
+          const selected = String(current[leftValue] || "");
+          const expected = String(question.correctAnswer?.[leftValue] || "");
+          const rowState = result && selected ? (Utils.normaliseText(selected) === Utils.normaliseText(expected) ? "is-correct" : "is-incorrect") : "";
+          return `<div class="response-match-row ${rowState}" data-response-row="${Utils.escape(leftValue)}"><div class="response-news"><span class="response-news-number">${Utils.escape(leftValue)}</span><p>${Utils.escape(typeof left === "object" ? String(left.label || "").replace(/^\s*\d+\s*/, "") : left)}</p></div><label class="response-select-wrap"><span class="sr-only">Response for item ${Utils.escape(leftValue)}</span><select class="select-answer response-select" data-question-id="${id}" data-match-key="${Utils.escape(leftValue)}" ${locked ? "disabled" : ""}><option value="">—</option>${rightOptions.map((right) => { const value = optionValue(right); const label = question.compactOptionLabels ? value : optionLabel(right); return `<option value="${Utils.escape(value)}" ${selected === value ? "selected" : ""}>${Utils.escape(label)}</option>`; }).join("")}</select></label>${result && selected ? `<span class="response-row-status" aria-label="${rowState === "is-correct" ? "Correct" : "Incorrect"}">${rowState === "is-correct" ? "✓" : "✕"}</span>` : ""}</div>`;
+        }).join("");
+        control = `<div class="response-matching-layout">${responseBank}<div class="response-news-list">${rows}</div></div>`;
+      } else {
+        control = `<div class="matching-grid">${leftItems.map((left) => {
+          const leftValue = typeof left === "object" ? String(left.value ?? left.label) : String(left);
+          return `<div class="match-row"><span>${Utils.escape(typeof left === "object" ? left.label : left)}</span><select class="select-answer" data-question-id="${id}" data-match-key="${Utils.escape(leftValue)}" ${locked ? "disabled" : ""}><option value="">Choose…</option>${rightOptions.map((right) => { const value = optionValue(right); return `<option value="${Utils.escape(value)}" ${String(current[leftValue] || "") === value ? "selected" : ""}>${Utils.escape(optionLabel(right))}</option>`; }).join("")}</select></div>`;
+        }).join("")}</div>`;
+      }
     } else if (question.type === "ordering") {
       const fixedStart = Utils.asArray(question.fixedStart).map(String);
       const rawInitial = Utils.asArray(answer).length ? Utils.asArray(answer).map(String) : Utils.asArray(question.items).map(optionValue);
@@ -911,7 +924,18 @@
     return `<section class="card exercise-block lesson-content-card lesson-annotated-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="lesson-task-instruction"><span class="lesson-task-label">Task</span><p>${Utils.escape(block.instruction || "")}</p></div><article class="lesson-passage-card"><div class="lesson-passage-heading"><span class="lesson-passage-label">${Utils.escape(block.passageLabel || "Text")}</span>${block.passageHelp ? `<span class="lesson-passage-help">${Utils.escape(block.passageHelp)}</span>` : ""}</div><div class="lesson-annotated-passage">${passage}</div></article></div></section>`;
   }
 
+  function renderAudioPlaylistBlock(block) {
+    const tracks = Utils.asArray(block.tracks).map((track, index) => `<article class="lesson-audio-track"><div class="lesson-audio-track-heading"><span class="lesson-audio-number">${index + 1}</span><h3>${Utils.escape(track.title || `Audio ${index + 1}`)}</h3></div><audio class="media-player" controls preload="metadata" src="${Utils.escape(track.src)}">Your browser cannot play this audio.</audio></article>`).join("");
+    return `<section class="card exercise-block lesson-audio-playlist" aria-label="Listening audio"><div class="lesson-audio-playlist-heading"><span class="lesson-content-kicker">Audio</span><h2>2.1</h2></div><div class="lesson-audio-track-list">${tracks}</div></section>`;
+  }
+
+  function renderSectionHeading(block) {
+    return `<header class="lesson-section-divider"><span>${Utils.escape(block.kicker || "")}</span><h2>${Utils.escape(block.title || "")}</h2></header>`;
+  }
+
   function renderContentBlock(block) {
+    if (block.type === "section-heading") return renderSectionHeading(block);
+    if (block.type === "audio-playlist") return renderAudioPlaylistBlock(block);
     if (block.type === "content") {
       if (block.variant === "language-note") return renderLanguageNoteBlock(block);
       if (block.variant === "annotated-passage") return renderAnnotatedPassageBlock(block);
@@ -936,24 +960,43 @@
     const status = result
       ? `<span class="conversation-gap-status" aria-label="${result.correct ? "Correct" : "Incorrect"}">${result.correct ? "✓" : "✕"}</span>`
       : "";
-    return `<span class="conversation-gap ${stateClass}"><input class="text-answer conversation-gap-input" type="text" data-question-id="${escapedId}" value="${Utils.escape(answers[id] || "")}" aria-label="${Utils.escape(question.question || "Missing word or phrase")}" ${locked ? "readonly" : ""} autocomplete="off">${status}</span>`;
+    const selected = String(answers[id] || "");
+    const options = Utils.asArray(question.options);
+    const control = question.controlType === "select" && options.length
+      ? `<select class="select-answer conversation-gap-input conversation-gap-select" data-question-id="${escapedId}" aria-label="${Utils.escape(question.question || "Missing word or phrase")}" ${locked ? "disabled" : ""}><option value="">Choose…</option>${options.map((option) => { const value = optionValue(option); return `<option value="${Utils.escape(value)}" ${selected === value ? "selected" : ""}>${Utils.escape(optionLabel(option))}</option>`; }).join("")}</select>`
+      : `<input class="text-answer conversation-gap-input" type="text" data-question-id="${escapedId}" value="${Utils.escape(selected)}" aria-label="${Utils.escape(question.question || "Missing word or phrase")}" ${locked ? "readonly" : ""} autocomplete="off">`;
+    return `<span class="conversation-gap ${stateClass}">${control}${status}</span>`;
   }
 
   function renderConversationGapBlock(block, answers, checked, locked) {
     const questions = Utils.asArray(block.questions);
     const questionMap = new Map(questions.map((question) => [String(question.id), question]));
-    const pairs = Utils.asArray(block.pairs).map((pair) => {
-      const values = Utils.asArray(pair);
-      return `<div class="conversation-pair">${values.map((value) => Utils.escape(value)).join(" <span aria-hidden=\"true\">/</span> ")}</div>`;
-    }).join("");
     const conversations = Utils.asArray(block.conversations).map((conversation) => {
-      const lines = Utils.asArray(conversation.lines).map((line) => {
-        const text = Utils.asArray(line.parts).map((part) => renderConversationGapPart(part, questionMap, answers, checked, locked)).join("");
-        return `<div class="conversation-line"><strong class="conversation-speaker">${Utils.escape(line.speaker || "")}</strong><p>${text}</p></div>`;
+      const pairs = Utils.asArray(conversation.pairs).map((pair) => {
+        const values = Utils.asArray(pair);
+        return `<div class="conversation-pair">${values.map((value) => Utils.escape(value)).join(' <span aria-hidden="true">/</span> ')}</div>`;
       }).join("");
-      return `<article class="conversation-item"><span class="conversation-number">${Utils.escape(conversation.number)}</span><div class="conversation-dialogue">${lines}</div></article>`;
+      const lines = Utils.asArray(conversation.lines).map((line) => {
+        const speaker = String(line.speaker || "");
+        const side = speaker.toUpperCase() === "B" ? "is-right" : "is-left";
+        const text = Utils.asArray(line.parts).map((part) => renderConversationGapPart(part, questionMap, answers, checked, locked)).join("");
+        return `<div class="conversation-message ${side}"><div class="conversation-avatar" aria-hidden="true">${Utils.escape(speaker)}</div><div class="conversation-bubble"><span class="conversation-speaker">${Utils.escape(speaker)}</span><p>${text}</p></div></div>`;
+      }).join("");
+      return `<article class="conversation-item"><div class="conversation-item-heading"><span class="conversation-number">${Utils.escape(conversation.number)}</span><div class="conversation-pair-bank">${pairs}</div></div><div class="conversation-dialogue">${lines}</div></article>`;
     }).join("");
-    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="conversation-pair-bank">${pairs}</div><div class="conversation-list">${conversations}</div></div></section>`;
+    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="conversation-list">${conversations}</div></div></section>`;
+  }
+
+  function renderStatementListBlock(block, answers, checked, locked) {
+    const rows = Utils.asArray(block.questions).map((question) => {
+      const id = String(question.id);
+      const current = String(answers[id] || "");
+      const result = checked?.[id];
+      const stateClass = result ? (result.correct ? "is-correct" : "is-incorrect") : "";
+      const options = Utils.asArray(question.options);
+      return `<article class="statement-row ${stateClass}" data-question-card="${Utils.escape(id)}"><div class="statement-copy"><span class="statement-number">${Utils.escape(String(question.question || "").match(/^\s*(\d+)/)?.[1] || "")}</span><p>${Utils.escape(String(question.question || "").replace(/^\s*\d+\s*/, ""))}</p></div><div class="statement-options" role="radiogroup" aria-label="${Utils.escape(question.question || "True or false")}">${options.map((option) => { const value = optionValue(option); return `<label class="statement-option"><input type="radio" name="q-${Utils.escape(id)}" data-question-id="${Utils.escape(id)}" value="${Utils.escape(value)}" ${current === value ? "checked" : ""} ${locked ? "disabled" : ""}><span>${Utils.escape(optionLabel(option))}</span></label>`; }).join("")}</div>${result ? `<span class="statement-status" aria-label="${result.correct ? "Correct" : "Incorrect"}">${result.correct ? "✓" : "✕"}</span>` : ""}</article>`;
+    }).join("");
+    return `<section class="card exercise-block statement-list-card"><div class="statement-list-heading"><h2>${Utils.escape(block.title || "")}</h2>${block.instruction ? `<p>${Utils.escape(block.instruction)}</p>` : ""}</div><div class="statement-list">${rows}</div></section>`;
   }
 
   async function initLesson() {
@@ -994,6 +1037,10 @@
           return renderConversationGapBlock(block, progress.answers, checked, locked);
         }
         if (Array.isArray(block.questions)) {
+          if (block.variant === "statement-list") {
+            questionNumber += block.questions.length;
+            return renderStatementListBlock(block, progress.answers, checked, locked);
+          }
           return `<section class="exercise-block">${block.title ? `<h2>${Utils.escape(block.title)}</h2>` : ""}${block.instruction ? `<p class="instruction">${Utils.escape(block.instruction)}</p>` : ""}${block.questions.map((question) => { questionNumber += 1; return renderQuestion({ ...question, parentTitle: block.title }, questionNumber, progress.answers[question.id], checked, locked); }).join("")}</section>`;
         }
         if (["single-choice", "multiple-choice", "true-false", "text-input", "matching", "ordering", "open-answer", "pronunciation"].includes(block.type)) {

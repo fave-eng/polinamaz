@@ -956,7 +956,7 @@ window.GRAMMAR_DATA = [
     "level": "B1",
     "status": "published",
     "page": "grammar-topic.html?id=grammar-linking-verbs",
-    "linkedLessonId": "lesson-6",
+    "linkedLessonId": "lesson-5",
     "passed": false,
     "attempts": 0,
     "passScore": 100,

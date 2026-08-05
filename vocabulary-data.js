@@ -861,17 +861,17 @@ window.VOCABULARY_DATA = [
     ]
   },
   {
-    "id": "vocab-lesson-6",
+    "id": "vocab-lesson-5",
     "title": "Linking verbs, responses and listening",
-    "label": "Lesson 6 · Unit 2",
+    "label": "Lesson 5 · Unit 2",
     "icon": "💬",
     "type": "lesson",
-    "linkedLessonId": "lesson-6",
-    "page": "vocabulary.html?topic=vocab-lesson-6",
+    "linkedLessonId": "lesson-5",
+    "page": "vocabulary.html?topic=vocab-lesson-5",
     "description": "New words and phrases from exercises 3–6.",
     "words": [
       {
-        "id": "lesson-6-be-rude-to-someone",
+        "id": "lesson-5-be-rude-to-someone",
         "en": "be rude to someone",
         "ru": "грубо вести себя с кем-либо",
         "transcription": "/biː ruːd tə ˈsʌmwʌn/",
@@ -880,7 +880,7 @@ window.VOCABULARY_DATA = [
         "category": "Chat room messages"
       },
       {
-        "id": "lesson-6-have-a-row-with-someone",
+        "id": "lesson-5-have-a-row-with-someone",
         "en": "have a row with someone",
         "ru": "поссориться с кем-либо",
         "transcription": "/hæv ə raʊ wɪð ˈsʌmwʌn/",
@@ -889,7 +889,7 @@ window.VOCABULARY_DATA = [
         "category": "Chat room messages"
       },
       {
-        "id": "lesson-6-to-be-honest",
+        "id": "lesson-5-to-be-honest",
         "en": "to be honest",
         "ru": "честно говоря",
         "transcription": "/tə biː ˈɒnɪst/",
@@ -898,7 +898,7 @@ window.VOCABULARY_DATA = [
         "category": "Chat room messages"
       },
       {
-        "id": "lesson-6-make-it-up",
+        "id": "lesson-5-make-it-up",
         "en": "make it up",
         "ru": "помириться",
         "transcription": "/meɪk ɪt ʌp/",
@@ -907,7 +907,7 @@ window.VOCABULARY_DATA = [
         "category": "Chat room messages"
       },
       {
-        "id": "lesson-6-ex-girlfriend",
+        "id": "lesson-5-ex-girlfriend",
         "en": "ex-girlfriend",
         "ru": "бывшая девушка",
         "transcription": "/ˌeks ˈɡɜːlfrend/",
@@ -916,7 +916,7 @@ window.VOCABULARY_DATA = [
         "category": "Chat room messages"
       },
       {
-        "id": "lesson-6-get-onto-a-course",
+        "id": "lesson-5-get-onto-a-course",
         "en": "get onto a course",
         "ru": "поступить на курс",
         "transcription": "/ɡet ˈɒntə ə kɔːs/",
@@ -925,7 +925,7 @@ window.VOCABULARY_DATA = [
         "category": "Chat room messages"
       },
       {
-        "id": "lesson-6-annoyed",
+        "id": "lesson-5-annoyed",
         "en": "annoyed",
         "ru": "раздражённый",
         "transcription": "/əˈnɔɪd/",
@@ -934,7 +934,7 @@ window.VOCABULARY_DATA = [
         "category": "Linking verbs"
       },
       {
-        "id": "lesson-6-relaxed",
+        "id": "lesson-5-relaxed",
         "en": "relaxed",
         "ru": "расслабленный, спокойный",
         "transcription": "/rɪˈlækst/",
@@ -943,7 +943,7 @@ window.VOCABULARY_DATA = [
         "category": "Linking verbs"
       },
       {
-        "id": "lesson-6-be-stolen",
+        "id": "lesson-5-be-stolen",
         "en": "be stolen",
         "ru": "быть украденным",
         "transcription": "/biː ˈstəʊlən/",
@@ -952,7 +952,7 @@ window.VOCABULARY_DATA = [
         "category": "News and responses"
       },
       {
-        "id": "lesson-6-pass-a-driving-test",
+        "id": "lesson-5-pass-a-driving-test",
         "en": "pass a driving test",
         "ru": "сдать экзамен по вождению",
         "transcription": "/pɑːs ə ˈdraɪvɪŋ test/",
@@ -961,7 +961,7 @@ window.VOCABULARY_DATA = [
         "category": "News and responses"
       },
       {
-        "id": "lesson-6-get-married",
+        "id": "lesson-5-get-married",
         "en": "get married",
         "ru": "жениться; выйти замуж",
         "transcription": "/ɡet ˈmærid/",
@@ -970,7 +970,7 @@ window.VOCABULARY_DATA = [
         "category": "News and responses"
       },
       {
-        "id": "lesson-6-lose-your-job",
+        "id": "lesson-5-lose-your-job",
         "en": "lose your job",
         "ru": "потерять работу",
         "transcription": "/luːz jə dʒɒb/",
@@ -979,7 +979,7 @@ window.VOCABULARY_DATA = [
         "category": "News and responses"
       },
       {
-        "id": "lesson-6-come-out-of-hospital",
+        "id": "lesson-5-come-out-of-hospital",
         "en": "come out of hospital",
         "ru": "выписаться из больницы",
         "transcription": "/kʌm aʊt əv ˈhɒspɪtəl/",
@@ -988,7 +988,7 @@ window.VOCABULARY_DATA = [
         "category": "News and responses"
       },
       {
-        "id": "lesson-6-what-a-pain",
+        "id": "lesson-5-what-a-pain",
         "en": "What a pain!",
         "ru": "Какая неприятность!; Вот досада!",
         "transcription": "/wɒt ə peɪn/",
@@ -997,7 +997,7 @@ window.VOCABULARY_DATA = [
         "category": "Response expressions"
       },
       {
-        "id": "lesson-6-what-a-shame",
+        "id": "lesson-5-what-a-shame",
         "en": "What a shame!",
         "ru": "Как жаль!",
         "transcription": "/wɒt ə ʃeɪm/",
@@ -1006,7 +1006,7 @@ window.VOCABULARY_DATA = [
         "category": "Response expressions"
       },
       {
-        "id": "lesson-6-a-relief",
+        "id": "lesson-5-a-relief",
         "en": "a relief",
         "ru": "облегчение",
         "transcription": "/ə rɪˈliːf/",
@@ -1015,7 +1015,7 @@ window.VOCABULARY_DATA = [
         "category": "Response expressions"
       },
       {
-        "id": "lesson-6-a-wedding",
+        "id": "lesson-5-a-wedding",
         "en": "a wedding",
         "ru": "свадьба",
         "transcription": "/ə ˈwedɪŋ/",
@@ -1024,7 +1024,7 @@ window.VOCABULARY_DATA = [
         "category": "Listening"
       },
       {
-        "id": "lesson-6-meet-someones-parents",
+        "id": "lesson-5-meet-someones-parents",
         "en": "meet someone’s parents for the first time",
         "ru": "впервые познакомиться с родителями партнёра",
         "transcription": "/miːt ˈsʌmwʌnz ˈpeərənts fə ðə fɜːst taɪm/",
@@ -1033,7 +1033,7 @@ window.VOCABULARY_DATA = [
         "category": "Listening"
       },
       {
-        "id": "lesson-6-formal",
+        "id": "lesson-5-formal",
         "en": "formal",
         "ru": "официальный; нарядный",
         "transcription": "/ˈfɔːməl/",
@@ -1042,7 +1042,7 @@ window.VOCABULARY_DATA = [
         "category": "Listening"
       },
       {
-        "id": "lesson-6-make-conversation",
+        "id": "lesson-5-make-conversation",
         "en": "make conversation",
         "ru": "поддерживать беседу",
         "transcription": "/meɪk ˌkɒnvəˈseɪʃən/",
@@ -1051,7 +1051,7 @@ window.VOCABULARY_DATA = [
         "category": "Listening"
       },
       {
-        "id": "lesson-6-warn-someone-about-something",
+        "id": "lesson-5-warn-someone-about-something",
         "en": "warn someone about something",
         "ru": "предупредить кого-либо о чём-либо",
         "transcription": "/wɔːn ˈsʌmwʌn əˈbaʊt ˈsʌmθɪŋ/",
@@ -1060,7 +1060,7 @@ window.VOCABULARY_DATA = [
         "category": "Listening"
       },
       {
-        "id": "lesson-6-tell-jokes",
+        "id": "lesson-5-tell-jokes",
         "en": "tell jokes",
         "ru": "рассказывать шутки",
         "transcription": "/tel dʒəʊks/",
