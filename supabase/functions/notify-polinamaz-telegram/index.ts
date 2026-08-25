@@ -24,6 +24,21 @@ function env(name: string): string {
   return value;
 }
 
+function envAny(names: string[]): string {
+  for (const name of names) {
+    const value = Deno.env.get(name)?.trim();
+    if (value) return value;
+  }
+  throw new Error(`Server secret ${names[0]} is not configured`);
+}
+
+function telegramBotToken(studentId: string): string {
+  if (studentId === "polinamaz") {
+    return envAny(["POLINAMAZ_TELEGRAM_BOT_TOKEN", "notify-polinamaz-telegram", "TELEGRAM_BOT_TOKEN_POLINAMAZ", "TELEGRAM_BOT_TOKEN"]);
+  }
+  return env("TELEGRAM_BOT_TOKEN");
+}
+
 function allowedStudent(studentId: unknown): string {
   const value = String(studentId || "").trim().toLowerCase();
   if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(value)) {
@@ -188,14 +203,15 @@ async function diagnosticsHealth(client: ReturnType<typeof createClient>, body: 
   const recipient = await diagnosticRecipient(client, studentId);
   const telegram: Record<string, unknown> = { bot: { ok: false }, chat: { ok: false } };
   try {
-    const bot = await telegramApi(env("TELEGRAM_BOT_TOKEN"), "getMe", {});
+    const token = telegramBotToken(studentId);
+    const bot = await telegramApi(token, "getMe", {});
     telegram.bot = { ok: true, username: bot?.username || null };
   } catch (error) {
     telegram.bot = { ok: false, error: safeMessage(error) };
   }
   if (recipient.ok && "chatId" in recipient) {
     try {
-      const chat = await telegramApi(env("TELEGRAM_BOT_TOKEN"), "getChat", { chat_id: recipient.chatId });
+      const chat = await telegramApi(token, "getChat", { chat_id: recipient.chatId });
       telegram.chat = { ok: true, type: chat?.type || null, title: chat?.title || null };
     } catch (error) {
       telegram.chat = { ok: false, error: safeMessage(error) };
@@ -297,7 +313,7 @@ async function diagnosticsSendReport(client: ReturnType<typeof createClient>, bo
   try {
     const recipient = await getRecipient(client, studentId);
     const text = `🧪 English Space: тестовый Telegram-отчёт\nУченица: ${studentDisplayName(studentId)}\nДиагностика: ${DIAGNOSTIC_VERSION}\nВремя: ${dateTime(new Date(now).toISOString())}`;
-    const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
+    const messageId = await sendTelegram(telegramBotToken(studentId), recipient, text);
     const sentAt = new Date().toISOString();
     const { error } = await client
       .from("material_publications")
@@ -375,7 +391,7 @@ async function homeworkReport(client: ReturnType<typeof createClient>, body: Rec
   ].filter(Boolean).join("\n");
 
   try {
-    await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
+    await sendTelegram(telegramBotToken(studentId), recipient, text);
     const sentAt = new Date().toISOString();
     const { error: updateError } = await client
       .from("homework_progress")
@@ -611,7 +627,7 @@ async function materialPublished(client: ReturnType<typeof createClient>, reques
     });
     keyboard.push([{ text: "📝 Do the homework", url: homeworkUrl }]);
 
-    const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text, keyboard);
+    const messageId = await sendTelegram(telegramBotToken(studentId), recipient, text, keyboard);
     const sentAt = new Date().toISOString();
     const { error } = await client
       .from("material_publications")
@@ -641,7 +657,7 @@ async function diagnostic(client: ReturnType<typeof createClient>, body: Record<
   try {
     const recipient = await getRecipient(client, studentId);
     const text = `🧪 English Space: тест Telegram-отчёта\nУченица: ${studentDisplayName(studentId)}\nФункция: ${FUNCTION_VERSION}\nВремя: ${dateTime(now.toISOString())}`;
-    const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
+    const messageId = await sendTelegram(telegramBotToken(studentId), recipient, text);
     const sentAt = new Date().toISOString();
     await client.from("material_publications").update({ status: "sent", telegram_message_id: messageId || null, sent_at: sentAt, error_message: null }).eq("id", claim.existing.id);
     return json({ ok: true, diagnostic: true, serverTime: now.toISOString(), sentAt });
