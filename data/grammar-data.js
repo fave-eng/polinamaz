@@ -1761,5 +1761,407 @@ window.GRAMMAR_DATA = [
         ]
       }
     ]
+  },
+  {
+    "id": "grammar-ing-ed-adjectives",
+    "number": 4,
+    "order": 4,
+    "title": "-ing / -ed adjectives",
+    "shortTitle": "-ing / -ed adjectives",
+    "subtitle": "Use -ing adjectives for the thing or situation that causes a feeling, and -ed adjectives for how a person feels.",
+    "level": "B1",
+    "status": "published",
+    "page": "grammar-topic.html?id=grammar-ing-ed-adjectives",
+    "linkedLessonId": "lesson-6",
+    "passed": false,
+    "attempts": 0,
+    "passScore": 80,
+    "explanation": "Adjectives ending in -ing describe the thing, person or situation that causes a feeling: a boring film, an annoying delay, an exciting story. Adjectives ending in -ed describe the feeling of a person: I am bored, she was annoyed, they felt excited. The common mistake is to say I am boring when you mean Мне скучно. Say I am bored. Use -ing for the cause and -ed for the feeling.",
+    "formula": "-ing = cause · -ed = feeling",
+    "glanceCards": [
+      {
+        "icon": "🎯",
+        "label": "Cause",
+        "hint": "что вызывает чувство",
+        "pattern": "boring / annoying / exciting",
+        "example": "The lesson was interesting."
+      },
+      {
+        "icon": "🙂",
+        "label": "Feeling",
+        "hint": "что человек чувствует",
+        "pattern": "bored / annoyed / excited",
+        "example": "I was interested in the lesson."
+      },
+      {
+        "icon": "👤",
+        "label": "People",
+        "hint": "обычно -ed",
+        "pattern": "I am / she is / they felt + -ed",
+        "example": "He felt embarrassed."
+      },
+      {
+        "icon": "📦",
+        "label": "Things",
+        "hint": "обычно -ing",
+        "pattern": "a film / journey / result + -ing",
+        "example": "The journey was exhausting."
+      }
+    ],
+    "anchorLinks": [
+      {
+        "id": "grammar-at-a-glance",
+        "title": "Quick overview"
+      },
+      {
+        "id": "grammar-rule-map",
+        "title": "Rule map"
+      },
+      {
+        "id": "grammar-tables",
+        "title": "Tables"
+      },
+      {
+        "id": "grammar-examples",
+        "title": "Examples"
+      },
+      {
+        "id": "grammar-mistakes",
+        "title": "Common mistakes"
+      },
+      {
+        "id": "grammar-practice-section",
+        "title": "Practice"
+      }
+    ],
+    "miniRules": [
+      {
+        "title": "1. Use -ing for the cause",
+        "text": "Если прилагательное описывает предмет, ситуацию или человека, который вызывает чувство, выбирай -ing.",
+        "example": "The ending was disappointing."
+      },
+      {
+        "title": "2. Use -ed for the feeling",
+        "text": "Если прилагательное описывает, что человек чувствует, выбирай -ed.",
+        "example": "I was disappointed with the ending."
+      },
+      {
+        "title": "3. A person can be -ing too",
+        "text": "Человек может быть -ing, если он вызывает это чувство у других.",
+        "example": "The speaker was inspiring."
+      },
+      {
+        "title": "4. Do not translate word for word",
+        "text": "Русское “мне скучно” обычно переводится as I am bored, not I am boring.",
+        "example": "I am bored because the film is boring."
+      }
+    ],
+    "tables": [
+      {
+        "title": "Meaning contrast",
+        "headers": [
+          "Ending",
+          "Meaning",
+          "Typical subject",
+          "Example"
+        ],
+        "rows": [
+          [
+            "-ing",
+            "causes the feeling",
+            "film, lesson, story, result, person",
+            "The story was inspiring."
+          ],
+          [
+            "-ed",
+            "feels the emotion",
+            "I, you, he, she, people",
+            "We were inspired by the story."
+          ]
+        ]
+      },
+      {
+        "title": "Common pairs",
+        "headers": [
+          "Verb",
+          "-ing adjective",
+          "-ed adjective"
+        ],
+        "rows": [
+          [
+            "interest",
+            "interesting",
+            "interested"
+          ],
+          [
+            "bore",
+            "boring",
+            "bored"
+          ],
+          [
+            "annoy",
+            "annoying",
+            "annoyed"
+          ],
+          [
+            "embarrass",
+            "embarrassing",
+            "embarrassed"
+          ],
+          [
+            "exhaust",
+            "exhausting",
+            "exhausted"
+          ]
+        ]
+      }
+    ],
+    "exampleGroups": [
+      {
+        "title": "Things and situations",
+        "items": [
+          "The music was relaxing.",
+          "The exam grade was disappointing.",
+          "Concentrating for an hour is exhausting."
+        ]
+      },
+      {
+        "title": "People and feelings",
+        "items": [
+          "I felt relaxed after the spa.",
+          "She was shocked by the result.",
+          "They were confused at the end of the lesson."
+        ]
+      },
+      {
+        "title": "Both in one sentence",
+        "items": [
+          "I was bored because the film was boring.",
+          "He felt embarrassed because the situation was embarrassing.",
+          "We were excited because the plan was exciting."
+        ]
+      }
+    ],
+    "commonMistakes": [
+      "I am boring ✗ → I am bored ✓. Если ты чувствуешь скуку, нужен -ed.",
+      "The film was bored ✗ → The film was boring ✓. Фильм вызывает чувство, поэтому -ing.",
+      "I was confusing ✗ → I was confused ✓. Человек обычно confused, ситуация confusing.",
+      "The trip was exhausted ✗ → The trip was exhausting ✓. Поездка утомляет, человек exhausted.",
+      "I am interested in the characters ✓. После interested часто используется in."
+    ],
+    "exercises": [
+      {
+        "id": "ing-ed-step-1",
+        "type": "exercise",
+        "title": "Choose the meaning",
+        "difficulty": "Easy",
+        "instructions": "Выбери, что описывает прилагательное.",
+        "items": [
+          {
+            "id": "1",
+            "input": "single",
+            "prompt": "boring",
+            "options": [
+              "cause",
+              "feeling"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "2",
+            "input": "single",
+            "prompt": "bored",
+            "options": [
+              "cause",
+              "feeling"
+            ],
+            "answer": 1
+          },
+          {
+            "id": "3",
+            "input": "single",
+            "prompt": "annoying",
+            "options": [
+              "cause",
+              "feeling"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "4",
+            "input": "single",
+            "prompt": "annoyed",
+            "options": [
+              "cause",
+              "feeling"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "ing-ed-step-2",
+        "type": "exercise",
+        "title": "Choose the adjective",
+        "difficulty": "Medium",
+        "instructions": "Выбери правильное прилагательное.",
+        "items": [
+          {
+            "id": "1",
+            "input": "select",
+            "prompt": "The ending was ___ .",
+            "options": [
+              "disappointed",
+              "disappointing"
+            ],
+            "answer": 1
+          },
+          {
+            "id": "2",
+            "input": "select",
+            "prompt": "I was ___ when I saw the scenery.",
+            "options": [
+              "surprised",
+              "surprising"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "3",
+            "input": "select",
+            "prompt": "The lesson was ___ .",
+            "options": [
+              "confused",
+              "confusing"
+            ],
+            "answer": 1
+          },
+          {
+            "id": "4",
+            "input": "select",
+            "prompt": "She felt ___ after the journey.",
+            "options": [
+              "exhausted",
+              "exhausting"
+            ],
+            "answer": 0
+          }
+        ]
+      },
+      {
+        "id": "ing-ed-step-3",
+        "type": "exercise",
+        "title": "Complete the form",
+        "difficulty": "Medium+",
+        "instructions": "Впиши форму adjective from the verb in brackets.",
+        "items": [
+          {
+            "id": "1",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "It was an ",
+              " programme. (interest)"
+            ],
+            "answers": [
+              [
+                "interesting"
+              ]
+            ]
+          },
+          {
+            "id": "2",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "I felt ",
+              " after the trip. (exhaust)"
+            ],
+            "answers": [
+              [
+                "exhausted"
+              ]
+            ]
+          },
+          {
+            "id": "3",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "The news was ",
+              " . (shock)"
+            ],
+            "answers": [
+              [
+                "shocking"
+              ]
+            ]
+          },
+          {
+            "id": "4",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "He was very ",
+              " by the problem. (confuse)"
+            ],
+            "answers": [
+              [
+                "confused"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ing-ed-step-4",
+        "type": "exercise",
+        "title": "Use both forms",
+        "difficulty": "Hard",
+        "instructions": "Впиши две формы: -ed for the feeling and -ing for the cause.",
+        "items": [
+          {
+            "id": "1",
+            "input": "text",
+            "prompt": "I was ___ because the film was ___ . (bore)",
+            "answer": "bored, boring",
+            "acceptedAnswers": [
+              "bored, boring",
+              "bored boring"
+            ]
+          },
+          {
+            "id": "2",
+            "input": "text",
+            "prompt": "She felt ___ because the situation was ___ . (embarrass)",
+            "answer": "embarrassed, embarrassing",
+            "acceptedAnswers": [
+              "embarrassed, embarrassing",
+              "embarrassed embarrassing"
+            ]
+          },
+          {
+            "id": "3",
+            "input": "text",
+            "prompt": "We were ___ because the plan was ___ . (excite)",
+            "answer": "excited, exciting",
+            "acceptedAnswers": [
+              "excited, exciting",
+              "excited exciting"
+            ]
+          },
+          {
+            "id": "4",
+            "input": "text",
+            "prompt": "They were ___ because the explanation was ___ . (confuse)",
+            "answer": "confused, confusing",
+            "acceptedAnswers": [
+              "confused, confusing",
+              "confused confusing"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];

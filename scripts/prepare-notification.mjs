@@ -69,12 +69,7 @@ const projectId = requiredEnv('SUPABASE_PROJECT_ID')
 const notifySecret = requiredEnv('NOTIFY_WEBHOOK_SECRET')
 const selectedLessonId = requiredEnv('LESSON_ID')
 
-// The live site stores vocabulary in the root file. The data/ path is kept as a
-// compatibility fallback for older copies of the project.
-const vocabularyData = [
-  ...loadWindowArray('vocabulary-data.js', 'VOCABULARY_DATA'),
-  ...loadWindowArray('data/vocabulary-data.js', 'VOCABULARY_DATA'),
-]
+const vocabularyData = loadWindowArray('data/vocabulary-data.js', 'VOCABULARY_DATA')
 const grammarData = loadWindowArray('data/grammar-data.js', 'GRAMMAR_DATA')
 const lessons = loadLessons().filter((lesson) => {
   if (lesson.id !== selectedLessonId) return false

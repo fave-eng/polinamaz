@@ -15,7 +15,7 @@ for (const file of required) {
   try { await fs.access(path.join(root, file)); } catch { failures.push(`Missing required file: ${file}`); }
 }
 
-for (const javascriptFile of ["app.js", "diagnostics.js", "data/grammar-data.js", "vocabulary-data.js"]) {
+for (const javascriptFile of ["app.js", "diagnostics.js", "data/grammar-data.js", "data/vocabulary-data.js"]) {
   try { execFileSync(process.execPath, ["--check", path.join(root, javascriptFile)], { stdio: "pipe" }); }
   catch (error) { failures.push(`${javascriptFile} syntax error: ${error.stderr?.toString() || error.message}`); }
 }
