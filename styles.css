@@ -2084,6 +2084,30 @@ body[data-view="lesson"] #lesson-root {
   box-shadow: 0 2px 5px rgba(49, 46, 129, .04);
 }
 
+.lesson-word-bank-groups {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-word-bank-group {
+  display: grid;
+  gap: 8px;
+}
+
+.lesson-word-bank-group strong {
+  width: max-content;
+  min-width: 34px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #312e81;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .lesson-content-paragraph {
   max-width: 78ch;
   margin: 0;

@@ -971,9 +971,20 @@
     return `<span class="conversation-gap ${stateClass}">${control}${status}</span>`;
   }
 
+  function renderLessonWordBank(block) {
+    const groups = Utils.asArray(block.wordBankGroups);
+    if (groups.length) {
+      return `<div class="lesson-word-bank lesson-word-bank-grouped" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-groups">${groups.map((group) => `<div class="lesson-word-bank-group"><strong>${Utils.escape(group.label || "Box")}</strong><div class="lesson-word-bank-items">${Utils.asArray(group.words).map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`).join("")}</div></div>`;
+    }
+    return Utils.asArray(block.wordBank).length
+      ? `<div class="lesson-word-bank" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-items">${block.wordBank.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`
+      : "";
+  }
+
   function renderConversationGapBlock(block, answers, checked, locked) {
     const questions = Utils.asArray(block.questions);
     const questionMap = new Map(questions.map((question) => [String(question.id), question]));
+    const wordBank = renderLessonWordBank(block);
     const conversations = Utils.asArray(block.conversations).map((conversation) => {
       const pairs = Utils.asArray(conversation.pairs).map((pair) => {
         const values = Utils.asArray(pair);
@@ -987,15 +998,13 @@
       }).join("");
       return `<article class="conversation-item"><div class="conversation-item-heading"><span class="conversation-number">${Utils.escape(conversation.number)}</span><div class="conversation-pair-bank">${pairs}</div></div><div class="conversation-dialogue">${lines}</div></article>`;
     }).join("");
-    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="conversation-list">${conversations}</div></div></section>`;
+    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body">${wordBank}<div class="conversation-list">${conversations}</div></div></section>`;
   }
 
   function renderGapTextBlock(block, answers, checked, locked) {
     const questions = Utils.asArray(block.questions);
     const questionMap = new Map(questions.map((question) => [String(question.id), question]));
-    const wordBank = Utils.asArray(block.wordBank).length
-      ? `<div class="lesson-word-bank" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-items">${block.wordBank.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`
-      : "";
+    const wordBank = renderLessonWordBank(block);
     const paragraphs = Utils.asArray(block.paragraphs).map((paragraph) => {
       const parts = Utils.asArray(paragraph);
       return `<p>${parts.map((part) => renderConversationGapPart(part, questionMap, answers, checked, locked)).join("")}</p>`;

@@ -1,0 +1,1570 @@
+{
+  "id": "lesson-7",
+  "number": 7,
+  "title": "Unit 3 - Time off",
+  "subtitle": "Places of interest · Suggestions · An email giving advice · Future plans",
+  "status": "published",
+  "grammarIds": [
+    "grammar-future-plans"
+  ],
+  "blocks": [
+    {
+      "type": "section-heading",
+      "kicker": "Vocabulary",
+      "title": "Places of interest"
+    },
+    {
+      "type": "gap-text",
+      "id": "places-1",
+      "kicker": "Vocabulary",
+      "title": "1 Complete the travel advice with the nouns in box A and the prepositions in box B.",
+      "wordBankGroups": [
+        {
+          "label": "A",
+          "words": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls"
+          ]
+        },
+        {
+          "label": "B",
+          "words": [
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ]
+        }
+      ],
+      "wordBank": [
+        "theme park",
+        "nightlife",
+        "gallery",
+        "ruins",
+        "lake",
+        "old town",
+        "stalls",
+        "mosque",
+        "palace",
+        "walls",
+        "by",
+        "out",
+        "along",
+        "about",
+        "outside"
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "places-1-1",
+          "question": "1",
+          "correctAnswer": "palace",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-2",
+          "question": "2",
+          "correctAnswer": "gallery",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-3",
+          "question": "3",
+          "correctAnswer": "old town",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-4",
+          "question": "4",
+          "correctAnswer": "out",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-5",
+          "question": "5",
+          "correctAnswer": "mosque",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-6",
+          "question": "6",
+          "correctAnswer": "ruins",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-7",
+          "question": "7",
+          "correctAnswer": "theme park",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-8",
+          "question": "8",
+          "correctAnswer": "about",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-9",
+          "question": "9",
+          "correctAnswer": "outside",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-10",
+          "question": "10",
+          "correctAnswer": "nightlife",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-11",
+          "question": "11",
+          "correctAnswer": "lake",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-12",
+          "question": "12",
+          "correctAnswer": "by",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-13",
+          "question": "13",
+          "correctAnswer": "walls",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-14",
+          "question": "14",
+          "correctAnswer": "stalls",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "places-1-15",
+          "question": "15",
+          "correctAnswer": "along",
+          "controlType": "select",
+          "options": [
+            "theme park",
+            "nightlife",
+            "gallery",
+            "ruins",
+            "lake",
+            "old town",
+            "stalls",
+            "mosque",
+            "palace",
+            "walls",
+            "by",
+            "out",
+            "along",
+            "about",
+            "outside"
+          ],
+          "points": 1
+        }
+      ],
+      "passageLabel": "Travellers' tips",
+      "paragraphs": [
+        [
+          "culture vultures"
+        ],
+        [
+          "THIS SUMMER the royal ",
+          {
+            "questionId": "places-1-1"
+          },
+          " is open to the public for the first time with exhibitions of paintings from across the centuries. There is also a private ",
+          {
+            "questionId": "places-1-2"
+          },
+          " in the city with paintings for sale."
+        ],
+        [
+          "FOR LOVERS of architecture, head to the ",
+          {
+            "questionId": "places-1-3"
+          },
+          ", with its interesting mix of historic buildings. ",
+          {
+            "questionId": "places-1-4"
+          },
+          " in the east of the city, is the site of the old Jewish district. It also has a number of beautiful churches and the city ",
+          {
+            "questionId": "places-1-5"
+          },
+          "."
+        ],
+        [
+          "TAKE A TRIP out to the Roman ",
+          {
+            "questionId": "places-1-6"
+          },
+          " and learn about some of the first people to live in the area. Local archaeologists give talks at the weekends."
+        ],
+        [
+          "get active"
+        ],
+        [
+          "CHECK OUT SkyFlyer, the tallest roller coaster in the country, at the new ",
+          {
+            "questionId": "places-1-7"
+          },
+          ". It's ",
+          {
+            "questionId": "places-1-8"
+          },
+          " 45 minutes ",
+          {
+            "questionId": "places-1-9"
+          },
+          " the city but it's well worth the trip."
+        ],
+        [
+          "ENJOY the ",
+          {
+            "questionId": "places-1-10"
+          },
+          " - there are lots of bars and restaurants and it's always very lively."
+        ],
+        [
+          "For a MORE RELAXING time, take a boat out on the ",
+          {
+            "questionId": "places-1-11"
+          },
+          ". Swimming isn't allowed but you can enjoy a picnic down ",
+          {
+            "questionId": "places-1-12"
+          },
+          " the water."
+        ],
+        [
+          "fun on a budget"
+        ],
+        [
+          "IF MONEY IS A BIT TIGHT, join a free walking tour. Local residents act as guides and give an insider view of the city. All tours start inside the city ",
+          {
+            "questionId": "places-1-13"
+          },
+          " under the clock tower."
+        ],
+        [
+          "DON'T MISS the market on Fridays and Saturdays with ",
+          {
+            "questionId": "places-1-14"
+          },
+          " all ",
+          {
+            "questionId": "places-1-15"
+          },
+          " the High Street. You'll find everything from cheap and tasty snacks to local souvenirs at bargain prices."
+        ]
+      ]
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Developing conversations",
+      "title": "Giving and responding to suggestions"
+    },
+    {
+      "type": "conversation-gap-fill",
+      "id": "suggestions-2",
+      "kicker": "Developing conversations",
+      "title": "2 Kim is talking to her Mexican friend, Felix, about a possible holiday. Write the correct letters for the missing lines in the conversation. There is one line that you do not need.",
+      "wordBank": [
+        "a Oh, I'd love to but I can't.",
+        "b Jo isn't really a big fan of sunbathing, to be honest.",
+        "c OK, well in that case, how about something more cultural?",
+        "d That would be great, thanks.",
+        "e It depends on what you like.",
+        "f And you could always have a go at some water sports.",
+        "g My boyfriend Jo and I are thinking of going to Mexico this year."
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "suggestions-2-1",
+          "question": "1",
+          "correctAnswer": "g",
+          "controlType": "select",
+          "options": [
+            {
+              "value": "a",
+              "label": "a Oh, I'd love to but I can't."
+            },
+            {
+              "value": "b",
+              "label": "b Jo isn't really a big fan of sunbathing, to be honest."
+            },
+            {
+              "value": "c",
+              "label": "c OK, well in that case, how about something more cultural?"
+            },
+            {
+              "value": "d",
+              "label": "d That would be great, thanks."
+            },
+            {
+              "value": "e",
+              "label": "e It depends on what you like."
+            },
+            {
+              "value": "f",
+              "label": "f And you could always have a go at some water sports."
+            },
+            {
+              "value": "g",
+              "label": "g My boyfriend Jo and I are thinking of going to Mexico this year."
+            }
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "suggestions-2-2",
+          "question": "2",
+          "correctAnswer": "e",
+          "controlType": "select",
+          "options": [
+            {
+              "value": "a",
+              "label": "a Oh, I'd love to but I can't."
+            },
+            {
+              "value": "b",
+              "label": "b Jo isn't really a big fan of sunbathing, to be honest."
+            },
+            {
+              "value": "c",
+              "label": "c OK, well in that case, how about something more cultural?"
+            },
+            {
+              "value": "d",
+              "label": "d That would be great, thanks."
+            },
+            {
+              "value": "e",
+              "label": "e It depends on what you like."
+            },
+            {
+              "value": "f",
+              "label": "f And you could always have a go at some water sports."
+            },
+            {
+              "value": "g",
+              "label": "g My boyfriend Jo and I are thinking of going to Mexico this year."
+            }
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "suggestions-2-3",
+          "question": "3",
+          "correctAnswer": "b",
+          "controlType": "select",
+          "options": [
+            {
+              "value": "a",
+              "label": "a Oh, I'd love to but I can't."
+            },
+            {
+              "value": "b",
+              "label": "b Jo isn't really a big fan of sunbathing, to be honest."
+            },
+            {
+              "value": "c",
+              "label": "c OK, well in that case, how about something more cultural?"
+            },
+            {
+              "value": "d",
+              "label": "d That would be great, thanks."
+            },
+            {
+              "value": "e",
+              "label": "e It depends on what you like."
+            },
+            {
+              "value": "f",
+              "label": "f And you could always have a go at some water sports."
+            },
+            {
+              "value": "g",
+              "label": "g My boyfriend Jo and I are thinking of going to Mexico this year."
+            }
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "suggestions-2-4",
+          "question": "4",
+          "correctAnswer": "c",
+          "controlType": "select",
+          "options": [
+            {
+              "value": "a",
+              "label": "a Oh, I'd love to but I can't."
+            },
+            {
+              "value": "b",
+              "label": "b Jo isn't really a big fan of sunbathing, to be honest."
+            },
+            {
+              "value": "c",
+              "label": "c OK, well in that case, how about something more cultural?"
+            },
+            {
+              "value": "d",
+              "label": "d That would be great, thanks."
+            },
+            {
+              "value": "e",
+              "label": "e It depends on what you like."
+            },
+            {
+              "value": "f",
+              "label": "f And you could always have a go at some water sports."
+            },
+            {
+              "value": "g",
+              "label": "g My boyfriend Jo and I are thinking of going to Mexico this year."
+            }
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "suggestions-2-5",
+          "question": "5",
+          "correctAnswer": "f",
+          "controlType": "select",
+          "options": [
+            {
+              "value": "a",
+              "label": "a Oh, I'd love to but I can't."
+            },
+            {
+              "value": "b",
+              "label": "b Jo isn't really a big fan of sunbathing, to be honest."
+            },
+            {
+              "value": "c",
+              "label": "c OK, well in that case, how about something more cultural?"
+            },
+            {
+              "value": "d",
+              "label": "d That would be great, thanks."
+            },
+            {
+              "value": "e",
+              "label": "e It depends on what you like."
+            },
+            {
+              "value": "f",
+              "label": "f And you could always have a go at some water sports."
+            },
+            {
+              "value": "g",
+              "label": "g My boyfriend Jo and I are thinking of going to Mexico this year."
+            }
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "suggestions-2-6",
+          "question": "6",
+          "correctAnswer": "d",
+          "controlType": "select",
+          "options": [
+            {
+              "value": "a",
+              "label": "a Oh, I'd love to but I can't."
+            },
+            {
+              "value": "b",
+              "label": "b Jo isn't really a big fan of sunbathing, to be honest."
+            },
+            {
+              "value": "c",
+              "label": "c OK, well in that case, how about something more cultural?"
+            },
+            {
+              "value": "d",
+              "label": "d That would be great, thanks."
+            },
+            {
+              "value": "e",
+              "label": "e It depends on what you like."
+            },
+            {
+              "value": "f",
+              "label": "f And you could always have a go at some water sports."
+            },
+            {
+              "value": "g",
+              "label": "g My boyfriend Jo and I are thinking of going to Mexico this year."
+            }
+          ],
+          "points": 1
+        }
+      ],
+      "conversations": [
+        {
+          "number": 1,
+          "lines": [
+            {
+              "speaker": "Kim",
+              "parts": [
+                {
+                  "questionId": "suggestions-2-1"
+                },
+                " Can you recommend anywhere good to go?"
+              ]
+            },
+            {
+              "speaker": "Felix",
+              "parts": [
+                "Well, Mexico is a big country and there are lots of places to choose from. ",
+                {
+                  "questionId": "suggestions-2-2"
+                },
+                " If you want a relaxing holiday, there are some fantastic beaches all along the Caribbean coast."
+              ]
+            },
+            {
+              "speaker": "Kim",
+              "parts": [
+                {
+                  "questionId": "suggestions-2-3"
+                },
+                " And I'm not really into it either."
+              ]
+            },
+            {
+              "speaker": "Felix",
+              "parts": [
+                {
+                  "questionId": "suggestions-2-4"
+                },
+                " There are amazing Mayan ruins throughout the area."
+              ]
+            },
+            {
+              "speaker": "Kim",
+              "parts": [
+                "That sounds interesting. I think I saw a documentary about them on TV. They look like pyramids but with steps. Is that right?"
+              ]
+            },
+            {
+              "speaker": "Felix",
+              "parts": [
+                "Well, some of them are pyramids. Others are more like houses, or even palaces."
+              ]
+            },
+            {
+              "speaker": "Kim",
+              "parts": [
+                "Wow! That sounds amazing."
+              ]
+            },
+            {
+              "speaker": "Felix",
+              "parts": [
+                {
+                  "questionId": "suggestions-2-5"
+                },
+                " There are lots of places for diving or snorkelling. You could also try kayaking if you like."
+              ]
+            },
+            {
+              "speaker": "Kim",
+              "parts": [
+                "Oh, that's my idea of heaven!"
+              ]
+            },
+            {
+              "speaker": "Felix",
+              "parts": [
+                "OK, I can do an online check for the best places for doing that, if you want."
+              ]
+            },
+            {
+              "speaker": "Kim",
+              "parts": [
+                {
+                  "questionId": "suggestions-2-6"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Developing writing",
+      "title": "An email - giving advice"
+    },
+    {
+      "type": "gap-text",
+      "id": "writing-4",
+      "kicker": "Developing writing",
+      "title": "4 Complete the email with the words in the box.",
+      "wordBank": [
+        "time",
+        "quick",
+        "at",
+        "take",
+        "anyway",
+        "straight",
+        "during",
+        "down"
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "writing-4-1",
+          "question": "1",
+          "correctAnswer": "quick",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-2",
+          "question": "2",
+          "correctAnswer": "during",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-3",
+          "question": "3",
+          "correctAnswer": "take",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-4",
+          "question": "4",
+          "correctAnswer": "at",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-5",
+          "question": "5",
+          "correctAnswer": "straight",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-6",
+          "question": "6",
+          "correctAnswer": "down",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-7",
+          "question": "7",
+          "correctAnswer": "anyway",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-8",
+          "question": "8",
+          "correctAnswer": "time",
+          "controlType": "select",
+          "options": [
+            "time",
+            "quick",
+            "at",
+            "take",
+            "anyway",
+            "straight",
+            "during",
+            "down"
+          ],
+          "points": 1
+        }
+      ],
+      "passageLabel": "Email",
+      "paragraphs": [
+        [
+          "Hi Yuko,"
+        ],
+        [
+          "Just a ",
+          {
+            "questionId": "writing-4-1"
+          },
+          " note to say I'm sorry I can't see you next week. I'm on a training course, but here are a few ideas of things to do ",
+          {
+            "questionId": "writing-4-2"
+          },
+          " your stay."
+        ],
+        [
+          "The old town is a good place to start. You can just wander round and soak up the atmosphere. If you want to ",
+          {
+            "questionId": "writing-4-3"
+          },
+          " photos, head to the castle ruins and you'll find some amazing views."
+        ],
+        [
+          "Don't miss the parade on Saturday. It's a great laugh. They have decorated floats, people in fancy dress, and bands playing music. It starts ",
+          {
+            "questionId": "writing-4-4"
+          },
+          " midday in the main square."
+        ],
+        [
+          "I know you're a fan of roller coasters, so check out the new theme park, Adventure Zone. It's about an hour outside of town, but you can get a bus ",
+          {
+            "questionId": "writing-4-5"
+          },
+          " there."
+        ],
+        [
+          "Don't forget to buy a travel card. It's the cheapest way to get around the area. The best places to eat are ",
+          {
+            "questionId": "writing-4-6"
+          },
+          " by the old canal. They're pretty cheap but the food is good."
+        ],
+        [
+          {
+            "questionId": "writing-4-7"
+          },
+          ", hope this information helps. Have a great ",
+          {
+            "questionId": "writing-4-8"
+          },
+          "."
+        ],
+        [
+          "All the best,"
+        ],
+        [
+          "Dan"
+        ]
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Writing support",
+      "title": "Checklist and useful language for your email",
+      "paragraphs": [
+        "Before you write, make sure your email includes: greeting, reason for writing, where to go first, practical advice, suggestions of other things to do and ending.",
+        "Useful language from this section: Just a quick note to say ...; The old town is a good place to start.; If you want to take photos, head to ...; Don't miss ...; Check out ...; Don't forget to ...; Anyway, hope this information helps."
+      ]
+    },
+    {
+      "type": "open-answer",
+      "id": "writing-7",
+      "question": "7 Write an email in 120-150 words for the following situation. Use the checklist in exercise A and the language in this section to help you. An English-speaking friend is spending a week's holiday in your home town. You are going to be away, so write an email to your friend giving advice about their stay.",
+      "autoCheck": false,
+      "required": true
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Grammar",
+      "title": "Future plans"
+    },
+    {
+      "type": "content",
+      "kicker": "Grammar",
+      "title": "Before you start",
+      "paragraphs": [
+        "Open the grammar topic Future plans before you complete the grammar exercises."
+      ]
+    },
+    {
+      "type": "gap-text",
+      "id": "future-plans-1",
+      "kicker": "Grammar",
+      "title": "1 Rewrite the sentences with the words in brackets.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "future-plans-1-1",
+          "question": "1 We will definitely be away in June. (going)",
+          "correctAnswer": "We're going to be away in June",
+          "acceptedAnswers": [
+            "We're going to be away in June.",
+            "We are going to be away in June.",
+            "We're going to be away in June"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-1-2",
+          "question": "2 Perhaps I'll try couch-surfing this year. (might)",
+          "correctAnswer": "I might try couch-surfing this year",
+          "acceptedAnswers": [
+            "I might try couch-surfing this year.",
+            "I might try couch surfing this year.",
+            "I might try couch-surfing this year",
+            "I might try couch surfing this year"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-1-3",
+          "question": "3 I can't meet up this weekend. I have to revise for my exams. (got)",
+          "correctAnswer": "I've got to revise for my exams",
+          "acceptedAnswers": [
+            "I've got to revise for my exams.",
+            "I have got to revise for my exams.",
+            "I've got to revise for my exams",
+            "I have got to revise for my exams"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-1-4",
+          "question": "4 Jim might go travelling this summer. (thinking)",
+          "correctAnswer": "Jim is thinking of going travelling this summer",
+          "acceptedAnswers": [
+            "Jim is thinking of going travelling this summer.",
+            "Jim's thinking of going travelling this summer.",
+            "Jim is thinking of going traveling this summer.",
+            "Jim's thinking of going traveling this summer.",
+            "Jim is thinking of going travelling this summer",
+            "Jim's thinking of going travelling this summer"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-1-5",
+          "question": "5 I think it will be too cold for swimming. (probably)",
+          "correctAnswer": "It will probably be too cold for swimming",
+          "acceptedAnswers": [
+            "It will probably be too cold for swimming.",
+            "It'll probably be too cold for swimming.",
+            "It will probably be too cold for swimming",
+            "It'll probably be too cold for swimming"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-1-6",
+          "question": "6 They definitely won't be on holiday in July. (going)",
+          "correctAnswer": "They definitely aren't going on holiday in July",
+          "acceptedAnswers": [
+            "They definitely aren't going on holiday in July.",
+            "They are definitely not going on holiday in July.",
+            "They definitely aren't going on holiday in July",
+            "They are definitely not going on holiday in July"
+          ],
+          "points": 1
+        }
+      ],
+      "paragraphs": [
+        [
+          "1 We will definitely be away in June. (going)"
+        ],
+        [
+          {
+            "questionId": "future-plans-1-1"
+          }
+        ],
+        [
+          "2 Perhaps I'll try couch-surfing this year. (might)"
+        ],
+        [
+          {
+            "questionId": "future-plans-1-2"
+          }
+        ],
+        [
+          "3 I can't meet up this weekend. I have to revise for my exams. (got)"
+        ],
+        [
+          {
+            "questionId": "future-plans-1-3"
+          }
+        ],
+        [
+          "4 Jim might go travelling this summer. (thinking)"
+        ],
+        [
+          {
+            "questionId": "future-plans-1-4"
+          }
+        ],
+        [
+          "5 I think it will be too cold for swimming. (probably)"
+        ],
+        [
+          {
+            "questionId": "future-plans-1-5"
+          }
+        ],
+        [
+          "6 They definitely won't be on holiday in July. (going)"
+        ],
+        [
+          {
+            "questionId": "future-plans-1-6"
+          }
+        ]
+      ]
+    },
+    {
+      "type": "conversation-gap-fill",
+      "id": "future-plans-3",
+      "kicker": "Grammar",
+      "title": "3 Circle the correct forms in italics.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "future-plans-3-1",
+          "question": "1 A",
+          "correctAnswer": "are you going",
+          "controlType": "select",
+          "options": [
+            "are you going",
+            "do you go"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-2",
+          "question": "1 B first form",
+          "correctAnswer": "might",
+          "controlType": "select",
+          "options": [
+            "will",
+            "might"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-3",
+          "question": "1 B second form",
+          "correctAnswer": "I've got",
+          "controlType": "select",
+          "options": [
+            "I've got",
+            "I must"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-4",
+          "question": "1 A second form",
+          "correctAnswer": "got",
+          "controlType": "select",
+          "options": [
+            "got",
+            "got to"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-5",
+          "question": "1 B third form",
+          "correctAnswer": "it'll",
+          "controlType": "select",
+          "options": [
+            "it'll",
+            "it might"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-6",
+          "question": "2 A",
+          "correctAnswer": "I'm having",
+          "controlType": "select",
+          "options": [
+            "I'll have",
+            "I'm having"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-7",
+          "question": "2 B first form",
+          "correctAnswer": "going",
+          "controlType": "select",
+          "options": [
+            "going",
+            "thinking of going"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-8",
+          "question": "2 B second form",
+          "correctAnswer": "it'll probably take",
+          "controlType": "select",
+          "options": [
+            "it'll probably take",
+            "it's taking"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-9",
+          "question": "3 A",
+          "correctAnswer": "We're going",
+          "controlType": "select",
+          "options": [
+            "We might go",
+            "We're going"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-10",
+          "question": "3 B first form",
+          "correctAnswer": "going",
+          "controlType": "select",
+          "options": [
+            "going",
+            "thinking"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-11",
+          "question": "3 B second form",
+          "correctAnswer": "I'm spending",
+          "controlType": "select",
+          "options": [
+            "I'll spend",
+            "I'm spending"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "future-plans-3-12",
+          "question": "3 B third form",
+          "correctAnswer": "of emigrating",
+          "controlType": "select",
+          "options": [
+            "to emigrate",
+            "of emigrating"
+          ],
+          "points": 1
+        }
+      ],
+      "conversations": [
+        {
+          "number": 1,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Where ",
+                {
+                  "questionId": "future-plans-3-1"
+                },
+                " on holiday this year?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "I'm not sure. In fact I ",
+                {
+                  "questionId": "future-plans-3-2"
+                },
+                " not go away at all because I'm a bit short of money. My dad lent me some cash for a car and ",
+                {
+                  "questionId": "future-plans-3-3"
+                },
+                " to pay him back. How about you? What are your plans?"
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "Well, it depends on the weather. I've only ",
+                {
+                  "questionId": "future-plans-3-4"
+                },
+                " a week's holiday, so I want to go when it's hot and sunny."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "They say ",
+                {
+                  "questionId": "future-plans-3-5"
+                },
+                " probably be another very hot summer, so you should be OK."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "It's my day off today and ",
+                {
+                  "questionId": "future-plans-3-6"
+                },
+                " lunch with James and Gary in that new restaurant. Would you like to join us?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "I'd love to but I can't. I'm ",
+                {
+                  "questionId": "future-plans-3-7"
+                },
+                " to the doctor's."
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "Oh, nothing serious, I hope."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "No, I'm fine, thanks. But ",
+                {
+                  "questionId": "future-plans-3-8"
+                },
+                " ages. The waiting room is always so crowded."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "I've booked an apartment in Barcelona this year. ",
+                {
+                  "questionId": "future-plans-3-9"
+                },
+                " for two weeks in August. Do you fancy coming with us?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "It's nice of you to ask me but I'm not ",
+                {
+                  "questionId": "future-plans-3-10"
+                },
+                " to be here in the summer. ",
+                {
+                  "questionId": "future-plans-3-11"
+                },
+                " two months in Australia."
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "Really? That sounds exciting."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Yes, I'm thinking ",
+                {
+                  "questionId": "future-plans-3-12"
+                },
+                " there at some point."
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "Wow, that's great."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

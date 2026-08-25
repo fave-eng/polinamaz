@@ -1276,5 +1276,259 @@ window.VOCABULARY_DATA = [
       }
     ],
     "page": "vocabulary.html?topic=vocab-lesson-6"
+  },
+  {
+    "id": "vocab-lesson-7",
+    "title": "Unit 3 - Time off",
+    "label": "Lesson 7",
+    "icon": "🏛️",
+    "type": "lesson",
+    "linkedLessonId": "lesson-7",
+    "words": [
+      {
+        "id": "lesson-7-place-of-interest",
+        "en": "a place of interest",
+        "ru": "достопримечательность; интересное место",
+        "transcription": "/ə ˌpleɪs əv ˈɪntrəst/",
+        "exampleEn": "The old town is a popular place of interest.",
+        "exampleRu": "Старый город - популярная достопримечательность.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-palace",
+        "en": "a palace",
+        "ru": "дворец",
+        "transcription": "/ə ˈpæləs/",
+        "exampleEn": "The royal palace is open to the public.",
+        "exampleRu": "Королевский дворец открыт для публики.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-gallery",
+        "en": "a gallery",
+        "ru": "галерея",
+        "transcription": "/ə ˈɡæləri/",
+        "exampleEn": "There is a private gallery in the city.",
+        "exampleRu": "В городе есть частная галерея.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-old-town",
+        "en": "the old town",
+        "ru": "старый город",
+        "transcription": "/ði ˌəʊld ˈtaʊn/",
+        "exampleEn": "The old town is a good place to start.",
+        "exampleRu": "Старый город - хорошее место для начала.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-ruins",
+        "en": "ruins",
+        "ru": "руины",
+        "transcription": "/ˈruːɪnz/",
+        "exampleEn": "Head to the castle ruins for amazing views.",
+        "exampleRu": "Сходи к руинам замка ради потрясающих видов.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-mosque",
+        "en": "a mosque",
+        "ru": "мечеть",
+        "transcription": "/ə mɒsk/",
+        "exampleEn": "The city has a beautiful mosque.",
+        "exampleRu": "В городе есть красивая мечеть.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-city-walls",
+        "en": "city walls",
+        "ru": "городские стены",
+        "transcription": "/ˌsɪti ˈwɔːlz/",
+        "exampleEn": "All tours start inside the city walls.",
+        "exampleRu": "Все экскурсии начинаются внутри городских стен.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-theme-park",
+        "en": "a theme park",
+        "ru": "парк развлечений",
+        "transcription": "/ə ˈθiːm pɑːk/",
+        "exampleEn": "There is a new theme park outside town.",
+        "exampleRu": "За городом есть новый парк развлечений.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-nightlife",
+        "en": "nightlife",
+        "ru": "ночная жизнь",
+        "transcription": "/ˈnaɪtlaɪf/",
+        "exampleEn": "Enjoy the nightlife in the city centre.",
+        "exampleRu": "Насладись ночной жизнью в центре города.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-market-stalls",
+        "en": "market stalls",
+        "ru": "рыночные палатки; ларьки",
+        "transcription": "/ˈmɑːkɪt stɔːlz/",
+        "exampleEn": "There are stalls all along the High Street.",
+        "exampleRu": "Вдоль главной улицы стоят рыночные палатки.",
+        "category": "Places of interest"
+      },
+      {
+        "id": "lesson-7-recommend-anywhere-good",
+        "en": "recommend anywhere good",
+        "ru": "посоветовать какое-нибудь хорошее место",
+        "transcription": "/ˌrekəˈmend ˈeniweə ɡʊd/",
+        "exampleEn": "Can you recommend anywhere good to go?",
+        "exampleRu": "Можешь посоветовать какое-нибудь хорошее место?",
+        "category": "Suggestions"
+      },
+      {
+        "id": "lesson-7-it-depends",
+        "en": "It depends.",
+        "ru": "Смотря как.; Это зависит от ситуации.",
+        "transcription": "/ɪt dɪˈpendz/",
+        "exampleEn": "It depends on what you like.",
+        "exampleRu": "Смотря что тебе нравится.",
+        "category": "Suggestions"
+      },
+      {
+        "id": "lesson-7-to-be-honest",
+        "en": "to be honest",
+        "ru": "если честно",
+        "transcription": "/tə bi ˈɒnɪst/",
+        "exampleEn": "Jo isn't really a big fan of sunbathing, to be honest.",
+        "exampleRu": "Если честно, Джо не очень любит загорать.",
+        "category": "Suggestions"
+      },
+      {
+        "id": "lesson-7-in-that-case",
+        "en": "in that case",
+        "ru": "в таком случае",
+        "transcription": "/ɪn ðæt keɪs/",
+        "exampleEn": "OK, well in that case, how about something more cultural?",
+        "exampleRu": "Хорошо, в таком случае как насчёт чего-то более культурного?",
+        "category": "Suggestions"
+      },
+      {
+        "id": "lesson-7-have-a-go-at",
+        "en": "have a go at something",
+        "ru": "попробовать что-либо",
+        "transcription": "/hæv ə ɡəʊ ət ˈsʌmθɪŋ/",
+        "exampleEn": "You could always have a go at some water sports.",
+        "exampleRu": "Ты всегда можешь попробовать водные виды спорта.",
+        "category": "Suggestions"
+      },
+      {
+        "id": "lesson-7-water-sports",
+        "en": "water sports",
+        "ru": "водные виды спорта",
+        "transcription": "/ˈwɔːtə spɔːts/",
+        "exampleEn": "There are lots of places for water sports.",
+        "exampleRu": "Есть много мест для водных видов спорта.",
+        "category": "Activities"
+      },
+      {
+        "id": "lesson-7-diving",
+        "en": "diving",
+        "ru": "дайвинг; ныряние",
+        "transcription": "/ˈdaɪvɪŋ/",
+        "exampleEn": "There are lots of places for diving.",
+        "exampleRu": "Есть много мест для дайвинга.",
+        "category": "Activities"
+      },
+      {
+        "id": "lesson-7-snorkelling",
+        "en": "snorkelling",
+        "ru": "плавание с маской и трубкой",
+        "transcription": "/ˈsnɔːkəlɪŋ/",
+        "exampleEn": "You can go snorkelling near the coast.",
+        "exampleRu": "Можно поплавать с маской у побережья.",
+        "category": "Activities"
+      },
+      {
+        "id": "lesson-7-kayaking",
+        "en": "kayaking",
+        "ru": "каякинг",
+        "transcription": "/ˈkaɪækɪŋ/",
+        "exampleEn": "You could also try kayaking.",
+        "exampleRu": "Ты также можешь попробовать каякинг.",
+        "category": "Activities"
+      },
+      {
+        "id": "lesson-7-soak-up-the-atmosphere",
+        "en": "soak up the atmosphere",
+        "ru": "прочувствовать атмосферу",
+        "transcription": "/səʊk ʌp ði ˈætməsfɪə/",
+        "exampleEn": "Wander round and soak up the atmosphere.",
+        "exampleRu": "Поброди вокруг и прочувствуй атмосферу.",
+        "category": "Email advice"
+      },
+      {
+        "id": "lesson-7-head-to",
+        "en": "head to",
+        "ru": "направиться в; пойти к",
+        "transcription": "/hed tə/",
+        "exampleEn": "Head to the castle ruins.",
+        "exampleRu": "Направляйся к руинам замка.",
+        "category": "Email advice"
+      },
+      {
+        "id": "lesson-7-dont-miss",
+        "en": "Don't miss ...",
+        "ru": "Не пропусти ...",
+        "transcription": "/dəʊnt mɪs/",
+        "exampleEn": "Don't miss the parade on Saturday.",
+        "exampleRu": "Не пропусти парад в субботу.",
+        "category": "Email advice"
+      },
+      {
+        "id": "lesson-7-parade",
+        "en": "a parade",
+        "ru": "парад; шествие",
+        "transcription": "/ə pəˈreɪd/",
+        "exampleEn": "The parade starts at midday.",
+        "exampleRu": "Парад начинается в полдень.",
+        "category": "Email advice"
+      },
+      {
+        "id": "lesson-7-fancy-dress",
+        "en": "fancy dress",
+        "ru": "маскарадный костюм; костюмы для праздника",
+        "transcription": "/ˌfænsi ˈdres/",
+        "exampleEn": "People wear fancy dress at the parade.",
+        "exampleRu": "Люди надевают маскарадные костюмы на парад.",
+        "category": "Email advice"
+      },
+      {
+        "id": "lesson-7-travel-card",
+        "en": "a travel card",
+        "ru": "проездной билет",
+        "transcription": "/ə ˈtrævəl kɑːd/",
+        "exampleEn": "Don't forget to buy a travel card.",
+        "exampleRu": "Не забудь купить проездной.",
+        "category": "Email advice"
+      },
+      {
+        "id": "lesson-7-main-square",
+        "en": "the main square",
+        "ru": "главная площадь",
+        "transcription": "/ðə ˌmeɪn ˈskweə/",
+        "exampleEn": "It starts at midday in the main square.",
+        "exampleRu": "Это начинается в полдень на главной площади.",
+        "category": "Email advice"
+      },
+      {
+        "id": "lesson-7-bargain-prices",
+        "en": "bargain prices",
+        "ru": "выгодные цены",
+        "transcription": "/ˈbɑːɡɪn ˈpraɪsɪz/",
+        "exampleEn": "You can buy souvenirs at bargain prices.",
+        "exampleRu": "Можно купить сувениры по выгодным ценам.",
+        "category": "Email advice"
+      }
+    ],
+    "page": "vocabulary.html?topic=vocab-lesson-7"
   }
 ];

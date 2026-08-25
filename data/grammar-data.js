@@ -2168,5 +2168,462 @@ window.GRAMMAR_DATA = [
         ]
       }
     ]
+  },
+  {
+    "id": "grammar-future-plans",
+    "number": 4,
+    "order": 4,
+    "title": "Future plans",
+    "shortTitle": "Future plans",
+    "subtitle": "Choose between going to, present continuous, might, will probably and have got to.",
+    "level": "B1",
+    "status": "published",
+    "linkedLessonId": "lesson-7",
+    "page": "grammar-topic.html?id=grammar-future-plans",
+    "passed": false,
+    "attempts": 0,
+    "passScore": 80,
+    "explanation": "В английском мы выбираем форму будущего не просто по слову 'буду', а по тому, насколько план уже решён. Если это твёрдый план или намерение - чаще be going to. Если это договорённость с конкретным временем - present continuous. Если это только возможность - might. Если это прогноз или ожидание - will probably. Если это обязанность или необходимость - have got to или must.",
+    "formula": "be going to = plan/intention · Present Continuous = arrangement · might = possible plan · will probably = prediction · have got to/must = obligation",
+    "glanceCards": [
+      {
+        "icon": "🧭",
+        "label": "be going to",
+        "hint": "план или намерение",
+        "pattern": "am/is/are + going to + V1",
+        "example": "We are going to be away in June."
+      },
+      {
+        "icon": "📅",
+        "label": "Present Continuous",
+        "hint": "личная договорённость, уже организовано",
+        "pattern": "am/is/are + V-ing",
+        "example": "I'm having lunch with James today."
+      },
+      {
+        "icon": "❔",
+        "label": "might",
+        "hint": "возможно, но не точно",
+        "pattern": "might + V1",
+        "example": "I might try couch-surfing this year."
+      },
+      {
+        "icon": "✅",
+        "label": "have got to / must",
+        "hint": "нужно, есть обязанность",
+        "pattern": "have/has got to + V1",
+        "example": "I've got to revise for my exams."
+      }
+    ],
+    "anchorLinks": [
+      {
+        "id": "grammar-at-a-glance",
+        "title": "Quick overview"
+      },
+      {
+        "id": "grammar-rule-map",
+        "title": "Rule map"
+      },
+      {
+        "id": "grammar-tables",
+        "title": "Tables"
+      },
+      {
+        "id": "grammar-examples",
+        "title": "Examples"
+      },
+      {
+        "id": "grammar-mistakes",
+        "title": "Common mistakes"
+      },
+      {
+        "id": "grammar-practice-section",
+        "title": "Practice"
+      }
+    ],
+    "miniRules": [
+      {
+        "title": "1. Use be going to for plans and intentions",
+        "text": "Если человек уже решил что-то сделать, но это не обязательно точная встреча в календаре, используй be going to.",
+        "example": "We're going to stay in a hotel near the beach."
+      },
+      {
+        "title": "2. Use present continuous for arrangements",
+        "text": "Если действие уже организовано: встреча, поездка, бронь, конкретное время - часто нужен present continuous.",
+        "example": "I'm meeting Anna at six."
+      },
+      {
+        "title": "3. Use might when the plan is not certain",
+        "text": "Might показывает возможность: человек рассматривает идею, но ещё не решил окончательно.",
+        "example": "We might go camping if the weather is good."
+      },
+      {
+        "title": "4. Use will probably for predictions and have got to for necessity",
+        "text": "Will probably - когда ты ожидаешь, что что-то случится. Have got to / must - когда нужно что-то сделать.",
+        "example": "It'll probably take ages. I've got to pay him back."
+      }
+    ],
+    "tables": [
+      {
+        "title": "Which future form do I need?",
+        "headers": [
+          "Meaning",
+          "Form",
+          "Example"
+        ],
+        "rows": [
+          [
+            "plan / intention",
+            "am/is/are going to + verb",
+            "They are going to travel in July."
+          ],
+          [
+            "fixed arrangement",
+            "am/is/are + verb-ing",
+            "I'm seeing the doctor tomorrow."
+          ],
+          [
+            "possible plan",
+            "might + verb",
+            "She might join us later."
+          ],
+          [
+            "prediction",
+            "will probably + verb",
+            "It will probably be too cold."
+          ],
+          [
+            "necessity",
+            "have/has got to + verb",
+            "I've got to revise tonight."
+          ]
+        ]
+      },
+      {
+        "title": "Statements, negatives and questions",
+        "headers": [
+          "Form",
+          "Positive",
+          "Negative",
+          "Question"
+        ],
+        "rows": [
+          [
+            "be going to",
+            "I'm going to leave.",
+            "I'm not going to leave.",
+            "Are you going to leave?"
+          ],
+          [
+            "present continuous",
+            "I'm meeting Dan.",
+            "I'm not meeting Dan.",
+            "Are you meeting Dan?"
+          ],
+          [
+            "might",
+            "I might go.",
+            "I might not go.",
+            "Might you go? / Are you likely to go?"
+          ],
+          [
+            "will probably",
+            "It'll probably rain.",
+            "It probably won't rain.",
+            "Do you think it'll rain?"
+          ],
+          [
+            "have got to",
+            "I've got to work.",
+            "I haven't got to work.",
+            "Have you got to work?"
+          ]
+        ]
+      }
+    ],
+    "exampleGroups": [
+      {
+        "title": "Plans and arrangements",
+        "items": [
+          "We're going to be away in June.",
+          "I'm having lunch with James today.",
+          "They're going to visit Mexico this year."
+        ]
+      },
+      {
+        "title": "Uncertain plans and predictions",
+        "items": [
+          "I might not go away at all.",
+          "It'll probably be another very hot summer.",
+          "The appointment will probably take ages."
+        ]
+      },
+      {
+        "title": "Necessity",
+        "items": [
+          "I've got to pay him back.",
+          "She's got to revise for her exams.",
+          "We must book the tickets today."
+        ]
+      }
+    ],
+    "commonMistakes": [
+      "I must to pay him back ✗ → I must pay him back ✓. После must глагол идёт без to.",
+      "I am thinking to go ✗ → I am thinking of going ✓. После thinking используем of + -ing.",
+      "I will probably to stay ✗ → I will probably stay ✓. После will нужен глагол без to.",
+      "Where do you go on holiday this year? ✗ → Where are you going on holiday this year? ✓ Если речь о конкретном плане на этот год, нужен future plan, а не привычка.",
+      "I'm not going to be here and I'm spending two months in Australia. Present continuous подходит, потому что поездка уже организована."
+    ],
+    "exercises": [
+      {
+        "id": "future-plans-step-1",
+        "type": "exercise",
+        "title": "Choose the meaning",
+        "difficulty": "Easy",
+        "instructions": "Выбери, что показывает выделенная форма.",
+        "items": [
+          {
+            "id": "1",
+            "input": "single",
+            "prompt": "I'm having lunch with James today.",
+            "options": [
+              "a fixed arrangement",
+              "a general habit",
+              "an obligation"
+            ],
+            "answer": 0,
+            "explanation": "Present continuous показывает уже организованную встречу."
+          },
+          {
+            "id": "2",
+            "input": "single",
+            "prompt": "I might go camping this summer.",
+            "options": [
+              "a certain plan",
+              "a possible plan",
+              "a rule"
+            ],
+            "answer": 1,
+            "explanation": "Might значит 'возможно'."
+          },
+          {
+            "id": "3",
+            "input": "single",
+            "prompt": "I've got to revise tonight.",
+            "options": [
+              "necessity",
+              "prediction",
+              "invitation"
+            ],
+            "answer": 0,
+            "explanation": "Have got to показывает необходимость."
+          },
+          {
+            "id": "4",
+            "input": "single",
+            "prompt": "It'll probably be very crowded.",
+            "options": [
+              "prediction",
+              "arrangement",
+              "past event"
+            ],
+            "answer": 0,
+            "explanation": "Will probably показывает прогноз."
+          }
+        ]
+      },
+      {
+        "id": "future-plans-step-2",
+        "type": "exercise",
+        "title": "Complete the form",
+        "difficulty": "Medium",
+        "instructions": "Впиши правильную форму.",
+        "items": [
+          {
+            "id": "1",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "We ",
+              " visit the old town tomorrow. (going)"
+            ],
+            "answers": [
+              [
+                "are going to",
+                "'re going to"
+              ]
+            ],
+            "explanation": "We are going to + verb."
+          },
+          {
+            "id": "2",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "She ",
+              " dinner with friends tonight. (have)"
+            ],
+            "answers": [
+              [
+                "is having",
+                "'s having"
+              ]
+            ],
+            "explanation": "Present continuous для договорённости."
+          },
+          {
+            "id": "3",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "I ",
+              " not go away this year. (might)"
+            ],
+            "answers": [
+              [
+                "might"
+              ]
+            ],
+            "explanation": "После might сразу идёт verb."
+          },
+          {
+            "id": "4",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "He ",
+              " pay for the tickets today. (got)"
+            ],
+            "answers": [
+              [
+                "has got to",
+                "'s got to"
+              ]
+            ],
+            "explanation": "He has got to + verb."
+          }
+        ]
+      },
+      {
+        "id": "future-plans-step-3",
+        "type": "exercise",
+        "title": "Choose the best future form",
+        "difficulty": "Medium+",
+        "instructions": "Выбери форму, которая лучше подходит по смыслу.",
+        "items": [
+          {
+            "id": "1",
+            "input": "select",
+            "prompt": "Where ___ on holiday this year?",
+            "options": [
+              "do you go",
+              "are you going",
+              "you must go"
+            ],
+            "answer": 1,
+            "explanation": "This year = конкретный план, поэтому are you going."
+          },
+          {
+            "id": "2",
+            "input": "select",
+            "prompt": "I'm not sure. I ___ stay at home.",
+            "options": [
+              "might",
+              "am having",
+              "have got"
+            ],
+            "answer": 0,
+            "explanation": "I'm not sure = might."
+          },
+          {
+            "id": "3",
+            "input": "select",
+            "prompt": "The bus ___ probably take ages.",
+            "options": [
+              "is",
+              "will",
+              "has got to"
+            ],
+            "answer": 1,
+            "explanation": "Will probably = прогноз."
+          },
+          {
+            "id": "4",
+            "input": "select",
+            "prompt": "I'm thinking ___ travelling this summer.",
+            "options": [
+              "to go",
+              "of going",
+              "go"
+            ],
+            "answer": 1,
+            "explanation": "Правильно: thinking of + -ing."
+          }
+        ]
+      },
+      {
+        "id": "future-plans-step-4",
+        "type": "exercise",
+        "title": "Rewrite the idea",
+        "difficulty": "Hard",
+        "instructions": "Перепиши предложение, сохранив смысл.",
+        "items": [
+          {
+            "id": "1",
+            "input": "text",
+            "prompt": "Perhaps I'll try couch-surfing this year. Use might.",
+            "answer": "I might try couch-surfing this year",
+            "acceptedAnswers": [
+              "I might try couch-surfing this year",
+              "I might try couch-surfing this year.",
+              "I might try couch surfing this year",
+              "I might try couch surfing this year."
+            ],
+            "explanation": "Might заменяет perhaps."
+          },
+          {
+            "id": "2",
+            "input": "text",
+            "prompt": "I have to revise for my exams. Use got.",
+            "answer": "I've got to revise for my exams",
+            "acceptedAnswers": [
+              "I've got to revise for my exams",
+              "I've got to revise for my exams.",
+              "I have got to revise for my exams",
+              "I have got to revise for my exams."
+            ],
+            "explanation": "Have got to = have to."
+          },
+          {
+            "id": "3",
+            "input": "text",
+            "prompt": "Jim might go travelling this summer. Use thinking.",
+            "answer": "Jim is thinking of going travelling this summer",
+            "acceptedAnswers": [
+              "Jim is thinking of going travelling this summer",
+              "Jim is thinking of going travelling this summer.",
+              "Jim's thinking of going travelling this summer",
+              "Jim's thinking of going travelling this summer.",
+              "Jim is thinking of going traveling this summer",
+              "Jim is thinking of going traveling this summer."
+            ],
+            "explanation": "Thinking of + -ing."
+          },
+          {
+            "id": "4",
+            "input": "text",
+            "prompt": "They definitely won't be on holiday in July. Use going.",
+            "answer": "They definitely aren't going on holiday in July",
+            "acceptedAnswers": [
+              "They definitely aren't going on holiday in July",
+              "They definitely aren't going on holiday in July.",
+              "They are definitely not going on holiday in July",
+              "They are definitely not going on holiday in July."
+            ],
+            "explanation": "Negative be going to: aren't going to / aren't going on holiday."
+          }
+        ]
+      }
+    ]
   }
 ];
