@@ -68,6 +68,7 @@ const studentId = requiredEnv('STUDENT_ID')
 const projectId = requiredEnv('SUPABASE_PROJECT_ID')
 const notifySecret = requiredEnv('NOTIFY_WEBHOOK_SECRET')
 const selectedLessonId = requiredEnv('LESSON_ID')
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY?.trim() || ''
 
 const vocabularyData = loadWindowArray('data/vocabulary-data.js', 'VOCABULARY_DATA')
 const grammarData = loadWindowArray('data/grammar-data.js', 'GRAMMAR_DATA')
@@ -150,6 +151,7 @@ for (const lesson of lessons) {
     headers: {
       'content-type': 'application/json',
       'x-notify-secret': notifySecret,
+      ...(supabaseAnonKey ? { authorization: `Bearer ${supabaseAnonKey}`, apikey: supabaseAnonKey } : {}),
     },
     body: JSON.stringify(payload),
   })

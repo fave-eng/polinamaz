@@ -81,7 +81,8 @@
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'apikey': anonKey
+        'apikey': anonKey,
+        'authorization': `Bearer ${anonKey}`
       },
       body: JSON.stringify(body)
     });
