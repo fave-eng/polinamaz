@@ -50,7 +50,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          supabase functions deploy notify-telegram --project-ref "$SUPABASE_PROJECT_ID"
+          supabase functions deploy notify-polinamaz-telegram --project-ref "$SUPABASE_PROJECT_ID"
 
       - name: Done
         run: echo "Telegram notification function is deployed."
