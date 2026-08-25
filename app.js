@@ -1215,12 +1215,20 @@
     const [topics, allWordProgress] = await Promise.all([DataService.vocabularyTopics(), ProgressService.loadAll("vocabulary")]);
     setHero("Vocabulary Hub", "Flashcards, pronunciation and tests for lesson words.");
     const progressMap = Object.fromEntries(allWordProgress.map((item) => [item.word_key, item]));
-    main.innerHTML = `<div class="page-heading"><p class="eyebrow">Word practice</p><h1>Vocabulary</h1><p class="lead">Learn lesson words, listen to pronunciation and finish a test to mark words as learned.</p></div>${topics.length ? `<section class="section resource-hub-section"><div class="section-header"><h2>Vocabulary topics</h2><span class="section-count">${topics.length}</span></div><div class="hub-list resource-hub-list">${topics.map((topic) => {
+    const topicCards = topics.map((topic) => {
       const unique = topic.words;
       const known = unique.filter((word) => progressMap[Utils.wordKey(word)]?.status === "known").length;
       const percent = Utils.percent(known, unique.length);
-      return `<article class="card resource-hub-card"><div class="resource-hub-header"><div class="resource-hub-icon" aria-hidden="true">${Utils.escape(topic.icon || "💬")}</div><div class="resource-hub-copy"><p class="eyebrow">${Utils.escape(topic.label || `Lesson ${topic.lessonNumber || ""}`)}</p><h3>${Utils.escape(topic.title)}</h3><p>${unique.length} words and phrases</p></div><span class="status-badge ${known === unique.length && unique.length ? "status-complete" : ""}">${known}/${unique.length}</span></div><div class="resource-hub-progress"><div class="progress-row-head"><strong>Learned</strong><span>${percent}%</span></div><div class="progress-track" aria-label="${percent}% learned"><div class="progress-fill" style="width:${percent}%"></div></div></div><div class="resource-hub-actions"><p>A word is learned after a correct answer in a completed test.</p><a class="btn btn-primary" href="${Utils.escape(topic.page || `vocabulary.html?topic=${encodeURIComponent(topic.id)}`)}">Open vocabulary</a></div></article>`;
-    }).join("")}</div></section>` : UI.empty("💥", "Словарных тренажёров пока нет", "Новые темы появятся после уроков.")}`;
+      const complete = Boolean(known === unique.length && unique.length);
+      return {
+        complete,
+        html: `<article class="card resource-hub-card"><div class="resource-hub-header"><div class="resource-hub-icon" aria-hidden="true">${Utils.escape(topic.icon || "💬")}</div><div class="resource-hub-copy"><p class="eyebrow">${Utils.escape(topic.label || `Lesson ${topic.lessonNumber || ""}`)}</p><h3>${Utils.escape(topic.title)}</h3><p>${unique.length} words and phrases</p></div><span class="status-badge ${complete ? "status-complete" : ""}">${known}/${unique.length}</span></div><div class="resource-hub-progress"><div class="progress-row-head"><strong>Learned</strong><span>${percent}%</span></div><div class="progress-track" aria-label="${percent}% learned"><div class="progress-fill" style="width:${percent}%"></div></div></div><div class="resource-hub-actions"><p>A word is learned after a correct answer in a completed test.</p><a class="btn btn-primary" href="${Utils.escape(topic.page || `vocabulary.html?topic=${encodeURIComponent(topic.id)}`)}">Open vocabulary</a></div></article>`
+      };
+    });
+    const available = topicCards.filter((item) => !item.complete);
+    const learned = topicCards.filter((item) => item.complete);
+    const renderTopicSection = (title, items, emptyTitle, emptyText) => `<section class="section resource-hub-section"><div class="section-header"><h2>${Utils.escape(title)}</h2><span class="section-count">${items.length}</span></div>${items.length ? `<div class="hub-list resource-hub-list">${items.map((item) => item.html).join("")}</div>` : UI.empty("💥", emptyTitle, emptyText)}</section>`;
+    main.innerHTML = `<div class="page-heading"><p class="eyebrow">Word practice</p><h1>Vocabulary</h1><p class="lead">Learn lesson words, listen to pronunciation and finish a test to mark words as learned.</p></div>${topics.length ? `${renderTopicSection("Available", available, "No available vocabulary", "All published vocabulary topics are learned.")}${renderTopicSection("Learned", learned, "No learned vocabulary yet", "Completed vocabulary topics will appear here after all words are learned.")}` : UI.empty("💥", "Словарных тренажёров пока нет", "Новые темы появятся после уроков.")}`;
   }
 
   async function initVocabulary() {
@@ -1556,6 +1564,17 @@
     const progressMap = Object.fromEntries(progressRows.map((item) => [item.topic_id, item]));
     const passed = topics.filter((topic) => progressMap[topic.id]?.passed).length;
     const percent = Utils.percent(passed, topics.length);
+    const topicCards = topics.map((topic) => {
+      const item = progressMap[topic.id] || {};
+      const complete = Boolean(item.passed);
+      return {
+        complete,
+        html: `<a class="card interactive grammar-topic-card" href="${Utils.escape(topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}`)}"><div class="grammar-topic-icon">${complete ? "✅" : "📐"}</div><div class="grammar-topic-copy"><span class="homework-number">Topic ${Number(topic.number || topic.order || 0)}</span><h3>${Utils.escape(topic.title)}</h3><p>${Utils.escape(topic.subtitle || "")}</p></div><div class="grammar-topic-meta"><span class="status-badge ${complete ? "status-complete" : ""}">${complete ? "Completed" : `${Number(item.best_score || 0)}% best`}</span><span class="grammar-topic-arrow" aria-hidden="true">→</span></div></a>`
+      };
+    });
+    const available = topicCards.filter((item) => !item.complete);
+    const completed = topicCards.filter((item) => item.complete);
+    const renderGrammarSection = (title, items, emptyTitle, emptyText) => `<section class="section grammar-topics-section" aria-labelledby="grammar-${title.toLowerCase()}-title"><div class="section-heading"><div><span class="eyebrow">Learning path</span><h2 id="grammar-${title.toLowerCase()}-title">${Utils.escape(title)}</h2></div><span class="section-count">${items.length}</span></div>${items.length ? `<div class="hub-list grammar-topic-list">${items.map((item) => item.html).join("")}</div>` : UI.empty("📐", emptyTitle, emptyText)}</section>`;
     main.innerHTML = `<div class="page-heading"><p class="eyebrow">Knowledge base</p><h1>Grammar</h1><p class="lead">Clear theory, visual patterns and step-by-step practice for the current homework.</p></div>
       <section class="section grammar-overview-section" aria-label="Grammar statistics">
         <div class="summary-grid grammar-summary-grid">
@@ -1565,12 +1584,7 @@
         </div>
         <div class="card grammar-overall-progress"><div class="progress-row"><div class="progress-row-head"><strong>Overall progress</strong><span>${passed} of ${topics.length}</span></div><div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="${topics.length}" aria-valuenow="${passed}"><div class="progress-fill green" style="width:${percent}%"></div></div></div></div>
       </section>
-      <section class="section grammar-topics-section" aria-labelledby="grammar-list-title"><div class="section-heading"><div><span class="eyebrow">Learning path</span><h2 id="grammar-list-title">Grammar topics</h2></div></div>
-      <div class="hub-list grammar-topic-list">${topics.length ? topics.map((topic) => {
-        const item = progressMap[topic.id] || {};
-        const complete = Boolean(item.passed);
-        return `<a class="card interactive grammar-topic-card" href="${Utils.escape(topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}`)}"><div class="grammar-topic-icon">${complete ? "✅" : "📐"}</div><div class="grammar-topic-copy"><span class="homework-number">Topic ${Number(topic.number || topic.order || 0)}</span><h3>${Utils.escape(topic.title)}</h3><p>${Utils.escape(topic.subtitle || "")}</p></div><div class="grammar-topic-meta"><span class="status-badge ${complete ? "status-complete" : ""}">${complete ? "Completed" : `${Number(item.best_score || 0)}% best`}</span><span class="grammar-topic-arrow" aria-hidden="true">→</span></div></a>`;
-      }).join("") : UI.empty("📐", "No grammar topics have been published yet", `Materials will be added in line with the lessons and the coursebook “${config.student.textbook}”.`)}</div></section>`;
+      ${topics.length ? `${renderGrammarSection("Available", available, "No available grammar", "All published grammar topics are completed.")}${renderGrammarSection("Completed", completed, "No completed grammar yet", "Completed grammar topics will appear here after the practice is passed.")}` : UI.empty("📐", "No grammar topics have been published yet", `Materials will be added in line with the lessons and the coursebook “${config.student.textbook}”.`)}`;
   }
 
   async function initGrammarTopic() {
@@ -1588,6 +1602,7 @@
     const exampleGroups = Utils.asArray(topic.exampleGroups);
     const examples = Utils.asArray(topic.examples);
     const mistakes = Utils.asArray(topic.commonMistakes);
+    const visual = topic.visual || null;
 
     main.innerHTML = `<div class="page-heading"><p class="eyebrow">Grammar · ${Utils.escape(topic.level || config.student.level)}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${Utils.escape(topic.subtitle || "")}</p></div>
       <article class="card grammar-intro-card">
@@ -1595,6 +1610,7 @@
         <h2>${Utils.escape(topic.title)}</h2>
         <p class="muted grammar-lead">${Utils.escape(topic.explanation || "")}</p>
         ${topic.formula ? `<div class="grammar-formula-box"><strong>Quick formula</strong><p>${Utils.escape(topic.formula)}</p></div>` : ""}
+        ${visual?.src ? `<figure class="grammar-visual-card"><img src="${Utils.escape(visual.src)}" alt="${Utils.escape(visual.alt || topic.title)}">${visual.caption ? `<figcaption>${Utils.escape(visual.caption)}</figcaption>` : ""}</figure>` : ""}
         ${anchorLinks.length ? `<div class="grammar-anchor-links">${anchorLinks.map((link) => `<a class="grammar-anchor-link" href="#${Utils.escape(link.id)}">${Utils.escape(link.title)}</a>`).join("")}</div>` : ""}
       </article>
 

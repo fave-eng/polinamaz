@@ -1768,7 +1768,7 @@ window.GRAMMAR_DATA = [
     "order": 4,
     "title": "-ing / -ed adjectives",
     "shortTitle": "-ing / -ed adjectives",
-    "subtitle": "Use -ing adjectives for the thing or situation that causes a feeling, and -ed adjectives for how a person feels.",
+    "subtitle": "Choose -ed for a person's feeling and -ing for the thing, person or situation that causes the feeling.",
     "level": "B1",
     "status": "published",
     "page": "grammar-topic.html?id=grammar-ing-ed-adjectives",
@@ -1776,36 +1776,41 @@ window.GRAMMAR_DATA = [
     "passed": false,
     "attempts": 0,
     "passScore": 80,
-    "explanation": "Adjectives ending in -ing describe the thing, person or situation that causes a feeling: a boring film, an annoying delay, an exciting story. Adjectives ending in -ed describe the feeling of a person: I am bored, she was annoyed, they felt excited. The common mistake is to say I am boring when you mean Мне скучно. Say I am bored. Use -ing for the cause and -ed for the feeling.",
-    "formula": "-ing = cause · -ed = feeling",
+    "explanation": "У этих прилагательных есть две разные роли. Форма -ed говорит о чувстве человека: I am bored = мне скучно. Форма -ing описывает причину этого чувства: This book is boring = эта книга скучная, она вызывает скуку. Сначала задай вопрос: кто чувствует? Если человек чувствует, обычно нужен -ed. Что вызывает чувство? Если предмет, ситуация или человек производит впечатление, нужен -ing.",
+    "formula": "-ed = I feel this · -ing = it makes me feel this",
+    "visual": {
+      "src": "assets/grammar/ing-ed-adjectives.png",
+      "alt": "Visual explanation of -ed and -ing adjectives: I am bored, this book is boring.",
+      "caption": "-ed описывает чувство человека. -ing описывает предмет, ситуацию или человека, который вызывает это чувство."
+    },
     "glanceCards": [
       {
-        "icon": "🎯",
-        "label": "Cause",
-        "hint": "что вызывает чувство",
-        "pattern": "boring / annoying / exciting",
-        "example": "The lesson was interesting."
-      },
-      {
         "icon": "🙂",
-        "label": "Feeling",
-        "hint": "что человек чувствует",
-        "pattern": "bored / annoyed / excited",
-        "example": "I was interested in the lesson."
+        "label": "-ed",
+        "hint": "если говорим о своих чувствах",
+        "pattern": "person + be / feel + -ed",
+        "example": "I am bored. She felt relaxed."
       },
       {
-        "icon": "👤",
-        "label": "People",
-        "hint": "обычно -ed",
-        "pattern": "I am / she is / they felt + -ed",
-        "example": "He felt embarrassed."
+        "icon": "📘",
+        "label": "-ing",
+        "hint": "если описываем причину чувства",
+        "pattern": "thing / situation + be + -ing",
+        "example": "This book is boring. The trip was relaxing."
       },
       {
-        "icon": "📦",
-        "label": "Things",
-        "hint": "обычно -ing",
-        "pattern": "a film / journey / result + -ing",
-        "example": "The journey was exhausting."
+        "icon": "❓",
+        "label": "Question 1",
+        "hint": "Who feels it?",
+        "pattern": "I / she / they / people -> -ed",
+        "example": "They were confused."
+      },
+      {
+        "icon": "🎯",
+        "label": "Question 2",
+        "hint": "What causes it?",
+        "pattern": "film / lesson / news / result -> -ing",
+        "example": "The explanation was confusing."
       }
     ],
     "anchorLinks": [
@@ -1836,23 +1841,23 @@ window.GRAMMAR_DATA = [
     ],
     "miniRules": [
       {
-        "title": "1. Use -ing for the cause",
-        "text": "Если прилагательное описывает предмет, ситуацию или человека, который вызывает чувство, выбирай -ing.",
-        "example": "The ending was disappointing."
+        "title": "1. Найди человека, который чувствует",
+        "text": "Если слово описывает состояние человека, ставим -ed. Это ответ на вопрос: How does the person feel?",
+        "example": "I was disappointed. = Я был/была расстроен(а)."
       },
       {
-        "title": "2. Use -ed for the feeling",
-        "text": "Если прилагательное описывает, что человек чувствует, выбирай -ed.",
-        "example": "I was disappointed with the ending."
+        "title": "2. Найди причину чувства",
+        "text": "Если слово описывает предмет, ситуацию, новость, урок, фильм или результат, ставим -ing. Это ответ на вопрос: What is it like?",
+        "example": "The result was disappointing. = Результат был разочаровывающим."
       },
       {
-        "title": "3. A person can be -ing too",
-        "text": "Человек может быть -ing, если он вызывает это чувство у других.",
-        "example": "The speaker was inspiring."
+        "title": "3. Один корень - две формы",
+        "text": "Обычно пара строится от одного глагола: bore -> bored / boring, interest -> interested / interesting, excite -> excited / exciting.",
+        "example": "I am interested in the story because the story is interesting."
       },
       {
-        "title": "4. Do not translate word for word",
-        "text": "Русское “мне скучно” обычно переводится as I am bored, not I am boring.",
+        "title": "4. Не переводи дословно с русского",
+        "text": "Русское “мне скучно” переводится как I am bored. I am boring значит “я скучный/скучная” для других людей.",
         "example": "I am bored because the film is boring."
       }
     ],
@@ -1869,7 +1874,7 @@ window.GRAMMAR_DATA = [
           [
             "-ing",
             "causes the feeling",
-            "film, lesson, story, result, person",
+            "book, film, lesson, story, result, person",
             "The story was inspiring."
           ],
           [
@@ -1918,23 +1923,23 @@ window.GRAMMAR_DATA = [
     ],
     "exampleGroups": [
       {
-        "title": "Things and situations",
+        "title": "-ing: cause of the feeling",
         "items": [
-          "The music was relaxing.",
-          "The exam grade was disappointing.",
-          "Concentrating for an hour is exhausting."
+          "The book is boring. = The book makes me bored.",
+          "The music was relaxing. = The music made me relaxed.",
+          "The exam grade was disappointing. = The grade made me disappointed."
         ]
       },
       {
-        "title": "People and feelings",
+        "title": "-ed: person's feeling",
         "items": [
-          "I felt relaxed after the spa.",
-          "She was shocked by the result.",
-          "They were confused at the end of the lesson."
+          "I am bored. = I feel bored.",
+          "She was shocked by the result. = She felt shocked.",
+          "They were confused at the end of the lesson. = They felt confused."
         ]
       },
       {
-        "title": "Both in one sentence",
+        "title": "Both forms in one sentence",
         "items": [
           "I was bored because the film was boring.",
           "He felt embarrassed because the situation was embarrassing.",
