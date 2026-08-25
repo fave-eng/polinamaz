@@ -1360,8 +1360,8 @@ window.GRAMMAR_DATA = [
   },
   {
     "id": "grammar-present-simple-continuous",
-    "number": 3,
-    "order": 3,
+    "number": 4,
+    "order": 4,
     "title": "Present simple and continuous",
     "shortTitle": "Present simple and continuous",
     "subtitle": "Choose present simple for routines and facts, and present continuous for actions happening now or temporary situations.",
@@ -1764,8 +1764,8 @@ window.GRAMMAR_DATA = [
   },
   {
     "id": "grammar-ing-ed-adjectives",
-    "number": 4,
-    "order": 4,
+    "number": 5,
+    "order": 5,
     "title": "-ing / -ed adjectives",
     "shortTitle": "-ing / -ed adjectives",
     "subtitle": "Choose -ed for a person's feeling and -ing for the thing, person or situation that causes the feeling.",
@@ -2171,8 +2171,8 @@ window.GRAMMAR_DATA = [
   },
   {
     "id": "grammar-future-plans",
-    "number": 4,
-    "order": 4,
+    "number": 6,
+    "order": 6,
     "title": "Future plans",
     "shortTitle": "Future plans",
     "subtitle": "Choose between going to, present continuous, might, will probably and have got to.",
