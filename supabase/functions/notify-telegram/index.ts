@@ -1,6 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const FUNCTION_VERSION = "homework-reports-v5-one-lesson-notification";
+const FUNCTION_VERSION = "homework-reports-v6-polinamaz-diagnostics";
 const DIAGNOSTIC_VERSION = "polina-diagnostics-v1";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -29,8 +29,16 @@ function allowedStudent(studentId: unknown): string {
   if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(value)) {
     throw new Error("Unknown student");
   }
-  const configured = Deno.env.get("ALLOWED_STUDENT_ID")?.trim().toLowerCase();
-  if (configured && value !== configured) throw new Error("Unknown student");
+  const configured = [
+    Deno.env.get("ALLOWED_STUDENT_ID") || "",
+    Deno.env.get("ALLOWED_STUDENT_IDS") || ""
+  ]
+    .join(",")
+    .split(",")
+    .map((item) => item.trim().toLowerCase())
+    .filter(Boolean);
+  const allowed = new Set(["polinamaz", ...configured]);
+  if (!allowed.has(value)) throw new Error("Unknown student");
   return value;
 }
 
