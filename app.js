@@ -987,6 +987,22 @@
     return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="conversation-list">${conversations}</div></div></section>`;
   }
 
+  function renderGapTextBlock(block, answers, checked, locked) {
+    const questions = Utils.asArray(block.questions);
+    const questionMap = new Map(questions.map((question) => [String(question.id), question]));
+    const wordBank = Utils.asArray(block.wordBank).length
+      ? `<div class="lesson-word-bank" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-items">${block.wordBank.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`
+      : "";
+    const paragraphs = Utils.asArray(block.paragraphs).map((paragraph) => {
+      const parts = Utils.asArray(paragraph);
+      return `<p>${parts.map((part) => renderConversationGapPart(part, questionMap, answers, checked, locked)).join("")}</p>`;
+    }).join("");
+    const passageLabel = block.passageLabel
+      ? `<div class="lesson-passage-heading"><span class="lesson-passage-label">${Utils.escape(block.passageLabel)}</span>${block.passageHelp ? `<span class="lesson-passage-help">${Utils.escape(block.passageHelp)}</span>` : ""}</div>`
+      : "";
+    return `<section class="card exercise-block lesson-content-card lesson-gap-text-card">${renderContentHeading(block)}<div class="lesson-content-body">${block.instruction ? `<div class="lesson-task-instruction"><span class="lesson-task-label">Task</span><p>${Utils.escape(block.instruction)}</p></div>` : ""}${wordBank}<article class="lesson-passage-card ${block.variant ? `lesson-gap-text-${Utils.escape(block.variant)}` : ""}">${passageLabel}<div class="lesson-gap-text">${paragraphs}</div></article></div></section>`;
+  }
+
   function renderStatementListBlock(block, answers, checked, locked) {
     const rows = Utils.asArray(block.questions).map((question) => {
       const id = String(question.id);
@@ -1031,6 +1047,9 @@
       const checked = meta.checkDetails || null;
       let questionNumber = 0;
       const blockHtml = Utils.asArray(lesson.blocks).map((block) => {
+        if (block.type === "gap-text") {
+          return renderGapTextBlock(block, progress.answers, checked, locked);
+        }
         const content = renderContentBlock(block);
         if (content) return content;
         if (block.type === "conversation-gap-fill") {

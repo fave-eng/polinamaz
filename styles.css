@@ -2400,6 +2400,32 @@ body[data-view="lesson"] #lesson-root {
   margin-top: 12px;
 }
 
+.lesson-gap-text {
+  padding: 20px 21px 22px;
+  color: #253247;
+  font-size: 1rem;
+  line-height: 2.05;
+}
+
+.lesson-gap-text p {
+  max-width: 84ch;
+  margin: 0;
+}
+
+.lesson-gap-text p + p {
+  margin-top: 14px;
+}
+
+.lesson-gap-text-letter {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.lesson-gap-text-letter .lesson-gap-text {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 2.15;
+}
+
 .lesson-target-word {
   display: inline-flex;
   gap: 3px;

@@ -1357,5 +1357,409 @@ window.GRAMMAR_DATA = [
         ]
       }
     ]
+  },
+  {
+    "id": "grammar-present-simple-continuous",
+    "number": 3,
+    "order": 3,
+    "title": "Present simple and continuous",
+    "shortTitle": "Present simple and continuous",
+    "subtitle": "Choose present simple for routines and facts, and present continuous for actions happening now or temporary situations.",
+    "level": "B1",
+    "status": "published",
+    "page": "grammar-topic.html?id=grammar-present-simple-continuous",
+    "linkedLessonId": "lesson-6",
+    "passed": false,
+    "attempts": 0,
+    "passScore": 80,
+    "explanation": "Present Simple показывает привычки, регулярные действия, факты и состояния. Present Continuous показывает действие, которое происходит сейчас, временную ситуацию или будущую личную договорённость. Сначала спроси себя: это обычная привычка или ситуация прямо сейчас / временно? В вопросах Present Simple использует do / does, а Present Continuous использует am / is / are. Краткие ответы тоже строятся с этими помощниками: Yes, I do / No, I don't; Yes, she does / No, she doesn't; Yes, I am / No, I'm not; Yes, he is / No, he isn't.",
+    "formula": "Present Simple = do / does + V1 · Present Continuous = am / is / are + V-ing",
+    "glanceCards": [
+      {
+        "icon": "🔁",
+        "label": "Routines",
+        "hint": "обычно, регулярно",
+        "pattern": "do / does + V1",
+        "example": "I usually study in the evening."
+      },
+      {
+        "icon": "📍",
+        "label": "Now",
+        "hint": "происходит сейчас",
+        "pattern": "am / is / are + V-ing",
+        "example": "She is doing her homework now."
+      },
+      {
+        "icon": "⏳",
+        "label": "Temporary",
+        "hint": "временно, в этот период",
+        "pattern": "am / is / are + V-ing",
+        "example": "He is working late this week."
+      },
+      {
+        "icon": "🧠",
+        "label": "States",
+        "hint": "чувства, мнение, владение",
+        "pattern": "Present Simple",
+        "example": "I know the answer."
+      }
+    ],
+    "anchorLinks": [
+      {
+        "id": "grammar-at-a-glance",
+        "title": "Quick overview"
+      },
+      {
+        "id": "grammar-rule-map",
+        "title": "Rule map"
+      },
+      {
+        "id": "grammar-tables",
+        "title": "Tables"
+      },
+      {
+        "id": "grammar-examples",
+        "title": "Examples"
+      },
+      {
+        "id": "grammar-mistakes",
+        "title": "Common mistakes"
+      },
+      {
+        "id": "grammar-practice-section",
+        "title": "Practice"
+      }
+    ],
+    "miniRules": [
+      {
+        "title": "1. Use Present Simple for habits",
+        "text": "Если действие повторяется или является частью расписания, используй Present Simple.",
+        "example": "Do you get to school by bus every day?"
+      },
+      {
+        "title": "2. Use Present Continuous for now",
+        "text": "Если действие происходит в момент речи, используй am / is / are + V-ing.",
+        "example": "Why are you crying?"
+      },
+      {
+        "title": "3. Use Present Continuous for temporary situations",
+        "text": "Если ситуация актуальна только сейчас или в этот период, тоже используй Present Continuous.",
+        "example": "We are meeting my boss later."
+      },
+      {
+        "title": "4. Watch the spelling",
+        "text": "В Continuous добавляем -ing: make → making, sit → sitting. В Present Simple с he / she / it добавляем -s или -es: work → works, watch → watches.",
+        "example": "She watches TV, but now she is making dinner."
+      },
+      {
+        "title": "5. Some verbs are usually simple",
+        "text": "Глаголы состояния, например know, want, need, like, usually не ставятся в continuous, когда описывают состояние.",
+        "example": "Do you want to talk about it?"
+      }
+    ],
+    "tables": [
+      {
+        "title": "Form",
+        "headers": [
+          "Meaning",
+          "Positive",
+          "Negative",
+          "Question"
+        ],
+        "rows": [
+          [
+            "Present Simple",
+            "I work / She works",
+            "I don't work / She doesn't work",
+            "Do you work? / Does she work?"
+          ],
+          [
+            "Present Continuous",
+            "I am working / She is working",
+            "I am not working / She isn't working",
+            "Are you working? / Is she working?"
+          ],
+          [
+            "Short answers",
+            "Yes, I do / Yes, she does",
+            "No, I don't / No, she doesn't",
+            "Yes, I am / No, he isn't"
+          ]
+        ]
+      },
+      {
+        "title": "Typical clues",
+        "headers": [
+          "Use",
+          "Common words",
+          "Example"
+        ],
+        "rows": [
+          [
+            "Habit or routine",
+            "usually, always, every day, on Fridays",
+            "What do you do on Friday evenings?"
+          ],
+          [
+            "Now",
+            "now, at the moment, today",
+            "How is the match going?"
+          ],
+          [
+            "Temporary situation",
+            "this week, these days, at the moment",
+            "I'm working on a project this week."
+          ],
+          [
+            "State",
+            "want, need, know, like, sound",
+            "Do you need help?"
+          ]
+        ]
+      }
+    ],
+    "exampleGroups": [
+      {
+        "title": "Present Simple",
+        "items": [
+          "How do your kids get to school every day?",
+          "Do you fancy joining our book group?",
+          "What does he do every day?"
+        ]
+      },
+      {
+        "title": "Present Continuous",
+        "items": [
+          "Who is winning?",
+          "Why are those people standing there?",
+          "Is your brother enjoying his new job?"
+        ]
+      },
+      {
+        "title": "Common contrast",
+        "items": [
+          "I usually visit my parents on Saturdays, but I'm visiting my aunt this Saturday.",
+          "She works in a bank, but today she is working from home.",
+          "He wants to talk now, but he is not saying much."
+        ]
+      }
+    ],
+    "commonMistakes": [
+      "Do you doing homework? ✗ → Are you doing homework? ✓. Для действия сейчас нужен be + V-ing.",
+      "Does he enjoys it? ✗ → Does he enjoy it? ✓. После does глагол идёт без -s.",
+      "I am knowing the answer ✗ → I know the answer ✓. Know обычно описывает состояние.",
+      "She work every day ✗ → She works every day ✓. В Present Simple с he/she/it добавляем -s.",
+      "Are you fancy joining us? ✗ → Do you fancy joining us? ✓. Fancy в значении 'хотеть / быть не против' обычно идёт в Present Simple."
+    ],
+    "exercises": [
+      {
+        "id": "present-simple-continuous-step-1",
+        "type": "exercise",
+        "title": "Choose the tense",
+        "difficulty": "Easy",
+        "instructions": "Выбери, какое время лучше подходит по смыслу.",
+        "items": [
+          {
+            "id": "1",
+            "input": "single",
+            "prompt": "What ___ you usually do on Friday evenings?",
+            "options": [
+              "do",
+              "are"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "2",
+            "input": "single",
+            "prompt": "Why ___ you crying?",
+            "options": [
+              "do",
+              "are"
+            ],
+            "answer": 1
+          },
+          {
+            "id": "3",
+            "input": "single",
+            "prompt": "She ___ coffee every morning.",
+            "options": [
+              "drinks",
+              "is drinking"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "4",
+            "input": "single",
+            "prompt": "Listen! The phone ___ .",
+            "options": [
+              "rings",
+              "is ringing"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "present-simple-continuous-step-2",
+        "type": "exercise",
+        "title": "Complete the gap",
+        "difficulty": "Medium",
+        "instructions": "Впиши правильную форму в пропуск.",
+        "items": [
+          {
+            "id": "1",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "How's the lesson ",
+              "?"
+            ],
+            "answers": [
+              [
+                "going"
+              ]
+            ]
+          },
+          {
+            "id": "2",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "What time ",
+              " she start work?"
+            ],
+            "answers": [
+              [
+                "does"
+              ]
+            ]
+          },
+          {
+            "id": "3",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "They ",
+              " dinner at the moment."
+            ],
+            "answers": [
+              [
+                "are having"
+              ]
+            ]
+          },
+          {
+            "id": "4",
+            "input": "gaps",
+            "prompt": "Complete the sentence.",
+            "segments": [
+              "He ",
+              " help right now."
+            ],
+            "answers": [
+              [
+                "needs"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "present-simple-continuous-step-3",
+        "type": "exercise",
+        "title": "Choose the correct question",
+        "difficulty": "Medium+",
+        "instructions": "Выбери правильный вопрос.",
+        "items": [
+          {
+            "id": "1",
+            "input": "select",
+            "prompt": "Where / you / go / now?",
+            "options": [
+              "Where do you go now?",
+              "Where are you going now?"
+            ],
+            "answer": 1
+          },
+          {
+            "id": "2",
+            "input": "select",
+            "prompt": "What / he / do / every day?",
+            "options": [
+              "What is he doing every day?",
+              "What does he do every day?"
+            ],
+            "answer": 1
+          },
+          {
+            "id": "3",
+            "input": "select",
+            "prompt": "Why / they / stand / there?",
+            "options": [
+              "Why are they standing there?",
+              "Why do they stand there?"
+            ],
+            "answer": 0
+          },
+          {
+            "id": "4",
+            "input": "select",
+            "prompt": "Do / you / want / to talk?",
+            "options": [
+              "Are you wanting to talk?",
+              "Do you want to talk?"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "present-simple-continuous-step-4",
+        "type": "exercise",
+        "title": "Build the answer",
+        "difficulty": "Hard",
+        "instructions": "Впиши полную форму или полное предложение.",
+        "items": [
+          {
+            "id": "1",
+            "input": "text",
+            "prompt": "Usually he drives to work, but today he ___ by bus. (go)",
+            "answer": "is going"
+          },
+          {
+            "id": "2",
+            "input": "text",
+            "prompt": "I can't talk now. I ___ for my exam. (prepare)",
+            "answer": "am preparing",
+            "acceptedAnswers": [
+              "am preparing",
+              "I'm preparing"
+            ]
+          },
+          {
+            "id": "3",
+            "input": "text",
+            "prompt": "Make a sentence: she / love / this song.",
+            "answer": "She loves this song.",
+            "acceptedAnswers": [
+              "She loves this song.",
+              "She loves this song"
+            ]
+          },
+          {
+            "id": "4",
+            "input": "text",
+            "prompt": "Make a question: why / he / look / so nervous today?",
+            "answer": "Why does he look so nervous today?",
+            "acceptedAnswers": [
+              "Why does he look so nervous today?",
+              "Why does he look so nervous today"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];

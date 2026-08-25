@@ -1,0 +1,1432 @@
+{
+  "id": "lesson-6",
+  "number": 6,
+  "title": "Unit 2 - Food and mood",
+  "subtitle": "-ing / -ed adjectives · Reading · Present simple and continuous · A letter",
+  "status": "published",
+  "grammarIds": [
+    "grammar-present-simple-continuous"
+  ],
+  "blocks": [
+    {
+      "type": "section-heading",
+      "kicker": "Vocabulary",
+      "title": "-ing / -ed adjectives"
+    },
+    {
+      "type": "gap-text",
+      "id": "vocab-2",
+      "kicker": "Vocabulary",
+      "title": "2 Choose the correct words.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "vocab-2-1a",
+          "question": "1 first adjective",
+          "correctAnswer": "relaxed",
+          "controlType": "select",
+          "options": [
+            "relaxed",
+            "relaxing"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-1b",
+          "question": "1 second adjective",
+          "correctAnswer": "boring",
+          "controlType": "select",
+          "options": [
+            "boring",
+            "bored"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-2a",
+          "question": "2 first adjective",
+          "correctAnswer": "embarrassing",
+          "controlType": "select",
+          "options": [
+            "embarrassed",
+            "embarrassing"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-2b",
+          "question": "2 second adjective",
+          "correctAnswer": "shocked",
+          "controlType": "select",
+          "options": [
+            "shocked",
+            "shocking"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-3a",
+          "question": "3 first adjective",
+          "correctAnswer": "confused",
+          "controlType": "select",
+          "options": [
+            "confused",
+            "confusing"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-3b",
+          "question": "3 second adjective",
+          "correctAnswer": "exhausting",
+          "controlType": "select",
+          "options": [
+            "exhausting",
+            "exhausted"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-4a",
+          "question": "4 first adjective",
+          "correctAnswer": "surprised",
+          "controlType": "select",
+          "options": [
+            "surprising",
+            "surprised"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-4b",
+          "question": "4 second adjective",
+          "correctAnswer": "annoying",
+          "controlType": "select",
+          "options": [
+            "annoyed",
+            "annoying"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-5a",
+          "question": "5 first adjective",
+          "correctAnswer": "interested",
+          "controlType": "select",
+          "options": [
+            "interested",
+            "interesting"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-2-5b",
+          "question": "5 second adjective",
+          "correctAnswer": "disappointing",
+          "controlType": "select",
+          "options": [
+            "disappointed",
+            "disappointing"
+          ],
+          "points": 1
+        }
+      ],
+      "paragraphs": [
+        [
+          "1 You walk out of the place completely ",
+          {
+            "questionId": "vocab-2-1a"
+          },
+          ". And they don't play that ",
+          {
+            "questionId": "vocab-2-1b"
+          },
+          " whale music, which is a relief."
+        ],
+        [
+          "2 I had to give my height, weight, and my age - it was so ",
+          {
+            "questionId": "vocab-2-2a"
+          },
+          ". I was a bit ",
+          {
+            "questionId": "vocab-2-2b"
+          },
+          " when I saw how much weight I'd put on."
+        ],
+        [
+          "3 I'm not sure I'm in the correct level. I'm always so ",
+          {
+            "questionId": "vocab-2-3a"
+          },
+          " at the end of the lesson. And concentrating for an hour is ",
+          {
+            "questionId": "vocab-2-3b"
+          },
+          "."
+        ],
+        [
+          "4 I didn't expect it to be so beautiful. I was quite ",
+          {
+            "questionId": "vocab-2-4a"
+          },
+          " when I saw the scenery. But our flight was delayed, which was ",
+          {
+            "questionId": "vocab-2-4b"
+          },
+          "."
+        ],
+        [
+          "5 I wasn't very ",
+          {
+            "questionId": "vocab-2-5a"
+          },
+          " in the characters. And the ending was ",
+          {
+            "questionId": "vocab-2-5b"
+          },
+          "."
+        ]
+      ]
+    },
+    {
+      "type": "conversation-gap-fill",
+      "id": "vocab-4",
+      "kicker": "Vocabulary",
+      "title": "4 Complete the conversations with the correct form of the verbs in brackets.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "vocab-4-1a",
+          "question": "Conversation 1, gap A",
+          "correctAnswer": "interesting",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-4-1b",
+          "question": "Conversation 1, gap B",
+          "correctAnswer": "depressing",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-4-2a",
+          "question": "Conversation 2, gap A",
+          "correctAnswer": "disappointed",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-4-2b",
+          "question": "Conversation 2, gap B",
+          "correctAnswer": "excited",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-4-3a",
+          "question": "Conversation 3, gap A",
+          "correctAnswer": "amazing",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-4-3b",
+          "question": "Conversation 3, gap B",
+          "correctAnswer": "exhausted",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-4-4a",
+          "question": "Conversation 4, gap A",
+          "correctAnswer": "embarrassed",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "vocab-4-4b",
+          "question": "Conversation 4, gap B",
+          "correctAnswer": "annoying",
+          "points": 1
+        }
+      ],
+      "conversations": [
+        {
+          "number": 1,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "If you don't mind, I'd like to change channels before the news. There's an ",
+                {
+                  "questionId": "vocab-4-1a"
+                },
+                " (interest) programme on at 8 p.m."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Go ahead. I don't want to watch the news. It's always so ",
+                {
+                  "questionId": "vocab-4-1b"
+                },
+                " (depress)."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Can you believe that score - six nil? I've never been so ",
+                {
+                  "questionId": "vocab-4-2a"
+                },
+                " (disappoint)."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "I know. I was so ",
+                {
+                  "questionId": "vocab-4-2b"
+                },
+                " (excite) at the start of the season."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Do you fancy coming for a walk? The view over the beach is meant to be ",
+                {
+                  "questionId": "vocab-4-3a"
+                },
+                " (amaze)."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Thanks, but I'm not up to it. I feel ",
+                {
+                  "questionId": "vocab-4-3b"
+                },
+                " (exhaust) after that journey."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Only ten people turned up to my party. I don't think I've ever been so ",
+                {
+                  "questionId": "vocab-4-4a"
+                },
+                " (embarrass)."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "That's a shame. It's very ",
+                {
+                  "questionId": "vocab-4-4b"
+                },
+                " (annoy) when people let you down."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Reading",
+      "title": "How food affects mood"
+    },
+    {
+      "type": "single-choice",
+      "id": "reading-5",
+      "question": "5 Read the article opposite quickly. What is the main reason for writing it?",
+      "options": [
+        {
+          "value": "a",
+          "label": "a to advise people on how to improve their diet"
+        },
+        {
+          "value": "b",
+          "label": "b to explain that there is a connection between food and how people feel"
+        },
+        {
+          "value": "c",
+          "label": "c to describe a series of experiments on food"
+        }
+      ],
+      "correctAnswer": "b",
+      "points": 1
+    },
+    {
+      "type": "content",
+      "kicker": "Article",
+      "title": "How food affects mood",
+      "paragraphs": [
+        "Eating ice cream really does make you happy. Scientists at the Institute of Psychiatry in London tested the brains of people eating vanilla ice cream. They found an immediate effect on parts of the brain 1 ... . It works on the same part of the brain that reacts when people win money or listen to music.",
+        "2 ... can improve people's mood and even their overall mental health. A survey of 200 people found 88 per cent reported that changing their diet improved their mental health. 26 per cent said they had seen marked improvements in mood swings, 26 per cent had seen improvements in panic attacks and anxiety, and 24 per cent in depression.",
+        "People in the survey identified mood 'stressors' and 'supporters'. Eating fewer 'stressors' like chocolate, sugar, caffeine and alcohol improved their mood. They also increased the 'supporters' they ate, like water, fruit, vegetables and oily fish. Not skipping breakfast, and eating regularly also led to an increase in well-being.",
+        "Over a third of people said they were 'very certain' that the improvements to their mental health were directly linked to the changes they had made to their diet. One person who completed the survey said, '3 ... but I do lapse and when I do, I feel noticeably different. Once you find out your triggers, you can feel so much better.'",
+        "Amanda Geary, 4 ... said 'A lot of these changes are very simple things that people can do and are fairly safe, and fit with healthy eating advice.'",
+        "Dr Wendy Doyle, a dietician, said oily fish and fruit and vegetables were known to be beneficial. 'They are good for general health - and you must have enough fluid to prevent dehydration.' She said people would also feel better 5 ... Dr Doyle added, 'People may feel bad after eating chocolate because they enjoyed eating it, 6 ...'"
+      ]
+    },
+    {
+      "type": "matching",
+      "id": "reading-6",
+      "question": "6 Six parts of the article 'How food affects mood' have been removed. Write the correct letter (a-f) in the gaps in the article.",
+      "pairs": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        },
+        {
+          "value": "6",
+          "label": "6"
+        }
+      ],
+      "options": [
+        {
+          "value": "a",
+          "label": "a Research also suggests that the right foods"
+        },
+        {
+          "value": "b",
+          "label": "b that activate when people enjoy themselves"
+        },
+        {
+          "value": "c",
+          "label": "c if they were eating healthily and taking regular physical exercise."
+        },
+        {
+          "value": "d",
+          "label": "d who wrote a report based on the survey"
+        },
+        {
+          "value": "e",
+          "label": "e but felt guilty afterwards."
+        },
+        {
+          "value": "f",
+          "label": "f There is a definite link with food and mood"
+        }
+      ],
+      "correctAnswer": {
+        "1": "b",
+        "2": "a",
+        "3": "f",
+        "4": "d",
+        "5": "c",
+        "6": "e"
+      },
+      "points": 6,
+      "scorePerPair": true
+    },
+    {
+      "type": "content",
+      "id": "reading-8-reference",
+      "kicker": "Reading",
+      "title": "Collocations from exercise 8",
+      "paragraphs": [
+        "Use these collocations from exercise 8: immediate effect, right foods, overall mental health, marked improvements, definite link, regular physical exercise."
+      ]
+    },
+    {
+      "type": "gap-text",
+      "id": "reading-9",
+      "kicker": "Reading",
+      "title": "9 Complete the sentences with the collocations from exercise 8.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "reading-9-1",
+          "question": "1 collocation",
+          "correctAnswer": "definite link",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "reading-9-2",
+          "question": "2 collocation",
+          "correctAnswer": "immediate effect",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "reading-9-3",
+          "question": "3 collocation",
+          "correctAnswer": "marked improvement",
+          "acceptedAnswers": [
+            "marked improvement",
+            "a marked improvement"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "reading-9-4",
+          "question": "4 collocation",
+          "correctAnswer": "right foods",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "reading-9-5",
+          "question": "5 collocation",
+          "correctAnswer": "overall mental health",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "reading-9-6",
+          "question": "6 collocation",
+          "correctAnswer": "regular physical exercise",
+          "points": 1
+        }
+      ],
+      "paragraphs": [
+        [
+          "1 I think there's a ",
+          {
+            "questionId": "reading-9-1"
+          },
+          " between talking about your feelings and being happy."
+        ],
+        [
+          "2 I gave up strong coffee and it had an ",
+          {
+            "questionId": "reading-9-2"
+          },
+          " on me - I stopped having headaches straight away and I slept better."
+        ],
+        [
+          "3 There's been ",
+          {
+            "questionId": "reading-9-3"
+          },
+          " in my children's behaviour since they have stopped eating sugar."
+        ],
+        [
+          "4 A diet containing the ",
+          {
+            "questionId": "reading-9-4"
+          },
+          " doesn't have to be boring."
+        ],
+        [
+          "5 Many people don't realise that ",
+          {
+            "questionId": "reading-9-5"
+          },
+          " is linked to eating a good diet."
+        ],
+        [
+          "6 Taking ",
+          {
+            "questionId": "reading-9-6"
+          },
+          ", like walking or cycling, helps me deal with stress."
+        ]
+      ]
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Grammar",
+      "title": "Present simple and continuous"
+    },
+    {
+      "type": "gap-text",
+      "id": "grammar-2",
+      "kicker": "Grammar",
+      "title": "2 Complete the pairs of questions. Use the present continuous or present simple form of the verbs in brackets.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "grammar-2-1a",
+          "question": "1 go",
+          "correctAnswer": "going",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-1b",
+          "question": "1 win",
+          "correctAnswer": "winning",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-2a",
+          "question": "2 auxiliary for do",
+          "correctAnswer": "are",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-2b",
+          "question": "2 do",
+          "correctAnswer": "doing",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-2c",
+          "question": "2 auxiliary for fancy",
+          "correctAnswer": "Do",
+          "acceptedAnswers": [
+            "Do",
+            "do"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-2d",
+          "question": "2 fancy",
+          "correctAnswer": "fancy",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-3a",
+          "question": "3 auxiliary for cry",
+          "correctAnswer": "are",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-3b",
+          "question": "3 cry",
+          "correctAnswer": "crying",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-3c",
+          "question": "3 auxiliary for want",
+          "correctAnswer": "Do",
+          "acceptedAnswers": [
+            "Do",
+            "do"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-3d",
+          "question": "3 want",
+          "correctAnswer": "want",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-4a",
+          "question": "4 auxiliary for move",
+          "correctAnswer": "are",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-4b",
+          "question": "4 move",
+          "correctAnswer": "moving",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-4c",
+          "question": "4 be",
+          "correctAnswer": "is",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-5a",
+          "question": "5 auxiliary for stand",
+          "correctAnswer": "are",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-5b",
+          "question": "5 stand",
+          "correctAnswer": "standing",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-5c",
+          "question": "5 auxiliary for need",
+          "correctAnswer": "Do",
+          "acceptedAnswers": [
+            "Do",
+            "do"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-5d",
+          "question": "5 need",
+          "correctAnswer": "need",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-6a",
+          "question": "6 auxiliary for enjoy",
+          "correctAnswer": "Is",
+          "acceptedAnswers": [
+            "Is",
+            "is"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-6b",
+          "question": "6 enjoy",
+          "correctAnswer": "enjoying",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-6c",
+          "question": "6 auxiliary for do",
+          "correctAnswer": "does",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-6d",
+          "question": "6 do",
+          "correctAnswer": "do",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-7a",
+          "question": "7 auxiliary for get",
+          "correctAnswer": "do",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-7b",
+          "question": "7 get",
+          "correctAnswer": "get",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-7c",
+          "question": "7 auxiliary for take",
+          "correctAnswer": "does",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "grammar-2-7d",
+          "question": "7 take",
+          "correctAnswer": "take",
+          "points": 1
+        }
+      ],
+      "paragraphs": [
+        [
+          "1 How's the match ",
+          {
+            "questionId": "grammar-2-1a"
+          },
+          " (go)? Who's ",
+          {
+            "questionId": "grammar-2-1b"
+          },
+          " (win)?"
+        ],
+        [
+          "2 What ",
+          {
+            "questionId": "grammar-2-2a"
+          },
+          " you ",
+          {
+            "questionId": "grammar-2-2b"
+          },
+          " (do) on Friday evenings? ",
+          {
+            "questionId": "grammar-2-2c"
+          },
+          " you ",
+          {
+            "questionId": "grammar-2-2d"
+          },
+          " (fancy) joining our book group?"
+        ],
+        [
+          "3 Why ",
+          {
+            "questionId": "grammar-2-3a"
+          },
+          " you ",
+          {
+            "questionId": "grammar-2-3b"
+          },
+          " (cry)? ",
+          {
+            "questionId": "grammar-2-3c"
+          },
+          " you ",
+          {
+            "questionId": "grammar-2-3d"
+          },
+          " (want) to talk about it?"
+        ],
+        [
+          "4 Where ",
+          {
+            "questionId": "grammar-2-4a"
+          },
+          " you ",
+          {
+            "questionId": "grammar-2-4b"
+          },
+          " (move) to? What ",
+          {
+            "questionId": "grammar-2-4c"
+          },
+          " (be) the new area like?"
+        ],
+        [
+          "5 Why ",
+          {
+            "questionId": "grammar-2-5a"
+          },
+          " those people ",
+          {
+            "questionId": "grammar-2-5b"
+          },
+          " (stand) there? ",
+          {
+            "questionId": "grammar-2-5c"
+          },
+          " they ",
+          {
+            "questionId": "grammar-2-5d"
+          },
+          " (need) help?"
+        ],
+        [
+          "6 ",
+          {
+            "questionId": "grammar-2-6a"
+          },
+          " your brother ",
+          {
+            "questionId": "grammar-2-6b"
+          },
+          " (enjoy) his new job? What exactly ",
+          {
+            "questionId": "grammar-2-6c"
+          },
+          " he ",
+          {
+            "questionId": "grammar-2-6d"
+          },
+          " (do) every day?"
+        ],
+        [
+          "7 How ",
+          {
+            "questionId": "grammar-2-7a"
+          },
+          " your kids ",
+          {
+            "questionId": "grammar-2-7b"
+          },
+          " (get) to school every day? How long ",
+          {
+            "questionId": "grammar-2-7c"
+          },
+          " it ",
+          {
+            "questionId": "grammar-2-7d"
+          },
+          " (take)?"
+        ]
+      ]
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Developing writing",
+      "title": "A letter - giving news"
+    },
+    {
+      "type": "gap-text",
+      "id": "writing-4",
+      "variant": "letter",
+      "kicker": "Developing writing",
+      "title": "4 Rani has just started university. Complete the letter to her parents with the words in the box.",
+      "wordBank": [
+        "pretty",
+        "miss",
+        "settling",
+        "hug",
+        "down",
+        "sorry",
+        "into",
+        "mind",
+        "expect",
+        "out"
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "writing-4-1",
+          "question": "1",
+          "correctAnswer": "sorry",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-2",
+          "question": "2",
+          "correctAnswer": "pretty",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-3",
+          "question": "3",
+          "correctAnswer": "settling",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-4",
+          "question": "4",
+          "correctAnswer": "expect",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-5",
+          "question": "5",
+          "correctAnswer": "down",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-6",
+          "question": "6",
+          "correctAnswer": "out",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-7",
+          "question": "7",
+          "correctAnswer": "miss",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-8",
+          "question": "8",
+          "correctAnswer": "into",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-9",
+          "question": "9",
+          "correctAnswer": "hug",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "writing-4-10",
+          "question": "10",
+          "correctAnswer": "mind",
+          "points": 1,
+          "controlType": "select",
+          "options": [
+            "pretty",
+            "miss",
+            "settling",
+            "hug",
+            "down",
+            "sorry",
+            "into",
+            "mind",
+            "expect",
+            "out"
+          ]
+        }
+      ],
+      "passageLabel": "Dear Mum and Dad",
+      "paragraphs": [
+        [
+          {
+            "questionId": "writing-4-1"
+          },
+          ". I haven't written before, but I've been ",
+          {
+            "questionId": "writing-4-2"
+          },
+          " busy since I started. I'm ",
+          {
+            "questionId": "writing-4-3"
+          },
+          " into my flat and enjoying the course so far. Lectures have started but I didn't ",
+          {
+            "questionId": "writing-4-4"
+          },
+          " to be working so hard in the first month!"
+        ],
+        [
+          "I've been a bit ",
+          {
+            "questionId": "writing-4-5"
+          },
+          " this week. It's nothing to worry about but Rachel has changed course, so I'm now one of the few girls doing physics! I had a feeling she wasn't very happy, but I think she's sorted it ",
+          {
+            "questionId": "writing-4-6"
+          },
+          " now."
+        ],
+        [
+          "I ",
+          {
+            "questionId": "writing-4-7"
+          },
+          " everyone but I'm making a lot of new friends. My flatmates are all ",
+          {
+            "questionId": "writing-4-8"
+          },
+          " adventure sports (my idea of hell), but I had a go at climbing last weekend - exhausting but good fun."
+        ],
+        [
+          "My next lecture is about to start, so I'll put this in the post. Give everyone a ",
+          {
+            "questionId": "writing-4-9"
+          },
+          " from me."
+        ],
+        [
+          "Lots of love"
+        ],
+        [
+          "Rani"
+        ],
+        [
+          "xx"
+        ],
+        [
+          "P.S. If you don't ",
+          {
+            "questionId": "writing-4-10"
+          },
+          ", I won't ring you on my mobile. It's too expensive - but you can ring me!"
+        ]
+      ]
+    },
+    {
+      "type": "content",
+      "variant": "language-note",
+      "kicker": "Language note",
+      "title": "a bit / pretty / not very + adjective",
+      "rule": "If you don't want to sound too negative, you can often soften an adjective like this.",
+      "exampleGroups": [
+        {
+          "label": "Examples",
+          "examples": [
+            {
+              "text": "I'm a bit tired.",
+              "emphasis": "a bit tired"
+            },
+            {
+              "text": "It was pretty disappointing.",
+              "emphasis": "pretty disappointing"
+            },
+            {
+              "text": "It wasn't very easy.",
+              "emphasis": "wasn't very easy"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "vocabulary": {
+    "id": "vocab-lesson-6",
+    "title": "Unit 2 - Food and mood",
+    "label": "Lesson 6",
+    "icon": "🥗",
+    "type": "lesson",
+    "linkedLessonId": "lesson-6",
+    "words": [
+      {
+        "id": "lesson-6-annoying",
+        "en": "annoying",
+        "ru": "раздражающий",
+        "transcription": "/əˈnɔɪɪŋ/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-bored",
+        "en": "bored",
+        "ru": "скучающий; которому скучно",
+        "transcription": "/bɔːd/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-boring",
+        "en": "boring",
+        "ru": "скучный",
+        "transcription": "/ˈbɔːrɪŋ/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-embarrassing",
+        "en": "embarrassing",
+        "ru": "неловкий; смущающий",
+        "transcription": "/ɪmˈbærəsɪŋ/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-shocked",
+        "en": "shocked",
+        "ru": "шокированный",
+        "transcription": "/ʃɒkt/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-confusing",
+        "en": "confusing",
+        "ru": "запутанный; сбивающий с толку",
+        "transcription": "/kənˈfjuːzɪŋ/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-exhausting",
+        "en": "exhausting",
+        "ru": "изматывающий",
+        "transcription": "/ɪɡˈzɔːstɪŋ/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-surprised",
+        "en": "surprised",
+        "ru": "удивлённый",
+        "transcription": "/səˈpraɪzd/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-interested",
+        "en": "interested in",
+        "ru": "заинтересованный в",
+        "transcription": "/ˈɪntrəstɪd ɪn/",
+        "category": "-ing / -ed adjectives"
+      },
+      {
+        "id": "lesson-6-mood-swings",
+        "en": "mood swings",
+        "ru": "перепады настроения",
+        "transcription": "/ˈmuːd swɪŋz/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-panic-attacks",
+        "en": "panic attacks",
+        "ru": "панические атаки",
+        "transcription": "/ˈpænɪk əˌtæks/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-anxiety",
+        "en": "anxiety",
+        "ru": "тревожность",
+        "transcription": "/æŋˈzaɪəti/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-stressor",
+        "en": "a stressor",
+        "ru": "фактор стресса",
+        "transcription": "/ə ˈstresə/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-supporter",
+        "en": "a supporter",
+        "ru": "то, что поддерживает; полезный фактор",
+        "transcription": "/ə səˈpɔːtə/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-caffeine",
+        "en": "caffeine",
+        "ru": "кофеин",
+        "transcription": "/ˈkæfiːn/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-oily-fish",
+        "en": "oily fish",
+        "ru": "жирная рыба",
+        "transcription": "/ˌɔɪli ˈfɪʃ/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-skip-breakfast",
+        "en": "skip breakfast",
+        "ru": "пропускать завтрак",
+        "transcription": "/skɪp ˈbrekfəst/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-well-being",
+        "en": "well-being",
+        "ru": "хорошее самочувствие; благополучие",
+        "transcription": "/ˌwel ˈbiːɪŋ/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-trigger",
+        "en": "a trigger",
+        "ru": "триггер; причина реакции",
+        "transcription": "/ə ˈtrɪɡə/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-lapse",
+        "en": "to lapse",
+        "ru": "сорваться; вернуться к старой привычке",
+        "transcription": "/læps/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-beneficial",
+        "en": "beneficial",
+        "ru": "полезный; благоприятный",
+        "transcription": "/ˌbenɪˈfɪʃəl/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-fluid",
+        "en": "fluid",
+        "ru": "жидкость",
+        "transcription": "/ˈfluːɪd/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-dehydration",
+        "en": "dehydration",
+        "ru": "обезвоживание",
+        "transcription": "/ˌdiːhaɪˈdreɪʃən/",
+        "category": "Food and mood"
+      },
+      {
+        "id": "lesson-6-definite-link",
+        "en": "a definite link",
+        "ru": "явная связь",
+        "transcription": "/ə ˈdefɪnət lɪŋk/",
+        "category": "Collocations"
+      },
+      {
+        "id": "lesson-6-immediate-effect",
+        "en": "an immediate effect",
+        "ru": "немедленный эффект",
+        "transcription": "/ən ɪˈmiːdiət ɪˈfekt/",
+        "category": "Collocations"
+      },
+      {
+        "id": "lesson-6-marked-improvement",
+        "en": "a marked improvement",
+        "ru": "заметное улучшение",
+        "transcription": "/ə mɑːkt ɪmˈpruːvmənt/",
+        "category": "Collocations"
+      },
+      {
+        "id": "lesson-6-overall-mental-health",
+        "en": "overall mental health",
+        "ru": "общее психическое состояние",
+        "transcription": "/ˌəʊvərɔːl ˌmentəl ˈhelθ/",
+        "category": "Collocations"
+      },
+      {
+        "id": "lesson-6-regular-physical-exercise",
+        "en": "regular physical exercise",
+        "ru": "регулярная физическая активность",
+        "transcription": "/ˌreɡjələ ˌfɪzɪkəl ˈeksəsaɪz/",
+        "category": "Collocations"
+      }
+    ]
+  }
+}
