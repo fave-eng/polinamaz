@@ -1,6 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const FUNCTION_VERSION = "homework-reports-v6-polinamaz-diagnostics";
+const FUNCTION_VERSION = "homework-reports-v7-polinamaz-bot-token";
 const DIAGNOSTIC_VERSION = "polina-diagnostics-v1";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -33,9 +33,7 @@ function envAny(names: string[]): string {
 }
 
 function telegramBotToken(studentId: string): string {
-  if (studentId === "polinamaz") {
-    return envAny(["POLINAMAZ_TELEGRAM_BOT_TOKEN", "notify-polinamaz-telegram", "TELEGRAM_BOT_TOKEN_POLINAMAZ", "TELEGRAM_BOT_TOKEN"]);
-  }
+  if (studentId === "polinamaz") return env("POLINAMAZ_TELEGRAM_BOT_TOKEN");
   return env("TELEGRAM_BOT_TOKEN");
 }
 
