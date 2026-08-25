@@ -692,7 +692,11 @@
     const renderLessonCard = ({ lesson, progress }) => {
       const [label, className] = lesson.status === "locked" ? ["🔒 Coming soon", "status-locked"] : statusLabel(progress);
       const locked = lesson.status === "locked";
-      const linkedVocabulary = vocabularyByLesson.get(String(lesson.id)) || [];
+      const explicitVocabularyIds = new Set(Utils.asArray(lesson.vocabularyIds || (lesson.vocabularyTopicId ? [lesson.vocabularyTopicId] : [])).map(String));
+      const linkedVocabulary = [...(vocabularyByLesson.get(String(lesson.id)) || [])];
+      vocabularyTopics.forEach((topic) => {
+        if (explicitVocabularyIds.has(String(topic.id)) && !linkedVocabulary.some((item) => String(item.id) === String(topic.id))) linkedVocabulary.push(topic);
+      });
       const explicitGrammarIds = new Set(Utils.asArray(lesson.grammarIds).map(String));
       const linkedGrammar = grammarTopics.filter((topic) => explicitGrammarIds.has(String(topic.id)) || String(topic.linkedLessonId || "") === String(lesson.id));
       const materials = [
@@ -1031,7 +1035,8 @@
     const questions = collectQuestions(lesson.blocks);
     const grammarTopicIds = new Set(Utils.asArray(lesson.grammarIds).map(String));
     const linkedGrammarTopics = DataService.grammarTopics().filter((topic) => grammarTopicIds.has(String(topic.id)) || String(topic.linkedLessonId || "") === String(lesson.id));
-    const linkedVocabularyTopics = (await DataService.vocabularyTopics()).filter((topic) => String(topic.linkedLessonId || topic.lessonId || "") === String(lesson.id));
+    const vocabularyTopicIds = new Set(Utils.asArray(lesson.vocabularyIds || (lesson.vocabularyTopicId ? [lesson.vocabularyTopicId] : [])).map(String));
+    const linkedVocabularyTopics = (await DataService.vocabularyTopics()).filter((topic) => String(topic.linkedLessonId || topic.lessonId || "") === String(lesson.id) || vocabularyTopicIds.has(String(topic.id)));
     const linkedMaterials = [
       ...linkedVocabularyTopics.map((topic) => ({ type: "vocab", icon: "💥", label: "Vocabulary", title: topic.title, href: topic.page || `vocabulary.html?topic=${encodeURIComponent(topic.id)}` })),
       ...linkedGrammarTopics.map((topic) => ({ type: "grammar", icon: "📐", label: "Grammar", title: topic.title, href: topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}` }))

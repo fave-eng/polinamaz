@@ -5,6 +5,7 @@
   "subtitle": "-ing / -ed adjectives · Reading · Present simple and continuous · A letter",
   "status": "published",
   "grammarIds": [
+    "grammar-ing-ed-adjectives",
     "grammar-present-simple-continuous"
   ],
   "blocks": [
@@ -1222,5 +1223,6 @@
         }
       ]
     }
-  ]
+  ],
+  "vocabularyTopicId": "vocab-lesson-6"
 }

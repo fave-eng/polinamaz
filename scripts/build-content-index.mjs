@@ -24,7 +24,7 @@ function assertBase(item, file, expectedPrefix) {
 }
 
 async function vocabularyLessonIds() {
-  const vocabularyFile = path.join(root, "data/vocabulary-data.js");
+  const vocabularyFile = path.join(root, "vocabulary-data.js");
   try {
     const source = await fs.readFile(vocabularyFile, "utf8");
     const sandbox = { window: {} };
