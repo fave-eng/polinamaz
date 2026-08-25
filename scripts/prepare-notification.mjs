@@ -81,7 +81,7 @@ if (lessons.length === 0) {
 }
 
 const endpoint = process.env.NOTIFY_ENDPOINT?.trim()
-  || `https://${projectId}.supabase.co/functions/v1/notify-telegram`
+  || `https://${projectId}.supabase.co/functions/v1/${process.env.NOTIFY_FUNCTION?.trim() || 'notify-polinamaz-telegram'}`
 let failures = 0
 
 for (const lesson of lessons) {

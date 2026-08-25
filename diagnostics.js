@@ -68,7 +68,11 @@
 
   function functionUrl() {
     const base = String(config.supabase?.url || '').replace(/\/+$/, '');
-    return `${base}/functions/v1/notify-telegram`;
+    return `${base}/functions/v1/${notifyFunctionName()}`;
+  }
+
+  function notifyFunctionName() {
+    return String(config.supabase?.functions?.notifyTelegram || 'notify-telegram').trim() || 'notify-telegram';
   }
 
   async function invokeDiagnostic(body) {
@@ -89,8 +93,8 @@
 
   function explainFunctionFailure(result) {
     const message = String(result?.data?.error || result?.data?.message || result?.data?.raw || '').trim();
-    if (result?.status === 404) return 'Edge Function notify-telegram не найдена или не задеплоена.';
-    if (result?.status === 401 && /Unauthorized/i.test(message)) return 'Edge Function отклонила запрос авторизации. Проверь, что задеплоена актуальная notify-telegram и verify_jwt=false.';
+    if (result?.status === 404) return `Edge Function ${notifyFunctionName()} не найдена или не задеплоена.`;
+    if (result?.status === 401 && /Unauthorized/i.test(message)) return `Edge Function отклонила запрос авторизации. Проверь, что задеплоена актуальная ${notifyFunctionName()} и verify_jwt=false.`;
     if (result?.status === 403) return message || 'Диагностика запрещена для этого student_id.';
     if (/Failed to fetch|Load failed/i.test(message)) return 'Браузер не смог вызвать Edge Function: проверь сеть, URL проекта и CORS.';
     return `HTTP ${result?.status || '—'}${message ? `: ${message}` : ''}`;
@@ -175,7 +179,7 @@
         edgeResult = await invokeDiagnostic({ kind: 'diagnostics_health', studentId });
       } catch (error) {
         const detail = formatError(error);
-        addCheck('8. Supabase Edge Function notify-telegram', 'bad', detail);
+        addCheck(`8. Supabase Edge Function ${notifyFunctionName()}`, 'bad', detail);
         lastReport.errors.push({ stage: 'edge_function_fetch', error: detail });
       }
 
@@ -184,12 +188,12 @@
           const detail = edgeResult.ok
             ? `Функция отвечает, но версия диагностики другая: ${edgeResult.data?.diagnosticVersion || 'не указана'}. Нужен повторный deploy.`
             : explainFunctionFailure(edgeResult);
-          addCheck('8. Supabase Edge Function notify-telegram', 'bad', detail);
+          addCheck(`8. Supabase Edge Function ${notifyFunctionName()}`, 'bad', detail);
           lastReport.errors.push({ stage: 'edge_function_health', error: detail, response: edgeResult.data });
         } else {
           const h = edgeResult.data || {};
           lastReport.health = h;
-          addCheck('8. Supabase Edge Function notify-telegram', 'ok', `Задеплоена нужная версия: ${h.diagnosticVersion}.`);
+          addCheck(`8. Supabase Edge Function ${notifyFunctionName()}`, 'ok', `Задеплоена нужная версия: ${h.diagnosticVersion}.`);
           addCheck('9. Server-side Supabase', h.database?.ok ? 'ok' : 'bad', h.database?.ok ? `Service role читает homework_progress. Строк: ${h.database.homeworkRows}.` : (h.database?.error || 'Сервер не может читать Supabase.'));
           addCheck('10. Получатель Telegram', h.recipient?.ok ? 'ok' : 'bad', h.recipient?.ok ? `Получатель найден и включён (${h.recipient.source || 'server'}).` : (h.recipient?.error || 'Получатель не найден/выключен.'));
           addCheck('11. Тема Telegram', h.recipient?.ok ? 'ok' : 'bad', h.recipient?.ok ? (h.recipient.threadId == null ? 'Отдельная тема не настроена (message_thread_id=NULL).' : `message_thread_id=${h.recipient.threadId}.`) : 'Нельзя проверить тему без настроенного получателя.');

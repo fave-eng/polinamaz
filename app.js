@@ -215,6 +215,9 @@
       }
       return this.enabled;
     },
+    functionName(key, fallback) {
+      return String(config.supabase?.functions?.[key] || fallback).trim() || fallback;
+    },
     async one(table, filters) {
       if (!this.enabled) return null;
       let query = this.client.from(table).select("*");
@@ -1182,7 +1185,7 @@
         return;
       }
       try {
-        const { data, error } = await Cloud.client.functions.invoke("notify-telegram", {
+        const { data, error } = await Cloud.client.functions.invoke(Cloud.functionName("notifyTelegram", "notify-telegram"), {
           body: {
             action: "homework_report",
             studentId: STUDENT_ID,
@@ -1640,7 +1643,7 @@
       write("Supabase client is available.");
       try {
         const started = new Date();
-        const { data, error } = await Cloud.client.functions.invoke("notify-telegram", { body: { action: "diagnostic", studentId: STUDENT_ID, requestedAt: started.toISOString() } });
+        const { data, error } = await Cloud.client.functions.invoke(Cloud.functionName("notifyTelegram", "notify-telegram"), { body: { action: "diagnostic", studentId: STUDENT_ID, requestedAt: started.toISOString() } });
         if (error) {
           const status = error.context?.status || "unknown";
           write(`HTTP status: ${status}`);
