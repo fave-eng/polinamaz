@@ -442,24 +442,20 @@
     },
     async vocabularyTopics() {
       const externalTopics = Utils.asArray(window.VOCABULARY_DATA);
-      if (externalTopics.length) {
-        const seen = new Set();
-        return Utils.newestFirst(externalTopics.map((topic) => {
-          const words = Utils.asArray(topic.words).filter((word) => {
-            const key = Utils.wordKey(word);
-            if (!key || seen.has(key)) return false;
-            seen.add(key);
-            return true;
-          });
-          const linkedLessonId = topic.linkedLessonId || topic.lessonId || "";
-          const lessonNumber = Number(String(linkedLessonId).match(/\d+/)?.[0] || 0);
-          return { ...topic, lessonId: linkedLessonId, lessonNumber, words };
-        }).filter((topic) => topic.words.length));
-      }
-
       const lessons = await this.lessonIndex();
       const topics = [];
       const seen = new Set();
+      externalTopics.forEach((topic) => {
+        const words = Utils.asArray(topic.words).filter((word) => {
+          const key = Utils.wordKey(word);
+          if (!key || seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+        const linkedLessonId = topic.linkedLessonId || topic.lessonId || "";
+        const lessonNumber = Number(String(linkedLessonId).match(/\d+/)?.[0] || 0);
+        if (words.length) topics.push({ ...topic, lessonId: linkedLessonId, lessonNumber, words });
+      });
       for (const entry of lessons) {
         try {
           const lesson = entry.blocks ? entry : await this.lesson(entry.id || entry);

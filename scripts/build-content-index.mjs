@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import vm from "node:vm";
 
 const root = path.resolve(process.cwd());
 
@@ -22,7 +23,32 @@ function assertBase(item, file, expectedPrefix) {
   if (!String(item.status || "").trim()) throw new Error(`${relative}: status is required`);
 }
 
-async function buildFolder({ folder, prefix, output, rootKey }) {
+async function vocabularyLessonIds() {
+  const vocabularyFile = path.join(root, "data/vocabulary-data.js");
+  try {
+    const source = await fs.readFile(vocabularyFile, "utf8");
+    const sandbox = { window: {} };
+    vm.runInNewContext(source, sandbox, { filename: vocabularyFile });
+    return new Set(
+      (Array.isArray(sandbox.window.VOCABULARY_DATA) ? sandbox.window.VOCABULARY_DATA : [])
+        .map((topic) => String(topic?.linkedLessonId || topic?.lessonId || ""))
+        .filter(Boolean)
+    );
+  } catch {
+    return new Set();
+  }
+}
+
+async function currentLessonVocabularyFlags(output) {
+  try {
+    const data = await readJson(path.join(root, output));
+    return new Map((Array.isArray(data.lessons) ? data.lessons : []).map((lesson) => [lesson.id, Boolean(lesson.hasVocabulary)]));
+  } catch {
+    return new Map();
+  }
+}
+
+async function buildFolder({ folder, prefix, output, rootKey, linkedVocabularyLessonIds = new Set() }) {
   const fullFolder = path.join(root, folder);
   await fs.mkdir(fullFolder, { recursive: true });
   const filenames = (await fs.readdir(fullFolder))
@@ -32,6 +58,7 @@ async function buildFolder({ folder, prefix, output, rootKey }) {
   const items = [];
   const numbers = new Set();
   const ids = new Set();
+  const preservedVocabularyFlags = prefix === "lesson" ? await currentLessonVocabularyFlags(output) : new Map();
 
   for (const filename of filenames) {
     const file = path.join(fullFolder, filename);
@@ -57,7 +84,7 @@ async function buildFolder({ folder, prefix, output, rootKey }) {
       title: item.title,
       subtitle: item.subtitle || "",
       status: item.status,
-      ...(prefix === "lesson" ? { hasVocabulary: Boolean(item.vocabulary?.words?.length) } : { level: item.level || null })
+      ...(prefix === "lesson" ? { hasVocabulary: Boolean(preservedVocabularyFlags.get(item.id) || item.vocabulary?.words?.length || linkedVocabularyLessonIds.has(item.id)) } : { level: item.level || null })
     });
   }
 
@@ -67,4 +94,10 @@ async function buildFolder({ folder, prefix, output, rootKey }) {
   console.log(`Built ${output}: ${items.length} published item(s)`);
 }
 
-await buildFolder({ folder: "data/lessons", prefix: "lesson", output: "data/lessons/index.json", rootKey: "lessons" });
+await buildFolder({
+  folder: "data/lessons",
+  prefix: "lesson",
+  output: "data/lessons/index.json",
+  rootKey: "lessons",
+  linkedVocabularyLessonIds: await vocabularyLessonIds()
+});
