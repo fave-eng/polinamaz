@@ -811,6 +811,16 @@
     return typeof option === "object" ? String(option.label ?? option.value ?? "") : String(option);
   }
 
+  function renderOrderingLabel(item, answers) {
+    if (!item || typeof item !== "object" || !Array.isArray(item.labelParts)) return optionLabel(item);
+    return item.labelParts.map((part) => {
+      if (typeof part === "string") return part;
+      if (!part || typeof part !== "object") return "";
+      const value = answers[part.questionId];
+      return value ? String(value) : "_____";
+    }).join("");
+  }
+
   function originalQuestionPrompt(question) {
     return String(question.question || question.prompt || question.title || "").trim();
   }
@@ -845,7 +855,15 @@
       const current = answer && typeof answer === "object" ? answer : {};
       const leftItems = Utils.asArray(question.pairs || question.left);
       const rightOptions = Utils.asArray(question.options || question.right);
-      if (question.variant === "response-expressions") {
+      if (question.variant === "radio-grid") {
+        control = `<div class="statement-list compact-radio-list">${leftItems.map((left) => {
+          const leftValue = typeof left === "object" ? String(left.value ?? left.label) : String(left);
+          const selected = String(current[leftValue] || "");
+          const expected = String(question.correctAnswer?.[leftValue] || "");
+          const rowState = result && selected ? (Utils.normaliseText(selected) === Utils.normaliseText(expected) ? "is-correct" : "is-incorrect") : "";
+          return `<article class="statement-row ${rowState}" data-response-row="${Utils.escape(leftValue)}"><div class="statement-copy"><span class="statement-number">${Utils.escape(leftValue)}</span><p>${Utils.escape(typeof left === "object" ? String(left.label || "").replace(/^\s*\d+\s*/, "") : left)}</p></div><div class="statement-options" role="radiogroup" aria-label="${Utils.escape(leftValue)}">${rightOptions.map((right) => { const value = optionValue(right); return `<label class="statement-option"><input type="radio" name="q-${id}-${Utils.escape(leftValue)}" data-question-id="${id}" data-match-key="${Utils.escape(leftValue)}" value="${Utils.escape(value)}" ${selected === value ? "checked" : ""} ${locked ? "disabled" : ""}><span>${Utils.escape(optionLabel(right))}</span></label>`; }).join("")}</div>${result && selected ? `<span class="statement-status" aria-label="${rowState === "is-correct" ? "Correct" : "Incorrect"}">${rowState === "is-correct" ? "✓" : "✕"}</span>` : ""}</article>`;
+        }).join("")}</div>`;
+      } else if (question.variant === "response-expressions") {
         const responseBank = `<div class="response-bank" aria-label="Responses">${rightOptions.map((right) => `<div class="response-bank-item"><span class="response-letter">${Utils.escape(optionValue(right))}</span><p>${Utils.escape(optionLabel(right))}</p></div>`).join("")}</div>`;
         const rows = leftItems.map((left) => {
           const leftValue = typeof left === "object" ? String(left.value ?? left.label) : String(left);
@@ -869,7 +887,8 @@
         const stringItem = String(item);
         const isFixed = fixedStart.includes(stringItem);
         const previousIsFixed = index > 0 && fixedStart.includes(String(initial[index - 1]));
-        const label = optionLabel(Utils.asArray(question.items).find((candidate) => optionValue(candidate) === stringItem) || item);
+        const sourceItem = Utils.asArray(question.items).find((candidate) => optionValue(candidate) === stringItem) || item;
+        const label = renderOrderingLabel(sourceItem, answers);
         return `<div class="order-item ${isFixed ? "is-fixed" : ""}" data-order-value="${Utils.escape(stringItem)}"${isFixed ? ' data-order-fixed="true"' : ""}><span class="order-item-copy">${isFixed ? '<span class="order-fixed-badge">1 · given</span>' : ""}${Utils.escape(label)}</span><span class="order-controls"><button type="button" data-order-action="up" aria-label="Move up" ${locked || isFixed || index === 0 || previousIsFixed ? "disabled" : ""}>↑</button><button type="button" data-order-action="down" aria-label="Move down" ${locked || isFixed || index === initial.length - 1 ? "disabled" : ""}>↓</button></span></div>`;
       }).join("")}</div>`;
     }
@@ -971,6 +990,13 @@
     return `<span class="conversation-gap ${stateClass}">${control}${status}</span>`;
   }
 
+  function renderGapTextPart(part, questionMap, answers, checked, locked) {
+    if (typeof part === "string") return Utils.escape(part);
+    if (!part || typeof part !== "object") return "";
+    if (part.underline) return `<u>${Utils.escape(part.underline)}</u>`;
+    return renderConversationGapPart(part, questionMap, answers, checked, locked);
+  }
+
   function renderLessonWordBank(block) {
     const groups = Utils.asArray(block.wordBankGroups);
     if (groups.length) {
@@ -1007,7 +1033,7 @@
     const wordBank = renderLessonWordBank(block);
     const paragraphs = Utils.asArray(block.paragraphs).map((paragraph) => {
       const parts = Utils.asArray(paragraph);
-      return `<p>${parts.map((part) => renderConversationGapPart(part, questionMap, answers, checked, locked)).join("")}</p>`;
+      return `<p>${parts.map((part) => renderGapTextPart(part, questionMap, answers, checked, locked)).join("")}</p>`;
     }).join("");
     const passageLabel = block.passageLabel
       ? `<div class="lesson-passage-heading"><span class="lesson-passage-label">${Utils.escape(block.passageLabel)}</span>${block.passageHelp ? `<span class="lesson-passage-help">${Utils.escape(block.passageHelp)}</span>` : ""}</div>`
@@ -1111,6 +1137,13 @@
       }
       progress.status = "draft";
       saveDraft();
+      const updatesDynamicOrdering = questions.some((item) =>
+        item.type === "ordering" &&
+        Utils.asArray(item.items).some((orderItem) =>
+          Utils.asArray(orderItem?.labelParts).some((part) => part && typeof part === "object" && part.questionId === id)
+        )
+      );
+      if (updatesDynamicOrdering) render();
     };
 
     const saveDraft = Utils.debounce(async () => {

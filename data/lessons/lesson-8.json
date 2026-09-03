@@ -449,6 +449,14 @@
                 " then."
               ]
             }
+          ],
+          "pairs": [
+            [
+              "(play / ride / your / football / bike)"
+            ],
+            [
+              "(in / bedroom / stay / tidy / up / your)"
+            ]
           ]
         },
         {
@@ -492,6 +500,14 @@
                 "Fair enough."
               ]
             }
+          ],
+          "pairs": [
+            [
+              "(in / it / stayed / took / easy)"
+            ],
+            [
+              "(fancy / just / going / clubbing / didn't)"
+            ]
           ]
         },
         {
@@ -547,6 +563,17 @@
                 "."
               ]
             }
+          ],
+          "pairs": [
+            [
+              "(easy / for / to / it / place / a / friend's / dinner / taking)"
+            ],
+            [
+              "(for / and / staying / exams / studying / in / my)"
+            ],
+            [
+              "(going / watch / clubbing / bar / football / to / a / the / to)"
+            ]
           ]
         }
       ],
@@ -882,10 +909,36 @@
       "variant": "language-note",
       "kicker": "Grammar note",
       "title": "Habit and frequency",
-      "paragraphs": [
-        "Use How often ...? to ask about frequency: How often do you eat out?",
-        "Use ever in present simple questions when you mean at any time: Do you ever work weekends?",
-        "Use all the time, every time, often, hardly ever and never to answer frequency questions."
+      "rule": "Use the present simple to talk about habits and frequency. Use How often ...? to ask how regularly something happens. Use ever in questions about habits. Use used to + verb for past habits that are not true now.",
+      "exampleGroups": [
+        {
+          "label": "Frequency questions",
+          "examples": [
+            {
+              "text": "How often do you eat out?",
+              "emphasis": "How often"
+            },
+            {
+              "text": "Do you ever work weekends?",
+              "emphasis": "ever"
+            }
+          ]
+        },
+        {
+          "label": "Past habits",
+          "examples": [
+            {
+              "text": "I used to have loads of time.",
+              "emphasis": "used to have"
+            },
+            {
+              "text": "I worked late one day last week.",
+              "emphasis": "one day last week",
+              "status": "incorrect",
+              "label": "not used to"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1051,66 +1104,102 @@
       ]
     },
     {
-      "type": "matching",
+      "type": "ordering",
       "id": "habit-4-order",
       "question": "4 Then number the answers in order (1 = most often).",
-      "pairs": [
+      "items": [
         {
           "value": "a",
-          "label": "a that often. Maybe once a week."
+          "labelParts": [
+            "a ",
+            {
+              "questionId": "habit-4-word-a"
+            },
+            " often. Maybe once a week."
+          ]
         },
         {
           "value": "b",
-          "label": "b All the time. I can't live without my iPod."
+          "labelParts": [
+            "b ",
+            {
+              "questionId": "habit-4-word-b"
+            },
+            " time. I can't live without my iPod."
+          ]
         },
         {
           "value": "c",
-          "label": "c Hardly ever. I never have the time."
+          "labelParts": [
+            "c Hardly ",
+            {
+              "questionId": "habit-4-word-c"
+            },
+            ". I never have the time."
+          ]
         },
         {
           "value": "d",
-          "label": "d Not as much as I used to. Maybe only once a fortnight."
+          "labelParts": [
+            "d Not as much as I ",
+            {
+              "questionId": "habit-4-word-d"
+            },
+            ". Maybe only once a fortnight."
+          ]
         },
         {
           "value": "e",
-          "label": "e Never. I'm more into books."
+          "labelParts": [
+            "e ",
+            {
+              "questionId": "habit-4-word-e"
+            },
+            ". I'm more into books."
+          ]
         },
         {
           "value": "f",
-          "label": "f Quite often. Probably five times a week."
+          "labelParts": [
+            "f Quite ",
+            {
+              "questionId": "habit-4-word-f"
+            },
+            ". Probably five times a week."
+          ]
         },
         {
           "value": "g",
-          "label": "g Not as much as I would like to. Just two or three times a week."
+          "labelParts": [
+            "g Not as much as I ",
+            {
+              "questionId": "habit-4-word-g"
+            },
+            " like to. Just two or three times a week."
+          ]
         },
         {
           "value": "h",
-          "label": "h Nearly every day. Usually when I want to relax in the evenings."
+          "labelParts": [
+            "h Nearly ",
+            {
+              "questionId": "habit-4-word-h"
+            },
+            " day. Usually when I want to relax in the evenings."
+          ]
         }
       ],
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8"
+      "correctAnswer": [
+        "b",
+        "h",
+        "f",
+        "g",
+        "a",
+        "d",
+        "c",
+        "e"
       ],
-      "correctAnswer": {
-        "a": "5",
-        "b": "1",
-        "c": "7",
-        "d": "6",
-        "e": "8",
-        "f": "3",
-        "g": "4",
-        "h": "2"
-      },
-      "points": 8,
-      "scorePerPair": true,
-      "compactOptionLabels": true
+      "points": 8
     },
     {
       "type": "gap-text",
@@ -1175,37 +1264,52 @@
         [
           "1 When I was at my first school, I ",
           {
-            "questionId": "habit-5-1"
+            "underline": "had"
           },
-          " loads of time to see friends, but now I have to study all week."
+          " loads of time to see friends, but now I have to study all week. → ",
+          {
+            "questionId": "habit-5-1"
+          }
         ],
         [
           "2 I ",
           {
-            "questionId": "habit-5-2"
+            "underline": "took"
           },
-          " every weekend off, but these days I spend every waking hour at the office."
+          " every weekend off, but these days I spend every waking hour at the office. → ",
+          {
+            "questionId": "habit-5-2"
+          }
         ],
         [
-          "3 ",
+          "3 I ",
+          {
+            "underline": "worked"
+          },
+          " from six in the morning until 10 at night one day last week. It was just exhausting. → ",
           {
             "questionId": "habit-5-3"
-          },
-          ": I worked from six in the morning until 10 at night one day last week. It was just exhausting."
+          }
         ],
         [
           "4 My colleagues always ",
           {
-            "questionId": "habit-5-4"
+            "underline": "left"
           },
-          " work on time but now we're expected to stay late at the office."
+          " work on time but now we're expected to stay late at the office. → ",
+          {
+            "questionId": "habit-5-4"
+          }
         ],
         [
           "5 I ",
           {
-            "questionId": "habit-5-5"
+            "underline": "spent"
           },
-          " all weekend with my family before I started working. Now, I hardly ever see them."
+          " all weekend with my family before I started working. Now, I hardly ever see them. → ",
+          {
+            "questionId": "habit-5-5"
+          }
         ]
       ]
     },
@@ -1304,15 +1408,15 @@
       "options": [
         {
           "value": "M",
-          "label": "M Mike"
+          "label": "M"
         },
         {
           "value": "A",
-          "label": "A Amy"
+          "label": "A"
         },
         {
           "value": "J",
-          "label": "J Jack"
+          "label": "J"
         }
       ],
       "correctAnswer": {
@@ -1326,12 +1430,32 @@
       },
       "points": 7,
       "scorePerPair": true,
-      "compactOptionLabels": true
+      "compactOptionLabels": true,
+      "variant": "radio-grid"
     },
     {
       "type": "section-heading",
       "kicker": "Pronunciation",
       "title": "Sentence stress"
+    },
+    {
+      "type": "content",
+      "variant": "language-note",
+      "id": "sentence-stress-note",
+      "kicker": "Language note",
+      "title": "Unstressed sounds",
+      "rule": "Structural words, for example prepositions, conjunctions, auxiliaries and articles, are not usually stressed because they don't carry the main information in a sentence. The unstressed syllables are usually pronounced with the same vowel sound, /ə/.",
+      "exampleGroups": [
+        {
+          "label": "Example",
+          "examples": [
+            {
+              "text": "Like a lot of people, I used to have a pretty fixed routine.",
+              "emphasis": "Like a lot of people"
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "pronunciation",
@@ -1353,11 +1477,10 @@
       ]
     },
     {
-      "type": "pronunciation",
+      "type": "content",
       "id": "pronunciation-9",
-      "question": "9 4.3 Listen and check. Practise the sentences again.",
-      "context": "After listening, write Done or add a short note about which sentence was difficult.",
-      "autoCheck": false
+      "kicker": "Pronunciation",
+      "title": "9 4.3 Listen and check. Practise the sentences again."
     },
     {
       "type": "section-heading",
