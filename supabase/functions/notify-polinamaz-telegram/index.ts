@@ -1,6 +1,7 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const FUNCTION_VERSION = "homework-reports-v5-one-lesson-notification";
+const FUNCTION_VERSION = "homework-reports-v8-readable-diagnostics";
+const DIAGNOSTIC_VERSION = "polina-diagnostics-v1";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-notify-secret",
@@ -13,7 +14,21 @@ function json(body: Record<string, unknown>, status = 200): Response {
 }
 
 function safeMessage(error: unknown): string {
-  const raw = error instanceof Error ? error.message : String(error || "Unknown error");
+  let raw = "";
+  if (error instanceof Error) {
+    raw = error.message;
+  } else if (error && typeof error === "object") {
+    const item = error as Record<string, unknown>;
+    raw = [
+      item.code ? `${item.code}:` : "",
+      item.message,
+      item.details,
+      item.hint
+    ].filter(Boolean).join(" ");
+    if (!raw) raw = JSON.stringify(item);
+  } else {
+    raw = String(error || "Unknown error");
+  }
   return raw.replace(/[A-Za-z0-9_-]{30,}/g, "[hidden]").slice(0, 400);
 }
 
@@ -23,13 +38,26 @@ function env(name: string): string {
   return value;
 }
 
+function telegramBotToken(studentId: string): string {
+  if (studentId === "polinamaz") return env("POLINAMAZ_TELEGRAM_BOT_TOKEN");
+  return env("TELEGRAM_BOT_TOKEN");
+}
+
 function allowedStudent(studentId: unknown): string {
   const value = String(studentId || "").trim().toLowerCase();
   if (!/^[a-z0-9][a-z0-9_-]{1,63}$/.test(value)) {
     throw new Error("Unknown student");
   }
-  const configured = Deno.env.get("ALLOWED_STUDENT_ID")?.trim().toLowerCase();
-  if (configured && value !== configured) throw new Error("Unknown student");
+  const configured = [
+    Deno.env.get("ALLOWED_STUDENT_ID") || "",
+    Deno.env.get("ALLOWED_STUDENT_IDS") || ""
+  ]
+    .join(",")
+    .split(",")
+    .map((item) => item.trim().toLowerCase())
+    .filter(Boolean);
+  const allowed = new Set(["polinamaz", ...configured]);
+  if (!allowed.has(value)) throw new Error("Unknown student");
   return value;
 }
 
@@ -104,6 +132,215 @@ async function getRecipient(client: ReturnType<typeof createClient>, studentId: 
   return data;
 }
 
+function probeLessonId(value: unknown): string {
+  const lessonId = String(value || "").trim();
+  if (!/^__diagnostic_probe__[a-zA-Z0-9_-]+$/.test(lessonId)) {
+    throw new Error("Invalid diagnostic probe lessonId");
+  }
+  return lessonId;
+}
+
+function homeworkRowIsSuspicious(row: Record<string, unknown>): boolean {
+  const status = String(row.status || "");
+  const reportStatus = String(row.report_status || "");
+  if (status === "submitted") return !row.submitted_at || !row.locked_at || reportStatus !== "sent" || !row.report_sent_at;
+  if (status === "draft") return Boolean(row.submitted_at || row.locked_at || reportStatus !== "not_sent" || row.report_sent_at);
+  if (status === "submitted_pending_report") return !row.submitted_at || !row.locked_at || !["pending", "failed"].includes(reportStatus);
+  return true;
+}
+
+async function telegramApi(token: string, method: string, payload: Record<string, unknown>) {
+  const apiBase = "https://api." + "telegram.org";
+  const response = await fetch(`${apiBase}/bot${token}/${method}`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok || !data?.ok) {
+    const description = typeof data?.description === "string" ? data.description : "Unknown Telegram error";
+    throw new Error(`Telegram ${method} failed (${response.status}): ${description}`);
+  }
+  return data.result;
+}
+
+async function diagnosticRecipient(client: ReturnType<typeof createClient>, studentId: string) {
+  const { data, error } = await client
+    .from("telegram_recipients")
+    .select("chat_id,message_thread_id,enabled")
+    .eq("student_id", studentId)
+    .maybeSingle();
+  if (error) return { ok: false, error: safeMessage(error) };
+  if (!data) return { ok: false, error: "Telegram recipient is not configured" };
+  if (!data.enabled) return { ok: false, enabled: false, source: "telegram_recipients", threadId: data.message_thread_id ?? null, error: "Telegram recipient is disabled" };
+  return { ok: true, enabled: true, source: "telegram_recipients", threadId: data.message_thread_id ?? null, chatId: data.chat_id };
+}
+
+async function diagnosticsHealth(client: ReturnType<typeof createClient>, body: Record<string, unknown>) {
+  const studentId = allowedStudent(body.studentId);
+  const database: Record<string, unknown> = { ok: false, homeworkRows: 0, suspiciousHomework: [], removedProbes: 0 };
+
+  const { data: homeworkRows, error: homeworkError, count } = await client
+    .from("homework_progress")
+    .select("lesson_id,status,submitted_at,locked_at,report_status,report_sent_at", { count: "exact" })
+    .eq("student_id", studentId)
+    .limit(100);
+  if (homeworkError) {
+    database.error = safeMessage(homeworkError);
+  } else {
+    const rows = Array.isArray(homeworkRows) ? homeworkRows : [];
+    database.ok = true;
+    database.homeworkRows = count ?? rows.length;
+    database.suspiciousHomework = rows
+      .filter((row: Record<string, unknown>) => !String(row.lesson_id || "").startsWith("__diagnostic_probe__") && homeworkRowIsSuspicious(row))
+      .map((row: Record<string, unknown>) => row.lesson_id);
+  }
+
+  const { data: removed, error: removeError } = await client
+    .from("homework_progress")
+    .delete()
+    .eq("student_id", studentId)
+    .like("lesson_id", "__diagnostic_probe__%")
+    .select("lesson_id");
+  if (!removeError) database.removedProbes = Array.isArray(removed) ? removed.length : 0;
+
+  const recipient = await diagnosticRecipient(client, studentId);
+  const telegram: Record<string, unknown> = { bot: { ok: false }, chat: { ok: false } };
+  let token = "";
+  try {
+    token = telegramBotToken(studentId);
+    const bot = await telegramApi(token, "getMe", {});
+    telegram.bot = { ok: true, username: bot?.username || null };
+  } catch (error) {
+    telegram.bot = { ok: false, error: safeMessage(error) };
+  }
+  if (recipient.ok && "chatId" in recipient && token) {
+    try {
+      const chat = await telegramApi(token, "getChat", { chat_id: recipient.chatId });
+      telegram.chat = { ok: true, type: chat?.type || null, title: chat?.title || null };
+    } catch (error) {
+      telegram.chat = { ok: false, error: safeMessage(error) };
+    }
+  } else if (!token) {
+    telegram.chat = { ok: false, error: "Telegram bot token is not configured" };
+  } else {
+    telegram.chat = { ok: false, error: "Telegram recipient is not configured" };
+  }
+
+  const { chatId, ...safeRecipient } = recipient as Record<string, unknown>;
+  return json({ ok: true, diagnostic: true, diagnosticVersion: DIAGNOSTIC_VERSION, database, recipient: safeRecipient, telegram });
+}
+
+async function diagnosticsHomeworkProbe(client: ReturnType<typeof createClient>, body: Record<string, unknown>) {
+  const studentId = allowedStudent(body.studentId);
+  const lessonId = probeLessonId(body.lessonId);
+  const stages: string[] = [];
+
+  const { data: existing, error: lookupError } = await client
+    .from("homework_progress")
+    .select("status")
+    .eq("student_id", studentId)
+    .eq("lesson_id", lessonId)
+    .maybeSingle();
+  if (lookupError) throw lookupError;
+  if (!existing) return json({ ok: false, diagnosticVersion: DIAGNOSTIC_VERSION, error: "Diagnostic draft row was not found" }, 404);
+  stages.push(`browser_insert:${existing.status}`);
+
+  const submittedAt = new Date().toISOString();
+  const { error: pendingError } = await client
+    .from("homework_progress")
+    .update({
+      status: "submitted_pending_report",
+      answers: { __diagnostic: true },
+      score_correct: 1,
+      score_total: 1,
+      score_percent: 100,
+      checked_at: submittedAt,
+      submitted_at: submittedAt,
+      locked_at: submittedAt,
+      report_status: "pending",
+      report_sent_at: null,
+      report_error: null
+    })
+    .eq("student_id", studentId)
+    .eq("lesson_id", lessonId);
+  if (pendingError) throw pendingError;
+  stages.push("server_update:submitted_pending_report");
+
+  const sentAt = new Date().toISOString();
+  const { error: sentError } = await client
+    .from("homework_progress")
+    .update({
+      status: "submitted",
+      report_status: "sent",
+      report_sent_at: sentAt,
+      report_error: null
+    })
+    .eq("student_id", studentId)
+    .eq("lesson_id", lessonId);
+  if (sentError) throw sentError;
+  stages.push("server_update:submitted");
+
+  const { error: deleteError } = await client
+    .from("homework_progress")
+    .delete()
+    .eq("student_id", studentId)
+    .eq("lesson_id", lessonId);
+  if (deleteError) throw deleteError;
+  stages.push("cleanup:deleted");
+
+  return json({ ok: true, diagnostic: true, diagnosticVersion: DIAGNOSTIC_VERSION, stages });
+}
+
+async function diagnosticsCleanupProbe(client: ReturnType<typeof createClient>, body: Record<string, unknown>) {
+  const studentId = allowedStudent(body.studentId);
+  const lessonId = probeLessonId(body.lessonId);
+  const { error } = await client.from("homework_progress").delete().eq("student_id", studentId).eq("lesson_id", lessonId);
+  if (error) throw error;
+  return json({ ok: true, diagnostic: true, diagnosticVersion: DIAGNOSTIC_VERSION });
+}
+
+async function diagnosticsSendReport(client: ReturnType<typeof createClient>, body: Record<string, unknown>) {
+  const studentId = allowedStudent(body.studentId);
+  const now = Date.now();
+  const windowSeconds = 30;
+  const notificationVersion = Math.floor(now / (windowSeconds * 1000));
+  const retryAfterSeconds = windowSeconds - Math.floor((now / 1000) % windowSeconds);
+  const claim = await claimPublication(client, {
+    student_id: studentId,
+    material_type: "diagnostic",
+    material_id: "diagnostics-send-report",
+    notification_version: notificationVersion,
+    payload: { pageUrl: String(body.pageUrl || ""), requestedAt: new Date(now).toISOString() }
+  });
+  if (claim.alreadySent) {
+    return json({ ok: true, diagnostic: true, diagnosticVersion: DIAGNOSTIC_VERSION, skipped: true, retryAfterSeconds });
+  }
+
+  try {
+    const recipient = await getRecipient(client, studentId);
+    const text = `🧪 English Space: тестовый Telegram-отчёт\nУченица: ${studentDisplayName(studentId)}\nДиагностика: ${DIAGNOSTIC_VERSION}\nВремя: ${dateTime(new Date(now).toISOString())}`;
+    const messageId = await sendTelegram(telegramBotToken(studentId), recipient, text);
+    const sentAt = new Date().toISOString();
+    const { error } = await client
+      .from("material_publications")
+      .update({ status: "sent", telegram_message_id: messageId || null, sent_at: sentAt, error_message: null })
+      .eq("id", claim.existing.id);
+    if (error) throw error;
+    return json({
+      ok: true,
+      diagnostic: true,
+      diagnosticVersion: DIAGNOSTIC_VERSION,
+      telegramMessageId: messageId || null,
+      threadId: recipient.message_thread_id ?? null
+    });
+  } catch (error) {
+    const message = safeMessage(error);
+    await client.from("material_publications").update({ status: "failed", error_message: message }).eq("id", claim.existing.id);
+    return json({ ok: false, diagnostic: true, diagnosticVersion: DIAGNOSTIC_VERSION, error: message }, 502);
+  }
+}
+
 async function lessonTitle(lessonId: string): Promise<string> {
   const base = Deno.env.get("SITE_BASE_URL")?.replace(/\/$/, "");
   if (!base) return lessonId;
@@ -161,7 +398,7 @@ async function homeworkReport(client: ReturnType<typeof createClient>, body: Rec
   ].filter(Boolean).join("\n");
 
   try {
-    await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
+    await sendTelegram(telegramBotToken(studentId), recipient, text);
     const sentAt = new Date().toISOString();
     const { error: updateError } = await client
       .from("homework_progress")
@@ -397,7 +634,7 @@ async function materialPublished(client: ReturnType<typeof createClient>, reques
     });
     keyboard.push([{ text: "📝 Do the homework", url: homeworkUrl }]);
 
-    const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text, keyboard);
+    const messageId = await sendTelegram(telegramBotToken(studentId), recipient, text, keyboard);
     const sentAt = new Date().toISOString();
     const { error } = await client
       .from("material_publications")
@@ -427,7 +664,7 @@ async function diagnostic(client: ReturnType<typeof createClient>, body: Record<
   try {
     const recipient = await getRecipient(client, studentId);
     const text = `🧪 English Space: тест Telegram-отчёта\nУченица: ${studentDisplayName(studentId)}\nФункция: ${FUNCTION_VERSION}\nВремя: ${dateTime(now.toISOString())}`;
-    const messageId = await sendTelegram(env("TELEGRAM_BOT_TOKEN"), recipient, text);
+    const messageId = await sendTelegram(telegramBotToken(studentId), recipient, text);
     const sentAt = new Date().toISOString();
     await client.from("material_publications").update({ status: "sent", telegram_message_id: messageId || null, sent_at: sentAt, error_message: null }).eq("id", claim.existing.id);
     return json({ ok: true, diagnostic: true, serverTime: now.toISOString(), sentAt });
@@ -445,7 +682,12 @@ Deno.serve(async (request: Request) => {
   try {
     const body = await request.json() as Record<string, unknown>;
     const action = String(body.action || "");
+    const kind = String(body.kind || "");
     const client = createClient(env("SUPABASE_URL"), env("SUPABASE_SERVICE_ROLE_KEY"));
+    if (kind === "diagnostics_health") return await diagnosticsHealth(client, body);
+    if (kind === "diagnostics_homework_probe") return await diagnosticsHomeworkProbe(client, body);
+    if (kind === "diagnostics_cleanup_probe") return await diagnosticsCleanupProbe(client, body);
+    if (kind === "diagnostics_send_report") return await diagnosticsSendReport(client, body);
     if (action === "homework_report") return await homeworkReport(client, body);
     if (action === "material_published") return await materialPublished(client, request, body);
     if (action === "diagnostic") return await diagnostic(client, body);

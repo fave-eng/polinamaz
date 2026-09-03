@@ -215,6 +215,9 @@
       }
       return this.enabled;
     },
+    functionName(key, fallback) {
+      return String(config.supabase?.functions?.[key] || fallback).trim() || fallback;
+    },
     async one(table, filters) {
       if (!this.enabled) return null;
       let query = this.client.from(table).select("*");
@@ -442,24 +445,20 @@
     },
     async vocabularyTopics() {
       const externalTopics = Utils.asArray(window.VOCABULARY_DATA);
-      if (externalTopics.length) {
-        const seen = new Set();
-        return Utils.newestFirst(externalTopics.map((topic) => {
-          const words = Utils.asArray(topic.words).filter((word) => {
-            const key = Utils.wordKey(word);
-            if (!key || seen.has(key)) return false;
-            seen.add(key);
-            return true;
-          });
-          const linkedLessonId = topic.linkedLessonId || topic.lessonId || "";
-          const lessonNumber = Number(String(linkedLessonId).match(/\d+/)?.[0] || 0);
-          return { ...topic, lessonId: linkedLessonId, lessonNumber, words };
-        }).filter((topic) => topic.words.length));
-      }
-
       const lessons = await this.lessonIndex();
       const topics = [];
       const seen = new Set();
+      externalTopics.forEach((topic) => {
+        const words = Utils.asArray(topic.words).filter((word) => {
+          const key = Utils.wordKey(word);
+          if (!key || seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+        const linkedLessonId = topic.linkedLessonId || topic.lessonId || "";
+        const lessonNumber = Number(String(linkedLessonId).match(/\d+/)?.[0] || 0);
+        if (words.length) topics.push({ ...topic, lessonId: linkedLessonId, lessonNumber, words });
+      });
       for (const entry of lessons) {
         try {
           const lesson = entry.blocks ? entry : await this.lesson(entry.id || entry);
@@ -696,7 +695,11 @@
     const renderLessonCard = ({ lesson, progress }) => {
       const [label, className] = lesson.status === "locked" ? ["🔒 Coming soon", "status-locked"] : statusLabel(progress);
       const locked = lesson.status === "locked";
-      const linkedVocabulary = vocabularyByLesson.get(String(lesson.id)) || [];
+      const explicitVocabularyIds = new Set(Utils.asArray(lesson.vocabularyIds || (lesson.vocabularyTopicId ? [lesson.vocabularyTopicId] : [])).map(String));
+      const linkedVocabulary = [...(vocabularyByLesson.get(String(lesson.id)) || [])];
+      vocabularyTopics.forEach((topic) => {
+        if (explicitVocabularyIds.has(String(topic.id)) && !linkedVocabulary.some((item) => String(item.id) === String(topic.id))) linkedVocabulary.push(topic);
+      });
       const explicitGrammarIds = new Set(Utils.asArray(lesson.grammarIds).map(String));
       const linkedGrammar = grammarTopics.filter((topic) => explicitGrammarIds.has(String(topic.id)) || String(topic.linkedLessonId || "") === String(lesson.id));
       const materials = [
@@ -968,9 +971,20 @@
     return `<span class="conversation-gap ${stateClass}">${control}${status}</span>`;
   }
 
+  function renderLessonWordBank(block) {
+    const groups = Utils.asArray(block.wordBankGroups);
+    if (groups.length) {
+      return `<div class="lesson-word-bank lesson-word-bank-grouped" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-groups">${groups.map((group) => `<div class="lesson-word-bank-group"><strong>${Utils.escape(group.label || "Box")}</strong><div class="lesson-word-bank-items">${Utils.asArray(group.words).map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`).join("")}</div></div>`;
+    }
+    return Utils.asArray(block.wordBank).length
+      ? `<div class="lesson-word-bank" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-items">${block.wordBank.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`
+      : "";
+  }
+
   function renderConversationGapBlock(block, answers, checked, locked) {
     const questions = Utils.asArray(block.questions);
     const questionMap = new Map(questions.map((question) => [String(question.id), question]));
+    const wordBank = renderLessonWordBank(block);
     const conversations = Utils.asArray(block.conversations).map((conversation) => {
       const pairs = Utils.asArray(conversation.pairs).map((pair) => {
         const values = Utils.asArray(pair);
@@ -984,7 +998,21 @@
       }).join("");
       return `<article class="conversation-item"><div class="conversation-item-heading"><span class="conversation-number">${Utils.escape(conversation.number)}</span><div class="conversation-pair-bank">${pairs}</div></div><div class="conversation-dialogue">${lines}</div></article>`;
     }).join("");
-    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body"><div class="conversation-list">${conversations}</div></div></section>`;
+    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body">${wordBank}<div class="conversation-list">${conversations}</div></div></section>`;
+  }
+
+  function renderGapTextBlock(block, answers, checked, locked) {
+    const questions = Utils.asArray(block.questions);
+    const questionMap = new Map(questions.map((question) => [String(question.id), question]));
+    const wordBank = renderLessonWordBank(block);
+    const paragraphs = Utils.asArray(block.paragraphs).map((paragraph) => {
+      const parts = Utils.asArray(paragraph);
+      return `<p>${parts.map((part) => renderConversationGapPart(part, questionMap, answers, checked, locked)).join("")}</p>`;
+    }).join("");
+    const passageLabel = block.passageLabel
+      ? `<div class="lesson-passage-heading"><span class="lesson-passage-label">${Utils.escape(block.passageLabel)}</span>${block.passageHelp ? `<span class="lesson-passage-help">${Utils.escape(block.passageHelp)}</span>` : ""}</div>`
+      : "";
+    return `<section class="card exercise-block lesson-content-card lesson-gap-text-card">${renderContentHeading(block)}<div class="lesson-content-body">${block.instruction ? `<div class="lesson-task-instruction"><span class="lesson-task-label">Task</span><p>${Utils.escape(block.instruction)}</p></div>` : ""}${wordBank}<article class="lesson-passage-card ${block.variant ? `lesson-gap-text-${Utils.escape(block.variant)}` : ""}">${passageLabel}<div class="lesson-gap-text">${paragraphs}</div></article></div></section>`;
   }
 
   function renderStatementListBlock(block, answers, checked, locked) {
@@ -1019,7 +1047,8 @@
     const questions = collectQuestions(lesson.blocks);
     const grammarTopicIds = new Set(Utils.asArray(lesson.grammarIds).map(String));
     const linkedGrammarTopics = DataService.grammarTopics().filter((topic) => grammarTopicIds.has(String(topic.id)) || String(topic.linkedLessonId || "") === String(lesson.id));
-    const linkedVocabularyTopics = (await DataService.vocabularyTopics()).filter((topic) => String(topic.linkedLessonId || topic.lessonId || "") === String(lesson.id));
+    const vocabularyTopicIds = new Set(Utils.asArray(lesson.vocabularyIds || (lesson.vocabularyTopicId ? [lesson.vocabularyTopicId] : [])).map(String));
+    const linkedVocabularyTopics = (await DataService.vocabularyTopics()).filter((topic) => String(topic.linkedLessonId || topic.lessonId || "") === String(lesson.id) || vocabularyTopicIds.has(String(topic.id)));
     const linkedMaterials = [
       ...linkedVocabularyTopics.map((topic) => ({ type: "vocab", icon: "💥", label: "Vocabulary", title: topic.title, href: topic.page || `vocabulary.html?topic=${encodeURIComponent(topic.id)}` })),
       ...linkedGrammarTopics.map((topic) => ({ type: "grammar", icon: "📐", label: "Grammar", title: topic.title, href: topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}` }))
@@ -1031,6 +1060,9 @@
       const checked = meta.checkDetails || null;
       let questionNumber = 0;
       const blockHtml = Utils.asArray(lesson.blocks).map((block) => {
+        if (block.type === "gap-text") {
+          return renderGapTextBlock(block, progress.answers, checked, locked);
+        }
         const content = renderContentBlock(block);
         if (content) return content;
         if (block.type === "conversation-gap-fill") {
@@ -1162,7 +1194,7 @@
         return;
       }
       try {
-        const { data, error } = await Cloud.client.functions.invoke("notify-telegram", {
+        const { data, error } = await Cloud.client.functions.invoke(Cloud.functionName("notifyTelegram", "notify-telegram"), {
           body: {
             action: "homework_report",
             studentId: STUDENT_ID,
@@ -1195,12 +1227,20 @@
     const [topics, allWordProgress] = await Promise.all([DataService.vocabularyTopics(), ProgressService.loadAll("vocabulary")]);
     setHero("Vocabulary Hub", "Flashcards, pronunciation and tests for lesson words.");
     const progressMap = Object.fromEntries(allWordProgress.map((item) => [item.word_key, item]));
-    main.innerHTML = `<div class="page-heading"><p class="eyebrow">Word practice</p><h1>Vocabulary</h1><p class="lead">Learn lesson words, listen to pronunciation and finish a test to mark words as learned.</p></div>${topics.length ? `<section class="section resource-hub-section"><div class="section-header"><h2>Vocabulary topics</h2><span class="section-count">${topics.length}</span></div><div class="hub-list resource-hub-list">${topics.map((topic) => {
+    const topicCards = topics.map((topic) => {
       const unique = topic.words;
       const known = unique.filter((word) => progressMap[Utils.wordKey(word)]?.status === "known").length;
       const percent = Utils.percent(known, unique.length);
-      return `<article class="card resource-hub-card"><div class="resource-hub-header"><div class="resource-hub-icon" aria-hidden="true">${Utils.escape(topic.icon || "💬")}</div><div class="resource-hub-copy"><p class="eyebrow">${Utils.escape(topic.label || `Lesson ${topic.lessonNumber || ""}`)}</p><h3>${Utils.escape(topic.title)}</h3><p>${unique.length} words and phrases</p></div><span class="status-badge ${known === unique.length && unique.length ? "status-complete" : ""}">${known}/${unique.length}</span></div><div class="resource-hub-progress"><div class="progress-row-head"><strong>Learned</strong><span>${percent}%</span></div><div class="progress-track" aria-label="${percent}% learned"><div class="progress-fill" style="width:${percent}%"></div></div></div><div class="resource-hub-actions"><p>A word is learned after a correct answer in a completed test.</p><a class="btn btn-primary" href="${Utils.escape(topic.page || `vocabulary.html?topic=${encodeURIComponent(topic.id)}`)}">Open vocabulary</a></div></article>`;
-    }).join("")}</div></section>` : UI.empty("💥", "Словарных тренажёров пока нет", "Новые темы появятся после уроков.")}`;
+      const complete = Boolean(known === unique.length && unique.length);
+      return {
+        complete,
+        html: `<article class="card resource-hub-card"><div class="resource-hub-header"><div class="resource-hub-icon" aria-hidden="true">${Utils.escape(topic.icon || "💬")}</div><div class="resource-hub-copy"><p class="eyebrow">${Utils.escape(topic.label || `Lesson ${topic.lessonNumber || ""}`)}</p><h3>${Utils.escape(topic.title)}</h3><p>${unique.length} words and phrases</p></div><span class="status-badge ${complete ? "status-complete" : ""}">${known}/${unique.length}</span></div><div class="resource-hub-progress"><div class="progress-row-head"><strong>Learned</strong><span>${percent}%</span></div><div class="progress-track" aria-label="${percent}% learned"><div class="progress-fill" style="width:${percent}%"></div></div></div><div class="resource-hub-actions"><p>A word is learned after a correct answer in a completed test.</p><a class="btn btn-primary" href="${Utils.escape(topic.page || `vocabulary.html?topic=${encodeURIComponent(topic.id)}`)}">Open vocabulary</a></div></article>`
+      };
+    });
+    const available = topicCards.filter((item) => !item.complete);
+    const learned = topicCards.filter((item) => item.complete);
+    const renderTopicSection = (title, items, emptyTitle, emptyText) => `<section class="section resource-hub-section"><div class="section-header"><h2>${Utils.escape(title)}</h2><span class="section-count">${items.length}</span></div>${items.length ? `<div class="hub-list resource-hub-list">${items.map((item) => item.html).join("")}</div>` : UI.empty("💥", emptyTitle, emptyText)}</section>`;
+    main.innerHTML = `<div class="page-heading"><p class="eyebrow">Word practice</p><h1>Vocabulary</h1><p class="lead">Learn lesson words, listen to pronunciation and finish a test to mark words as learned.</p></div>${topics.length ? `${renderTopicSection("Available", available, "No available vocabulary", "All published vocabulary topics are learned.")}${renderTopicSection("Learned", learned, "No learned vocabulary yet", "Completed vocabulary topics will appear here after all words are learned.")}` : UI.empty("💥", "Словарных тренажёров пока нет", "Новые темы появятся после уроков.")}`;
   }
 
   async function initVocabulary() {
@@ -1536,6 +1576,17 @@
     const progressMap = Object.fromEntries(progressRows.map((item) => [item.topic_id, item]));
     const passed = topics.filter((topic) => progressMap[topic.id]?.passed).length;
     const percent = Utils.percent(passed, topics.length);
+    const topicCards = topics.map((topic) => {
+      const item = progressMap[topic.id] || {};
+      const complete = Boolean(item.passed);
+      return {
+        complete,
+        html: `<a class="card interactive grammar-topic-card" href="${Utils.escape(topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}`)}"><div class="grammar-topic-icon">${complete ? "✅" : "📐"}</div><div class="grammar-topic-copy"><span class="homework-number">Topic ${Number(topic.number || topic.order || 0)}</span><h3>${Utils.escape(topic.title)}</h3><p>${Utils.escape(topic.subtitle || "")}</p></div><div class="grammar-topic-meta"><span class="status-badge ${complete ? "status-complete" : ""}">${complete ? "Completed" : `${Number(item.best_score || 0)}% best`}</span><span class="grammar-topic-arrow" aria-hidden="true">→</span></div></a>`
+      };
+    });
+    const available = topicCards.filter((item) => !item.complete);
+    const completed = topicCards.filter((item) => item.complete);
+    const renderGrammarSection = (title, items, emptyTitle, emptyText) => `<section class="section grammar-topics-section" aria-labelledby="grammar-${title.toLowerCase()}-title"><div class="section-heading"><div><span class="eyebrow">Learning path</span><h2 id="grammar-${title.toLowerCase()}-title">${Utils.escape(title)}</h2></div><span class="section-count">${items.length}</span></div>${items.length ? `<div class="hub-list grammar-topic-list">${items.map((item) => item.html).join("")}</div>` : UI.empty("📐", emptyTitle, emptyText)}</section>`;
     main.innerHTML = `<div class="page-heading"><p class="eyebrow">Knowledge base</p><h1>Grammar</h1><p class="lead">Clear theory, visual patterns and step-by-step practice for the current homework.</p></div>
       <section class="section grammar-overview-section" aria-label="Grammar statistics">
         <div class="summary-grid grammar-summary-grid">
@@ -1545,12 +1596,7 @@
         </div>
         <div class="card grammar-overall-progress"><div class="progress-row"><div class="progress-row-head"><strong>Overall progress</strong><span>${passed} of ${topics.length}</span></div><div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="${topics.length}" aria-valuenow="${passed}"><div class="progress-fill green" style="width:${percent}%"></div></div></div></div>
       </section>
-      <section class="section grammar-topics-section" aria-labelledby="grammar-list-title"><div class="section-heading"><div><span class="eyebrow">Learning path</span><h2 id="grammar-list-title">Grammar topics</h2></div></div>
-      <div class="hub-list grammar-topic-list">${topics.length ? topics.map((topic) => {
-        const item = progressMap[topic.id] || {};
-        const complete = Boolean(item.passed);
-        return `<a class="card interactive grammar-topic-card" href="${Utils.escape(topic.page || `grammar-topic.html?id=${encodeURIComponent(topic.id)}`)}"><div class="grammar-topic-icon">${complete ? "✅" : "📐"}</div><div class="grammar-topic-copy"><span class="homework-number">Topic ${Number(topic.number || topic.order || 0)}</span><h3>${Utils.escape(topic.title)}</h3><p>${Utils.escape(topic.subtitle || "")}</p></div><div class="grammar-topic-meta"><span class="status-badge ${complete ? "status-complete" : ""}">${complete ? "Completed" : `${Number(item.best_score || 0)}% best`}</span><span class="grammar-topic-arrow" aria-hidden="true">→</span></div></a>`;
-      }).join("") : UI.empty("📐", "No grammar topics have been published yet", `Materials will be added in line with the lessons and the coursebook “${config.student.textbook}”.`)}</div></section>`;
+      ${topics.length ? `${renderGrammarSection("Available", available, "No available grammar", "All published grammar topics are completed.")}${renderGrammarSection("Completed", completed, "No completed grammar yet", "Completed grammar topics will appear here after the practice is passed.")}` : UI.empty("📐", "No grammar topics have been published yet", `Materials will be added in line with the lessons and the coursebook “${config.student.textbook}”.`)}`;
   }
 
   async function initGrammarTopic() {
@@ -1568,6 +1614,7 @@
     const exampleGroups = Utils.asArray(topic.exampleGroups);
     const examples = Utils.asArray(topic.examples);
     const mistakes = Utils.asArray(topic.commonMistakes);
+    const visual = topic.visual || null;
 
     main.innerHTML = `<div class="page-heading"><p class="eyebrow">Grammar · ${Utils.escape(topic.level || config.student.level)}</p><h1>${Utils.escape(topic.title)}</h1><p class="lead">${Utils.escape(topic.subtitle || "")}</p></div>
       <article class="card grammar-intro-card">
@@ -1575,6 +1622,7 @@
         <h2>${Utils.escape(topic.title)}</h2>
         <p class="muted grammar-lead">${Utils.escape(topic.explanation || "")}</p>
         ${topic.formula ? `<div class="grammar-formula-box"><strong>Quick formula</strong><p>${Utils.escape(topic.formula)}</p></div>` : ""}
+        ${visual?.src ? `<figure class="grammar-visual-card"><img src="${Utils.escape(visual.src)}" alt="${Utils.escape(visual.alt || topic.title)}">${visual.caption ? `<figcaption>${Utils.escape(visual.caption)}</figcaption>` : ""}</figure>` : ""}
         ${anchorLinks.length ? `<div class="grammar-anchor-links">${anchorLinks.map((link) => `<a class="grammar-anchor-link" href="#${Utils.escape(link.id)}">${Utils.escape(link.title)}</a>`).join("")}</div>` : ""}
       </article>
 
@@ -1604,7 +1652,7 @@
       write("Supabase client is available.");
       try {
         const started = new Date();
-        const { data, error } = await Cloud.client.functions.invoke("notify-telegram", { body: { action: "diagnostic", studentId: STUDENT_ID, requestedAt: started.toISOString() } });
+        const { data, error } = await Cloud.client.functions.invoke(Cloud.functionName("notifyTelegram", "notify-telegram"), { body: { action: "diagnostic", studentId: STUDENT_ID, requestedAt: started.toISOString() } });
         if (error) {
           const status = error.context?.status || "unknown";
           write(`HTTP status: ${status}`);
