@@ -1336,7 +1336,7 @@
     {
       "type": "multiple-choice",
       "id": "listening-6",
-      "question": "6 4.1 You are going to hear Mike giving a talk about making small changes to your life. Listen to Part 1 and circle the four aspects that he mentions.",
+      "question": "6 You are going to hear Mike giving a talk about making small changes to your life. Listen to Part 1 and circle the four aspects that he mentions.",
       "options": [
         {
           "value": "travel",
@@ -1369,12 +1369,13 @@
         "relationships",
         "free time"
       ],
-      "points": 4
+      "points": 4,
+      "context": "Audio 4.1"
     },
     {
       "type": "matching",
       "id": "listening-7",
-      "question": "7 4.2 Listen to Part 2. Mike, Amy, and Jack talk about changes they made. Who said or did what? Write M, A, or J.",
+      "question": "7 Listen to Part 2. Mike, Amy, and Jack talk about changes they made. Who said or did what? Write M, A, or J.",
       "pairs": [
         {
           "value": "1",
@@ -1431,7 +1432,8 @@
       "points": 7,
       "scorePerPair": true,
       "compactOptionLabels": true,
-      "variant": "radio-grid"
+      "variant": "radio-grid",
+      "context": "Audio 4.2"
     },
     {
       "type": "section-heading",
@@ -1480,7 +1482,10 @@
       "type": "content",
       "id": "pronunciation-9",
       "kicker": "Pronunciation",
-      "title": "9 4.3 Listen and check. Practise the sentences again."
+      "title": "9 Listen and check. Practise the sentences again.",
+      "items": [
+        "Audio 4.3"
+      ]
     },
     {
       "type": "section-heading",

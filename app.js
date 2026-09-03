@@ -825,12 +825,31 @@
     return String(question.question || question.prompt || question.title || "").trim();
   }
 
+  function splitExerciseTitle(title) {
+    const raw = String(title || "").trim();
+    const match = raw.match(/^(\d+)\s+(.+)$/);
+    if (!match) return { number: "", text: raw };
+    return { number: match[1], text: match[2] };
+  }
+
+  function renderExerciseHeading(kicker, title, fallbackKicker = "Exercise") {
+    const parsed = splitExerciseTitle(title);
+    const number = parsed.number ? `<span class="source-exercise-number">Exercise ${Utils.escape(parsed.number)}</span>` : "";
+    return `<div class="lesson-content-heading source-heading"><div class="source-heading-meta"><span class="lesson-content-kicker">${Utils.escape(kicker || fallbackKicker)}</span>${number}</div><h2>${Utils.escape(parsed.text)}</h2></div>`;
+  }
+
+  function renderQuestionPrompt(prompt) {
+    const parsed = splitExerciseTitle(prompt);
+    if (!parsed.number) return `<div class="question-text">${Utils.escape(prompt)}</div>`;
+    return `<div class="question-text source-question-text"><span class="source-exercise-number">Exercise ${Utils.escape(parsed.number)}</span><span>${Utils.escape(parsed.text)}</span></div>`;
+  }
+
   function renderQuestion(question, number, answer, checked, locked, allAnswers = {}) {
     const id = Utils.escape(question.id);
     const result = checked?.[question.id];
     const stateClass = result ? (result.correct ? "is-correct" : "is-incorrect") : "";
     const prompt = originalQuestionPrompt(question);
-    const contextHtml = question.context ? `<p class="question-context">${Utils.escape(question.context)}</p>` : "";
+    const contextHtml = question.context ? (/^Audio\s+/i.test(String(question.context)) ? `<p class="question-context audio-context-badge">${Utils.escape(question.context)}</p>` : `<p class="question-context">${Utils.escape(question.context)}</p>`) : "";
     const frameHtml = question.frame ? `<div class="question-frame">${Utils.escape(question.frame)}</div>` : "";
     let control = "";
     if (["single-choice", "true-false"].includes(question.type)) {
@@ -893,7 +912,7 @@
       }).join("")}</div>`;
     }
     const resultHtml = result ? `<div class="result-label ${result.correct ? "correct" : "incorrect"}"><span aria-hidden="true">${result.correct ? "✓" : "✕"}</span><span><strong>${result.correct ? "Correct" : "Check this answer"}.</strong>${result.explanation ? ` ${Utils.escape(result.explanation)}` : ""}</span></div>` : "";
-    return `<article class="card question-card ${stateClass}" data-question-card="${id}"><div class="question-heading"><div class="question-text">${Utils.escape(prompt)}</div>${contextHtml}${frameHtml}</div><div class="question-answer">${control}</div>${resultHtml}</article>`;
+    return `<article class="card question-card ${stateClass}" data-question-card="${id}"><div class="question-heading">${renderQuestionPrompt(prompt)}${contextHtml}${frameHtml}</div><div class="question-answer">${control}</div>${resultHtml}</article>`;
   }
 
   function renderContentParagraph(item) {
@@ -912,7 +931,7 @@
 
   function renderContentHeading(block) {
     if (!block.title) return "";
-    return `<div class="lesson-content-heading"><span class="lesson-content-kicker">${Utils.escape(block.kicker || "Study material")}</span><h2>${Utils.escape(block.title)}</h2></div>`;
+    return renderExerciseHeading(block.kicker || "Study material", block.title, "Study material");
   }
 
   function renderEmphasizedText(text, emphasis) {
