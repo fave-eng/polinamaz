@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const EXPECTED_DIAGNOSTIC_VERSION = 'polina-diagnostics-v1';
+  const EXPECTED_DIAGNOSTIC_VERSION = 'polina-diagnostics-v2';
   const CURRENT_LESSON_ID = 'lesson-7';
   const config = window.APP_CONFIG || {};
   const student = config.student || {};
