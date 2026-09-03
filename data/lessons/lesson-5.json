@@ -934,15 +934,15 @@
       "tracks": [
         {
           "title": "Mark",
-          "src": "audio/lessons/lesson8-mark.mp3"
+          "src": "audio/lessons/Track%2004.mp3"
         },
         {
           "title": "Mrs deVere",
-          "src": "audio/lessons/lesson8-mrs-de-verve.mp3"
+          "src": "audio/lessons/Track%2005.mp3"
         },
         {
           "title": "Annie",
-          "src": "audio/lessons/lesson8-annie.mp3"
+          "src": "audio/lessons/Track%2006.mp3"
         }
       ]
     },

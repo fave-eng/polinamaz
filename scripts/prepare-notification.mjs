@@ -68,13 +68,9 @@ const studentId = requiredEnv('STUDENT_ID')
 const projectId = requiredEnv('SUPABASE_PROJECT_ID')
 const notifySecret = requiredEnv('NOTIFY_WEBHOOK_SECRET')
 const selectedLessonId = requiredEnv('LESSON_ID')
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY?.trim() || ''
 
-// The live site stores vocabulary in the root file. The data/ path is kept as a
-// compatibility fallback for older copies of the project.
-const vocabularyData = [
-  ...loadWindowArray('vocabulary-data.js', 'VOCABULARY_DATA'),
-  ...loadWindowArray('data/vocabulary-data.js', 'VOCABULARY_DATA'),
-]
+const vocabularyData = loadWindowArray('data/vocabulary-data.js', 'VOCABULARY_DATA')
 const grammarData = loadWindowArray('data/grammar-data.js', 'GRAMMAR_DATA')
 const lessons = loadLessons().filter((lesson) => {
   if (lesson.id !== selectedLessonId) return false
@@ -86,7 +82,7 @@ if (lessons.length === 0) {
 }
 
 const endpoint = process.env.NOTIFY_ENDPOINT?.trim()
-  || `https://${projectId}.supabase.co/functions/v1/notify-telegram`
+  || `https://${projectId}.supabase.co/functions/v1/${process.env.NOTIFY_FUNCTION?.trim() || 'notify-polinamaz-telegram'}`
 let failures = 0
 
 for (const lesson of lessons) {
@@ -155,6 +151,7 @@ for (const lesson of lessons) {
     headers: {
       'content-type': 'application/json',
       'x-notify-secret': notifySecret,
+      ...(supabaseAnonKey ? { authorization: `Bearer ${supabaseAnonKey}`, apikey: supabaseAnonKey } : {}),
     },
     body: JSON.stringify(payload),
   })

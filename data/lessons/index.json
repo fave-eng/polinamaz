@@ -14,7 +14,7 @@
       "title": "Unit 1 — Narrative tenses",
       "subtitle": "Outcomes 2ed B1 Intermediate · Grammar, conversations and writing",
       "status": "published",
-      "hasVocabulary": false
+      "hasVocabulary": true
     },
     {
       "id": "lesson-3",
@@ -37,6 +37,22 @@
       "number": 5,
       "title": "Unit 2 — Feelings",
       "subtitle": "Linking verbs · Response expressions · Listening · Exercises 3–6",
+      "status": "published",
+      "hasVocabulary": true
+    },
+    {
+      "id": "lesson-6",
+      "number": 6,
+      "title": "Unit 2 - Food and mood",
+      "subtitle": "-ing / -ed adjectives · Reading · Present simple and continuous · A letter",
+      "status": "published",
+      "hasVocabulary": true
+    },
+    {
+      "id": "lesson-7",
+      "number": 7,
+      "title": "Unit 3 - Time off",
+      "subtitle": "Places of interest · Suggestions · An email giving advice · Future plans",
       "status": "published",
       "hasVocabulary": true
     }

@@ -16,6 +16,9 @@ window.APP_CONFIG = {
       vocabulary: "vocabulary_progress",
       vocabularyTopics: "vocabulary_topic_progress",
       grammar: "grammar_progress"
+    },
+    functions: {
+      notifyTelegram: "notify-polinamaz-telegram"
     }
   },
 

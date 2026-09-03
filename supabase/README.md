@@ -23,7 +23,7 @@ insert into public.telegram_recipients (
   enabled
 )
 values (
-  'polina',
+  'polinamaz',
   123456789,
   null,
   true
@@ -43,7 +43,7 @@ set chat_id = excluded.chat_id,
 ```bash
 supabase secrets set TELEGRAM_BOT_TOKEN="REAL_BOT_TOKEN"
 supabase secrets set NOTIFY_WEBHOOK_SECRET="LONG_RANDOM_SECRET"
-supabase secrets set ALLOWED_STUDENT_ID="polina"
+supabase secrets set ALLOWED_STUDENT_ID="polinamaz"
 supabase secrets set SITE_BASE_URL="https://USERNAME.github.io/REPOSITORY"
 ```
 
@@ -116,7 +116,7 @@ TELEGRAM_NOTIFICATIONS_ENABLED=true
 ```json
 {
   "action": "homework_report",
-  "studentId": "polina",
+  "studentId": "polinamaz",
   "lessonId": "lesson-1",
   "submissionId": "UUID_FROM_DATABASE"
 }
@@ -165,4 +165,4 @@ functionVersion = homework-reports-v1
 
 ## 10. Ограничение схемы без авторизации
 
-RLS ограничивает строки идентификатором `polina`, но не подтверждает личность человека. Не используйте эту архитектуру для экзамена, чувствительных данных или сайта с несколькими пользователями.
+RLS ограничивает строки идентификатором `polinamaz`, но не подтверждает личность человека. Не используйте эту архитектуру для экзамена, чувствительных данных или сайта с несколькими пользователями.

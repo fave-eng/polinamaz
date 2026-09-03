@@ -2,3 +2,6 @@ project_id = "polina-english-space"
 
 [functions.notify-telegram]
 verify_jwt = false
+
+[functions.notify-polinamaz-telegram]
+verify_jwt = false
