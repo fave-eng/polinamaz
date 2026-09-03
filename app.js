@@ -825,7 +825,7 @@
     return String(question.question || question.prompt || question.title || "").trim();
   }
 
-  function renderQuestion(question, number, answer, checked, locked) {
+  function renderQuestion(question, number, answer, checked, locked, allAnswers = {}) {
     const id = Utils.escape(question.id);
     const result = checked?.[question.id];
     const stateClass = result ? (result.correct ? "is-correct" : "is-incorrect") : "";
@@ -888,7 +888,7 @@
         const isFixed = fixedStart.includes(stringItem);
         const previousIsFixed = index > 0 && fixedStart.includes(String(initial[index - 1]));
         const sourceItem = Utils.asArray(question.items).find((candidate) => optionValue(candidate) === stringItem) || item;
-        const label = renderOrderingLabel(sourceItem, answers);
+        const label = renderOrderingLabel(sourceItem, allAnswers);
         return `<div class="order-item ${isFixed ? "is-fixed" : ""}" data-order-value="${Utils.escape(stringItem)}"${isFixed ? ' data-order-fixed="true"' : ""}><span class="order-item-copy">${isFixed ? '<span class="order-fixed-badge">1 · given</span>' : ""}${Utils.escape(label)}</span><span class="order-controls"><button type="button" data-order-action="up" aria-label="Move up" ${locked || isFixed || index === 0 || previousIsFixed ? "disabled" : ""}>↑</button><button type="button" data-order-action="down" aria-label="Move down" ${locked || isFixed || index === initial.length - 1 ? "disabled" : ""}>↓</button></span></div>`;
       }).join("")}</div>`;
     }
@@ -1099,11 +1099,11 @@
             questionNumber += block.questions.length;
             return renderStatementListBlock(block, progress.answers, checked, locked);
           }
-          return `<section class="exercise-block">${block.title ? `<h2>${Utils.escape(block.title)}</h2>` : ""}${block.instruction ? `<p class="instruction">${Utils.escape(block.instruction)}</p>` : ""}${block.questions.map((question) => { questionNumber += 1; return renderQuestion({ ...question, parentTitle: block.title }, questionNumber, progress.answers[question.id], checked, locked); }).join("")}</section>`;
+          return `<section class="exercise-block">${block.title ? `<h2>${Utils.escape(block.title)}</h2>` : ""}${block.instruction ? `<p class="instruction">${Utils.escape(block.instruction)}</p>` : ""}${block.questions.map((question) => { questionNumber += 1; return renderQuestion({ ...question, parentTitle: block.title }, questionNumber, progress.answers[question.id], checked, locked, progress.answers); }).join("")}</section>`;
         }
         if (["single-choice", "multiple-choice", "true-false", "text-input", "matching", "ordering", "open-answer", "pronunciation"].includes(block.type)) {
           questionNumber += 1;
-          return `<section class="exercise-block">${renderQuestion(block, questionNumber, progress.answers[block.id], checked, locked)}</section>`;
+          return `<section class="exercise-block">${renderQuestion(block, questionNumber, progress.answers[block.id], checked, locked, progress.answers)}</section>`;
         }
         return "";
       }).join("");
