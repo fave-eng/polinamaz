@@ -1017,12 +1017,15 @@
   }
 
   function renderLessonWordBank(block) {
+    const questions = Utils.asArray(block.questions);
+    const hasDropdowns = questions.some((question) => question.controlType === "select");
+    const stickyClass = questions.length && !hasDropdowns ? " lesson-word-bank-sticky" : "";
     const groups = Utils.asArray(block.wordBankGroups);
     if (groups.length) {
-      return `<div class="lesson-word-bank lesson-word-bank-grouped" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-groups">${groups.map((group) => `<div class="lesson-word-bank-group"><strong>${Utils.escape(group.label || "Box")}</strong><div class="lesson-word-bank-items">${Utils.asArray(group.words).map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`).join("")}</div></div>`;
+      return `<div class="lesson-word-bank lesson-word-bank-grouped${stickyClass}" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-groups">${groups.map((group) => `<div class="lesson-word-bank-group"><strong>${Utils.escape(group.label || "Box")}</strong><div class="lesson-word-bank-items">${Utils.asArray(group.words).map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`).join("")}</div></div>`;
     }
     return Utils.asArray(block.wordBank).length
-      ? `<div class="lesson-word-bank" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-items">${block.wordBank.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`
+      ? `<div class="lesson-word-bank${stickyClass}" aria-label="Word box"><div class="lesson-word-bank-heading"><span class="lesson-word-bank-icon" aria-hidden="true">Aa</span><div><span class="lesson-word-bank-label">Word box</span></div></div><div class="lesson-word-bank-items">${block.wordBank.map((word) => `<span>${Utils.escape(word)}</span>`).join("")}</div></div>`
       : "";
   }
 
@@ -1043,7 +1046,8 @@
       }).join("");
       return `<article class="conversation-item"><div class="conversation-item-heading"><span class="conversation-number">${Utils.escape(conversation.number)}</span><div class="conversation-pair-bank">${pairs}</div></div><div class="conversation-dialogue">${lines}</div></article>`;
     }).join("");
-    return `<section class="card exercise-block lesson-content-card conversation-gap-card">${renderContentHeading(block)}<div class="lesson-content-body">${wordBank}<div class="conversation-list">${conversations}</div></div></section>`;
+    const stickyClass = wordBank.includes("lesson-word-bank-sticky") ? " has-sticky-word-bank" : "";
+    return `<section class="card exercise-block lesson-content-card conversation-gap-card${stickyClass}">${renderContentHeading(block)}<div class="lesson-content-body">${wordBank}<div class="conversation-list">${conversations}</div></div></section>`;
   }
 
   function renderGapTextBlock(block, answers, checked, locked) {
@@ -1057,7 +1061,8 @@
     const passageLabel = block.passageLabel
       ? `<div class="lesson-passage-heading"><span class="lesson-passage-label">${Utils.escape(block.passageLabel)}</span>${block.passageHelp ? `<span class="lesson-passage-help">${Utils.escape(block.passageHelp)}</span>` : ""}</div>`
       : "";
-    return `<section class="card exercise-block lesson-content-card lesson-gap-text-card">${renderContentHeading(block)}<div class="lesson-content-body">${block.instruction ? `<div class="lesson-task-instruction"><span class="lesson-task-label">Task</span><p>${Utils.escape(block.instruction)}</p></div>` : ""}${wordBank}<article class="lesson-passage-card ${block.variant ? `lesson-gap-text-${Utils.escape(block.variant)}` : ""}">${passageLabel}<div class="lesson-gap-text">${paragraphs}</div></article></div></section>`;
+    const stickyClass = wordBank.includes("lesson-word-bank-sticky") ? " has-sticky-word-bank" : "";
+    return `<section class="card exercise-block lesson-content-card lesson-gap-text-card${stickyClass}">${renderContentHeading(block)}<div class="lesson-content-body">${block.instruction ? `<div class="lesson-task-instruction"><span class="lesson-task-label">Task</span><p>${Utils.escape(block.instruction)}</p></div>` : ""}${wordBank}<article class="lesson-passage-card ${block.variant ? `lesson-gap-text-${Utils.escape(block.variant)}` : ""}">${passageLabel}<div class="lesson-gap-text">${paragraphs}</div></article></div></section>`;
   }
 
   function renderStatementListBlock(block, answers, checked, locked) {
