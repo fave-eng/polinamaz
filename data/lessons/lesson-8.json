@@ -1,0 +1,1502 @@
+{
+  "id": "lesson-8",
+  "number": 8,
+  "title": "Unit 4 - Interests",
+  "subtitle": "Free-time activities · Habit and frequency · Listening · Are you any good?",
+  "status": "published",
+  "grammarIds": [
+    "grammar-habit-and-frequency"
+  ],
+  "vocabularyIds": [
+    "vocab-lesson-8"
+  ],
+  "blocks": [
+    {
+      "type": "section-heading",
+      "kicker": "Vocabulary",
+      "title": "Free-time activities"
+    },
+    {
+      "type": "gap-text",
+      "id": "free-time-1",
+      "kicker": "Vocabulary",
+      "title": "1 Complete the spidergram with the words in the box.",
+      "wordBank": [
+        "the theatre",
+        "football",
+        "the cinema",
+        "climbing",
+        "cards",
+        "some baking",
+        "sailing",
+        "tennis",
+        "a ride on my bike",
+        "a friend's place",
+        "a run",
+        "a drive",
+        "a bit of exercise",
+        "shopping"
+      ],
+      "passageLabel": "Evening and weekend activities",
+      "paragraphs": [
+        [
+          "play + football, ",
+          {
+            "questionId": "free-time-1-1"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-2"
+          }
+        ],
+        [
+          "go to + ",
+          {
+            "questionId": "free-time-1-3"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-4"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-5"
+          }
+        ],
+        [
+          "go + ",
+          {
+            "questionId": "free-time-1-6"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-7"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-8"
+          }
+        ],
+        [
+          "do + ",
+          {
+            "questionId": "free-time-1-9"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-10"
+          }
+        ],
+        [
+          "go for + ",
+          {
+            "questionId": "free-time-1-11"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-12"
+          },
+          ", ",
+          {
+            "questionId": "free-time-1-13"
+          }
+        ]
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "free-time-1-1",
+          "question": "play + second activity",
+          "correctAnswer": "cards",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-2",
+          "question": "play + third activity",
+          "correctAnswer": "tennis",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-3",
+          "question": "go to + first place",
+          "correctAnswer": "the theatre",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-4",
+          "question": "go to + second place",
+          "correctAnswer": "the cinema",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-5",
+          "question": "go to + third place",
+          "correctAnswer": "a friend's place",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-6",
+          "question": "go + first activity",
+          "correctAnswer": "climbing",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-7",
+          "question": "go + second activity",
+          "correctAnswer": "sailing",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-8",
+          "question": "go + third activity",
+          "correctAnswer": "shopping",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-9",
+          "question": "do + first activity",
+          "correctAnswer": "some baking",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-10",
+          "question": "do + second activity",
+          "correctAnswer": "a bit of exercise",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-11",
+          "question": "go for + first activity",
+          "correctAnswer": "a ride on my bike",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-12",
+          "question": "go for + second activity",
+          "correctAnswer": "a run",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-1-13",
+          "question": "go for + third activity",
+          "correctAnswer": "a drive",
+          "controlType": "select",
+          "options": [
+            "the theatre",
+            "the cinema",
+            "climbing",
+            "cards",
+            "some baking",
+            "sailing",
+            "tennis",
+            "a ride on my bike",
+            "a friend's place",
+            "a run",
+            "a drive",
+            "a bit of exercise",
+            "shopping"
+          ],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "type": "conversation-gap-fill",
+      "id": "free-time-2",
+      "kicker": "Vocabulary",
+      "title": "2 Complete the conversations. Put the words in brackets in the correct order.",
+      "conversations": [
+        {
+          "number": 1,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "Mum, I'm bored."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Well, go and ",
+                {
+                  "questionId": "free-time-2-1a"
+                },
+                " or ",
+                {
+                  "questionId": "free-time-2-1b"
+                },
+                "."
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "But that's boring. I do that every day."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Well, ",
+                {
+                  "questionId": "free-time-2-1c"
+                },
+                " then."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "What did you do at the weekend?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "I just ",
+                {
+                  "questionId": "free-time-2-2a"
+                },
+                "."
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "How come? You're usually such a party animal."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Yeah, I just ",
+                {
+                  "questionId": "free-time-2-2b"
+                },
+                "."
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "Fair enough."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "What's your idea of a perfect Friday night?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Going ",
+                {
+                  "questionId": "free-time-2-3a"
+                },
+                " or just ",
+                {
+                  "questionId": "free-time-2-3b"
+                },
+                " at home. What about you?"
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "My idea of heaven is ",
+                {
+                  "questionId": "free-time-2-3c"
+                },
+                "."
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Why on earth would you want to do that?"
+              ]
+            },
+            {
+              "speaker": "A",
+              "parts": [
+                "Only joking. My ideal night out is going ",
+                {
+                  "questionId": "free-time-2-3d"
+                },
+                " and then ",
+                {
+                  "questionId": "free-time-2-3e"
+                },
+                "."
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "free-time-2-1a",
+          "question": "1 B first phrase: play / ride / your / football / bike",
+          "correctAnswer": "play football",
+          "points": 1,
+          "acceptedAnswers": [
+            "play football"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-1b",
+          "question": "1 B second phrase: play / ride / your / football / bike",
+          "correctAnswer": "ride your bike",
+          "points": 1,
+          "acceptedAnswers": [
+            "ride your bike"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-1c",
+          "question": "1 B third phrase: in / bedroom / stay / tidy / up / your",
+          "correctAnswer": "stay in and tidy up your bedroom",
+          "points": 1,
+          "acceptedAnswers": [
+            "stay in and tidy up your bedroom"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-2a",
+          "question": "2 B first phrase: in / it / stayed / took / easy",
+          "correctAnswer": "stayed in and took it easy",
+          "points": 1,
+          "acceptedAnswers": [
+            "stayed in and took it easy"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-2b",
+          "question": "2 B second phrase: fancy / just / going / clubbing / didn't",
+          "correctAnswer": "didn't fancy going clubbing",
+          "points": 1,
+          "acceptedAnswers": [
+            "didn't fancy going clubbing",
+            "did not fancy going clubbing"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-3a",
+          "question": "3 B first phrase: easy / for / to / it / place / a / friend's / dinner / taking",
+          "correctAnswer": "to a friend's place for dinner",
+          "points": 1,
+          "acceptedAnswers": [
+            "to a friend's place for dinner"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-3b",
+          "question": "3 B second phrase: easy / for / to / it / place / a / friend's / dinner / taking",
+          "correctAnswer": "taking it easy",
+          "points": 1,
+          "acceptedAnswers": [
+            "taking it easy"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-3c",
+          "question": "3 A: for / and / staying / exams / studying / in / my",
+          "correctAnswer": "staying in and studying for my exams",
+          "points": 1,
+          "acceptedAnswers": [
+            "staying in and studying for my exams"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-3d",
+          "question": "3 A first phrase: going / watch / clubbing / bar / football / to / a / the / to",
+          "correctAnswer": "to a bar to watch the football",
+          "points": 1,
+          "acceptedAnswers": [
+            "to a bar to watch the football"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "free-time-2-3e",
+          "question": "3 A second phrase: going / watch / clubbing / bar / football / to / a / the / to",
+          "correctAnswer": "going clubbing",
+          "points": 1,
+          "acceptedAnswers": [
+            "going clubbing"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Grammar",
+      "title": "Habit and frequency"
+    },
+    {
+      "type": "conversation-gap-fill",
+      "id": "habit-3",
+      "kicker": "Grammar",
+      "title": "3 Complete the questions with the answers. Use the present simple of the verbs in the box.",
+      "wordBank": [
+        "play golf",
+        "go walking in the country",
+        "eat out",
+        "go clubbing",
+        "go to the gym",
+        "work"
+      ],
+      "conversations": [
+        {
+          "number": 1,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "How ",
+                {
+                  "questionId": "habit-3-1"
+                },
+                "?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "About once every two months. The local restaurants are quite expensive."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                {
+                  "questionId": "habit-3-2a"
+                },
+                " ever ",
+                {
+                  "questionId": "habit-3-2b"
+                },
+                " weekends?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Yes, all the time. I'm at my desk every Sunday morning."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                {
+                  "questionId": "habit-3-3"
+                },
+                " much?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Not as much as I should, so I'm starting to put on weight."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                {
+                  "questionId": "habit-3-4a"
+                },
+                " ever ",
+                {
+                  "questionId": "habit-3-4b"
+                },
+                "?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "No, never. It's not my kind of thing. I'm into team sports like football or rugby."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                {
+                  "questionId": "habit-3-5"
+                },
+                " a lot?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Yeah, at least three times a week. My best friend is a DJ."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                {
+                  "questionId": "habit-3-6a"
+                },
+                " often ",
+                {
+                  "questionId": "habit-3-6b"
+                },
+                "?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                "Whenever I can. I love being away from the city."
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "habit-3-1",
+          "question": "1 A",
+          "correctAnswer": "often do you eat out",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-2a",
+          "question": "2 A first gap",
+          "correctAnswer": "Do you",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-2b",
+          "question": "2 A second gap",
+          "correctAnswer": "work",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-3",
+          "question": "3 A",
+          "correctAnswer": "Do you go to the gym",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-4a",
+          "question": "4 A first gap",
+          "correctAnswer": "Do you",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-4b",
+          "question": "4 A second gap",
+          "correctAnswer": "play golf",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-5",
+          "question": "5 A",
+          "correctAnswer": "Do you go clubbing",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-6a",
+          "question": "6 A first gap",
+          "correctAnswer": "How",
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-3-6b",
+          "question": "6 A second gap",
+          "correctAnswer": "do you go walking in the country",
+          "points": 1,
+          "acceptedAnswers": [
+            "do you go walking in the country",
+            "do you often go walking in the country"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "variant": "language-note",
+      "kicker": "Grammar note",
+      "title": "Habit and frequency",
+      "paragraphs": [
+        "Use How often ...? to ask about frequency: How often do you eat out?",
+        "Use ever in present simple questions when you mean at any time: Do you ever work weekends?",
+        "Use all the time, every time, often, hardly ever and never to answer frequency questions."
+      ]
+    },
+    {
+      "type": "gap-text",
+      "id": "habit-4-words",
+      "kicker": "Grammar",
+      "title": "4 Look at the answers to the question 'How often do you listen to music?' Choose the correct words.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "habit-4-word-a",
+          "question": "a Not quite / that often. Maybe once a week.",
+          "correctAnswer": "that",
+          "controlType": "select",
+          "options": [
+            "Not quite",
+            "that"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-4-word-b",
+          "question": "b All the / Every time. I can't live without my iPod.",
+          "correctAnswer": "All the",
+          "controlType": "select",
+          "options": [
+            "All the",
+            "Every"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-4-word-c",
+          "question": "c Hardly ever / never. I never have the time.",
+          "correctAnswer": "ever",
+          "controlType": "select",
+          "options": [
+            "ever",
+            "never"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-4-word-d",
+          "question": "d Not as much as I used to / was used to. Maybe only once a fortnight.",
+          "correctAnswer": "used to",
+          "controlType": "select",
+          "options": [
+            "used to",
+            "was used to"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-4-word-e",
+          "question": "e Never / Not never. I'm more into books.",
+          "correctAnswer": "Never",
+          "controlType": "select",
+          "options": [
+            "Never",
+            "Not never"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-4-word-f",
+          "question": "f Quite much / often. Probably five times a week.",
+          "correctAnswer": "often",
+          "controlType": "select",
+          "options": [
+            "much",
+            "often"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-4-word-g",
+          "question": "g Not as much as I would / did like to. Just two or three times a week.",
+          "correctAnswer": "would",
+          "controlType": "select",
+          "options": [
+            "would",
+            "did"
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "habit-4-word-h",
+          "question": "h Nearly every / all day. Usually when I want to relax in the evenings.",
+          "correctAnswer": "every",
+          "controlType": "select",
+          "options": [
+            "every",
+            "all"
+          ],
+          "points": 1
+        }
+      ],
+      "paragraphs": [
+        [
+          "a ",
+          {
+            "questionId": "habit-4-word-a"
+          },
+          " often. Maybe once a week."
+        ],
+        [
+          "b ",
+          {
+            "questionId": "habit-4-word-b"
+          },
+          " time. I can't live without my iPod."
+        ],
+        [
+          "c Hardly ",
+          {
+            "questionId": "habit-4-word-c"
+          },
+          ". I never have the time."
+        ],
+        [
+          "d Not as much as I ",
+          {
+            "questionId": "habit-4-word-d"
+          },
+          ". Maybe only once a fortnight."
+        ],
+        [
+          "e ",
+          {
+            "questionId": "habit-4-word-e"
+          },
+          ". I'm more into books."
+        ],
+        [
+          "f Quite ",
+          {
+            "questionId": "habit-4-word-f"
+          },
+          ". Probably five times a week."
+        ],
+        [
+          "g Not as much as I ",
+          {
+            "questionId": "habit-4-word-g"
+          },
+          " like to. Just two or three times a week."
+        ],
+        [
+          "h Nearly ",
+          {
+            "questionId": "habit-4-word-h"
+          },
+          " day. Usually when I want to relax in the evenings."
+        ]
+      ]
+    },
+    {
+      "type": "matching",
+      "id": "habit-4-order",
+      "question": "4 Then number the answers in order (1 = most often).",
+      "pairs": [
+        {
+          "value": "a",
+          "label": "a that often. Maybe once a week."
+        },
+        {
+          "value": "b",
+          "label": "b All the time. I can't live without my iPod."
+        },
+        {
+          "value": "c",
+          "label": "c Hardly ever. I never have the time."
+        },
+        {
+          "value": "d",
+          "label": "d Not as much as I used to. Maybe only once a fortnight."
+        },
+        {
+          "value": "e",
+          "label": "e Never. I'm more into books."
+        },
+        {
+          "value": "f",
+          "label": "f Quite often. Probably five times a week."
+        },
+        {
+          "value": "g",
+          "label": "g Not as much as I would like to. Just two or three times a week."
+        },
+        {
+          "value": "h",
+          "label": "h Nearly every day. Usually when I want to relax in the evenings."
+        }
+      ],
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "correctAnswer": {
+        "a": "5",
+        "b": "1",
+        "c": "7",
+        "d": "6",
+        "e": "8",
+        "f": "3",
+        "g": "4",
+        "h": "2"
+      },
+      "points": 8,
+      "scorePerPair": true,
+      "compactOptionLabels": true
+    },
+    {
+      "type": "gap-text",
+      "id": "habit-5",
+      "kicker": "Grammar",
+      "title": "5 If possible, replace the underlined past simple forms with used to. One sentence cannot change.",
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "habit-5-1",
+          "question": "1 I had loads of time.",
+          "correctAnswer": "used to have",
+          "points": 1,
+          "acceptedAnswers": [
+            "used to have"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "habit-5-2",
+          "question": "2 I took every weekend off.",
+          "correctAnswer": "used to take",
+          "points": 1,
+          "acceptedAnswers": [
+            "used to take"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "habit-5-3",
+          "question": "3 I worked from six in the morning until 10 at night one day last week.",
+          "correctAnswer": "not possible",
+          "points": 1,
+          "acceptedAnswers": [
+            "not possible",
+            "impossible",
+            "no change"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "habit-5-4",
+          "question": "4 My colleagues always left work on time.",
+          "correctAnswer": "used to leave",
+          "points": 1,
+          "acceptedAnswers": [
+            "used to leave"
+          ]
+        },
+        {
+          "type": "text-input",
+          "id": "habit-5-5",
+          "question": "5 I spent all weekend with my family before I started working.",
+          "correctAnswer": "used to spend",
+          "points": 1,
+          "acceptedAnswers": [
+            "used to spend"
+          ]
+        }
+      ],
+      "paragraphs": [
+        [
+          "1 When I was at my first school, I ",
+          {
+            "questionId": "habit-5-1"
+          },
+          " loads of time to see friends, but now I have to study all week."
+        ],
+        [
+          "2 I ",
+          {
+            "questionId": "habit-5-2"
+          },
+          " every weekend off, but these days I spend every waking hour at the office."
+        ],
+        [
+          "3 ",
+          {
+            "questionId": "habit-5-3"
+          },
+          ": I worked from six in the morning until 10 at night one day last week. It was just exhausting."
+        ],
+        [
+          "4 My colleagues always ",
+          {
+            "questionId": "habit-5-4"
+          },
+          " work on time but now we're expected to stay late at the office."
+        ],
+        [
+          "5 I ",
+          {
+            "questionId": "habit-5-5"
+          },
+          " all weekend with my family before I started working. Now, I hardly ever see them."
+        ]
+      ]
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Listening",
+      "title": "Small changes to your life"
+    },
+    {
+      "type": "audio-playlist",
+      "id": "lesson-8-listening-audio",
+      "title": "4.1 and 4.2",
+      "tracks": [
+        {
+          "title": "4.1 Mike gives a talk about making small changes to your life",
+          "src": "audio/lessons/Track 14.mp3"
+        },
+        {
+          "title": "4.2 Mike, Amy and Jack talk about changes they made",
+          "src": "audio/lessons/Track 15.mp3"
+        }
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "id": "listening-6",
+      "question": "6 4.1 You are going to hear Mike giving a talk about making small changes to your life. Listen to Part 1 and circle the four aspects that he mentions.",
+      "options": [
+        {
+          "value": "travel",
+          "label": "travel"
+        },
+        {
+          "value": "sport",
+          "label": "sport"
+        },
+        {
+          "value": "food",
+          "label": "food"
+        },
+        {
+          "value": "relationships",
+          "label": "relationships"
+        },
+        {
+          "value": "free time",
+          "label": "free time"
+        },
+        {
+          "value": "shopping",
+          "label": "shopping"
+        }
+      ],
+      "correctAnswer": [
+        "travel",
+        "food",
+        "relationships",
+        "free time"
+      ],
+      "points": 4
+    },
+    {
+      "type": "matching",
+      "id": "listening-7",
+      "question": "7 4.2 Listen to Part 2. Mike, Amy, and Jack talk about changes they made. Who said or did what? Write M, A, or J.",
+      "pairs": [
+        {
+          "value": "1",
+          "label": "1 Changing my morning routine has changed my attitude."
+        },
+        {
+          "value": "2",
+          "label": "2 I became bored with my hobby even though I'm quite good at it."
+        },
+        {
+          "value": "3",
+          "label": "3 I thought you needed money to have a good time."
+        },
+        {
+          "value": "4",
+          "label": "4 It's silly to keep repeating things that upset you."
+        },
+        {
+          "value": "5",
+          "label": "5 I wanted to share my ideas with other people."
+        },
+        {
+          "value": "6",
+          "label": "6 I feel motivated to help others join in."
+        },
+        {
+          "value": "7",
+          "label": "7 I developed a great social life at no cost."
+        }
+      ],
+      "options": [
+        {
+          "value": "M",
+          "label": "M Mike"
+        },
+        {
+          "value": "A",
+          "label": "A Amy"
+        },
+        {
+          "value": "J",
+          "label": "J Jack"
+        }
+      ],
+      "correctAnswer": {
+        "1": "A",
+        "2": "J",
+        "3": "M",
+        "4": "A",
+        "5": "M",
+        "6": "J",
+        "7": "M"
+      },
+      "points": 7,
+      "scorePerPair": true,
+      "compactOptionLabels": true
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Pronunciation",
+      "title": "Sentence stress"
+    },
+    {
+      "type": "pronunciation",
+      "id": "pronunciation-8",
+      "question": "8 Mark the stresses in these sentences from Listening. Practise saying the sentences with the correct stressed and unstressed syllables.",
+      "context": "Write the words you think are stressed, then practise saying the sentences aloud.",
+      "frame": "1 Like a lot of people, I used to have a pretty fixed routine.\n2 I’m in a much better mood when I get to work.\n3 I’m into sport and I’m quite good at it.\n4 All my friends were playing the same sports.\n5 What have you got to lose?",
+      "autoCheck": false
+    },
+    {
+      "type": "audio-playlist",
+      "id": "lesson-8-pronunciation-audio",
+      "title": "4.3",
+      "tracks": [
+        {
+          "title": "4.3 Listen and check. Practise the sentences again.",
+          "src": "audio/lessons/Track 16.mp3"
+        }
+      ]
+    },
+    {
+      "type": "pronunciation",
+      "id": "pronunciation-9",
+      "question": "9 4.3 Listen and check. Practise the sentences again.",
+      "context": "After listening, write Done or add a short note about which sentence was difficult.",
+      "autoCheck": false
+    },
+    {
+      "type": "section-heading",
+      "kicker": "Developing conversations",
+      "title": "Are you any good?"
+    },
+    {
+      "type": "conversation-gap-fill",
+      "id": "any-good-10",
+      "kicker": "Developing conversations",
+      "title": "10 Complete the replies with the phrases in the box.",
+      "wordBank": [
+        "Yeah, quite good.",
+        "No, I'm useless.",
+        "I'm OK.",
+        "No, not really."
+      ],
+      "conversations": [
+        {
+          "number": 1,
+          "lines": [
+            {
+              "speaker": "A",
+              "parts": [
+                "So are you any good at singing?"
+              ]
+            },
+            {
+              "speaker": "B",
+              "parts": [
+                {
+                  "questionId": "any-good-10-1"
+                },
+                ". I can't sing at all. In fact they asked me to leave the school choir."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "lines": [
+            {
+              "speaker": "B",
+              "parts": [
+                {
+                  "questionId": "any-good-10-2"
+                },
+                ". Actually, I've been in a band for ages and we've won a few talent competitions."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "lines": [
+            {
+              "speaker": "B",
+              "parts": [
+                {
+                  "questionId": "any-good-10-3"
+                },
+                ". I used to sing a bit at school and I like to do karaoke with my friends."
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "lines": [
+            {
+              "speaker": "B",
+              "parts": [
+                {
+                  "questionId": "any-good-10-4"
+                },
+                ". I haven't got a very good voice. I get really embarrassed if people hear me sing."
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "type": "text-input",
+          "id": "any-good-10-1",
+          "question": "1",
+          "correctAnswer": "No, I'm useless.",
+          "controlType": "select",
+          "options": [
+            "Yeah, quite good.",
+            "No, I'm useless.",
+            "I'm OK.",
+            "No, not really."
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "any-good-10-2",
+          "question": "2",
+          "correctAnswer": "Yeah, quite good.",
+          "controlType": "select",
+          "options": [
+            "Yeah, quite good.",
+            "No, I'm useless.",
+            "I'm OK.",
+            "No, not really."
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "any-good-10-3",
+          "question": "3",
+          "correctAnswer": "I'm OK.",
+          "controlType": "select",
+          "options": [
+            "Yeah, quite good.",
+            "No, I'm useless.",
+            "I'm OK.",
+            "No, not really."
+          ],
+          "points": 1
+        },
+        {
+          "type": "text-input",
+          "id": "any-good-10-4",
+          "question": "4",
+          "correctAnswer": "No, not really.",
+          "controlType": "select",
+          "options": [
+            "Yeah, quite good.",
+            "No, I'm useless.",
+            "I'm OK.",
+            "No, not really."
+          ],
+          "points": 1
+        }
+      ]
+    }
+  ]
+}

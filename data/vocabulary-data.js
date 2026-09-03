@@ -1530,5 +1530,232 @@ window.VOCABULARY_DATA = [
       }
     ],
     "page": "vocabulary.html?topic=vocab-lesson-7"
+  },
+  {
+    "id": "vocab-lesson-8",
+    "title": "Unit 4 - Interests",
+    "label": "Lesson 8",
+    "icon": "🎲",
+    "type": "lesson",
+    "linkedLessonId": "lesson-8",
+    "words": [
+      {
+        "id": "lesson-8-free-time-activities",
+        "en": "free-time activities",
+        "ru": "занятия в свободное время",
+        "transcription": "/ˌfriː taɪm ækˈtɪvətiz/",
+        "exampleEn": "Free-time activities help you relax after work.",
+        "exampleRu": "Занятия в свободное время помогают расслабиться после работы.",
+        "category": "Activities"
+      },
+      {
+        "id": "lesson-8-play-football",
+        "en": "play football",
+        "ru": "играть в футбол",
+        "transcription": "/pleɪ ˈfʊtbɔːl/",
+        "exampleEn": "I play football every weekend.",
+        "exampleRu": "Я играю в футбол каждые выходные.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-play-cards",
+        "en": "play cards",
+        "ru": "играть в карты",
+        "transcription": "/pleɪ kɑːdz/",
+        "exampleEn": "We sometimes play cards after dinner.",
+        "exampleRu": "Мы иногда играем в карты после ужина.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-play-tennis",
+        "en": "play tennis",
+        "ru": "играть в теннис",
+        "transcription": "/pleɪ ˈtenɪs/",
+        "exampleEn": "She plays tennis twice a week.",
+        "exampleRu": "Она играет в теннис дважды в неделю.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-go-to-the-cinema",
+        "en": "go to the cinema",
+        "ru": "ходить в кино",
+        "transcription": "/ɡəʊ tə ðə ˈsɪnəmə/",
+        "exampleEn": "Do you ever go to the cinema?",
+        "exampleRu": "Ты когда-нибудь ходишь в кино?",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-go-to-the-theatre",
+        "en": "go to the theatre",
+        "ru": "ходить в театр",
+        "transcription": "/ɡəʊ tə ðə ˈθɪətə/",
+        "exampleEn": "We rarely go to the theatre.",
+        "exampleRu": "Мы редко ходим в театр.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-go-climbing",
+        "en": "go climbing",
+        "ru": "заниматься скалолазанием",
+        "transcription": "/ɡəʊ ˈklaɪmɪŋ/",
+        "exampleEn": "I want to go climbing this weekend.",
+        "exampleRu": "Я хочу пойти на скалолазание в эти выходные.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-go-shopping",
+        "en": "go shopping",
+        "ru": "ходить за покупками",
+        "transcription": "/ɡəʊ ˈʃɒpɪŋ/",
+        "exampleEn": "They go shopping on Saturdays.",
+        "exampleRu": "Они ходят за покупками по субботам.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-go-sailing",
+        "en": "go sailing",
+        "ru": "ходить под парусом",
+        "transcription": "/ɡəʊ ˈseɪlɪŋ/",
+        "exampleEn": "We went sailing last summer.",
+        "exampleRu": "Прошлым летом мы ходили под парусом.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-do-some-baking",
+        "en": "do some baking",
+        "ru": "заняться выпечкой",
+        "transcription": "/duː səm ˈbeɪkɪŋ/",
+        "exampleEn": "I might do some baking on Sunday.",
+        "exampleRu": "В воскресенье я, возможно, займусь выпечкой.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-do-a-bit-of-exercise",
+        "en": "do a bit of exercise",
+        "ru": "немного позаниматься спортом",
+        "transcription": "/duː ə bɪt əv ˈeksəsaɪz/",
+        "exampleEn": "I do a bit of exercise before work.",
+        "exampleRu": "Я немного занимаюсь спортом перед работой.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-go-for-a-drive",
+        "en": "go for a drive",
+        "ru": "поехать покататься на машине",
+        "transcription": "/ɡəʊ fər ə draɪv/",
+        "exampleEn": "Let's go for a drive after lunch.",
+        "exampleRu": "Давай поедем покататься после обеда.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-go-for-a-run",
+        "en": "go for a run",
+        "ru": "пойти на пробежку",
+        "transcription": "/ɡəʊ fər ə rʌn/",
+        "exampleEn": "He goes for a run every morning.",
+        "exampleRu": "Он бегает каждое утро.",
+        "category": "Verb patterns"
+      },
+      {
+        "id": "lesson-8-take-it-easy",
+        "en": "take it easy",
+        "ru": "расслабиться; не напрягаться",
+        "transcription": "/teɪk ɪt ˈiːzi/",
+        "exampleEn": "I stayed in and took it easy.",
+        "exampleRu": "Я остался дома и расслабился.",
+        "category": "Useful phrases"
+      },
+      {
+        "id": "lesson-8-tidy-up",
+        "en": "tidy up",
+        "ru": "убираться; приводить в порядок",
+        "transcription": "/ˈtaɪdi ʌp/",
+        "exampleEn": "You need to tidy up your bedroom.",
+        "exampleRu": "Тебе нужно прибраться в спальне.",
+        "category": "Useful phrases"
+      },
+      {
+        "id": "lesson-8-fancy-going",
+        "en": "fancy going",
+        "ru": "хотеть пойти; быть не против пойти",
+        "transcription": "/ˈfænsi ˈɡəʊɪŋ/",
+        "exampleEn": "I didn't fancy going clubbing.",
+        "exampleRu": "Мне не хотелось идти в клуб.",
+        "category": "Useful phrases"
+      },
+      {
+        "id": "lesson-8-party-animal",
+        "en": "a party animal",
+        "ru": "человек, который любит вечеринки",
+        "transcription": "/ə ˈpɑːti ˌænɪməl/",
+        "exampleEn": "You are usually such a party animal.",
+        "exampleRu": "Обычно ты такой любитель вечеринок.",
+        "category": "People"
+      },
+      {
+        "id": "lesson-8-my-idea-of-heaven",
+        "en": "my idea of heaven",
+        "ru": "мой идеальный вариант; настоящее удовольствие для меня",
+        "transcription": "/maɪ aɪˌdɪə əv ˈhevən/",
+        "exampleEn": "My idea of heaven is staying in with a book.",
+        "exampleRu": "Мой идеальный вариант - остаться дома с книгой.",
+        "category": "Useful phrases"
+      },
+      {
+        "id": "lesson-8-choir",
+        "en": "a choir",
+        "ru": "хор",
+        "transcription": "/ə ˈkwaɪə/",
+        "exampleEn": "They asked me to leave the school choir.",
+        "exampleRu": "Они попросили меня уйти из школьного хора.",
+        "category": "Music"
+      },
+      {
+        "id": "lesson-8-talent-competition",
+        "en": "a talent competition",
+        "ru": "конкурс талантов",
+        "transcription": "/ə ˈtælənt ˌkɒmpəˈtɪʃən/",
+        "exampleEn": "The band won a talent competition.",
+        "exampleRu": "Группа выиграла конкурс талантов.",
+        "category": "Music"
+      },
+      {
+        "id": "lesson-8-karaoke",
+        "en": "karaoke",
+        "ru": "караоке",
+        "transcription": "/ˌkæriˈəʊki/",
+        "exampleEn": "I like to do karaoke with my friends.",
+        "exampleRu": "Мне нравится петь караоке с друзьями.",
+        "category": "Music"
+      },
+      {
+        "id": "lesson-8-not-really",
+        "en": "No, not really.",
+        "ru": "Нет, не особо.",
+        "transcription": "/nəʊ nɒt ˈrɪəli/",
+        "exampleEn": "Are you good at singing? No, not really.",
+        "exampleRu": "Ты хорошо поёшь? Нет, не особо.",
+        "category": "Responses"
+      },
+      {
+        "id": "lesson-8-im-useless",
+        "en": "I'm useless.",
+        "ru": "У меня совсем не получается.",
+        "transcription": "/aɪm ˈjuːsləs/",
+        "exampleEn": "No, I'm useless. I can't sing at all.",
+        "exampleRu": "Нет, у меня совсем не получается. Я вообще не умею петь.",
+        "category": "Responses"
+      },
+      {
+        "id": "lesson-8-quite-good",
+        "en": "quite good",
+        "ru": "довольно хорошо",
+        "transcription": "/kwaɪt ɡʊd/",
+        "exampleEn": "Yeah, I'm quite good at singing.",
+        "exampleRu": "Да, я довольно хорошо пою.",
+        "category": "Responses"
+      }
+    ],
+    "page": "vocabulary.html?topic=vocab-lesson-8"
   }
 ];

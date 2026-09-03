@@ -2625,5 +2625,417 @@ window.GRAMMAR_DATA = [
         ]
       }
     ]
+  },
+  {
+    "id": "grammar-habit-and-frequency",
+    "number": 7,
+    "order": 7,
+    "title": "Habit and frequency",
+    "shortTitle": "Habit and frequency",
+    "subtitle": "Ask how often something happens and talk about past and present habits.",
+    "level": "B1",
+    "status": "published",
+    "linkedLessonId": "lesson-8",
+    "page": "grammar-topic.html?id=grammar-habit-and-frequency",
+    "passed": false,
+    "attempts": 0,
+    "passScore": 80,
+    "explanation": "Habit and frequency helps you talk about regular actions: how often you do something now, whether you ever do it, and what you did regularly in the past. Use present simple for current habits, adverbs of frequency for how often, and used to for past habits that are no longer true.",
+    "formula": "How often do you ...? · Do you ever ...? · I hardly ever / often / usually ... · I used to ...",
+    "glanceCards": [
+      {
+        "icon": "🔁",
+        "label": "Present habits",
+        "hint": "regular actions now",
+        "pattern": "present simple",
+        "example": "I go clubbing at least three times a week."
+      },
+      {
+        "icon": "❓",
+        "label": "Frequency questions",
+        "hint": "ask how often",
+        "pattern": "How often do you + verb?",
+        "example": "How often do you eat out?"
+      },
+      {
+        "icon": "⏱️",
+        "label": "Frequency words",
+        "hint": "say how often",
+        "pattern": "always / often / hardly ever / never",
+        "example": "I hardly ever listen to music now."
+      },
+      {
+        "icon": "↩️",
+        "label": "Past habits",
+        "hint": "regular in the past, not now",
+        "pattern": "used to + verb",
+        "example": "I used to have loads of free time."
+      }
+    ],
+    "anchorLinks": [
+      {
+        "id": "grammar-at-a-glance",
+        "title": "Quick overview"
+      },
+      {
+        "id": "grammar-rule-map",
+        "title": "Rule map"
+      },
+      {
+        "id": "grammar-tables",
+        "title": "Tables"
+      },
+      {
+        "id": "grammar-examples",
+        "title": "Examples"
+      },
+      {
+        "id": "grammar-mistakes",
+        "title": "Common mistakes"
+      },
+      {
+        "id": "grammar-practice-section",
+        "title": "Practice"
+      }
+    ],
+    "miniRules": [
+      {
+        "title": "1. Use present simple for habits now",
+        "text": "For routines and regular activities, use the present simple.",
+        "example": "I play tennis on Saturdays."
+      },
+      {
+        "title": "2. Ask frequency with How often",
+        "text": "How often asks about the number of times something happens.",
+        "example": "How often do you go to the gym?"
+      },
+      {
+        "title": "3. Use ever in questions",
+        "text": "Ever means at any time and is common in questions about habits.",
+        "example": "Do you ever work weekends?"
+      },
+      {
+        "title": "4. Use used to for past habits",
+        "text": "Used to shows something was regular or true in the past but is different now.",
+        "example": "I used to take every weekend off."
+      }
+    ],
+    "tables": [
+      {
+        "title": "Current habits",
+        "headers": [
+          "Use",
+          "Form",
+          "Example"
+        ],
+        "rows": [
+          [
+            "regular action now",
+            "present simple",
+            "I go walking whenever I can."
+          ],
+          [
+            "frequency question",
+            "How often do you + verb?",
+            "How often do you eat out?"
+          ],
+          [
+            "ever question",
+            "Do you ever + verb?",
+            "Do you ever play golf?"
+          ],
+          [
+            "frequency answer",
+            "frequency phrase",
+            "About once every two months."
+          ]
+        ]
+      },
+      {
+        "title": "Past habits with used to",
+        "headers": [
+          "Meaning",
+          "Form",
+          "Example"
+        ],
+        "rows": [
+          [
+            "past habit, not now",
+            "used to + verb",
+            "I used to have loads of time."
+          ],
+          [
+            "past repeated action",
+            "used to + verb",
+            "I used to spend weekends with my family."
+          ],
+          [
+            "single finished past event",
+            "past simple, not used to",
+            "I worked late one day last week."
+          ]
+        ]
+      }
+    ],
+    "exampleGroups": [
+      {
+        "title": "Frequency questions",
+        "items": [
+          "How often do you eat out?",
+          "Do you ever work weekends?",
+          "How often do you go walking in the country?"
+        ]
+      },
+      {
+        "title": "Frequency answers",
+        "items": [
+          "All the time.",
+          "Quite often.",
+          "Hardly ever.",
+          "Never."
+        ]
+      },
+      {
+        "title": "Past habits",
+        "items": [
+          "I used to take every weekend off.",
+          "My colleagues used to leave work on time.",
+          "I used to spend all weekend with my family."
+        ]
+      }
+    ],
+    "commonMistakes": [
+      "How often you eat out? ✗ → How often do you eat out? ✓",
+      "Do you go ever clubbing? ✗ → Do you ever go clubbing? ✓",
+      "I was used to have free time ✗ → I used to have free time ✓",
+      "I used to worked late ✗ → I used to work late ✓",
+      "Do not use used to for one single finished event: I worked late one day last week."
+    ],
+    "exercises": [
+      {
+        "id": "habit-frequency-step-1",
+        "type": "exercise",
+        "title": "Choose the right question form",
+        "difficulty": "Easy",
+        "instructions": "Выбери правильный вопрос о привычках.",
+        "items": [
+          {
+            "id": "1",
+            "input": "single",
+            "prompt": "___ do you eat out?",
+            "options": [
+              "How often",
+              "How much",
+              "How long"
+            ],
+            "answer": 0,
+            "explanation": "How often asks about frequency."
+          },
+          {
+            "id": "2",
+            "input": "single",
+            "prompt": "___ you ever work weekends?",
+            "options": [
+              "Do",
+              "Are",
+              "Have"
+            ],
+            "answer": 0,
+            "explanation": "Present simple questions use do/does."
+          },
+          {
+            "id": "3",
+            "input": "single",
+            "prompt": "How often ___ go walking?",
+            "options": [
+              "you do",
+              "do you",
+              "are you"
+            ],
+            "answer": 1,
+            "explanation": "Question order: do + subject + verb."
+          },
+          {
+            "id": "4",
+            "input": "single",
+            "prompt": "Do you ever ___ golf?",
+            "options": [
+              "play",
+              "playing",
+              "played"
+            ],
+            "answer": 0,
+            "explanation": "After do, use the base verb."
+          }
+        ]
+      },
+      {
+        "id": "habit-frequency-step-2",
+        "type": "exercise",
+        "title": "Complete with frequency words",
+        "difficulty": "Medium",
+        "instructions": "Впиши подходящее слово или фразу.",
+        "items": [
+          {
+            "id": "1",
+            "input": "gaps",
+            "prompt": "Complete the answer.",
+            "segments": [
+              "I listen to music all ",
+              "."
+            ],
+            "answers": [
+              "the time"
+            ],
+            "explanation": "All the time = very often."
+          },
+          {
+            "id": "2",
+            "input": "gaps",
+            "prompt": "Complete the answer.",
+            "segments": [
+              "I ",
+              " ever have the time."
+            ],
+            "answers": [
+              "hardly"
+            ],
+            "explanation": "Hardly ever = almost never."
+          },
+          {
+            "id": "3",
+            "input": "gaps",
+            "prompt": "Complete the answer.",
+            "segments": [
+              "Probably five times a week. Quite ",
+              "."
+            ],
+            "answers": [
+              "often"
+            ],
+            "explanation": "Quite often describes frequency."
+          },
+          {
+            "id": "4",
+            "input": "gaps",
+            "prompt": "Complete the answer.",
+            "segments": [
+              "I listen to music nearly ",
+              " day."
+            ],
+            "answers": [
+              "every"
+            ],
+            "explanation": "Nearly every day = almost daily."
+          }
+        ]
+      },
+      {
+        "id": "habit-frequency-step-3",
+        "type": "exercise",
+        "title": "Used to or past simple?",
+        "difficulty": "Medium",
+        "instructions": "Выбери, где можно использовать used to.",
+        "items": [
+          {
+            "id": "1",
+            "input": "single",
+            "prompt": "When I was at school, I had loads of free time.",
+            "options": [
+              "used to have",
+              "not possible"
+            ],
+            "answer": 0,
+            "explanation": "This describes a past state that is different now."
+          },
+          {
+            "id": "2",
+            "input": "single",
+            "prompt": "I worked from six until ten one day last week.",
+            "options": [
+              "used to work",
+              "not possible"
+            ],
+            "answer": 1,
+            "explanation": "One day last week is a single past event."
+          },
+          {
+            "id": "3",
+            "input": "single",
+            "prompt": "My colleagues always left work on time.",
+            "options": [
+              "used to leave",
+              "not possible"
+            ],
+            "answer": 0,
+            "explanation": "Always shows a repeated past habit."
+          },
+          {
+            "id": "4",
+            "input": "single",
+            "prompt": "I spent all weekend with my family before I started working.",
+            "options": [
+              "used to spend",
+              "not possible"
+            ],
+            "answer": 0,
+            "explanation": "This was a regular past habit."
+          }
+        ]
+      },
+      {
+        "id": "habit-frequency-step-4",
+        "type": "exercise",
+        "title": "Rewrite the sentence",
+        "difficulty": "Hard",
+        "instructions": "Перепиши с правильной формой.",
+        "items": [
+          {
+            "id": "1",
+            "input": "text",
+            "prompt": "Ask about eating out. Use How often.",
+            "answer": "How often do you eat out?",
+            "acceptedAnswers": [
+              "How often do you eat out?",
+              "How often do you eat out"
+            ],
+            "explanation": "Use do + subject + base verb."
+          },
+          {
+            "id": "2",
+            "input": "text",
+            "prompt": "Ask about weekend work. Use ever.",
+            "answer": "Do you ever work weekends?",
+            "acceptedAnswers": [
+              "Do you ever work weekends?",
+              "Do you ever work weekends"
+            ],
+            "explanation": "Ever goes before the main verb."
+          },
+          {
+            "id": "3",
+            "input": "text",
+            "prompt": "Replace: I took every weekend off.",
+            "answer": "I used to take every weekend off.",
+            "acceptedAnswers": [
+              "I used to take every weekend off.",
+              "I used to take every weekend off"
+            ],
+            "explanation": "Used to + base verb."
+          },
+          {
+            "id": "4",
+            "input": "text",
+            "prompt": "Replace: My colleagues always left work on time.",
+            "answer": "My colleagues used to leave work on time.",
+            "acceptedAnswers": [
+              "My colleagues used to leave work on time.",
+              "My colleagues used to leave work on time"
+            ],
+            "explanation": "Leave is the base verb after used to."
+          }
+        ]
+      }
+    ]
   }
 ];
